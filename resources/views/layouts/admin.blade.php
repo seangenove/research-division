@@ -20,7 +20,7 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
 
-    @yield('styles')
+@yield('styles')
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -350,18 +350,25 @@
                     </a>
 
                 </li>
+                {{--<li class="treeview menu-open">--}}
+                {{--<a href="#">--}}
+                {{--<i class="fa fa-envelope-o"></i> <span>Mail</span>--}}
+                {{--<span class="pull-right-container">--}}
+                {{--</span>--}}
+                {{--</a>--}}
+                {{--</li>--}}
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-envelope-o"></i> <span>Mail</span>
+                        <i class="fa fa-file-text"></i> <span>Ordinances
+                        </span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                </li>
-                <li class="treeview menu-open">
-                    <a href="#">
-                        <i class="fa fa-file-text"></i> <span>Ordinances</span>
-                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-bars"></i> Manage</a></li>
+                        <li class=""><a href="index2.html"><i class="fa fa-file-pdf-o"></i> Suggestions </a></li>
+                    </ul>
                 </li>
                 <li class="treeview menu-open">
                     <a href="#">
@@ -384,7 +391,7 @@
                 </li>
                 <li class="treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-file-code-o"></i> <span>Public Pages</span>
+                        <i class="fa fa-file-code-o"></i> <span>Pages</span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -431,8 +438,8 @@
         <!-- Main content -->
         <section class="content">
             <!-- Info boxes -->
-            @yield('content')
-            <!-- /.row -->
+        @yield('content')
+        <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>

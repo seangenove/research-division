@@ -21,9 +21,11 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('/', function () {
-        return view('layouts.admin');
-    });
+    // Dashboard Routes
+    Route::get('/', 'Admin\\DashboardController@index');
+
+    Route::get('/', 'Admin\\DashboardController@index');
+
 });
 
 
