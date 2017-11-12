@@ -20,6 +20,12 @@ Route::get('/index', function () {
 Route::get('/public/ordinance', function () {
     return view('/public/ordinance');
 });
+Route::get('/public/contactUs', function () {
+    return view('/public/contactUs');
+});
+Route::get('/public/showOrdinance', function () {
+    return view('/public/showOrdinance');
+});
 
 Route::prefix('admin')->group(function () {
 

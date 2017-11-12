@@ -71,22 +71,22 @@
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="#"><h3>Ordinance 1</h3></a>
+                            <a href="/public/show_ordinance"><h3>Ordinance 1</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="#"><h3>Ordinance 2</h3></a>
+                            <a href="/public/show_ordinance"><h3>Ordinance 2</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="#"><h3>Ordinance 3</h3></a>
+                            <a href="/public/show_ordinance"><h3>Ordinance 3</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="#"><h3>Ordinance 4</h3></a>
+                            <a href="/public/show_ordinance"><h3>Ordinance 4</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
@@ -94,7 +94,7 @@
 
                         <div class="pull-right">
                             <div class="ordinance-right-wrapper">
-                                <button onclick="window.location.href='/ordinance'" class="btn btn-info">View All</button>
+                                <button onclick="window.location.href='/public/ordinance'" class="btn btn-info">View All</button>
                             </div>
                         </div>
                     </div>
@@ -103,52 +103,53 @@
         </div>
     </div>
 
-    <!--about bg-->
-    <div id="about-bg">
+    {{--<!--about bg-->--}}
+    {{--<div id="about-bg">--}}
 
-        <div class="container">
-            <div class="row">
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
 
-                <div class="about-bg-heading">
-                    <h1>Statistics</h1>
-                    <p>what we have achieved so far</p>
-                </div>
+                {{--<div class="about-bg-heading">--}}
+                    {{--<h1>Statistics</h1>--}}
+                    {{--<p>what we have achieved so far</p>--}}
+                {{--</div>--}}
 
-                <div class=" col-xs-12 col-md-3">
-                    <div class="about-bg-wrapper">
-						<span class="count"><h1><span class="border">32</span>15</h1>
-						</span>
-                        <p>Pending Ordinances</p>
-                    </div>
-                </div>
+                {{--<div class=" col-xs-12 col-md-3">--}}
+                    {{--<div class="about-bg-wrapper">--}}
+						{{--<span class="count"><h1><span class="border">32</span>15</h1>--}}
+						{{--</span>--}}
+                        {{--<p>Pending Ordinances</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="col-xs-12 col-md-3">
-                    <div class="about-bg-wrapper">
-                        <span class="count"><h1>2217</h1></span>
-                        <p>Approved Ordinances</p>
-                    </div>
-                </div>
+                {{--<div class="col-xs-12 col-md-3">--}}
+                    {{--<div class="about-bg-wrapper">--}}
+                        {{--<span class="count"><h1>2217</h1></span>--}}
+                        {{--<p>Approved Ordinances</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="col-xs-12 col-md-3">
-                    <div class="about-bg-wrapper">
-                        <span class="count"><h1>1522</h1></span>
-                        <p>Data Gathered</p>
-                    </div>
-                </div>
+                {{--<div class="col-xs-12 col-md-3">--}}
+                    {{--<div class="about-bg-wrapper">--}}
+                        {{--<span class="count"><h1>1522</h1></span>--}}
+                        {{--<p>Data Gathered</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="col-xs-12 col-md-3">
-                    <div class="about-bg-wrapper">
-                        <span class="count"><h1>3151</h1></span>
-                        <p>Participants</p>
-                    </div>
-                </div>
+                {{--<div class="col-xs-12 col-md-3">--}}
+                    {{--<div class="about-bg-wrapper">--}}
+                        {{--<span class="count"><h1>3151</h1></span>--}}
+                        {{--<p>Participants</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-            </div>
-        </div>
+            {{--</div>--}}
+        {{--</div>--}}
 
-        <div class="cover"></div>
+        {{--<div class="cover"></div>--}}
 
-    </div>
+    {{--</div>--}}
+{{--
 
     <!--service-->
     <div id="service">
@@ -263,6 +264,7 @@
             </div>
         </div>
     </div>
+--}}
 
     <!--portfolio-->
     <div id="portfolio">
@@ -368,75 +370,6 @@
         </div>
     </div>
 
-    <!--contact form-->
-    <div id="get-touch">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <div class="get-touch-heading">
-                        <h2>get in touch</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <div class="row">
-                    <div id="sendmessage">Your message has been sent. Thank you!</div>
-                    <div id="errormessage"></div>
-
-                    <form action="" method="post" role="form" class="form contactForm">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="submit">
-                            <button class="btn btn-default" type="submit">Send Now</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--contact-->
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <div class="contact-heading">
-                        <h2>contact</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="google-map" data-latitude="16.414162" data-longitude="120.591581"></div>
-    </div>
-
-
     <!--client-->
     <div id="client">
         <div class="container">
@@ -469,4 +402,5 @@
             </div>
         </div>
     </div>
+    <br>
 @endsection

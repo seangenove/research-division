@@ -43,12 +43,11 @@
     <!--main-nav-->
 
     <div id="main-nav">
-
         <nav class="navbar">
             <div class="container">
 
                 <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand">Research Division, Baguio City</a>
+                    <a href="/public/aboutDivision" class="navbar-brand">Research Division, Baguio City</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
                         <span class="sr-only">Toggle</span>
                         <span class="icon-bar"></span>
@@ -62,9 +61,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/index">home</a></li>
                         <li><a href="/public/ordinance">Ordinances</a></li>
-                        <li><a href="#service">services</a></li>
-                        <li><a href="#portfolio">about</a></li>
-                        <li><a href="#contact">contact</a></li>
+                        <li><a href="/public/about">about</a></li>
+                        <li><a href="/public/contactUs">contact</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>
@@ -86,7 +84,6 @@
 
     @yield('content')
 
-<br>
 <!--bottom footer-->
 <div id="bottom-footer" class="hidden-xs">
     <div class="container">

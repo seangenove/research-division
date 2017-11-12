@@ -172,7 +172,7 @@ textarea:focus {
     top: 0;
     width: 100%;
     background-color: rgba(255,255,255,0.9);
-    color: #fff;
+    color: #0b3e6f;
     z-index:10;
 	-moz-box-shadow: 0 1px 2px #ebebeb;
 	-webkit-box-shadow: 0 1px 2px #ebebeb;
@@ -1434,9 +1434,22 @@ textarea:focus {
 	margin-top: 100px;
 }
 
+#get-touch .get-touch:before {
+	content: "";
+	border: 8px solid #e5eef0;
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+
 #get-touch .get-touch-heading {
 	text-align: center;
 }
+
 
 #get-touch .get-touch-heading h2 {
 	font-family: 'Josefin Sans', sans-serif;
