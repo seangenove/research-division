@@ -47,7 +47,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                    <a href="/public/aboutDivision" class="navbar-brand">Research Division, Baguio City</a>
+                    <a href="#portfolio" class="navbar-brand">Research Division, Baguio City</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
                         <span class="sr-only">Toggle</span>
                         <span class="icon-bar"></span>
