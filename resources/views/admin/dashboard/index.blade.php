@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
+            Prototype
             <small>Version 0.1</small>
         </h1>
         <ol class="breadcrumb">

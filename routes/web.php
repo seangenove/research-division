@@ -40,8 +40,8 @@ Route::prefix('admin')->group(function () {
     // Dashboard Routes
     Route::get('/', 'Admin\\DashboardController@index');
 
-    Route::get('/', 'Admin\\DashboardController@index');
-
+    // Forms
+    Route::resource('forms', 'Admin\\FormsController');
 });
 
 

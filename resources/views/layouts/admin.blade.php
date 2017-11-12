@@ -370,8 +370,8 @@
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-bars"></i> Manage</a></li>
-                            <li class=""><a href="index2.html"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
+                            <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
+                            <li><a href="#"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
                         </ul>
                     </a>
                 </li>
