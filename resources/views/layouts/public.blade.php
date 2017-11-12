@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>MyBiz Bootstrap Theme</title>
+    <title>Research Division</title>
     <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -30,22 +30,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="top-left">
+                    {{--<div class="top-left">--}}
 
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        </ul>
+                        {{--<ul>--}}
+                            {{--<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>--}}
+                            {{--<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>--}}
+                            {{--<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>--}}
+                            {{--<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>--}}
+                            {{--<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>--}}
+                        {{--</ul>--}}
 
-                    </div>
+                    {{--</div>--}}
                 </div>
 
                 <div class="col-md-6">
                     <div class="top-right">
-                        <p>Location:<span>Main Street 2020, City 3000</span></p>
+                        <p>Location:<span>City Hall Dr, Baguio City, 2600 Benguet</span></p>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand">MyBiz</a>
+                    <a href="index.html" class="navbar-brand">Research Division, Baguio City</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
                         <span class="sr-only">Toggle</span>
                         <span class="icon-bar"></span>
@@ -74,9 +74,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#home">home</a></li>
-                        <li><a href="#about">about</a></li>
+                        <li><a href="#ordinances">Ordinances</a></li>
                         <li><a href="#service">services</a></li>
-                        <li><a href="#portfolio">portfolio</a></li>
+                        <li><a href="#portfolio">about</a></li>
                         <li><a href="#contact">contact</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -105,8 +105,8 @@
             <img src="/images/slider/slider1.jpg">
 
             <div class="caption">
-                <h2><span>an awesome website</span></h2>
-                <h2><span>html theme</span></h2>
+                <h2><span>Participatory Governance</span></h2>
+                <h2><span>Baguio City</span></h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <button class="btn">Read More</button>
             </div>
@@ -139,13 +139,13 @@
 </div>
 
 <!--about-->
-<div id="about">
+<div id="ordinances">
 
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 <div class="about-heading">
-                    <h2>about</h2>
+                    <h2>ordinances</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
                 </div>
             </div>
@@ -206,7 +206,7 @@
         <div class="row">
 
             <div class="about-bg-heading">
-                <h1>sucessfull stats about us</h1>
+                <h1>Statistics</h1>
                 <p>what we have achieved so far</p>
             </div>
 
@@ -214,28 +214,28 @@
                 <div class="about-bg-wrapper">
 						<span class="count"><h1><span class="border">32</span>15</h1>
 						</span>
-                    <p>happy client</p>
+                    <p>Pending Ordinances</p>
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-3">
                 <div class="about-bg-wrapper">
                     <span class="count"><h1>2217</h1></span>
-                    <p>projects</p>
+                    <p>Approved Ordinances</p>
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-3">
                 <div class="about-bg-wrapper">
                     <span class="count"><h1>1522</h1></span>
-                    <p>branches</p>
+                    <p>Data Gathered</p>
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-3">
                 <div class="about-bg-wrapper">
                     <span class="count"><h1>3151</h1></span>
-                    <p>expert team</p>
+                    <p>Participants</p>
                 </div>
             </div>
 
@@ -367,7 +367,7 @@
 
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 <div class="portfolio-heading">
-                    <h2>portfolio</h2>
+                    <h2>We are</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
                 </div>
             </div>
@@ -529,8 +529,7 @@
         </div>
     </div>
 
-    <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
-
+    <div id="google-map" data-latitude="16.414162" data-longitude="120.591581"></div>
 </div>
 
 
