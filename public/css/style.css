@@ -732,6 +732,338 @@ textarea:focus {
 
 }
 
+/*Ordinance*/
+#ordinance {
+	padding: 80px;
+}
+
+#ordinance .ordinance-heading {
+	text-align: center;
+}
+
+#ordinance .ordinance-heading h2 {
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 700;
+	font-size: 45px;
+	text-transform: uppercase;
+}
+
+#ordinance .ordinance-heading p {
+	margin-top: 20px;
+	line-height: 25px;
+	color: #8e8e8e;
+	margin-bottom: 50px;
+}
+
+#ordinance .ordinance-left {
+	position: relative;
+	z-index: 2;
+}
+
+#ordinance .ordinance-right:before {
+	content: "";
+	border: 8px solid #e5eef0;
+	width: 120%;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#ordinance .ordinance-right {
+	position: relative;
+	padding: 0 80px 150px 80px;
+}
+
+#ordinance .ordinance-right-heading h1 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	padding-top: 100px;
+	text-transform: uppercase;
+}
+
+#ordinance .ordinance-right-boot:before {
+	content: "\f080";
+	font-family: 'FontAwesome';
+	font-size: 45px;
+	padding: 65px 30px 0 0;
+	float: left;
+	color: #01b1d7;
+}
+
+#ordinance .ordinance-right-wrapper {
+	padding-left: 0 0 50px 78px;
+	position: relative;
+	left: 0;
+	top: 75px;
+}
+
+#ordinance .ordinance-right-wrapper a {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	color: #282828;
+}
+
+#ordinance .ordinance-right-wrapper a:hover {
+	color: #01b1d7;
+}
+
+#ordinance .ordinance-right-wrapper p {
+	line-height: 28px;
+	margin-top: 20px;
+	color: #8e8e8e;
+}
+
+#ordinance .ordinance-right-best:before {
+	content: "\f201";
+	font-family: 'FontAwesome';
+	font-size: 45px;
+	padding: 65px 30px 0 0;
+	float: left;
+	color: #01b1d7;
+}
+
+#ordinance .ordinance-right-support:before {
+	content: "\f025";
+	font-family: 'FontAwesome';
+	font-size: 45px;
+	padding: 65px 30px 0 0;
+	float: left;
+	color: #01b1d7;
+}
+
+/*Media*/
+@media screen and (min-width: 320px) and (max-width: 520px) {
+	#ordinance {
+		padding: 0;
+	}
+
+	#ordinance .ordinance-heading h2 {
+		margin-top: 30px;
+		font-size: 27px;
+	}
+
+	#ordinance .ordinance-heading p {
+		margin-top: 20px;
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	#ordinance .ordinance-right:before {
+		content: "";
+		border: 8px solid #e5eef0;
+		width: 100%;
+		height: 100%;
+	}
+
+	#ordinance .ordinance-right {
+		position: relative;
+		padding: 30px;
+		margin-top: 20px;
+	}
+
+	#ordinance .ordinance-right-heading h1 {
+		padding-top: 20px;
+		font-size: 25px;
+		text-align: center;
+	}
+
+	#ordinance .ordinance-right-boot:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+
+	#ordinance .ordinance-right-wrapper {
+		position: relative;
+		left: 0;
+		top: 35px;
+	}
+
+	#ordinance .ordinance-right-wrapper a > h3 {
+		font-size: 20px;
+	}
+
+	#ordinance .ordinance-right-wrapper p {
+		margin-top: 20px;
+		font-size: 13px;
+	}
+
+	#ordinance .ordinance-right-best {
+		margin-top: 40px;
+	}
+
+	#ordinance .ordinance-right-best:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+
+	#ordinance .ordinance-right-support {
+		margin-top: 40px;
+	}
+
+	#ordinance .ordinance-right-support:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+}
+
+/*Media*/
+@media screen and (min-width: 521px) and (max-width: 980px) {
+	#ordinance {
+		margin-top: 50px;
+		padding: 0;
+	}
+
+	#ordinance .ordinance-heading h2 {
+		margin-top: 30px;
+		font-size: 30px;
+	}
+
+	#ordinance .ordinance-heading p {
+		margin-top: 20px;
+		line-height: 20px;
+	}
+
+	#ordinance .ordinance-right:before {
+		content: "";
+		border: 8px solid #e5eef0;
+		width: 100%;
+		height: 100%;
+	}
+
+	#ordinance .ordinance-right {
+		position: relative;
+		padding: 30px;
+		margin-top: 20px;
+	}
+
+	#ordinance .ordinance-right-heading h1 {
+		padding-top: 20px;
+		font-size: 25px;
+		text-align: center;
+	}
+
+	#ordinance .ordinance-right-boot:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+
+	#ordinance .ordinance-right-wrapper {
+		position: relative;
+		left: 0;
+		top: 35px;
+	}
+
+	#ordinance .ordinance-right-wrapper a > h3 {
+		font-size: 20px;
+	}
+
+	#ordinance .ordinance-right-wrapper p {
+		margin-top: 20px;
+		font-size: 13px;
+	}
+
+	#ordinance .ordinance-right-best {
+		margin-top: 40px;
+	}
+
+	#ordinance .ordinance-right-best:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+
+	#ordinance .ordinance-right-support {
+		margin-top: 40px;
+	}
+
+	#ordinance .ordinance-right-support:before {
+		font-size: 30px;
+		padding: 20px 20px 0 0;
+	}
+
+}
+
+/*ordinance bg*/
+#ordinance-bg {
+	position: relative;
+	background-image: url(../images/about/about2.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 100px;
+	text-transform: uppercase;
+	padding: 100px 0;
+	color: #fff;
+}
+
+.ordinance-bg-heading {
+	font-family: 'Josefin', sans-serif;
+	font-weight: 900;
+	text-align: center;
+	line-height: 40px;
+	z-index: -2;
+}
+
+.ordinance-bg-heading h1 {
+	font-size: 40px
+}
+
+.ordinance-bg-heading p {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.ordinance-bg-wrapper {
+	color: #fff;
+	text-align: center;
+	margin-top: 30px;
+	z-index: -2;
+}
+
+#ordinance-bg .ordinance-bg-wrapper .count {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 900;
+	font-size: 45px;
+	margin-right: 20px;
+	text-align: center;
+	float: left;
+	color: #01b1d7;
+}
+
+#ordinance-bg .ordinance-bg-wrapper p {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	margin-top: 30px;
+	float: left;
+}
+
+/*Media*/
+@media screen and (min-width: 320px) and (max-width: 520px) {
+	.ordinance-bg-heading h1 {
+		font-size: 28px;
+	}
+
+	.ordinance-bg-wrapper {
+		margin-left: 25%;
+	}
+
+}
+
+/*Media*/
+@media screen and (min-width: 521px) and (max-width: 980px) {
+	.ordinance-bg-heading h1 {
+		font-size: 30px;
+	}
+
+	.ordinance-bg-wrapper {
+		margin-left: 35%;
+	}
+
+}
+
 /*Service*/
 #service {
 	margin-top: 100px;

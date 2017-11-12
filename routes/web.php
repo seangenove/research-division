@@ -14,10 +14,12 @@
 
 
 /* Layout files */
-Route::get('/', function () {
-    return view('layouts.public');
+Route::get('/index', function () {
+    return view('/public/index');
 });
-
+Route::get('/public/ordinance', function () {
+    return view('/public/ordinance');
+});
 
 Route::prefix('admin')->group(function () {
 
