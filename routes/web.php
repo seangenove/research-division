@@ -14,7 +14,7 @@
 
 
 /* Layout files */
-Route::get('/index', function () {
+/*Route::get('/index', function () {
     return view('/public/index');
 });
 Route::get('/public/ordinance', function () {
@@ -33,7 +33,7 @@ Route::get('/admin/ordinances/index', function () {
 
 Route::get('/admin/ordinances/edit', function () {
     return view('/admin/ordinances/edit');
-});
+});*/
 
 Route::prefix('admin')->group(function () {
 
@@ -44,6 +44,11 @@ Route::prefix('admin')->group(function () {
     Route::resource('forms', 'Admin\\FormsController');
 });
 
+Route::prefix('public')->group(function () {
+    Route::get('/', 'PublicController@index');
+    Route::resource('ordinance', 'PublicController');
+    Route::resource('contactUs', 'PublicController');
+});
 
 Auth::routes();
 Auth::routes();

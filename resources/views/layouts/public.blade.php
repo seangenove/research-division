@@ -59,7 +59,7 @@
                 <div class="navbar-collapse collapse" id="ftheme">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/index">home</a></li>
+                        <li><a href="/">home</a></li>
                         <li><a href="/public/ordinance">Ordinances</a></li>
                         <li><a href="/public/about">about</a></li>
                         <li><a href="/public/contactUs">contact</a></li>
