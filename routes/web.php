@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('layouts.public');
 });
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('/', function () {
+        return view('layouts.admin');
+    });
 });
+
+
