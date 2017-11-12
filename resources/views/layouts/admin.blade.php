@@ -352,7 +352,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-bars"></i> Manage</a></li>
+                        <li><a href="/admin/ordinances/index"><i class="fa fa-bars"></i> Manage</a></li>
                         <li class=""><a href="index2.html"><i class="fa fa-file-pdf-o"></i> Suggestions </a></li>
                     </ul>
                 </li>
@@ -409,18 +409,6 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>Version 0.1</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
-            </ol>
-        </section>
-
         <!-- Main content -->
         <section class="content">
             <!-- Info boxes -->

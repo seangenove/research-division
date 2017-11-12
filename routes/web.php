@@ -27,6 +27,14 @@ Route::get('/public/showOrdinance', function () {
     return view('/public/showOrdinance');
 });
 
+Route::get('/admin/ordinances/index', function () {
+    return view('/admin/ordinances/index');
+});
+
+Route::get('/admin/ordinances/edit', function () {
+    return view('/admin/ordinances/edit');
+});
+
 Route::prefix('admin')->group(function () {
 
     // Dashboard Routes

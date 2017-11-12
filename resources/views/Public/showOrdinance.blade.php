@@ -31,9 +31,9 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
                         </div>
                     </div>
+                    <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Comment</button>
                 </div>
             </div>
         </div>
