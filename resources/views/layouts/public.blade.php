@@ -60,9 +60,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">home</a></li>
-                        <li><a href="/public/ordinance">Ordinances</a></li>
-                        <li><a href="/public/about">about</a></li>
-                        <li><a href="/public/contactUs">contact</a></li>
+                        <li><a href="/ordinances">Ordinances</a></li>
+                        <li><a href="/about">about</a></li>
+                        <li><a href="/contactUs">contact</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>

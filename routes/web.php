@@ -35,22 +35,22 @@ Route::get('/admin/ordinances/edit', function () {
     return view('/admin/ordinances/edit');
 });*/
 
+/* Public routes */
+Route::get('/', 'PublicController@index');
+Route::get('/ordinances', 'PublicController@ordinance');
+
+// temporary
+Route::get('/contactUs', 'PublicController@contactUs');
+
 Route::prefix('admin')->group(function () {
 
     // Dashboard Routes
     Route::get('/', 'Admin\\DashboardController@index');
-
     // Forms
     Route::resource('forms', 'Admin\\FormsController');
 });
 
-Route::prefix('public')->group(function () {
-    Route::get('/', 'PublicController@index');
-    Route::resource('ordinance', 'PublicController');
-    Route::resource('contactUs', 'PublicController');
-});
+Auth::routes();
 
-Auth::routes();
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
