@@ -24,7 +24,8 @@ Route::prefix('admin')->group(function () {
 
     // Dashboard Routes
     Route::get('/', 'Admin\\DashboardController@index');
-    Route::resource('forms', 'Admin\\FormsController');
+    Route::resource('/forms', 'Admin\\FormsController');
+    Route::resource('/users', 'Admin\\UsersController');
     Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
 });
 
