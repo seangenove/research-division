@@ -29,7 +29,17 @@
     <section class="top-nav hidden-xs">
         <div class="container">
             <div class="row">
-                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="navbar-header">
+                        <a href="#portfolio" class="navbar-brand">Research Division, Baguio City</a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
+                            <span class="sr-only">Toggle</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span
+                        </button>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="top-right">
                         <p>Location:<span>City Hall Dr, Baguio City, 2600 Benguet</span></p>
@@ -46,23 +56,16 @@
         <nav class="navbar">
             <div class="container">
 
-                <div class="navbar-header">
-                    <a href="#portfolio" class="navbar-brand">Research Division, Baguio City</a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
-                        <span class="sr-only">Toggle</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-
                 <div class="navbar-collapse collapse" id="ftheme">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">home</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/resolution">Resolution</a></li>
                         <li><a href="/ordinances">Ordinances</a></li>
-                        <li><a href="/about">about</a></li>
-                        <li><a href="/contactUs">contact</a></li>
+                        <li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="/reports">Reports</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>
