@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::resource('/forms', 'Admin\\FormsController');
     Route::resource('/users', 'Admin\\UsersController'); // Lacking: Validations, Logs
     Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
+    Route::resource('/ordinances', 'Admin\\OrdinancesController');
 });
 
 Auth::routes();

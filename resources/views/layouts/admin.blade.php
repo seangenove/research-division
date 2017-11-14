@@ -361,22 +361,15 @@
                 {{--</span>--}}
                 {{--</a>--}}
                 {{--</li>--}}
-                <li class="treeview menu">
-                    <a href="#">
+                <li>
+                    <a href="/admin/ordinances">
                         <i class="fa fa-file-text"></i> <span class="text-danger">Ordinances
                         </span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="/admin/ordinances/index"><i class="fa fa-bars"></i> Manage</a></li>
-                        <li class=""><a href="index2.html"><i class="fa fa-file-pdf-o"></i> Suggestions </a></li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="/admin/provisions">
-                        <i class="fa fa-file"></i> <span class="text-danger">Provisions</span>
+                    <a href="/admin/resolutions">
+                        <i class="fa fa-file"></i> <span class="text-danger">Resolutions</span>
                         <span class="pull-right-container">
                         </span>
                     </a>
