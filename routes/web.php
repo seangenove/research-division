@@ -12,29 +12,6 @@
 */
 
 
-
-/* Layout files */
-/*Route::get('/index', function () {
-    return view('/public/index');
-});
-Route::get('/public/ordinance', function () {
-    return view('/public/ordinance');
-});
-Route::get('/public/contactUs', function () {
-    return view('/public/contactUs');
-});
-Route::get('/public/showOrdinance', function () {
-    return view('/public/showOrdinance');
-});
-
-Route::get('/admin/ordinances/index', function () {
-    return view('/admin/ordinances/index');
-});
-
-Route::get('/admin/ordinances/edit', function () {
-    return view('/admin/ordinances/edit');
-});*/
-
 /* Public routes */
 Route::get('/', 'PublicController@index');
 Route::get('/ordinances', 'PublicController@ordinance');
@@ -42,12 +19,13 @@ Route::get('/ordinances', 'PublicController@ordinance');
 // temporary
 Route::get('/contactUs', 'PublicController@contactUs');
 
+/* Admin routes */
 Route::prefix('admin')->group(function () {
 
     // Dashboard Routes
     Route::get('/', 'Admin\\DashboardController@index');
-    // Forms
     Route::resource('forms', 'Admin\\FormsController');
+    Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
 });
 
 Auth::routes();
