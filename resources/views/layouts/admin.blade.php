@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
 
     <style>
-        form  button{
+        form button {
             display: inline;
         }
     </style>
@@ -273,7 +273,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"> {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -281,8 +281,10 @@
                                 <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    John Doe - Super Administrator
-                                    <small>Member since: 11/12/2017</small>
+                                    {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                    <small>{{ \Illuminate\Support\Facades\Auth::user()->email }}</small>
+                                    <small>Member
+                                        since: {{ \Illuminate\Support\Facades\Auth::user()->created_at  }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -291,7 +293,14 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="#" class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Sign out</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -316,8 +325,11 @@
                     <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>John Doe</p>
-                    {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
+                    <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}
+                    </p>
+                    <a href="#"><i
+                                class="fa fa-circle text-success"></i> {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                    </a>
                 </div>
             </div>
             <!-- search form -->
