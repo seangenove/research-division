@@ -17,4 +17,12 @@ class Ordinance extends Model
     protected $fillable = [
         'number', 'title', 'description', 'authors'
     ];
+
+    /**
+     * Get the suggestions for the blog post.
+     */
+    public function suggestions()
+    {
+        return $this->hasMany('App\OrdinanceSuggestions');
+    }
 }

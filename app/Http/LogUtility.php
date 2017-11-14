@@ -27,7 +27,7 @@ class LogUtility
         $log = new Log();
         $log->message = $message;
         $log->user = $user;
-        $log->ip = '127.0.0.1 test'; // TODO
+        $log->ip = Request::ip();
         $log->save();
     }
 }
