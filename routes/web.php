@@ -31,3 +31,6 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Forms routes*/
+Route::get('admin/forms/edit','Admin\\FormsController@edit')->name('edit');

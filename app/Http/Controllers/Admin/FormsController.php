@@ -19,4 +19,8 @@ class FormsController extends Controller
     public function create(){
         return view('forms.create');
     }
+    public function edit(){
+        return view('forms.edit');
+    }
+
 }
