@@ -18,8 +18,8 @@
                 <img src="/images/slider/slider2.jpg">
 
                 <div class="caption">
-                    <h2><span>We provide information about </span></h2>
-                    <h2><span>html theme</span></h2>
+                    <h2><span>We provide information about Ordinances</span></h2>
+                    <h2><span>based on the publics' feedback</span></h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 </div>
 
@@ -28,8 +28,8 @@
                 <img src="/images/slider/slider3.jpg">
 
                 <div class="caption">
-                    <h2><span>one more slide</span></h2>
-                    <h2><span>html theme</span></h2>
+                    <h2><span>We provide updates on Ordinances</span></h2>
+                    <h2><span>Lorem Ipsum is simply dummy text.</span></h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 </div>
 
@@ -37,12 +37,12 @@
         </ul>
 
     </div>
-
-    <div id="ordinance">
-        <div class="container">
+{{--
+    <div id="about">
+        <div class="about">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <div class="ordinance-heading">
+                    <div class="about-heading">
                         <h2>ordinances</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
                     </div>
@@ -55,34 +55,34 @@
 
             <div class="row">
                 <div class="col-xs-12 hidden-sm col-md-5">
-                    <div class="ordinance-left">
+                    <div class="about-left">
                         <img src="/images/about/about1.jpg" alt="">
                     </div>
                 </div>
                 <!--about wrapper right-->
                 <div class="col-xs-12 col-md-7">
-                    <div class="ordinance-right">
+                    <div class="about-right">
 
                         <div class="ordinance-right-heading">
                             <h1>Recent Ordinances</h1>
                         </div>
 
-                        <div class="ordinance-right-wrapper">
+                        <div class="about-right-wrapper">
                             <a href="/public/show_ordinance"><h3>Ordinance 1</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
-                        <div class="ordinance-right-wrapper">
+                        <div class="about-right-wrapper">
                             <a href="/public/show_ordinance"><h3>Ordinance 2</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
-                        <div class="ordinance-right-wrapper">
+                        <div class="about-right-wrapper">
                             <a href="/public/show_ordinance"><h3>Ordinance 3</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
 
-                        <div class="ordinance-right-wrapper">
+                        <div class="about-right-wrapper">
                             <a href="/public/show_ordinance"><h3>Ordinance 4</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
                         </div>
@@ -90,7 +90,7 @@
                         <div class="ordinance-right-wrapper"></div>
 
                         <div class="pull-right">
-                            <div class="ordinance-right-wrapper">
+                            <div class="about-right-wrapper">
                                 <button onclick="window.location.href='/public/ordinance'" class="btn btn-info">View All</button>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
     {{--<!--about bg-->--}}
     {{--<div id="about-bg">--}}

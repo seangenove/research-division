@@ -5,11 +5,10 @@
 
         <ul class="slides">
             <li>
-                <img src="/images/slider/slider1.jpg">
+                <img src="/images/slider/slider4.jpg">
 
                 <div class="caption">
-                    <h2><span>Participatory Governance</span></h2>
-                    <h2><span>Baguio City</span></h2>
+                    <h2><span>NEW! Ordinance for Urban Gardening</span></h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     <button class="btn">Read More</button>
                 </div>
@@ -94,7 +93,7 @@
 
                         <div class="pull-right">
                             <div class="ordinance-right-wrapper">
-                                <button onclick="window.location.href='/public/ordinance'" class="btn btn-info">View All</button>
+                                <button onclick="window.location.href='/ordinance'" class="btn btn-info">View All</button>
                             </div>
                         </div>
                     </div>
@@ -102,6 +101,7 @@
             </div>
         </div>
     </div>
+
 
     {{--<!--about bg-->--}}
     {{--<div id="about-bg">--}}
@@ -242,8 +242,9 @@
             </div>
         </section>
 
+--}}
 
-
+{{--
         <!--service gapping-->
         <div class="service-footer hidden-xs">
             <div class="container">
@@ -266,141 +267,18 @@
     </div>
 --}}
 
-    <!--portfolio-->
-    <div id="portfolio">
-        <div class="container">
-            <div class="row">
 
-                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                    <div class="portfolio-heading">
-                        <h2>We are</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta elementum vitae.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="portfolio-thumbnail">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio1.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio2.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio3.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio4.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio5.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>what you see</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio6.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio7.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="item">
-                            <img src="/images/portfolio/portfolio8.jpg" alt="">
-                            <div class="caption">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <p>lorem ipsum amet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--client-->
+    {{--!--client-->
     <div id="client">
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client1.png" alt="">
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client2.png" alt="">
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client3.png" alt="">
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client4.png" alt="">
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client5.png" alt="">
-                </div>
-
-                <div class="col-sm-4 col-md-2">
-                    <span></span><img src="/images/client/client6.png" alt="">
+                <div class="col-lg-12">
+                    <span></span><img src="/images/client/Seal_of_baguio_city.png" alt="">
                 </div>
 
             </div>
         </div>
-    </div>
+    </div>--}}
     <br>
 @endsection

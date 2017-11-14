@@ -14,10 +14,16 @@
 
 /* Public routes */
 Route::get('/', 'PublicController@index');
-Route::get('/ordinances', 'PublicController@ordinance');
+Route::get('/ordinance', 'PublicController@ordinance');
+Route::get('/aboutDiv', 'PublicController@aboutDiv');
+Route::get('/about', 'PublicController@about');
+Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
+Route::get('/resolution', 'PublicController@resolution');
+Route::get('/reports', 'PublicController@reports');
 
 // temporary
 Route::get('/contactUs', 'PublicController@contactUs');
+
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
