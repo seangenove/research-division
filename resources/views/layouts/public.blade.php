@@ -106,8 +106,8 @@
                     <br>
                     <br>
                     <br>
-                    <br>
                         <p>&copy; MyBix Theme. All rights reserved</p>
+                        <p>Pictures all taken from Google</p>
                         <div class="credits">
                             <!--
                 All the links in the footer should remain intact.

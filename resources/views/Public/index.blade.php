@@ -15,22 +15,22 @@
 
             </li>
             <li>
-                <img src="/images/slider/slider2.jpg">
+                <img src="/images/slider/slider5.jpg">
 
                 <div class="caption">
-                    <h2><span>yet another slide</span></h2>
-                    <h2><span>html theme</span></h2>
+                    <h2><span>No Smoking Ordinance</span></h2>
+                    <h1><span>PUBLISHED</span></h1>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     <button class="btn">Read More</button>
                 </div>
 
             </li>
             <li>
-                <img src="/images/slider/slider3.jpg">
+                <img src="/images/slider/slider6.jpg">
 
                 <div class="caption">
-                    <h2><span>one more slide</span></h2>
-                    <h2><span>html theme</span></h2>
+                    <h2><span>No Jaywalking Ordinance.</span></h2>
+                    <h1><span>Jaywalking is now prohibited!</span></h1>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     <button class="btn">Read More</button>
                 </div>
@@ -58,13 +58,12 @@
             <div class="row">
                 <div class="col-xs-12 hidden-sm col-md-5">
                     <div class="ordinance-left">
-                        <img src="/images/about/about1.jpg" alt="">
+                        <img src="/images/about/Law1.jpg" alt="">
                     </div>
                 </div>
                 <!--about wrapper right-->
                 <div class="col-xs-12 col-md-7">
                     <div class="ordinance-right">
-
                         <div class="ordinance-right-heading">
                             <h1>Recent Ordinances</h1>
                         </div>
