@@ -20,12 +20,10 @@ Route::get('/ordinances', 'PublicController@ordinance');
 Route::get('/contactUs', 'PublicController@contactUs');
 
 /* Admin routes */
-Route::prefix('admin')->group(function () {
-
-    // Dashboard Routes
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::get('/', 'Admin\\DashboardController@index');
     Route::resource('/forms', 'Admin\\FormsController');
-    Route::resource('/users', 'Admin\\UsersController');
+    Route::resource('/users', 'Admin\\UsersController'); // Lacking: Validations, Logs
     Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
 });
 
