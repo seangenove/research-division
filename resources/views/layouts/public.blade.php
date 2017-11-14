@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="navbar-header">
-                        <a href="#portfolio" class="navbar-brand">Research Division, Baguio City</a>
+                        <a href="/aboutDiv" class="navbar-brand">Research Division, Baguio City</a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
                             <span class="sr-only">Toggle</span>
                             <span class="icon-bar"></span>
@@ -57,11 +57,10 @@
             <div class="container">
 
                 <div class="navbar-collapse collapse" id="ftheme">
-
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">Home</a></li>
                         <li><a href="/resolution">Resolution</a></li>
-                        <li><a href="/ordinances">Ordinances</a></li>
+                        <li><a href="/ordinance">Ordinances</a></li>
                         <li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href="/contactUs">Contact</a></li>
@@ -70,7 +69,6 @@
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>
                     </ul>
-
                 </div>
 
                 <div class="search-form">
@@ -91,30 +89,33 @@
 <div id="bottom-footer" class="hidden-xs">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="footer-left">
-                    &copy; MyBix Theme. All rights reserved
-                    <div class="credits">
-                        <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyBiz
-          -->
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
+            <div class="col-lg-12">
+                <div class="col-md-2">
+                    <img src="/images/client/Seal_of_baguio_city.png" alt="">
                 </div>
-            </div>
-
-            <div class="col-md-8">
-                <div class="footer-right">
-                    <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#portfolo">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div class="col-md-6">
+                    <br>
+                    <p>Baguio City Government Contacts:</p>
+                    <p>Telephone:	(6374) 300 6500</p>
+                    <p>Fax:	(6374) 442 7228</p>
+                    <p>Email:	baguio.webmin@gmail.com</p>
+                    <p>Address:	City Hall Loop, Baguio City</p>
+                </div>
+                <div class="col-md-offset-9">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                        <p>&copy; MyBix Theme. All rights reserved</p>
+                        <p>Pictures all taken from Google</p>
+                        <div class="credits">
+                            <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyBiz
+              -->       <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -14,10 +14,16 @@
 
 /* Public routes */
 Route::get('/', 'PublicController@index');
-Route::get('/ordinances', 'PublicController@ordinance');
+Route::get('/ordinance', 'PublicController@ordinance');
+Route::get('/aboutDiv', 'PublicController@aboutDiv');
+Route::get('/about', 'PublicController@about');
+Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
+Route::get('/resolution', 'PublicController@resolution');
+Route::get('/reports', 'PublicController@reports');
 
 // temporary
 Route::get('/contactUs', 'PublicController@contactUs');
+
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
@@ -25,6 +31,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::resource('/forms', 'Admin\\FormsController');
     Route::resource('/users', 'Admin\\UsersController'); // Lacking: Validations, Logs
     Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
+    Route::resource('/ordinances', 'Admin\\OrdinancesController');
+    Route::resource('/pages', 'Admin\\PagesController');
 });
 
 Auth::routes();
