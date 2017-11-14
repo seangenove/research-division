@@ -331,7 +331,7 @@
                 <li class="header">MAIN NAVIGATION</li>
 
                 <li class="active treeview menu-open">
-                    <a href="#">
+                    <a href="/">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
 
@@ -356,8 +356,15 @@
                         <li class=""><a href="index2.html"><i class="fa fa-file-pdf-o"></i> Suggestions </a></li>
                     </ul>
                 </li>
-                <li class="treeview menu">
-                    <a href="#">
+                <li>
+                    <a href="/admin/provisions">
+                        <i class="fa fa-file"></i> <span>Provisions</span>
+                        <span class="pull-right-container">
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users">
                         <i class="fa fa-users"></i> <span>Users</span>
                         <span class="pull-right-container">
                         </span>
@@ -387,8 +394,8 @@
                         <li class=""><a href="index2.html"><i class="fa fa-phone"></i> Contact </a></li>
                     </ul>
                 </li>
-                <li class="treeview menu">
-                    <a href="#">
+                <li>
+                    <a href="/admin/logs">
                         <i class="fa fa-shield"></i> <span>Logs</span>
                         <span class="pull-right-container">
                         </span>

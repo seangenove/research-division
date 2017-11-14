@@ -7,7 +7,7 @@
             <h3 class="box-title"><i class="fa fa-wrench"></i> System Logs</h3>
         </div>
         <div class="box-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th>Id</th>
