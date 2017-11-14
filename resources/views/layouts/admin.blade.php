@@ -19,6 +19,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <style>
         form button {
@@ -393,17 +394,11 @@
                         </span>
                     </a>
                 </li>
-                <li class="treeview menu">
-                    <a href="#">
+                <li>
+                    <a href="/admin/pages">
                         <i class="fa fa-file-code-o"></i> <span class="text-danger">Pages</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-address-card"></i> About </a></li>
-                        <li class=""><a href="index2.html"><i class="fa fa-phone"></i> Contact </a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="/admin/logs">
@@ -662,6 +657,14 @@
 <script src="/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="/bower_components/ckeditor/ckeditor.js"></script>
+    <script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+  })
+</script>
 
 {{-- Custom Scripts per page--}}
 @yield('scripts')
