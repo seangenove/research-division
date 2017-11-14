@@ -363,7 +363,7 @@
                 {{--</li>--}}
                 <li>
                     <a href="/admin/ordinances">
-                        <i class="fa fa-file-text"></i> <span class="text-danger">Ordinances
+                        <i class="fa fa-file-text"></i> <span>Ordinances
                         </span>
                     </a>
                 </li>
