@@ -350,7 +350,7 @@
 
                 <li class="active treeview menu-open">
                     <a href="/">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <i class="fa fa-dashboard"></i> <span class="text-danger">Dashboard</span>
                     </a>
 
                 </li>
@@ -363,7 +363,7 @@
                 {{--</li>--}}
                 <li class="treeview menu">
                     <a href="#">
-                        <i class="fa fa-file-text"></i> <span>Ordinances
+                        <i class="fa fa-file-text"></i> <span class="text-danger">Ordinances
                         </span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -376,9 +376,21 @@
                 </li>
                 <li>
                     <a href="/admin/provisions">
-                        <i class="fa fa-file"></i> <span>Provisions</span>
+                        <i class="fa fa-file"></i> <span class="text-danger">Provisions</span>
                         <span class="pull-right-container">
                         </span>
+                    </a>
+                </li>
+                <li class="treeview menu">
+                    <a href="#">
+                        <i class="fa fa-book"></i> <span class="text-danger">M&E</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                            <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
+                            <li><a href="#"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
+                        </ul>
                     </a>
                 </li>
                 <li>
@@ -390,19 +402,7 @@
                 </li>
                 <li class="treeview menu">
                     <a href="#">
-                        <i class="fa fa-book"></i> <span>Forms</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                        <ul class="treeview-menu">
-                            <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
-                            <li><a href="#"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
-                        </ul>
-                    </a>
-                </li>
-                <li class="treeview menu">
-                    <a href="#">
-                        <i class="fa fa-file-code-o"></i> <span>Pages</span>
+                        <i class="fa fa-file-code-o"></i> <span class="text-danger">Pages</span>
                         <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -422,7 +422,7 @@
 
                 <li class="treeview menu">
                     <a href="#">
-                        <i class="fa fa-wrench"></i> <span>Account</span>
+                        <i class="fa fa-wrench"></i> <span class="text-danger">Account</span>
                         <span class="pull-right-container">
                         </span>
                     </a>
