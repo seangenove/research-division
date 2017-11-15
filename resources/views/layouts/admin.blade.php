@@ -396,7 +396,7 @@
                 </li>
                 <li>
                     <a href="/admin/pages">
-                        <i class="fa fa-file-code-o"></i> <span class="text-danger">Pages</span>
+                        <i class="fa fa-file-code-o"></i> <span>Pages</span>
                         <span class="pull-right-container">
                     </a>
                 </li>
