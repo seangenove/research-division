@@ -19,6 +19,14 @@ class FormsController extends Controller
     public function create(){
         return view('forms.create');
     }
+    public function show($id)
+    {
+        $ordinance = Questionnaire::findOrFail($id);
+
+        return view('admin.forms.show', [
+            'questionnaire' => $questionnaire
+        ]);
+    }
     public function edit(){
         return view('forms.edit');
     }

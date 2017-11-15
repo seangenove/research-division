@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::get('/logs', 'Admin\\LogsController@index'); // Lacking: Pagination, IP Address dynamic
     Route::resource('/ordinances', 'Admin\\OrdinancesController');
     Route::resource('/pages', 'Admin\\PagesController');
+
 });
 
 Auth::routes();
@@ -40,5 +41,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Forms routes*/
-Route::get('admin/forms/edit','Admin\\FormsController@edit')->name('edit');
+Route::resource('/forms/edit', 'Admin\\QuestionnaireController');
