@@ -57,13 +57,13 @@ class OrdinancesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $ordinance = Ordinance::findOrFail($id);
+{
+    $ordinance = Ordinance::findOrFail($id);
 
-        return view('admin.ordinances.show', [
-            'ordinance' => $ordinance
-        ]);
-    }
+    return view('admin.ordinances.show', [
+        'ordinance' => $ordinance
+    ]);
+}
 
     /**
      * Show the form for editing the specified resource.

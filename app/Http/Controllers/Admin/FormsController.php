@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Questionnaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,9 +20,17 @@ class FormsController extends Controller
     public function create(){
         return view('forms.create');
     }
+    public function store(Request $request)
+    {
+        $questionnaire = new Questionnaire();
+        $questionnaire->fill($request->all());
+        $questionnaire->save();
+
+        return redirect('/admin/forms');
+    }
     public function show($id)
     {
-        $ordinance = Questionnaire::findOrFail($id);
+        $questionnaire = Questionnaire::findOrFail($id);
 
         return view('admin.forms.show', [
             'questionnaire' => $questionnaire

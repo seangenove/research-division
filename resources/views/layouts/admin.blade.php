@@ -349,8 +349,8 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
 
-                <li class="active treeview menu-open">
-                    <a href="/">
+                <li class="{{ Request::is('admin') ? 'active' : '' }}">
+                    <a href="/admin">
                         <i class="fa fa-dashboard"></i> <span class="text-danger">Dashboard</span>
                     </a>
 
@@ -362,7 +362,7 @@
                 {{--</span>--}}
                 {{--</a>--}}
                 {{--</li>--}}
-                <li>
+                <li class="{{ Request::is('admin/ordinances*') ? 'active' : '' }}">
                     <a href="/admin/ordinances">
                         <i class="fa fa-file-text"></i> <span>Ordinances
                         </span>
@@ -387,20 +387,20 @@
                         </ul>
                     </a>
                 </li>
-                <li>
+                <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
                     <a href="/admin/users">
                         <i class="fa fa-users"></i> <span>Users</span>
                         <span class="pull-right-container">
                         </span>
                     </a>
                 </li>
-                <li>
+                <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
                     <a href="/admin/pages">
-                        <i class="fa fa-file-code-o"></i> <span class="text-danger">Pages</span>
-                        <span class="pull-right-container">
+                        <i class="fa fa-file-code-o"></i> <span>Pages</span>
+                        <span class="pull-right-container"></span>
                     </a>
                 </li>
-                <li>
+                <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                     <a href="/admin/logs">
                         <i class="fa fa-shield"></i> <span>Logs</span>
                         <span class="pull-right-container">

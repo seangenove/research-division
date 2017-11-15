@@ -32,7 +32,7 @@
                         <td>1</td>
                         <td>About</td>
                         <td>
-                            <a href="/admin/pages/edit" class="btn btn-xs btn-warning" >Edit</a>
+                            <a href="/admin/pages/{{ 1 }}/edit" class="btn btn-xs btn-warning" >Edit</a>
                             <form action="#" method="">
                                 <button class="btn btn-xs btn-danger">Delete</button>
                             </form>

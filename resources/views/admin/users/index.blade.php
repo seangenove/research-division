@@ -12,7 +12,7 @@
 @section('content')
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-wrench"></i> System Logs</h3>
+            <h3 class="box-title"><i class="fa fa-users"></i> Users</h3>
         </div>
         <div class="box-body">
             <div>
