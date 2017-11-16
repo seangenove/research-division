@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Ordinance extends Model
+class Resolution extends Model
 {
     use Notifiable;
 
@@ -24,12 +24,4 @@ class Ordinance extends Model
         'date_signed_by_mayor',
         'pdf_file_name',
     ];
-
-    /**
-     * Get the suggestions for the blog post.
-     */
-    public function suggestions()
-    {
-        return $this->hasMany('App\OrdinanceSuggestions');
-    }
 }

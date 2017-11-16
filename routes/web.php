@@ -34,7 +34,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         'forms' => 'Admin\\FormsController',
         'users' => 'Admin\\UsersController', // TODO: Validations, Logs, Re-enter Password (Parsley.js)
         'ordinances' => 'Admin\\OrdinancesController', // TODO: Validations, Logs
-        'pages' => 'Admin\\PagesController' // TODO: Validations, Logs
+        'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
+        'resolutions' => 'Admin\\ResolutionsController' // TODO: Validations, Logs
     ]);
 });
 

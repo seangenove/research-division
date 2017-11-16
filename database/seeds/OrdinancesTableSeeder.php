@@ -19,14 +19,20 @@ class OrdinancesTableSeeder extends Seeder
                 'number'=> 'I',
                 'title'=> 'Pre Ordinance of Baguio City',
                 'description' => 'Test ordinance',
-                'authors' => 'Ricky Tan'
+                'authors' => 'Ricky Tan',
+                'date_approved_by_council' => Carbon::parse('2017-01-01'),
+                'date_signed_by_vice_mayor' => Carbon::parse('2017-01-02'),
+                'date_signed_by_mayor' => Carbon::parse('2017-01-02'),
             ],
             [
                 'id' => 2,
                 'number'=> 'ISM0K1NG',
                 'title'=> 'No Smoking',
                 'description' => 'Ordinance on NO Smoking',
-                'authors' => 'Ricky Tan'
+                'authors' => 'Ricky Tan',
+                'date_approved_by_council' => Carbon::parse('2017-01-02'),
+                'date_signed_by_vice_mayor' => Carbon::parse('2017-01-03'),
+                'date_signed_by_mayor' => null,
             ]
         );
         Ordinance::insert($ordinances);
