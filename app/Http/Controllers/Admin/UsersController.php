@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -91,5 +92,28 @@ class UsersController extends Controller
     {
         User::destroy($id);
         return redirect('/admin/users');
+    }
+
+    /**
+     * The get route for changing password
+     */
+    public function changePassword(){
+        return view('admin.users.password');
+    }
+
+    /**
+     * The get route for changing password
+     */
+    public function updatePassword(Request $request){
+        $old = $request->input('old-password');
+        $new = $request->input('new-password');
+
+        if (Auth::check($old, Auth::user()->getAuthPassword())){
+            $user = Auth::user();
+            $user->password = bcrypt($new);
+            $user->save();
+            // TODO: Add flash message here
+        }
+        return view('admin.users.password');
     }
 }
