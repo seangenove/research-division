@@ -32,7 +32,7 @@
                             <input class="form-control input-lg" type="text" placeholder="Question">
                             Answer Type:
                             <div >
-                                <select name="" id="" class="form-control">
+                                <select name="" id="quesType" class="form-control">
                                     <option id = "short" value="">Short Answer</option>
                                     <option value="">Long Answer</option>
                                     <option value="">Multiple Choice</option>
@@ -75,7 +75,11 @@
                 var template = $('#question-template').clone(true);
                 $('#questions-list').append(template);
             });
-
+            $(".quesType").click(function(){
+                if ("#short") {
+                    $("#myTbl").find('td').removeClass("myClass");
+                }
+            });
         });
     </script>
 @endsection
