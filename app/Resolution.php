@@ -24,4 +24,12 @@ class Resolution extends Model
         'date_signed_by_mayor',
         'pdf_file_name',
     ];
+
+    /**
+     * Returns all suggestion for a given resolution
+     */
+    public function suggestions()
+    {
+        return $this->belongsToMany('App\Suggestion');
+    }
 }

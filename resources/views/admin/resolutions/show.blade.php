@@ -39,22 +39,22 @@
             </div>
 
             <div class="box-body box-comments">
-                {{--@foreach($resolution->suggestions as $suggestion)--}}
-                    {{--<div class="box-comment">--}}
-                        {{--<!-- User image -->--}}
+                @foreach($resolution->suggestions as $suggestion)
+                    <div class="box-comment">
+                        <!-- User image -->
                         {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
 
-                        {{--<div class="comment-text">--}}
-                          {{--<span class="username">--}}
-                            {{--{{ $suggestion->first_name }} {{ $suggestion->last_name }}--}}
-                              {{--<span class="text-muted pull-right">{{ $suggestion->created_at }}</span>--}}
-                          {{--</span><!-- /.username -->--}}
-                            {{--{{ $suggestion->suggestion }}--}}
-                        {{--</div>--}}
-                        {{--<!-- /.comment-text -->--}}
-                    {{--</div>--}}
+                        <div class="comment-text">
+                          <span class="username">
+                            {{ $suggestion->first_name }} {{ $suggestion->last_name }}
+                              <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
+                          </span><!-- /.username -->
+                            {{ $suggestion->suggestion }}
+                        </div>
+                        <!-- /.comment-text -->
+                    </div>
 
-                {{--@endforeach--}}
+                @endforeach
 
             </div>
         </div>

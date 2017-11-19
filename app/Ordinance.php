@@ -27,11 +27,10 @@ class Ordinance extends Model
     ];
 
     /**
-     * Get the suggestions for the blog post.
+     * Returns all suggestion for a given ordinance
      */
     public function suggestions()
     {
-//        dd(DB::table('ordinance_suggestion')->where('ordinance_id', 1)->get());
         return $this->belongsToMany('App\Suggestion');
     }
 }
