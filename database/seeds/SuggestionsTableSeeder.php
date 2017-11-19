@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+use App\Suggestion;
 
 class SuggestionsTableSeeder extends Seeder
 {
