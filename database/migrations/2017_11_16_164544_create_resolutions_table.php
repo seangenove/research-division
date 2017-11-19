@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdinancesTable extends Migration
+class CreateResolutionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrdinancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordinances', function (Blueprint $table) {
+        Schema::create('resolutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number', '30');
             $table->string('title', '150');
@@ -34,6 +34,6 @@ class CreateOrdinancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordinances');
+        Schema::dropIfExists('resolutions');
     }
 }

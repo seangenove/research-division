@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Resolution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-class UsersController extends Controller
+class ResolutionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index', [
-            'users' => User::all()
+        $limit = 25;
+        $resolutions = Resolution::paginate($limit);
+
+        // Implement search
+
+        return view('admin.resolutions.index', [
+            'resolutions' => $resolutions
         ]);
     }
 
@@ -28,7 +32,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.resolutions.create');
     }
 
     /**
@@ -39,10 +43,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->fill($request->all());
-        $user->save();
-        return redirect('/admin/users');
+        $resolution = new Resolution();
+        $resolution->fill($request->all());
+        $resolution->save();
+
+        return redirect('/admin/resolutions');
     }
 
     /**
@@ -53,7 +58,11 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $resolution = Resolution::findOrFail($id);
+
+        return view('admin.resolutions.show', [
+            'resolution' => $resolution
+        ]);
     }
 
     /**
@@ -64,8 +73,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit', [
-            'user' => User::find($id)
+        $resolution = Resolution::findOrFail($id);
+
+        return view('admin.resolutions.edit', [
+            'resolution' =>$resolution
         ]);
     }
 
@@ -78,8 +89,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::find($id)->update($request->all());
-        return redirect('/admin/users');
+        Resolution::find($id)->update($request->all());
+        return redirect('/admin/resolutions');
     }
 
     /**
@@ -90,30 +101,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect('/admin/users');
-    }
-
-    /**
-     * The get route for changing password
-     */
-    public function changePassword(){
-        return view('admin.users.password');
-    }
-
-    /**
-     * The get route for changing password
-     */
-    public function updatePassword(Request $request){
-        $old = $request->input('old-password');
-        $new = $request->input('new-password');
-
-        if (Auth::check($old, Auth::user()->getAuthPassword())){
-            $user = Auth::user();
-            $user->password = bcrypt($new);
-            $user->save();
-            // TODO: Add flash message here
-        }
-        return view('admin.users.password');
+        Resolution::destroy($id);
+        return redirect('/admin/resolutions');
     }
 }
