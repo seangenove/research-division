@@ -37,37 +37,7 @@ class OrdinancesTableSeeder extends Seeder
         );
         Ordinance::insert($ordinances);
 
-        /* Suggestion */
-        $suggestions = array(
-                [
-                'id' => 1,
-                'first_name'=> 'John',
-                'last_name'=> 'Doe',
-                'email' => 'johndoe@example.com',
-                'suggestion' => 'Penalty should be increased',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 2,
-                'first_name'=> 'Jimmy',
-                'last_name'=> 'Smith',
-                'email' => 'johnsmitty@example.com',
-                'suggestion' => 'Please increase the penalty',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 3,
-                'first_name'=> 'Ricardo',
-                'last_name'=> 'Manalmas',
-                'email' => 'rm@example.com',
-                'suggestion' => 'Penalty is high',
-                'created_at' => Carbon::now()
-            ]
-        );
-
-        Suggestion::insert($suggestions);
-
-        /** OrdinanceSuggestions */
+        /** Ordinance Suggestions */
         $ordinance_suggestions = array(
             [
                 'ordinance_id' => 1,

@@ -38,37 +38,6 @@ class ResolutionsTableSeeder extends Seeder
         );
         Resolution::insert($resolutions);
 
-        /* Suggestion */
-        $suggestions = array(
-            [
-                'id' => 4,
-                'first_name'=> 'Junana',
-                'last_name'=> 'Change',
-                'email' => 'johndoe@example.com',
-                'suggestion' => 'This is great',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 5,
-                'first_name'=> 'Alan',
-                'last_name'=> 'Peters',
-                'email' => 'johnsmitty@example.com',
-                'suggestion' => 'Anti-overloading should be not only locally but also nationally',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'id' => 6,
-                'first_name'=> 'Rodrigo',
-                'last_name'=> 'Duterte',
-                'email' => 'rm@example.com',
-                'suggestion' => 'This is a nice resolution!',
-                'created_at' => Carbon::now()
-            ]
-        );
-
-        Suggestion::insert($suggestions);
-
-
         /** Resolution Suggestion */
         $resolution_suggestion = array(
             [
