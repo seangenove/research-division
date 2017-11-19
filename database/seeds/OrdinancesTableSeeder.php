@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Suggestion;
 use App\Ordinance;
-use App\OrdinanceSuggestions;
 use Carbon\Carbon;
 class OrdinancesTableSeeder extends Seeder
 {
@@ -37,33 +37,51 @@ class OrdinancesTableSeeder extends Seeder
         );
         Ordinance::insert($ordinances);
 
-        /** OrdinanceSuggestions */
+        /* Suggestion */
         $suggestions = array(
-            [
+                [
+                'id' => 1,
                 'first_name'=> 'John',
                 'last_name'=> 'Doe',
                 'email' => 'johndoe@example.com',
                 'suggestion' => 'Penalty should be increased',
-                'ordinance_id' => 1,
                 'created_at' => Carbon::now()
             ],
             [
+                'id' => 2,
                 'first_name'=> 'Jimmy',
                 'last_name'=> 'Smith',
                 'email' => 'johnsmitty@example.com',
-                'suggestion' => 'The penalty is low',
-                'ordinance_id' => 1,
+                'suggestion' => 'Please increase the penalty',
                 'created_at' => Carbon::now()
             ],
             [
+                'id' => 3,
                 'first_name'=> 'Ricardo',
                 'last_name'=> 'Manalmas',
                 'email' => 'rm@example.com',
-                'suggestion' => 'Penalty should be increased',
-                'ordinance_id' => 2,
+                'suggestion' => 'Penalty is high',
                 'created_at' => Carbon::now()
             ]
         );
-        OrdinanceSuggestions::insert($suggestions);
+
+        Suggestion::insert($suggestions);
+
+        /** OrdinanceSuggestions */
+        $ordinance_suggestions = array(
+            [
+                'ordinance_id' => 1,
+                'suggestion_id' => 1,
+            ],
+            [
+                'ordinance_id' => 1,
+                'suggestion_id' => 2,
+            ],
+            [
+                'ordinance_id' => 2,
+                'suggestion_id' => 3,
+            ]
+        );
+        DB::table('ordinance_suggestion')->insert($ordinance_suggestions);
     }
 }

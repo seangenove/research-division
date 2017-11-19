@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class Ordinance extends Model
 {
@@ -30,6 +31,7 @@ class Ordinance extends Model
      */
     public function suggestions()
     {
-        return $this->hasMany('App\OrdinanceSuggestions');
+//        dd(DB::table('ordinance_suggestion')->where('ordinance_id', 1)->get());
+        return $this->belongsToMany('App\Suggestion');
     }
 }
