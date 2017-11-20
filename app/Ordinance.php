@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class Ordinance extends Model
 {
@@ -26,10 +27,10 @@ class Ordinance extends Model
     ];
 
     /**
-     * Get the suggestions for the blog post.
+     * Returns all suggestion for a given ordinance
      */
     public function suggestions()
     {
-        return $this->hasMany('App\OrdinanceSuggestions');
+        return $this->belongsToMany('App\Suggestion');
     }
 }

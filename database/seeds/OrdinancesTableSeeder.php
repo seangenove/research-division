@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Suggestion;
 use App\Ordinance;
-use App\OrdinanceSuggestions;
 use Carbon\Carbon;
 class OrdinancesTableSeeder extends Seeder
 {
@@ -37,33 +37,21 @@ class OrdinancesTableSeeder extends Seeder
         );
         Ordinance::insert($ordinances);
 
-        /** OrdinanceSuggestions */
-        $suggestions = array(
+        /** Ordinance Suggestions */
+        $ordinance_suggestions = array(
             [
-                'first_name'=> 'John',
-                'last_name'=> 'Doe',
-                'email' => 'johndoe@example.com',
-                'suggestion' => 'Penalty should be increased',
                 'ordinance_id' => 1,
-                'created_at' => Carbon::now()
+                'suggestion_id' => 1,
             ],
             [
-                'first_name'=> 'Jimmy',
-                'last_name'=> 'Smith',
-                'email' => 'johnsmitty@example.com',
-                'suggestion' => 'The penalty is low',
                 'ordinance_id' => 1,
-                'created_at' => Carbon::now()
+                'suggestion_id' => 2,
             ],
             [
-                'first_name'=> 'Ricardo',
-                'last_name'=> 'Manalmas',
-                'email' => 'rm@example.com',
-                'suggestion' => 'Penalty should be increased',
                 'ordinance_id' => 2,
-                'created_at' => Carbon::now()
+                'suggestion_id' => 3,
             ]
         );
-        OrdinanceSuggestions::insert($suggestions);
+        DB::table('ordinance_suggestion')->insert($ordinance_suggestions);
     }
 }

@@ -23,22 +23,25 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Title</th>
                     <th>Manage</th>
                 </tr>
                 </thead>
                 <tbody>
+                    @foreach($pages as $page)
                     <tr>
-                        <td>1</td>
-                        <td>About</td>
+                        <td>{{ $page->id }}</td>
+                        <td>{{ $page->title }}</td>
                         <td>
-                            <a href="/admin/pages/{{ 1 }}/edit" class="btn btn-xs btn-warning" >Edit</a>
-                            <form action="#" method="">
+                            <a href="/admin/pages/{{$page->id}}/edit" class="btn btn-xs btn-warning" >Edit</a>
+                            <form action="/admin/pages/{{ $page->id }}" method="post">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
                                 <button class="btn btn-xs btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
-
+                    @endforeach
                 </tbody>
             </table>
         </div>

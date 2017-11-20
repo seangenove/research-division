@@ -16,49 +16,40 @@
             <a href="/admin/pages" class="btn btn-info">Back</a>
 
         </div>
-        <div class="box-header">
-            <h3 class="box-title">Page Title
-            </h3>
-            <div class="box-body pad">
-                <form>
-                    <input type="text" class="form-control" placeholder="Enter ...">
-                </form>
-            </div>
-        </div>
-        <div class="box-header">
-            <h3 class="box-title">Page Description
-            </h3>
-            <div class="box-body pad">
-                <form>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                </form>
-            </div>
-        </div>
-        <div class="box-header">
-            <h3 class="box-title">Page Header
-            </h3>
-            <div class="box-body pad">
-                <form>
-                    <input type="text" class="form-control" placeholder="Enter ...">
-                </form>
-            </div>
-        </div>
-        <div class="box-header">
-            <h3 class="box-title">Page Body
-            </h3>
-            <!-- tools box -->
-            <div class="pull-right box-tools">
-            </div>
-            <!-- /. tools -->
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body pad">
-            <form>
-                <textarea id="editor1" name="editor1" rows="10" cols="80">
-                    </textarea>
-            </form>
-        </div>
+        <form method="post" action="{{ url("/admin/pages/") }}">
+            {{ csrf_field() }}
 
+            <div class="box-header">
+                <h3 class="box-title">Page Title
+                </h3>
+                <div class="box-body pad">
+                    <input name="title" type="text" class="form-control" placeholder="Enter ...">
+                </div>
+            </div>
+            <div class="box-header">
+                <h3 class="box-title">Page Description
+                </h3>
+                <div class="box-body pad">
+                    <textarea name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+            </div>
+            <div class="box-header">
+                <h3 class="box-title">Page Body
+                </h3>
+                <!-- tools box -->
+                <div class="pull-right box-tools">
+                </div>
+                <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body pad">
+                <textarea name="content" id="editor1" name="editor1" rows="10" cols="80">
+                    </textarea>
+            </div>
+            <div class="box-footer">
+                    <button type="submit" class="pull-right btn btn-primary">Submit</button>
+                </div>
+        </form>
     </div>
 </div>
 @endsection
