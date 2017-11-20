@@ -10,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="/admin/ordinances/">
+            <form method="POST" action="{{ url('/admin/ordinances/') }}">
                 {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">

@@ -16,7 +16,7 @@
             <a href="/admin/pages" class="btn btn-info">Back</a>
 
         </div>
-        <form method="post" action="/admin/pages/">
+        <form method="post" action="{{ url("/admin/pages/") }}">
             {{ csrf_field() }}
 
             <div class="box-header">
