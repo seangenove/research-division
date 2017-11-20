@@ -10,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="/admin/users/">
+            <form method="POST" action="{{ url('/admin/users/') }}">
                 {{ csrf_field() }}
                 <div class="box-body">
 

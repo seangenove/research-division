@@ -10,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" action="/admin/users/{{ $user->id }}/">
+            <form method="POST" action="/admin/users/{{ $user->id }}/">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box-body">
