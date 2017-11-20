@@ -43,6 +43,16 @@ class ResolutionsController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if User uploaded a PDF
+
+        if($request->has('pdf')){
+            $filename = $request->number . '.pdf';
+            $request->file('pdf')->storeAs(
+                env('GOOGLE_DRIVE_RESOLUTIONS_FOLDER_ID'),
+                $filename,
+                'google');
+        }
+
         $resolution = new Resolution();
         $resolution->fill($request->all());
         $resolution->save();

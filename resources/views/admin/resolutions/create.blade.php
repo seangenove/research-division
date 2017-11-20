@@ -10,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="{{ url('/admin/resolutions/') }}">
+            <form method="POST" action="{{ url('/admin/resolutions/') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">
@@ -46,6 +46,11 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Date Signed By Mayor</label>
                         <input name="date_signed_by_mayor" type="date" class="form-control" id="date_signed_by_mayor" value="{{ old('authors')}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pdf">PDF File</label>
+                        <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">
                     </div>
                 </div>
                 <!-- /.box-body -->
