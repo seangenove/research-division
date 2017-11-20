@@ -54,8 +54,23 @@ class PagesController extends Controller
     
     public function edit($id)
     {
-        return view('admin.pages.edit');
+        return view('admin.pages.edit', [
+            'page' => Page::find($id)
+        ]);
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        Page::find($id)->update($request->all());
+        return redirect('/admin/pages');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
