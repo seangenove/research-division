@@ -26,6 +26,7 @@ Route::get('/contactUs', 'PublicController@contactUs');
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::get('/', 'Admin\\DashboardController@index');
+
     Route::get('/logs', 'Admin\\LogsController@index'); // TODO: Pagination, IP Address dynamic
     /** TODO:  Logs, Parsley, back-end validation and flash **/
     Route::get('change-password', 'Admin\\UsersController@changePassword');
@@ -37,6 +38,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
         'resolutions' => 'Admin\\ResolutionsController' // TODO: Validations, Logs
     ]);
+
 });
 
 Auth::routes();
