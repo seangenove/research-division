@@ -18,8 +18,9 @@
                                     class="btn btn-info">Read More
                             </button>
                         </div>
+                            <hr>
                         @endforeach
-                        <hr>
+
                         {{--<div class="ordinance-right-wrapper">
                             <h3>Ordinance 1</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
