@@ -16,14 +16,12 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /", 'public');
 
         $date = new Carbon;
-        $date->subWeek();
-        $ordinances = Ordinance::where("date_signed_by_mayor", ">", $date)
-            ->whereNotNull('date_signed_by_mayor')
-            ->orderby('date_signed_by_mayor', 'desc')
+        $date->subWeeks(3);
+        $ordinances = Ordinance::where("created_at", ">", $date)
+            ->orderby('created_at', 'desc')
             ->get();;
-        $resolutions = Resolution::where("date_signed_by_mayor", ">", $date)
-            ->whereNotNull('date_signed_by_mayor')
-            ->orderby('date_signed_by_mayor', 'desc')
+        $resolutions = Resolution::where("created_at", ">", $date)
+            ->orderby('created_at', 'desc')
             ->get();
 
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
@@ -34,8 +32,7 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
 
         $resolutions = DB::table('resolutions')
-            ->whereNotNull('date_signed_by_mayor')
-            ->orderby('date_signed_by_mayor', 'desc')
+            ->orderby('created_at', 'desc')
             ->get();
 
         return view('public.resolution', ['resolutions' => $resolutions]);
@@ -45,8 +42,7 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
         $ordinances = DB::table('ordinances')
-            ->whereNotNull('date_signed_by_mayor')
-            ->orderby('date_signed_by_mayor', 'desc')
+            ->orderby('created_at', 'desc')
             ->get();
         return view('public.ordinance', ['ordinances' => $ordinances]);
     }
