@@ -21,7 +21,7 @@
                         <input class="form-control" type="text" v-model="question.question">
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" v-model="question.required" class="check">
+                        <input type="checkbox" v-model="question.required">
                         <label>Required</label>
                     </div>
                     <div class="form-group">
@@ -55,6 +55,7 @@
 
         </div>
         <form v-bind:action="action" method="post">
+            <input type="hidden" name="_method" value="PATCH">
             <input name="json-values" type="text" v-bind:value="JSON.stringify(questionnaire)">
             <input type="hidden" name="_token" v-bind:value="csrf_token">
             <button class="btn btn-primary pull-right" type="submit">Submit</button>
@@ -63,7 +64,6 @@
         <hr>
         <h5 class="page-header">For development (JSON passed to controller)</h5>
         <pre>{{ questionnaire }}</pre>
-
     </div>
 </template>
 
@@ -73,9 +73,9 @@
 
     }
     export default {
-        props: ['action', 'csrf_token'],
+        props: ['action', 'csrf_token', 'old'],
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
         },
         methods: {
             addQuestion(){
@@ -93,17 +93,7 @@
         data(){
             return {
                 hello: 'Hello World from a Vue.js Component',
-                questionnaire: {
-                    name: '',
-                    description: '',
-                    questions: [
-//                        {
-//                            question: 'Just a template',
-//                            values: [{value: 'yes'}, {value: 'no'}],
-//                            isRequired: true
-//                        },
-                    ]
-                }
+                questionnaire: JSON.parse(this.old)
             }
         }
     }

@@ -1,42 +1,28 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            @include('admin.sidebar')
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit {{ $forms->name }}</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/forms/'.$forms->form_id) }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        {!! Form::model($forms, [
-                            'method' => 'PATCH',
-                            'url' => ['/admin/forms', $forms->form_id],
-                            'class' => 'form-horizontal',
-                            'files' => true
-                        ]) !!}
-
-                        @include ('admin.forms', ['submitButtonText' => 'Update'])
-
-
-                        {!! Form::close() !!}
-
-                    </div>
-                </div>
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary" id="app">
+            <div class="box-header with-border">
+                <h3 class="box-title">Edit Questionnaire</h3>
             </div>
-            <div class="col-md-2"></div>
+            <questionnaire-update-component
+                    action="{{ url("/admin/forms/{$questionnaire->id}/") }}"
+                    csrf_token="{{ csrf_token() }}"
+                    old="{{$questionnaire_json }}">
+                Loading Component...
+            </questionnaire-update-component>
+
         </div>
+        <!-- /.box -->
+
+
     </div>
+
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

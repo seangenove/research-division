@@ -10,8 +10,7 @@
             </div>
             <questionnaire-component
                     action="{{ url('/admin/forms') }}"
-                    csrf_token="{{ csrf_token() }}"
-            >
+                    csrf_token="{{ csrf_token() }}">
                 Loading Component...
             </questionnaire-component>
 
