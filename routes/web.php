@@ -22,6 +22,7 @@ Route::get('/resolution', 'PublicController@resolution');
 Route::get('/reports', 'PublicController@reports');
 // temporary
 Route::get('/contactUs', 'PublicController@contactUs');
+Route::view('/admin/forms/test', 'forms.test');
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
