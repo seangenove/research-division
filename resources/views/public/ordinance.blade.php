@@ -6,13 +6,15 @@
             <div class="col-md-12">
                 <div class="ordinance">
                     <div class="ordinance-heading">
-                        <h1>Ordinances</h1>
+                        <h1>Ordinances:</h1>
+                        <hr>
                     </div>
                     <div class="ordinance-right">
                         @foreach($ordinances as $ordinance)
                         <div class="ordinance-right-wrapper">
                             <h3>{{$ordinance->title}}</h3>
-                            <p>{{$ordinance->authors}}</p>
+                            <p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>
+                            <p>By: {{$ordinance->authors}} </p>
                             <p>{{$ordinance->description}}</p>
                             <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
                                     class="btn btn-info">Read More
