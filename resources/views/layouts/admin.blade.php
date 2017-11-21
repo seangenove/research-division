@@ -176,7 +176,7 @@
                         </span>
                         <ul class="treeview-menu">
                             <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
-                            <li><a href="#"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
+                            <li><a href="/admin/report"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
                         </ul>
                     </a>
                 </li>
