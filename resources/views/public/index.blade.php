@@ -119,7 +119,7 @@
                         @foreach($ordinances as $ordinance)
                             {{--@if($ordinance->date_approved_by_council )--}}
                                 <div class="ordinance-right-wrapper">
-                                    <a href="/public/show_ordinance/ {{$ordinance->id}}"><h3>{{$ordinance->title}}</h3></a> 
+                                    <a href="/showOrdinance{{-- {{$ordinance->id}}--}}"><h3>{{$ordinance->title}}</h3></a>
                                     <p>{{$ordinance->description}}</p>
                                 </div>
                             {{--@endif--}}

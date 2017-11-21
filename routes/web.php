@@ -25,6 +25,7 @@ Route::get('/about', 'PublicController@about');
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 Route::get('/resolutions', 'PublicController@resolutions');
 Route::get('/showResolution', 'PublicController@showResolution');
+Route::get('/showOrdinance', 'PublicController@showOrdinance');
 Route::get('/reports', 'PublicController@reports');
 
 /*Route::get(function ($id){
