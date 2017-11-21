@@ -47,4 +47,9 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /reports",'public');
         return view('public.reports');
     }
+
+    public function showResolution() {
+        LogUtility::insertLog("HttpRequest on /showResolution",'public');
+        return view('public.showResolution');
+    }
 }
