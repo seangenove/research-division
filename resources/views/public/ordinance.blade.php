@@ -9,13 +9,22 @@
                         <h1>Ordinances</h1>
                     </div>
                     <div class="ordinance-right">
+                        @foreach($ordinances as $ordinance)
                         <div class="ordinance-right-wrapper">
+                            <h3>{{$ordinance->title}}</h3>
+                            <p>{{$ordinance->authors}}</p>
+                            <p>{{$ordinance->description}}</p>
+                            <a href="{{ url('/showOrdinance' . '/' . $ordinance->id) }}" title="Read more"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Read More </button></a>
+                        </div>
+                        @endforeach
+                        <hr>
+                        {{--<div class="ordinance-right-wrapper">
                             <h3>Ordinance 1</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
+                            <button onclick="window.location.href='/showOrdinance'" class="btn btn-info">Read More</button>
                         </div>
                         <hr>
                         <div class="ordinance-right-wrapper">
@@ -24,7 +33,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
+                            <button onclick="window.location.href='/showOrdinance'" class="btn btn-info">Read More</button>
                         </div>
                         <hr>
                         <div class="ordinance-right-wrapper">
@@ -33,7 +42,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
+                            <button onclick="window.location.href='/showOrdinance'" class="btn btn-info">Read More</button>
                         </div>
                         <hr>
                         <div class="ordinance-right-wrapper">
@@ -42,7 +51,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
+                            <button onclick="window.location.href='/showOrdinance'" class="btn btn-info">Read More</button>
                         </div>
                         <hr>
                         <div class="ordinance-right-wrapper">
@@ -51,8 +60,8 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna placerat.</p>
-                            <button onclick="window.location.href='/public/showOrdinance'" class="btn btn-info">Read More</button>
-                        </div>
+                            <button onclick="window.location.href='/sshowOrdinance'" class="btn btn-info">Read More</button>
+                        </div>--}}
                     </div>
                 </div>
             </div>

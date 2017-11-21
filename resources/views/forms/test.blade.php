@@ -9,9 +9,9 @@
                 <h3 class="box-title">Create Questionnaire</h3>
             </div>
             <questionnaire-component
-                    action="{{ url('/admin/forms') }}"
-                    csrf_token="{{ csrf_token() }}"
-            >
+                action="{{ url('/admin/forms') }}"
+                csrf_token="{{ csrf_token() }}"
+                >
                 Loading Component...
             </questionnaire-component>
 

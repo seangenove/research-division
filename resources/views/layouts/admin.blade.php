@@ -25,6 +25,7 @@
         form button {
             display: inline;
         }
+
     </style>
 @yield('styles')
 
@@ -63,7 +64,7 @@
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                <!-- User Account: style can be found in dropdown.less -->
+                    <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
@@ -178,6 +179,10 @@
                             <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
                             <li><a href="/admin/report"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
                         </ul>
+                <li class="{{ Request::is('admin/forms*') ? 'active' : '' }}">
+                    <a href="/admin/forms">
+                        <i class="fa fa-book"></i> <span>M&E</span>
+                        <span class="pull-right-container"></span>
                     </a>
                 </li>
                 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
@@ -216,10 +221,12 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content">
+        <section class="content" style="margin: 0 5%">
             <!-- Info boxes -->
-        @yield('content')
-        <!-- /.row -->
+            <div class="row">
+                @yield('content')
+            </div>
+            <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
@@ -451,12 +458,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/bower_components/ckeditor/ckeditor.js"></script>
-    <script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1')
-  })
+<script>
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1')
+    })
+
+
 </script>
 
 {{-- Custom Scripts per page--}}

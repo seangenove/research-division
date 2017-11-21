@@ -70,39 +70,19 @@
                             <h1>Recent Resolutions</h1>
                         </div>
 
-                        <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 1</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
-                                interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
-                                placerat.</p>
-                        </div>
+                        @foreach($resolutions as $resolution)
 
-                        <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 2</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
-                                interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
-                                placerat.</p>
-                        </div>
+                            <div class="ordinance-right-wrapper">
+                                <a href="/public/showResolution/{{$resolution->id}}"><h3>{{$resolution->title}}</h3>
+                                </a>
+                                <p>{{$resolution->description}}</p>
+                            </div>
+                            <br/>
 
-                        <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 3</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
-                                interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
-                                placerat.</p>
-                        </div>
-
-                        <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 4</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
-                                interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
-                                placerat.</p>
-                        </div>
-
-                        <div class="ordinance-right-wrapper"></div>
-
+                        @endforeach
                         <div class="pull-right">
                             <div class="ordinance-right-wrapper">
-                                <button onclick="window.location.href='/ordinance'" class="btn btn-info">View All
+                                <button onclick="window.location.href='/resolutions'" class="btn btn-info">View All
                                 </button>
                             </div>
                         </div>
@@ -140,15 +120,15 @@
                         <div class="ordinance-right-heading">
                             <h1>Recent Ordinances</h1>
                         </div>
-
-                        <div class="ordinance-right-wrapper">
-                            <a href="/public/show_ordinance"><h3>Ordinance 1</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
-                                interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
-                                placerat.</p>
-                        </div>
-
-                        <div class="ordinance-right-wrapper">
+                        @foreach($ordinances as $ordinance)
+                            {{--@if($ordinance->date_approved_by_council )--}}
+                                <div class="ordinance-right-wrapper">
+                                    <a href="/showOrdinance/{{$ordinance->id}}"><h3>{{$ordinance->title}}</h3></a>
+                                    <p>{{$ordinance->description}}</p>
+                                </div>
+                            {{--@endif--}}
+                        @endforeach
+                        {{--<div class="ordinance-right-wrapper">
                             <a href="/public/show_ordinance"><h3>Ordinance 2</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
@@ -167,7 +147,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
                                 placerat.</p>
-                        </div>
+                        </div>--}}
 
                         <div class="ordinance-right-wrapper"></div>
 
