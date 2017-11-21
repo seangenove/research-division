@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->boolean('required');
             $table->enum('type', ['short', 'long', 'radio', 'checkbox']);
             $table->integer('questionnaire_id')->unsigned();
-            $table->foreign('questionnaire_id')->references('id')->on('questionnaires');
+            $table->foreign('questionnaire_id')->references('id')->on('questionnaires')->onDelete('cascade');
             $table->timestamps();
         });
     }
