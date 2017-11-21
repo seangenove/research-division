@@ -16,10 +16,10 @@ class CreateQuestionnairesTable extends Migration
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
-            $table->integer('ordinance_id')->unsigned();
+            $table->text('description');
+            $table->integer('ordinance_id')->unsigned()->nullable();
             $table->foreign('ordinance_id')->references('id')->on('ordinances');
-            $table->integer('resolution_id')->unsigned();
+            $table->integer('resolution_id')->unsigned()->nullable();
             $table->foreign('resolution_id')->references('id')->on('resolutions');
             $table->timestamps();
         });
