@@ -78,7 +78,8 @@ class PublicController extends Controller
     public function showOrdinance()
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
-        return view('public.showOrdinance');
+        $ordinances = DB::table('ordinances')->get();
+        return view('public.showOrdinance', ['ordinances' => $ordinances]);
     }
 
     public function showResolution($id)

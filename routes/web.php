@@ -24,6 +24,8 @@ Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 Route::get('/resolutions', 'PublicController@resolutions');
+Route::get('/showOrdinance', 'PublicController@showOrdinance');
+
 Route::get('/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
 
