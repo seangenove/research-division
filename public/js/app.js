@@ -42903,6 +42903,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -42919,8 +42922,8 @@ var Questions = function Questions() {
         addQuestion: function addQuestion() {
             this.questionnaire.questions.push({
                 question: '',
-                isRequired: false,
-                answerType: '',
+                required: false,
+                type: '',
                 values: []
             });
         },
@@ -42976,7 +42979,7 @@ var render = function() {
           attrs: {
             id: "questionnaireName",
             type: "text",
-            placeholder: "Question name"
+            placeholder: "Questionnaire Name..."
           },
           domProps: { value: _vm.questionnaire.name },
           on: {
@@ -43021,6 +43024,7 @@ var render = function() {
       _c(
         "button",
         {
+          staticClass: "btn btn-success btn-sm",
           on: {
             click: function($event) {
               _vm.addQuestion()
@@ -43070,35 +43074,35 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: question.isRequired,
-                      expression: "question.isRequired"
+                      value: question.required,
+                      expression: "question.required"
                     }
                   ],
                   staticClass: "check",
                   attrs: { type: "checkbox" },
                   domProps: {
-                    checked: Array.isArray(question.isRequired)
-                      ? _vm._i(question.isRequired, null) > -1
-                      : question.isRequired
+                    checked: Array.isArray(question.required)
+                      ? _vm._i(question.required, null) > -1
+                      : question.required
                   },
                   on: {
                     change: function($event) {
-                      var $$a = question.isRequired,
+                      var $$a = question.required,
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
                         var $$v = null,
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
-                          $$i < 0 && (question.isRequired = $$a.concat([$$v]))
+                          $$i < 0 && (question.required = $$a.concat([$$v]))
                         } else {
                           $$i > -1 &&
-                            (question.isRequired = $$a
+                            (question.required = $$a
                               .slice(0, $$i)
                               .concat($$a.slice($$i + 1)))
                         }
                       } else {
-                        _vm.$set(question, "isRequired", $$c)
+                        _vm.$set(question, "required", $$c)
                       }
                     }
                   }
@@ -43117,8 +43121,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: question.answerType,
-                        expression: "question.answerType"
+                        value: question.type,
+                        expression: "question.type"
                       }
                     ],
                     staticClass: "form-control",
@@ -43136,7 +43140,7 @@ var render = function() {
                             })
                           _vm.$set(
                             question,
-                            "answerType",
+                            "type",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -43168,7 +43172,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              question.answerType === "radio"
+              question.type === "radio"
                 ? _c(
                     "div",
                     { staticClass: "form-group" },
@@ -43177,6 +43181,19 @@ var render = function() {
                         _vm._v("Radio Box Values")
                       ]),
                       _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-xs",
+                          on: {
+                            click: function($event) {
+                              _vm.addValue(question)
+                            }
+                          }
+                        },
+                        [_vm._v("Add Value")]
+                      ),
+                      _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
                           _c("input", {
@@ -43201,25 +43218,13 @@ var render = function() {
                             }
                           })
                         ])
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              _vm.addValue(question)
-                            }
-                          }
-                        },
-                        [_vm._v("Add Value")]
-                      )
+                      })
                     ],
                     2
                   )
                 : _vm._e(),
               _vm._v(" "),
-              question.answerType === "checkbox"
+              question.type === "checkbox"
                 ? _c(
                     "div",
                     [
@@ -43227,6 +43232,18 @@ var render = function() {
                         _vm._v("Check Box Values")
                       ]),
                       _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.addValue(question)
+                            }
+                          }
+                        },
+                        [_vm._v("Add Value")]
+                      ),
+                      _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
                           _c("input", {
@@ -43251,19 +43268,7 @@ var render = function() {
                             }
                           })
                         ])
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              _vm.addValue(question)
-                            }
-                          }
-                        },
-                        [_vm._v("Add Value")]
-                      )
+                      })
                     ],
                     2
                   )
@@ -43288,7 +43293,20 @@ var render = function() {
           domProps: { value: _vm.csrf_token }
         }),
         _vm._v(" "),
-        _c("button", [_vm._v("Submit")])
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary pull-right",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Submit")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h5", { staticClass: "page-header" }, [
+        _vm._v("For development (JSON passed to controller)")
       ]),
       _vm._v(" "),
       _c("pre", [_vm._v(_vm._s(_vm.questionnaire))])

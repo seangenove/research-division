@@ -16,7 +16,8 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('question');
-            $table->enum('type', ['dropdown', 'text', 'longtext', 'radiobutton']);
+            $table->boolean('required');
+            $table->enum('type', ['short', 'long', 'radio', 'checkbox']);
             $table->integer('questionnaire_id')->unsigned();
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires');
             $table->timestamps();
