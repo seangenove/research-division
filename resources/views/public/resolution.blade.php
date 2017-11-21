@@ -23,23 +23,6 @@
                                         </button>
                                     </div>
                                     <hr>
-
-                                    {{--<tr data-href="/admin/repairs/{{$motorpool->motorpool_id}}"--}}
-                                    {{--<tr data-href="/admin/repairs/{{$motorpool->motorpool_id}}"--}}
-                                    {{--class="clickable-row">--}}
-                                    {{--@foreach($merge as $firestationss)--}}
-                                    {{--@if($firestationss->transpo_id === $motorpool->v_id || $firestationss->transpo_id === $motorpool->ft_id)--}}
-                                    {{--<td>{{ $firestationss->name}}</td>--}}
-                                    {{--<td>{{ $firestationss->plate_num }}</td>--}}
-                                    {{--<td>{{ $firestationss->model }}</td>--}}
-                                    {{--@endif--}}
-                                    {{--@endforeach--}}
-                                    {{--<td>{{ $motorpool->scope }}</td>--}}
-                                    {{--<td>{{ $motorpool->status }}</td>--}}
-                                    {{--<td>{{ $motorpool->date_started }}</td>--}}
-                                    {{--<td>{{ $motorpool->date_finished}}</td>--}}
-                                    {{--</tr>--}}
-
                                 @endforeach
 
                             </div>

@@ -23,7 +23,7 @@ Route::get('/ordinance', 'PublicController@ordinance');
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
-Route::get('/resolution', 'PublicController@resolution');
+Route::get('/resolutions', 'PublicController@resolutions');
 Route::get('/showResolution', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
 
