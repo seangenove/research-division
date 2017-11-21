@@ -14,7 +14,9 @@
                             <h3>{{$ordinance->title}}</h3>
                             <p>{{$ordinance->authors}}</p>
                             <p>{{$ordinance->description}}</p>
-                            <a href="{{ url('/showOrdinance' . '/' . $ordinance->id) }}" title="Read more"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Read More </button></a>
+                            <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                    class="btn btn-info">Read More
+                            </button>
                         </div>
                         @endforeach
                         <hr>

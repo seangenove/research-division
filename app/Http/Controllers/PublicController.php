@@ -17,7 +17,10 @@ class PublicController extends Controller
 
         $date = new Carbon;
         $date->subWeek();
-        $ordinances = Ordinance::where("date_signed_by_mayor", ">", $date)->get();;
+        $ordinances = Ordinance::where("date_signed_by_mayor", ">", $date)
+            ->whereNotNull('date_signed_by_mayor')
+            ->orderby('date_signed_by_mayor', 'desc')
+            ->get();;
         $resolutions = Resolution::where("date_signed_by_mayor", ">", $date)
             ->whereNotNull('date_signed_by_mayor')
             ->orderby('date_signed_by_mayor', 'desc')
@@ -41,7 +44,10 @@ class PublicController extends Controller
     public function ordinance()
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        $ordinances = DB::table('ordinances')->get();
+        $ordinances = DB::table('ordinances')
+            ->whereNotNull('date_signed_by_mayor')
+            ->orderby('date_signed_by_mayor', 'desc')
+            ->get();
         return view('public.ordinance', ['ordinances' => $ordinances]);
     }
 
@@ -77,9 +83,9 @@ class PublicController extends Controller
 
     public function showOrdinance($id)
     {
-        LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
-        $ordinances = Ordinance::findOrFail($id)->get();
-        return view('public.showOrdinance', compact('ordinances'));
+        LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
+        $ordinances = Ordinance::findOrFail($id)->first();
+        return view('public.showOrdinance',['ordinances' => $ordinances]);
     }
 
     public function showResolution($id)
