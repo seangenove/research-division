@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
+use App\Resolution;
 use DB;
 
 class PublicController extends Controller
@@ -62,16 +63,19 @@ class PublicController extends Controller
         return view('public.reports');
     }
 
-    public function showOrdinance ()
+    public function showOrdinance()
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
 //        $ordinance = Ordinance::findOrFail($id);
         return view('public.showOrdinance');
     }
-    
-    public function showResolution()
+
+    public function showResolution($id)
     {
         LogUtility::insertLog("HttpRequest on /showResolution", 'public');
-        return view('public.showResolution');
+
+        $resolutions = Resolution::findOrFail($id)->get();
+
+        return view('public.showResolution', ['resolutions' => $resolutions]);
     }
 }
