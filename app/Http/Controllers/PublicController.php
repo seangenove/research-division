@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
+use App\Ordinance;
 use App\Resolution;
 use DB;
 use Carbon\Carbon;
@@ -17,8 +18,7 @@ class PublicController extends Controller
         $date = new Carbon;
         $date->subWeek();
         $resolutions = Resolution::where("date_signed_by_mayor", ">", $date)->get();
-
-        $ordinances = DB::table('ordinances')->get();
+        $ordinances = Ordinance::where("date_signed_by_mayor", ">", $date)->get();;
 
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
@@ -69,11 +69,11 @@ class PublicController extends Controller
         return view('public.reports');
     }
 
-    public function showOrdinance()
+    public function showOrdinance($id)
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
-        $ordinances = DB::table('ordinances')->get();
-        return view('public.showOrdinance', ['ordinances' => $ordinances]);
+        $ordinances = Ordinance::findOrFail($id)->get();
+        return view('public.showOrdinance', compact('ordinances'));
     }
 
     public function showResolution($id)
