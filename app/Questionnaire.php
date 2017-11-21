@@ -25,4 +25,19 @@ class Questionnaire extends Model
         return $this->hasMany('App\Question');
     }
 
+    /**
+     * Returns The associated ordinance
+     */
+    public function ordinance()
+    {
+        return $this->belongsTo('App\Ordinance');
+    }
+
+    /**
+     * Returns the associated resolution
+     */
+    public function resolution()
+    {
+        return $this->belongsTo('App\Resolution');
+    }
 }

@@ -17,7 +17,9 @@ class FormsController extends Controller
      */
     public function index()
     {
-        return view('forms.index');
+        return view('forms.index', [
+            'questionnaires' => Questionnaire::all()
+        ]);
     }
 
     public function create()
@@ -74,8 +76,7 @@ class FormsController extends Controller
         ]);
     }
 
-    public
-    function edit()
+    public function edit()
     {
         return view('forms.edit');
     }
