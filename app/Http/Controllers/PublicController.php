@@ -13,8 +13,9 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /", 'public');
 
         $resolutions = DB::table('resolutions')->get();
+        $ordinances = DB::table('ordinances')->get();
 
-        return view('public.index', ['resolutions' => $resolutions]);
+        return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
 
     public function resolutions()
