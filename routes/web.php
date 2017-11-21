@@ -15,12 +15,23 @@
 /* Public routes */
 Route::get('/', 'PublicController@index');
 Route::get('/ordinance', 'PublicController@ordinance');
+/*Route::get(function ($id){
+    $ordinance = Ordinance::findOrFail($id);
+    return view('public.ordinance', compact($ordinance));
+});*/
+
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 Route::get('/resolutions', 'PublicController@resolutions');
 Route::get('/showResolution', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
+
+/*Route::get(function ($id){
+    $ordinance = Ordinance::findOrFail($id);
+    return view('public.showOrdinance', compact($ordinance));
+});*/
+
 // temporary
 Route::get('/contactUs', 'PublicController@contactUs');
 

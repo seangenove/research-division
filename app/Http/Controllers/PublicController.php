@@ -62,6 +62,13 @@ class PublicController extends Controller
         return view('public.reports');
     }
 
+    public function showOrdinance ()
+    {
+        LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
+//        $ordinance = Ordinance::findOrFail($id);
+        return view('public.showOrdinance');
+    }
+    
     public function showResolution()
     {
         LogUtility::insertLog("HttpRequest on /showResolution", 'public');
