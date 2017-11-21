@@ -169,6 +169,16 @@
                         </span>
                     </a>
                 </li>
+                <li class="treeview menu">
+                    <a href="#">
+                        <i class="fa fa-book"></i> <span class="text-danger">M&E</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                            <li><a href="/admin/forms"><i class="fa fa-bars"></i>Manage</a></li>
+                            <li><a href="/admin/report"><i class="fa fa-file-pdf-o"></i> Reports </a></li>
+                        </ul>
                 <li class="{{ Request::is('admin/forms*') ? 'active' : '' }}">
                     <a href="/admin/forms">
                         <i class="fa fa-book"></i> <span>M&E</span>

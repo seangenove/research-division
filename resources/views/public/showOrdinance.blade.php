@@ -15,12 +15,14 @@
                                 <p> Date Approved: {{$ordinances->date_approved_by_council}}</p>
                                 <p> Date Signed by Vice Mayor: {{$ordinances->date_signed_by_vice_mayor}}</p>
                                 <p> Date Signed by Mayor: {{$ordinances->date_signed_by_mayor}}</p>
+                                <hr>
                                 <p> {{$ordinances->description}} </p>
                             </div>
                         </div>
                     {{--@endforeach--}}
                 </div>
             </div>
+            <br>
             <div class="col-md-12">
                 <div class="widget-area no-padding blank">
                     <div class="status-upload">
