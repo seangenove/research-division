@@ -29,7 +29,7 @@ class PublicController extends Controller
     }
 
     public function about() {
-        LogUtility::insertLog("HttpRequest on /about",'public');
+        LogUtility::insertLog("HttpsRequest on /about",'public');
         return view('public.about');
     }
 
@@ -46,5 +46,11 @@ class PublicController extends Controller
     public function reports() {
         LogUtility::insertLog("HttpRequest on /reports",'public');
         return view('public.reports');
+    }
+
+    public function showOrdinance (){
+        LogUtility::insertLog("HttpRequest on /showOrdinance",'public');
+//        $ordinance = Ordinance::findOrFail($id);
+        return view('public.showOrdinance');
     }
 }
