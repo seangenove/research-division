@@ -84,9 +84,9 @@ class PublicController extends Controller
 
     public function showResolution($id)
     {
-        LogUtility::insertLog("HttpRequest on /showResolution", 'public');
+        LogUtility::insertLog("HttpRequest on /public/showResolution/{id}", 'public');
 
-        $resolutions = Resolution::findOrFail($id)->get();
+        $resolutions = Resolution::findOrFail($id)->first();
 
         return view('public.showResolution', ['resolutions' => $resolutions]);
     }
