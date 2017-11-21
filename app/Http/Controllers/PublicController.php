@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
+use App\Resolution;
 use DB;
+use Carbon\Carbon;
 
 class PublicController extends Controller
 {
@@ -12,7 +14,10 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /", 'public');
 
-        $resolutions = DB::table('resolutions')->get();
+        $date = new Carbon;
+        $date->subWeek();
+        $resolutions = Resolution::where("date_signed_by_mayor", ">", $date)->get();
+
         $ordinances = DB::table('ordinances')->get();
 
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
@@ -64,15 +69,18 @@ class PublicController extends Controller
         return view('public.reports');
     }
 
-    public function showOrdinance ()
+    public function showOrdinance()
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
         return view('public.showOrdinance');
     }
 
-    public function showResolution()
+    public function showResolution($id)
     {
         LogUtility::insertLog("HttpRequest on /showResolution", 'public');
-        return view('public.showResolution');
+
+        $resolutions = Resolution::findOrFail($id)->get();
+
+        return view('public.showResolution', ['resolutions' => $resolutions]);
     }
 }
