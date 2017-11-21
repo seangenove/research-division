@@ -69,12 +69,16 @@
                         <div class="ordinance-right-heading">
                             <h1>Recent Resolutions</h1>
                         </div>
+
                         @foreach($resolutions as $resolution)
+
                             <div class="ordinance-right-wrapper">
-                                <a href="/public/showResolution/{{$resolution->id}}"><h3>{{$resolution->title}}</h3></a>
+                                <a href="/public/showResolution/{{$resolution->id}}"><h3>{{$resolution->title}}</h3>
+                                </a>
                                 <p>{{$resolution->description}}</p>
                             </div>
                             <br/>
+
                         @endforeach
                         <div class="pull-right">
                             <div class="ordinance-right-wrapper">

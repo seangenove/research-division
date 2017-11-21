@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
 use App\Resolution;
 use DB;
+use Carbon\Carbon;
 
 class PublicController extends Controller
 {
@@ -13,7 +14,9 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /", 'public');
 
-        $resolutions = DB::table('resolutions')->get();
+        $date = new Carbon;
+        $date->subWeek();
+        $resolutions = Resolution::where("date_signed_by_mayor",">", $date)->get();
 
         return view('public.index', ['resolutions' => $resolutions]);
     }
