@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="ordinance">
-                    @foreach($ordinances as $ordinance)
+                   {{-- @foreach($ordinances as $ordinance)
                         <div class="ordinance-heading">
                             <h1>{{$ordinance->title}}</h1>
                         </div>
@@ -15,7 +15,7 @@
                                 <p> {{$ordinance->description}} </p>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach--}}
                 </div>
             </div>
         </div>

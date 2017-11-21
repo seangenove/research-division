@@ -22,9 +22,12 @@ class FormsController extends Controller
     }
     public function store(Request $request)
     {
-        $questionnaire = new Questionnaire();
-        $questionnaire->fill($request->all());
-        $questionnaire->save();
+        $questionnaire_object = json_decode($request->input('json-values'));
+        dd($questionnaire_object);
+        
+//        $questionnaire = new Questionnaire();
+//        $questionnaire->fill($request->all());
+//        $questionnaire->save();
 
         return redirect('/admin/forms');
     }

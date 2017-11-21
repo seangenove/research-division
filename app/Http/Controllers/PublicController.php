@@ -16,9 +16,11 @@ class PublicController extends Controller
 
         $date = new Carbon;
         $date->subWeek();
-        $resolutions = Resolution::where("date_signed_by_mayor",">", $date)->get();
+        $resolutions = Resolution::where("date_signed_by_mayor", ">", $date)->get();
 
-        return view('public.index', ['resolutions' => $resolutions]);
+        $ordinances = DB::table('ordinances')->get();
+
+        return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
 
     public function resolutions()
@@ -33,7 +35,8 @@ class PublicController extends Controller
     public function ordinance()
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        return view('public.ordinance');
+        $ordinances = DB::table('ordinances')->get();
+        return view('public.ordinance', ['ordinances' => $ordinances]);
     }
 
     public function monitorAndEval()
@@ -69,7 +72,6 @@ class PublicController extends Controller
     public function showOrdinance()
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
-//        $ordinance = Ordinance::findOrFail($id);
         return view('public.showOrdinance');
     }
 
