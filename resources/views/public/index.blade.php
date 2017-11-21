@@ -71,28 +71,28 @@
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 1</h3></a>
+                            <a href="/public/showResolution"><h3>Resolution 1</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
                                 placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 2</h3></a>
+                            <a href="/public/showResolution"><h3>Resolution 2</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
                                 placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 3</h3></a>
+                            <a href="/public/showResolution"><h3>Resolution 3</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
                                 placerat.</p>
                         </div>
 
                         <div class="ordinance-right-wrapper">
-                            <a href="/public/show_resolutions"><h3>Resolution 4</h3></a>
+                            <a href="/public/showResolution"><h3>Resolution 4</h3></a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin
                                 interdum dolor ac auctor. Phasellus eleifend ex id massa faucibus, cursus accumsan urna
                                 placerat.</p>

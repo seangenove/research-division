@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Ordinance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class OrdinancesController extends Controller
 {
@@ -43,6 +44,16 @@ class OrdinancesController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if User uploaded a PDF
+
+        if($request->has('pdf')){
+            $filename = $request->number . '.pdf';
+            $request->file('pdf')->storeAs(
+                env('GOOGLE_DRIVE_ORDINANCES_FOLDER_ID'),
+                    $filename,
+                    'google');
+        }
+
         $ordinance = new Ordinance();
         $ordinance->fill($request->all());
         $ordinance->save();
@@ -57,13 +68,13 @@ class OrdinancesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $ordinance = Ordinance::findOrFail($id);
+{
+    $ordinance = Ordinance::findOrFail($id);
 
-        return view('admin.ordinances.show', [
-            'ordinance' => $ordinance
-        ]);
-    }
+    return view('admin.ordinances.show', [
+        'ordinance' => $ordinance
+    ]);
+}
 
     /**
      * Show the form for editing the specified resource.
