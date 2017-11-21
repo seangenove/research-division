@@ -9,6 +9,7 @@
                             <div class="ordinance-heading">
                                 <h1>Resolutions</h1>
                             </div>
+                            <br/><hr/>
 
                             <div class="ordinance-right">
 

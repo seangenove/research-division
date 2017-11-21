@@ -24,7 +24,9 @@ Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 Route::get('/resolutions', 'PublicController@resolutions');
-Route::get('/showResolution/{id}', 'PublicController@showResolution');
+
+Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
+Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
 
 /*Route::get(function ($id){
@@ -41,6 +43,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::get('/', 'Admin\\DashboardController@index');
 
     Route::get('/logs', 'Admin\\LogsController@index'); // TODO: Pagination, IP Address dynamic
+
+//    Route::get('/report', 'Admin\\ReportsConteoller@index');
+
     /** TODO:  Logs, Parsley, back-end validation and flash **/
     Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword'); //
@@ -49,10 +54,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         'users' => 'Admin\\UsersController', // TODO: Validations, Logs, Re-enter Password (Parsley.js)
         'ordinances' => 'Admin\\OrdinancesController', // TODO: Validations, Logs
         'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
-        'resolutions' => 'Admin\\ResolutionsController' // TODO: Validations, Logs
+        'resolutions' => 'Admin\\ResolutionsController', // TODO: Validations, Logs
+        'report' => 'Admin\\ReportsController'
     ]);
 
-});
 
+});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
