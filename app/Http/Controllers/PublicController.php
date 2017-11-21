@@ -15,13 +15,11 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /", 'public');
 
-        $date = new Carbon;
-        $date->subWeeks(3);
-        $ordinances = Ordinance::where("created_at", ">", $date)
-            ->orderby('created_at', 'desc')
-            ->get();;
-        $resolutions = Resolution::where("created_at", ">", $date)
-            ->orderby('created_at', 'desc')
+        $ordinances = Ordinance::orderby('created_at', 'desc')
+            ->limit(5)
+            ->get();
+        $resolutions = Resolution::orderby('created_at', 'desc')
+            ->limit(5)
             ->get();
 
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
