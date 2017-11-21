@@ -26,7 +26,8 @@ class PublicController extends Controller
     public function ordinance()
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        return view('public.ordinance');
+        $ordinances = DB::table('ordinances')->get();
+        return view('public.ordinance', ['ordinances' => $ordinances]);
     }
 
     public function monitorAndEval()
@@ -62,10 +63,10 @@ class PublicController extends Controller
     public function showOrdinance ()
     {
         LogUtility::insertLog("HttpRequest on /showOrdinance", 'public');
-//        $ordinance = Ordinance::findOrFail($id);
-        return view('public.showOrdinance');
+        $ordinances = DB::table('ordinances')->get();
+        return view('public.showOrdinance', ['ordinances' => $ordinances]);
     }
-    
+
     public function showResolution()
     {
         LogUtility::insertLog("HttpRequest on /showResolution", 'public');
