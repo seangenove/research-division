@@ -33,6 +33,7 @@
                         <td>{{ $page->id }}</td>
                         <td>{{ $page->title }}</td>
                         <td>
+                            <a href="/admin/pages/{{$page->id}}" class="btn btn-xs btn-info" >Preview</a>
                             <a href="/admin/pages/{{$page->id}}/edit" class="btn btn-xs btn-warning" >Edit</a>
                             <form action="/admin/pages/{{ $page->id }}" method="post">
                                 {{ method_field('DELETE') }}
