@@ -28,6 +28,7 @@ Route::get('/resolutions', 'PublicController@resolutions');
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
 Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
+Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');
 
 /*Route::get(function ($id){

@@ -7,6 +7,7 @@ use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
 use App\Suggestion;
+use App\Page;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -76,6 +77,15 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /reports", 'public');
         return view('public.reports');
     }
+    public function page($id)
+    {
+        $page = Page::findOrFail($id);
+        LogUtility::insertLog("HttpRequest on /page/{id}", 'public');
+        return view('public.page', [
+            'page' => $page
+        ]);
+    }
+    
 
     public function showOrdinance($id)
     {
