@@ -32,7 +32,7 @@
                             <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-' }}</td>
                             <td>{{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-'}}</td>
                             <td>
-                                <a href="#" class="btn btn-xs btn-success"><span>Results</span></a>
+                                <a href="/result" class="btn btn-xs btn-success"><span>Results</span></a>
                                 <a href="" class="btn btn-xs btn-info"><span>Details</span></a>
                                 <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}" class="btn btn-xs btn-warning">Edit</a>
                                 <a href="" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>

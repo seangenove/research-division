@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 
-class ReportsController extends Controller
+class ResultController extends Controller
 {
     //
-    public function index(){
-        return view('admin.reports.index');
+    public function show()
+    {
+        return view('admin.result.show');
     }
 }

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         'ordinances' => 'Admin\\OrdinancesController', // TODO: Validations, Logs
         'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
         'resolutions' => 'Admin\\ResolutionsController', // TODO: Validations, Logs
-        'report' => 'Admin\\ReportsController'
+        'result' => 'Admin\\ResultController'
     ]);
 
 
