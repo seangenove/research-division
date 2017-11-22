@@ -44,8 +44,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
 
     Route::get('/logs', 'Admin\\LogsController@index'); // TODO: Pagination, IP Address dynamic
 
-//    Route::get('/report', 'Admin\\ReportsConteoller@index');
-
     /** TODO:  Logs, Parsley, back-end validation and flash **/
     Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword'); //
