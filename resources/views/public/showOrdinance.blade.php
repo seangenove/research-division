@@ -25,11 +25,16 @@
                 <div class="pb-cmnt-container">
                     <div class="panel panel-info">
                         <div class="panel-body">
-                            <form>
-                                <textarea class="form-control" name="message" rows="5" placeholder="Please give us your suggestion on this ordinance"></textarea>
+                            <form method="post" action="{{ url("/suggestions/{$ordinances->id }/") }}">
+                                {{ csrf_field() }}
+                                <input type="text" name="first_name" placeholder="Fname">
+                                <input type="text" name="last_name" placeholder="Lname">
+                                <input type="hidden" name="type" value="ordinance">
+                                <input type="email" name="email" placeholder="email">
+                                <textarea required class="form-control" name="suggestion" rows="5" placeholder="Please give us your suggestion on this ordinance"></textarea>
 <br>
                                 <div class="form-inline">
-                                    <button class="btn btn-success pull-right" type="button"><i class="fa fa-paper-plane"></i> Send Now</button>
+                                    <button class="btn btn-success pull-right" type="submit"><i class="fa fa-paper-plane"></i> Send Now</button>
                                 </div>
                             </form>
                         </div>
