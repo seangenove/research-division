@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
+use App\Suggestion;
 use DB;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
@@ -80,6 +82,39 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
         $ordinances = Ordinance::findOrFail($id)->first();
         return view('public.showOrdinance',['ordinances' => $ordinances]);
+    }
+
+    public function storeSuggestion(Request $request, $id){
+
+        if ($request->input('type') === 'ordinance'){
+            // Ordinances
+            $suggestion = new Suggestion();
+            $suggestion->first_name = $request->input('first_name');
+            $suggestion->last_name = $request->input('last_name');
+            $suggestion->email = $request->input('email');
+            $suggestion->suggestion = $request->input('suggestion');
+            $suggestion->save();
+
+            // TODO: Refactorb to use M2M
+            DB::table('ordinance_suggestion')->insert([
+                'ordinance_id' => $id,
+                'suggestion_id' => $suggestion->id
+            ]);
+        } elseif ($request->input('type') === 'resolution'){
+            // Resolution
+            $suggestion = new Suggestion();
+            $suggestion->first_name = $request->input('first_name');
+            $suggestion->last_name = $request->input('last_name');
+            $suggestion->email = $request->input('email');
+            $suggestion->suggestion = $request->input('suggestion');
+            $suggestion->save();
+
+            // TODO: Refactorb to use M2M
+            DB::table('resolution_suggestion')->insert([
+                'resolution_id' => $id,
+                'suggestion_id' => $suggestion->id
+            ]);
+        }
     }
 
     public function showResolution($id)

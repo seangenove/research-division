@@ -21,9 +21,17 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <div class="panel panel-info">
                                             <div class="panel-body">
-                                                <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
-                                                <form class="form-inline">
-                                                    <button class="btn btn-primary pull-right" type="button">Share</button>
+                                                <form method="post" action="{{ url("/suggestions/{$resolutions->id }/") }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="text" name="first_name" placeholder="Fname">
+                                                    <input type="text" name="last_name" placeholder="Lname">
+                                                    <input type="hidden" name="type" value="resolution">
+                                                    <input type="email" name="email" placeholder="email">
+                                                    <textarea required class="form-control" name="suggestion" rows="5" placeholder="Please give us your suggestion on this resolution"></textarea>
+                                                    <br>
+                                                    <div class="form-inline">
+                                                        <button class="btn btn-success pull-right" type="submit"><i class="fa fa-paper-plane"></i> Send Now</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
