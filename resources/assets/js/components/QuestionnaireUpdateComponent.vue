@@ -16,6 +16,9 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
+                    <div class="row">
+                        <button class="btn btn-md btn-danger pull-right">Remove Question</button>
+                    </div>
                     <div class="form-group">
                         <label for="questionnaireName">Question Name</label>
                         <input class="form-control" type="text" v-model="question.question">
@@ -38,14 +41,24 @@
                         <label for="">Radio Box Values</label>
                         <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value</button>
                         <div v-for="val in question.values">
-                            <input class="form-control" type="text" v-model="val.value" required>
+                            <div class="input-group">
+                                <input class="form-control" type="text" v-model="val.value" required>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div v-if="question.type === 'checkbox'">
                         <label for="">Check Box Values</label>
-                        <button v-on:click="addValue(question)">Add Value</button>
+                        <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value</button>
                         <div v-for="val in question.values">
-                            <input class="form-control" type="text" v-model="val.value" required>
+                            <div class="input-group">
+                                <input class="form-control" type="text" v-model="val.value" required placeholder="Enter Value...">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +69,7 @@
         </div>
         <form v-bind:action="action" method="post">
             <input type="hidden" name="_method" value="PATCH">
-            <input name="json-values" type="text" v-bind:value="JSON.stringify(questionnaire)">
+            <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
             <input type="hidden" name="_token" v-bind:value="csrf_token">
             <button class="btn btn-primary pull-right" type="submit">Submit</button>
         </form>

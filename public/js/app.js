@@ -1097,6 +1097,7 @@ window.Vue = __webpack_require__(36);
  */
 
 Vue.component('questionnaire-component', __webpack_require__(39));
+Vue.component('questionnaire-details', __webpack_require__(55));
 Vue.component('questionnaire-update-component', __webpack_require__(42));
 
 var app = new Vue({
@@ -31820,7 +31821,7 @@ module.exports = function spread(callback) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.5.8
+ * Vue.js v2.5.7
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -36794,7 +36795,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.5.8';
+Vue$3.version = '2.5.7';
 
 /*  */
 
@@ -42202,7 +42203,7 @@ function checkIdentifier (
 ) {
   if (typeof ident === 'string') {
     try {
-      new Function(("var " + ident + "=_"));
+      new Function(("var " + ident));
     } catch (e) {
       errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
     }
@@ -42791,7 +42792,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/QuestionnaireComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42801,9 +42802,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a17c1ede", Component.options)
+    hotAPI.createRecord("data-v-8265245e", Component.options)
   } else {
-    hotAPI.reload("data-v-a17c1ede", Component.options)
+    hotAPI.reload("data-v-8265245e", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42821,6 +42822,19 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43024,6 +43038,8 @@ var render = function() {
             _c("div", { staticClass: "col-md-2" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
+              _vm._m(0, true, false),
+              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "questionnaireName" } }, [
                   _vm._v("Question Name")
@@ -43180,27 +43196,31 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "text", required: "" },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(1, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43219,6 +43239,7 @@ var render = function() {
                       _c(
                         "button",
                         {
+                          staticClass: "btn btn-success btn-xs",
                           on: {
                             click: function($event) {
                               _vm.addValue(question)
@@ -43230,27 +43251,35 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                required: "",
+                                placeholder: "Enter Value..."
+                              },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43268,7 +43297,7 @@ var render = function() {
       _vm._v(" "),
       _c("form", { attrs: { action: _vm.action, method: "post" } }, [
         _c("input", {
-          attrs: { name: "json-values", type: "text" },
+          attrs: { name: "json-values", type: "hidden" },
           domProps: { value: JSON.stringify(_vm.questionnaire) }
         }),
         _vm._v(" "),
@@ -43298,13 +43327,58 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("button", { staticClass: "btn btn-md btn-danger pull-right" }, [
+        _vm._v("Remove Question")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a17c1ede", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-8265245e", module.exports)
   }
 }
 
@@ -43334,7 +43408,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/QuestionnaireUpdateComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireUpdateComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -43344,9 +43418,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-661aa948", Component.options)
+    hotAPI.createRecord("data-v-05e33688", Component.options)
   } else {
-    hotAPI.reload("data-v-661aa948", Component.options)
+    hotAPI.reload("data-v-05e33688", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43364,6 +43438,19 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43557,6 +43644,8 @@ var render = function() {
             _c("div", { staticClass: "col-md-2" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
+              _vm._m(0, true, false),
+              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "questionnaireName" } }, [
                   _vm._v("Question Name")
@@ -43712,27 +43801,31 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "text", required: "" },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(1, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43751,6 +43844,7 @@ var render = function() {
                       _c(
                         "button",
                         {
+                          staticClass: "btn btn-success btn-xs",
                           on: {
                             click: function($event) {
                               _vm.addValue(question)
@@ -43762,27 +43856,35 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                required: "",
+                                placeholder: "Enter Value..."
+                              },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43804,7 +43906,545 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("input", {
-          attrs: { name: "json-values", type: "text" },
+          attrs: { name: "json-values", type: "hidden" },
+          domProps: { value: JSON.stringify(_vm.questionnaire) }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf_token }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary pull-right",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Submit")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h5", { staticClass: "page-header" }, [
+        _vm._v("For development (JSON passed to controller)")
+      ]),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.questionnaire))])
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("button", { staticClass: "btn btn-md btn-danger pull-right" }, [
+        _vm._v("Remove Question")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-05e33688", module.exports)
+  }
+}
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireDetails.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-22fb1796", Component.options)
+  } else {
+    hotAPI.reload("data-v-22fb1796", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var Questions = function Questions() {
+    _classCallCheck(this, Questions);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['action', 'csrf_token', 'old'],
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    },
+
+    methods: {
+        addQuestion: function addQuestion() {
+            this.questionnaire.questions.push({
+                question: '',
+                required: false,
+                type: '',
+                values: []
+            });
+        },
+        addValue: function addValue(question) {
+            question.values.push({ value: '' });
+        }
+    },
+    data: function data() {
+        return {
+            hello: 'Hello World from a Vue.js Component',
+            questionnaire: JSON.parse(this.old)
+        };
+    }
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "box-body" },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "questionnaireName" } }, [
+          _vm._v("Questionnaire Name")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.questionnaire.name,
+              expression: "questionnaire.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            readonly: "",
+            id: "questionnaireName",
+            type: "text",
+            placeholder: "Questionnaire Name..."
+          },
+          domProps: { value: _vm.questionnaire.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.questionnaire, "name", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.questionnaire.description,
+              expression: "questionnaire.description"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { readonly: "", id: "", cols: "30", rows: "10" },
+          domProps: { value: _vm.questionnaire.description },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.questionnaire, "description", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.questionnaire.questions, function(question) {
+        return _c("div", [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-2" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "questionnaireName" } }, [
+                  _vm._v("Question Name")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: question.question,
+                      expression: "question.question"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { readonly: "", type: "text" },
+                  domProps: { value: question.question },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(question, "question", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: question.required,
+                      expression: "question.required"
+                    }
+                  ],
+                  attrs: { disabled: "", type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(question.required)
+                      ? _vm._i(question.required, null) > -1
+                      : question.required
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = question.required,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (question.required = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (question.required = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.$set(question, "required", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Required")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Answer Type")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: question.type,
+                        expression: "question.type"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { readonly: "", id: "quesType" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            question,
+                            "type",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        function($event) {
+                          question.values = []
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: "short" } }, [
+                      _vm._v("Short Answer")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: "long" } }, [
+                      _vm._v("Long Answer")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: "radio" } }, [
+                      _vm._v("Multiple Choice")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: "checkbox" } }, [
+                      _vm._v("Checkboxes")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              question.type === "radio"
+                ? _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Radio Box Values")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(question.values, function(val) {
+                        return _c("div", [
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              attrs: { disabled: "", type: "radio" }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v(_vm._s(val.value))
+                            ])
+                          ])
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              question.type === "checkbox"
+                ? _c(
+                    "div",
+                    [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Check Box Values")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(question.values, function(val) {
+                        return _c("div", [
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              attrs: { disabled: "", type: "checkbox" }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v(_vm._s(val.value))
+                            ])
+                          ])
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" })
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ])
+      }),
+      _vm._v(" "),
+      _c("form", { attrs: { action: _vm.action, method: "post" } }, [
+        _c("input", {
+          attrs: { type: "hidden", name: "_method", value: "PATCH" }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { name: "json-values", type: "hidden" },
           domProps: { value: JSON.stringify(_vm.questionnaire) }
         }),
         _vm._v(" "),
@@ -43840,15 +44480,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-661aa948", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-22fb1796", module.exports)
   }
 }
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
