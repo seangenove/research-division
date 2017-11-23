@@ -67,7 +67,7 @@ class FormsController extends Controller
     {
         $questionnaire = Questionnaire::findOrFail($id);
 
-        return view('admin.forms.show', [
+        return view('forms.show', [
             'questionnaire' => $questionnaire
         ]);
     }

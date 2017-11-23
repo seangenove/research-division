@@ -31820,7 +31820,7 @@ module.exports = function spread(callback) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.5.8
+ * Vue.js v2.5.7
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -36794,7 +36794,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.5.8';
+Vue$3.version = '2.5.7';
 
 /*  */
 
@@ -42202,7 +42202,7 @@ function checkIdentifier (
 ) {
   if (typeof ident === 'string') {
     try {
-      new Function(("var " + ident + "=_"));
+      new Function(("var " + ident));
     } catch (e) {
       errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
     }
@@ -42791,7 +42791,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/QuestionnaireComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42801,9 +42801,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a17c1ede", Component.options)
+    hotAPI.createRecord("data-v-8265245e", Component.options)
   } else {
-    hotAPI.reload("data-v-a17c1ede", Component.options)
+    hotAPI.reload("data-v-8265245e", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42821,6 +42821,19 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43024,6 +43037,8 @@ var render = function() {
             _c("div", { staticClass: "col-md-2" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
+              _vm._m(0, true, false),
+              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "questionnaireName" } }, [
                   _vm._v("Question Name")
@@ -43180,27 +43195,31 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "text", required: "" },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(1, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43219,6 +43238,7 @@ var render = function() {
                       _c(
                         "button",
                         {
+                          staticClass: "btn btn-success btn-xs",
                           on: {
                             click: function($event) {
                               _vm.addValue(question)
@@ -43230,27 +43250,35 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                required: "",
+                                placeholder: "Enter Value..."
+                              },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43298,13 +43326,58 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("button", { staticClass: "btn btn-md btn-danger pull-right" }, [
+        _vm._v("Remove Question")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a17c1ede", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-8265245e", module.exports)
   }
 }
 
@@ -43334,7 +43407,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/QuestionnaireUpdateComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireUpdateComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -43344,9 +43417,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-661aa948", Component.options)
+    hotAPI.createRecord("data-v-05e33688", Component.options)
   } else {
-    hotAPI.reload("data-v-661aa948", Component.options)
+    hotAPI.reload("data-v-05e33688", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43364,6 +43437,19 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43557,6 +43643,8 @@ var render = function() {
             _c("div", { staticClass: "col-md-2" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
+              _vm._m(0, true, false),
+              _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "questionnaireName" } }, [
                   _vm._v("Question Name")
@@ -43712,27 +43800,31 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: { type: "text", required: "" },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(1, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43751,6 +43843,7 @@ var render = function() {
                       _c(
                         "button",
                         {
+                          staticClass: "btn btn-success btn-xs",
                           on: {
                             click: function($event) {
                               _vm.addValue(question)
@@ -43762,27 +43855,35 @@ var render = function() {
                       _vm._v(" "),
                       _vm._l(question.values, function(val) {
                         return _c("div", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.value,
-                                expression: "val.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", required: "" },
-                            domProps: { value: val.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c("div", { staticClass: "input-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: val.value,
+                                  expression: "val.value"
                                 }
-                                _vm.$set(val, "value", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                required: "",
+                                placeholder: "Enter Value..."
+                              },
+                              domProps: { value: val.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(val, "value", $event.target.value)
+                                }
                               }
-                            }
-                          })
+                            }),
+                            _vm._v(" "),
+                            _vm._m(2, true, false)
+                          ])
                         ])
                       })
                     ],
@@ -43834,13 +43935,58 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("button", { staticClass: "btn btn-md btn-danger pull-right" }, [
+        _vm._v("Remove Question")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [
+          _c("i", {
+            staticClass: "fa fa-times",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-661aa948", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-05e33688", module.exports)
   }
 }
 
