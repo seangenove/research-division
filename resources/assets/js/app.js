@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('questionnaire-component', require('./components/QuestionnaireComponent.vue'));
+Vue.component('questionnaire-details', require('./components/QuestionnaireDetails.vue'));
 Vue.component('questionnaire-update-component', require('./components/QuestionnaireUpdateComponent.vue'));
 
 const app = new Vue({

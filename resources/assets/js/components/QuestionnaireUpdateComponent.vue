@@ -69,7 +69,7 @@
         </div>
         <form v-bind:action="action" method="post">
             <input type="hidden" name="_method" value="PATCH">
-            <input name="json-values" type="text" v-bind:value="JSON.stringify(questionnaire)">
+            <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
             <input type="hidden" name="_token" v-bind:value="csrf_token">
             <button class="btn btn-primary pull-right" type="submit">Submit</button>
         </form>

@@ -3,33 +3,29 @@
     <div class="box-body">
         <div class="form-group">
             <label for="questionnaireName">Questionnaire Name</label>
-            <input class="form-control" id="questionnaireName" v-model="questionnaire.name" type="text"
+            <input readonly class="form-control" id="questionnaireName" v-model="questionnaire.name" type="text"
                    placeholder="Questionnaire Name...">
         </div>
         <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" v-model="questionnaire.description" id="" cols="30" rows="10"></textarea>
+            <textarea readonly class="form-control" v-model="questionnaire.description" id="" cols="30" rows="10"></textarea>
         </div>
         <hr>
-        <button v-on:click="addQuestion()" class="btn btn-success btn-sm">Add Question</button>
         <div v-for="question in questionnaire.questions">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <div class="row">
-                        <button class="btn btn-md btn-danger pull-right">Remove Question</button>
-                    </div>
                     <div class="form-group">
                         <label for="questionnaireName">Question Name</label>
-                        <input class="form-control" type="text" v-model="question.question">
+                        <input readonly class="form-control" type="text" v-model="question.question">
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" v-model="question.required" class="check">
+                        <input disabled type="checkbox" v-model="question.required">
                         <label>Required</label>
                     </div>
                     <div class="form-group">
                         <label for="">Answer Type</label>
-                        <select v-model="question.type" id="quesType" class="form-control"
+                        <select readonly v-model="question.type" id="quesType" class="form-control"
                                 v-on:change="question.values = []">
                             <option v-bind:value="'short'">Short Answer</option>
                             <option v-bind:value="'long'">Long Answer</option>
@@ -39,25 +35,19 @@
                     </div>
                     <div v-if="question.type === 'radio'" class="form-group">
                         <label for="">Radio Box Values</label>
-                        <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value</button>
                         <div v-for="val in question.values">
-                           <div class="input-group">
-                               <input class="form-control" type="text" v-model="val.value" required>
-                               <div class="input-group-btn">
-                                   <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                               </div>
-                           </div>
+                            <div class="input-group">
+                                <input disabled type="radio">
+                                <label for="">{{ val.value }}</label>
+                            </div>
                         </div>
                     </div>
                     <div v-if="question.type === 'checkbox'">
                         <label for="">Check Box Values</label>
-                        <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value</button>
                         <div v-for="val in question.values">
                             <div class="input-group">
-                                <input class="form-control" type="text" v-model="val.value" required placeholder="Enter Value...">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </div>
+                                <input disabled type="checkbox">
+                                <label for="">{{ val.value }}</label>
                             </div>
                         </div>
                     </div>
@@ -68,6 +58,7 @@
 
         </div>
         <form v-bind:action="action" method="post">
+            <input type="hidden" name="_method" value="PATCH">
             <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
             <input type="hidden" name="_token" v-bind:value="csrf_token">
             <button class="btn btn-primary pull-right" type="submit">Submit</button>
@@ -76,7 +67,6 @@
         <hr>
         <h5 class="page-header">For development (JSON passed to controller)</h5>
         <pre>{{ questionnaire }}</pre>
-
     </div>
 </template>
 
@@ -86,9 +76,9 @@
 
     }
     export default {
-        props: ['action', 'csrf_token'],
+        props: ['action', 'csrf_token', 'old'],
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
         },
         methods: {
             addQuestion(){
@@ -106,17 +96,7 @@
         data(){
             return {
                 hello: 'Hello World from a Vue.js Component',
-                questionnaire: {
-                    name: '',
-                    description: '',
-                    questions: [
-//                        {
-//                            question: 'Just a template',
-//                            values: [{value: 'yes'}, {value: 'no'}],
-//                            isRequired: true
-//                        },
-                    ]
-                }
+                questionnaire: JSON.parse(this.old)
             }
         }
     }
