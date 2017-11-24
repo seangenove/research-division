@@ -23,7 +23,7 @@ class Ordinance extends Model
         'date_approved_by_council',
         'date_signed_by_vice_mayor',
         'date_signed_by_mayor',
-        'pdf_file_name',
+        'pdf_file_path',
     ];
 
     /**

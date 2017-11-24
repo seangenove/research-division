@@ -48,7 +48,7 @@ class OrdinancesController extends Controller
 
         if($request->has('pdf')){
             $filename = $request->number . '.pdf';
-            $request->file('pdf')->storeAs(
+            $path = $request->file('pdf')->storeAs(
                 env('GOOGLE_DRIVE_ORDINANCES_FOLDER_ID'),
                     $filename,
                     'google');
@@ -57,7 +57,7 @@ class OrdinancesController extends Controller
         $ordinance = new Ordinance();
         $ordinance->fill($request->all());
         $ordinance->save();
-
+        dd($path);
         return redirect('/admin/ordinances');
     }
 

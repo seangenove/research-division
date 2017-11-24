@@ -22,7 +22,7 @@ class CreateOrdinancesTable extends Migration
             $table->date('date_approved_by_council');
             $table->date('date_signed_by_vice_mayor');
             $table->date('date_signed_by_mayor')->nullable();
-            $table->text('pdf_file_name')->nullable();
+            $table->text('pdf_file_path')->nullable();
             $table->timestamps();
         });
     }
