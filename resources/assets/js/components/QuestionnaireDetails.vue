@@ -8,7 +8,8 @@
         </div>
         <div class="form-group">
             <label>Description</label>
-            <textarea readonly class="form-control" v-model="questionnaire.description" id="" cols="30" rows="10"></textarea>
+            <textarea readonly class="form-control" v-model="questionnaire.description" id="" cols="30"
+                      rows="10"></textarea>
         </div>
         <hr>
         <div v-for="question in questionnaire.questions">
@@ -25,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Answer Type</label>
-                        <select readonly v-model="question.type" id="quesType" class="form-control"
+                        <select disabled v-model="question.type" id="quesType" class="form-control"
                                 v-on:change="question.values = []">
                             <option v-bind:value="'short'">Short Answer</option>
                             <option v-bind:value="'long'">Long Answer</option>
@@ -49,6 +50,15 @@
                                 <input disabled type="checkbox">
                                 <label for="">{{ val.value }}</label>
                             </div>
+                        </div>
+                    </div>
+                    <div v-if="question.type === 'short'">
+                        <input class="form-control" disabled type="text">
+                    </div>
+                    <div v-if="question.type === 'long'">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea disabled class="form-control" v-model="questionnaire.description" id="" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                 </div>

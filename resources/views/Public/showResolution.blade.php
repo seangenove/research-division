@@ -13,6 +13,8 @@
                             <div class="ordinance-right">
                                 <div class="ordinance-right-wrapper">
                                     <p>{{$resolutions->description}}</p>
+                                    <p>By: {{$resolutions->authors}} </p>
+                                    <p>Date Signed by Mayor: {{$resolutions->date_signed_by_mayor}} </p>
                                 </div>
                             </div>
 
@@ -23,10 +25,10 @@
                                             <div class="panel-body">
                                                 <form method="post" action="{{ url("/suggestions/{$resolutions->id }/") }}">
                                                     {{ csrf_field() }}
-                                                    <input type="text" name="first_name" placeholder="Fname">
-                                                    <input type="text" name="last_name" placeholder="Lname">
-                                                    <input type="hidden" name="type" value="resolution">
-                                                    <input type="email" name="email" placeholder="email">
+                                                    <input class="form-control" type="text" name="first_name" placeholder="First Name">
+                                                    <input class="form-control" type="text" name="last_name" placeholder="Last Name">
+                                                    <input class="form-control" type="hidden" name="type" value="resolution">
+                                                    <input class="form-control" type="email" name="email" placeholder="Email">
                                                     <textarea required class="form-control" name="suggestion" rows="5" placeholder="Please give us your suggestion on this resolution"></textarea>
                                                     <br>
                                                     <div class="form-inline">
@@ -64,6 +66,10 @@
             height: 130px;
             width: 100%;
             border: 1px solid #F2F2F2;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
         }
     </style>
 @endsection
