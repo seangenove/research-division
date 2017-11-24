@@ -19,6 +19,7 @@ class CreateSuggestionsTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
             $table->text('suggestion');
+            $table->text('sentiment', ['positive', 'negative', 'neutral', 'undefined'])->nullable();
             $table->timestamps();
         });
     }
