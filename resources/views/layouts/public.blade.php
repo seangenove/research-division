@@ -59,8 +59,8 @@
                     <div class="navbar-collapse collapse" id="ftheme">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="/">Home</a></li>
-                            <li><a href="/resolutions">Resolution</a></li>
                             <li><a href="/ordinance">Ordinances</a></li>
+                            <li><a href="/resolutions">Resolutions</a></li>
                             <li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>
                             <li><a href="/about">About</a></li>
                             <li><a href="/contactUs">Contact</a></li>
