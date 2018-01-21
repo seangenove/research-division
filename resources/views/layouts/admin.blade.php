@@ -169,11 +169,27 @@
                         </span>
                     </a>
                 </li>
-                <li class="{{ Request::is('admin/forms*') ? 'active' : '' }}">
-                    <a href="/admin/forms">
+                <li class="{{ Request::is('admin/forms*') ? 'active' : '' }} treeview menu-open">
+                    <a href="#">
                         <i class="fa fa-book"></i> <span>M&E</span>
-                        <span class="pull-right-container"></span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
+                    <ul class="treeview-menu" style="">
+                        <li class="{{ Request::is('admin/forms') ? 'active' : '' }}">
+                            <a href="/admin/forms">
+                                <i class="fa fa-book"></i> <span>Ordinances and Resolution</span>
+                                <span class="pull-right-container"></span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('admin/forms/ordinances*') ? 'active' : '' }}">
+                            <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>Ordinances</a>
+                        </li>
+                        <li class="{{ Request::is('admin/forms/resolutions*') ? 'active' : '' }}">
+                            <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i> Resolutions</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
                     <a href="/admin/users">

@@ -8,11 +8,13 @@
                 <h3 class="box-title">Questionnaires</h3>
             </div>
             <div class="box-body">
-                <div>
-                    <p>
-                        <a href="/admin/forms/create" class="btn btn-success">Create new Questionnaire</a>
-                    </p>
-                </div>
+                @if($flag !== 'all')
+                    <div>
+                        <p>
+                            <a href="/admin/forms/create?flag={{ $flag }}" class="btn btn-success">Create new Questionnaire</a>
+                        </p>
+                    </div>
+                @endif
                 <table class="table table-striped table-condensed table-bordered">
                     <thead>
                     <tr>
@@ -40,10 +42,14 @@
                                    class="btn btn-xs btn-warning">Edit</a>
                                 {{--<a href="" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>--}}
                                 {{--Download</a>--}}
-                                <form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                <form style="display: inline;" method="post"
+                                      action="{{ url('/admin/forms/' . $questionnaire->id) }}">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                    <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">Delete</button>
+                                    <button class="btn btn-xs btn-danger"
+                                            onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
+                                        Delete
+                                    </button>
                                 </form>
                             </td>
                         </tr>

@@ -48,9 +48,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
 
     /** TODO:  Logs, Parsley, back-end validation and flash **/
     Route::get('change-password', 'Admin\\UsersController@changePassword');
-    Route::post('update-password', 'Admin\\UsersController@updatePassword'); //
+    Route::post('update-password', 'Admin\\UsersController@updatePassword');
+    Route::group(['prefix' => 'forms'], function(){
+        Route::get('ordinances', 'Admin\\FormsController@ordinances');
+        Route::get('resolutions', 'Admin\\FormsController@resolutions');
+    });
+    Route::resource('forms','Admin\\FormsController');
+
     Route::resources([
-        'forms' => 'Admin\\FormsController',
+//        'forms' => 'Admin\\FormsController',
         'users' => 'Admin\\UsersController', // TODO: Validations, Logs, Re-enter Password (Parsley.js)
         'ordinances' => 'Admin\\OrdinancesController', // TODO: Validations, Logs
         'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
