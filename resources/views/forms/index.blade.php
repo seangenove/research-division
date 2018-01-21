@@ -31,7 +31,7 @@
                             <td>{{ $questionnaire->name }}</td>
                             {{-- Refactore below --}}
                             <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-' }}</td>
-                            <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-'}}</td>
+                            <td> {{ $questionnaire->resolution ? $questionnaire->resolution->title : '-'}}</td>
                             <td><span class="label label-success">Accepting Responses</span></td>
                             <td>
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}" class="btn btn-xs btn-success"><span>Results</span></a>
