@@ -49908,6 +49908,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -49915,7 +49944,8 @@ var Questions = function Questions() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: { 'action': String,
+    props: {
+        'action': String,
         'csrf_token': String,
         'data': String,
         'flag': String
@@ -50137,7 +50167,7 @@ var render = function() {
                           expression: "errors.has('name')"
                         }
                       ],
-                      staticClass: "help is-danger"
+                      staticClass: "help is-danger text-danger"
                     },
                     [_vm._v(_vm._s(_vm.errors.first("name")))]
                   )
@@ -50190,336 +50220,549 @@ var render = function() {
                 _vm._v(" "),
                 _vm._l(_vm.questionnaire.questions, function(question) {
                   return _c("div", [
-                    _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "row animated slideInRight" }, [
                       _c("div", { staticClass: "col-md-2" }),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-md btn-danger pull-right",
-                              on: {
-                                click: function($event) {
-                                  _vm.removeQuestion(question)
-                                }
-                              }
-                            },
-                            [_vm._v("Remove Question")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "questionnaireName" } }, [
-                            _vm._v("Question Name")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8" },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "button",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: question.question,
-                                expression: "question.question"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: { value: question.question },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  question,
-                                  "question",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: question.required,
-                                expression: "question.required"
-                              }
-                            ],
-                            staticClass: "check",
-                            attrs: { type: "checkbox" },
-                            domProps: {
-                              checked: Array.isArray(question.required)
-                                ? _vm._i(question.required, null) > -1
-                                : question.required
-                            },
-                            on: {
-                              change: function($event) {
-                                var $$a = question.required,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = null,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      (question.required = $$a.concat([$$v]))
-                                  } else {
-                                    $$i > -1 &&
-                                      (question.required = $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1)))
+                                staticClass: "btn btn-md btn-danger pull-right",
+                                on: {
+                                  click: function($event) {
+                                    _vm.removeQuestion(question)
                                   }
-                                } else {
-                                  _vm.$set(question, "required", $$c)
                                 }
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", [_vm._v("Required")])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "" } }, [
-                            _vm._v("Answer Type")
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Remove Question\n                            "
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "select",
-                            {
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { attrs: { for: "questionnaireName" } },
+                              [_vm._v("Question Name")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required",
+                                  expression: "'required'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: question.question,
+                                  expression: "question.question"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                name:
+                                  "Question Name" +
+                                  _vm.questionnaire.questions.indexOf(question),
+                                type: "text"
+                              },
+                              domProps: { value: question.question },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    question,
+                                    "question",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.errors.has(
+                                      "Question Name" +
+                                        _vm.questionnaire.questions.indexOf(
+                                          question
+                                        )
+                                    ),
+                                    expression:
+                                      "errors.has('Question Name' + questionnaire.questions.indexOf(question))"
+                                  }
+                                ],
+                                staticClass: "help is-danger text-danger"
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.errors.first(
+                                      "Question Name" +
+                                        _vm.questionnaire.questions.indexOf(
+                                          question
+                                        )
+                                    )
+                                  )
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: question.type,
-                                  expression: "question.type"
+                                  value: question.required,
+                                  expression: "question.required"
                                 }
                               ],
-                              staticClass: "form-control",
-                              attrs: { id: "quesType" },
+                              staticClass: "check",
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(question.required)
+                                  ? _vm._i(question.required, null) > -1
+                                  : question.required
+                              },
                               on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      question,
-                                      "type",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  },
-                                  function($event) {
-                                    question.values = []
+                                change: function($event) {
+                                  var $$a = question.required,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (question.required = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (question.required = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.$set(question, "required", $$c)
                                   }
-                                ]
+                                }
                               }
-                            },
-                            [
-                              _c("option", { domProps: { value: "short" } }, [
-                                _vm._v("Short Answer")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { domProps: { value: "long" } }, [
-                                _vm._v("Long Answer")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { domProps: { value: "radio" } }, [
-                                _vm._v("Multiple Choice")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "option",
-                                { domProps: { value: "checkbox" } },
-                                [_vm._v("Checkboxes")]
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        question.type === "radio"
-                          ? _c(
-                              "div",
-                              { staticClass: "form-group" },
+                            }),
+                            _vm._v(" "),
+                            _c("label", [_vm._v("Required")])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "" } }, [
+                              _vm._v("Answer Type")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: question.type,
+                                    expression: "question.type"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { id: "quesType" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        question,
+                                        "type",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      question.values = []
+                                    }
+                                  ]
+                                }
+                              },
                               [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Radio Box Values")
+                                _c("option", { domProps: { value: "short" } }, [
+                                  _vm._v("Short Answer")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { domProps: { value: "long" } }, [
+                                  _vm._v("Long Answer")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { domProps: { value: "radio" } }, [
+                                  _vm._v("Multiple Choice")
                                 ]),
                                 _vm._v(" "),
                                 _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success btn-xs",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.addValue(question)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Add Value")]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(question.values, function(val) {
-                                  return _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: val.value,
-                                            expression: "val.value"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: { type: "text", required: "" },
-                                        domProps: { value: val.value },
+                                  "option",
+                                  { domProps: { value: "checkbox" } },
+                                  [_vm._v("Checkboxes")]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("transition", { attrs: { name: "fade" } }, [
+                            question.type === "radio"
+                              ? _c(
+                                  "div",
+                                  { staticClass: "form-group" },
+                                  [
+                                    _c("label", { attrs: { for: "" } }, [
+                                      _vm._v("Radio Box Values")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success btn-xs",
                                         on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              val,
-                                              "value",
-                                              $event.target.value
-                                            )
+                                          click: function($event) {
+                                            _vm.addValue(question)
                                           }
                                         }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "input-group-btn" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass: "btn btn-danger",
-                                              attrs: { type: "button" },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Add Value\n                                "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(question.values, function(val) {
+                                      return _c("div", [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "input-group animated fadeInUp"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate",
+                                                  value: "required",
+                                                  expression: "'required'"
+                                                },
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: val.value,
+                                                  expression: "val.value"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                name:
+                                                  "Q" +
+                                                  _vm.questionnaire.questions.indexOf(
+                                                    question
+                                                  ) +
+                                                  " Value Name " +
+                                                  question.values.indexOf(val),
+                                                type: "text",
+                                                required: ""
+                                              },
+                                              domProps: { value: val.value },
                                               on: {
-                                                click: function($event) {
-                                                  _vm.removeValue(question, val)
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    val,
+                                                    "value",
+                                                    $event.target.value
+                                                  )
                                                 }
                                               }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fa fa-times",
-                                                attrs: { "aria-hidden": "true" }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ])
-                                })
-                              ],
-                              2
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        question.type === "checkbox"
-                          ? _c(
-                              "div",
-                              [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Check Box Values")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success btn-xs",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.addValue(question)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Add Value")]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(question.values, function(val) {
-                                  return _c("div", [
-                                    _c("div", { staticClass: "input-group" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: val.value,
-                                            expression: "val.value"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          required: "",
-                                          placeholder: "Enter Value..."
-                                        },
-                                        domProps: { value: val.value },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              val,
-                                              "value",
-                                              $event.target.value
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.errors.has(
+                                                      "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        )
+                                                    ),
+                                                    expression:
+                                                      "errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "help is-danger text-danger"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.errors.first(
+                                                      "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        )
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "input-group-btn"
+                                              },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-danger",
+                                                    attrs: { type: "button" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.removeValue(
+                                                          question,
+                                                          val
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "fa fa-times",
+                                                      attrs: {
+                                                        "aria-hidden": "true"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
                                             )
+                                          ]
+                                        )
+                                      ])
+                                    })
+                                  ],
+                                  2
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("transition", { attrs: { name: "fade" } }, [
+                            question.type === "checkbox"
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("label", { attrs: { for: "" } }, [
+                                      _vm._v("Check Box Values")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success btn-xs",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.addValue(question)
                                           }
                                         }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "input-group-btn" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass: "btn btn-danger",
-                                              attrs: { type: "button" },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Add Value\n                                "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(question.values, function(val) {
+                                      return _c("div", [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "input-group animated fadeInUp"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate",
+                                                  value: "required",
+                                                  expression: "'required'"
+                                                },
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: val.value,
+                                                  expression: "val.value"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                name:
+                                                  "Q" +
+                                                  _vm.questionnaire.questions.indexOf(
+                                                    question
+                                                  ) +
+                                                  " Value Name " +
+                                                  question.values.indexOf(val),
+                                                type: "text",
+                                                required: ""
+                                              },
+                                              domProps: { value: val.value },
                                               on: {
-                                                click: function($event) {
-                                                  _vm.removeValue(question, val)
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    val,
+                                                    "value",
+                                                    $event.target.value
+                                                  )
                                                 }
                                               }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fa fa-times",
-                                                attrs: { "aria-hidden": "true" }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ])
-                                })
-                              ],
-                              2
-                            )
-                          : _vm._e()
-                      ]),
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.errors.has(
+                                                      "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        )
+                                                    ),
+                                                    expression:
+                                                      "errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "help is-danger text-danger"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.errors.first(
+                                                      "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        )
+                                                    )
+                                                  )
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "input-group-btn"
+                                              },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-danger",
+                                                    attrs: { type: "button" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.removeValue(
+                                                          question,
+                                                          val
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "fa fa-times",
+                                                      attrs: {
+                                                        "aria-hidden": "true"
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    })
+                                  ],
+                                  2
+                                )
+                              : _vm._e()
+                          ])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-2" })
                     ]),
@@ -51862,7 +52105,7 @@ exports = module.exports = __webpack_require__(51)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
