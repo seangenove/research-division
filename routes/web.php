@@ -30,6 +30,7 @@ Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdi
 Route::post('/submitOrdinanceAnswers/{id}', 'PublicController@submitOrdinanceAnswers');
 
 Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
+Route::get('/public/showResolutionQuestionnaire/{id}', 'PublicController@showResolutionQuestionnaire');
 Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');

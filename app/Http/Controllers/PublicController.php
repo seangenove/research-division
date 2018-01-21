@@ -58,7 +58,12 @@ class PublicController extends Controller
         $ordinances = DB::table('ordinances')
             ->orderby('created_at', 'desc')
             ->get();
-        return view('public.monitorAndEval', ['ordinances' => $ordinances]);
+
+        $resolutions = DB::table('resolutions')
+            ->orderby('created_at', 'desc')
+            ->get();
+
+        return view('public.monitorAndEval', ['ordinances' => $ordinances, 'resolutions' => $resolutions]);
     }
 
     public function about()
@@ -162,5 +167,14 @@ class PublicController extends Controller
         $resolutions = Resolution::findOrFail($id)->first();
 
         return view('public.showResolution', ['resolutions' => $resolutions]);
+    }
+
+    public function showResolutionQuestionnaire($id){
+        LogUtility::insertLog("HttpRequest on /public/showResolutionQuestionnaire/{id}", 'public');
+
+        $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
     }
 }
