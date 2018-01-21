@@ -57,7 +57,7 @@ class OrdinancesController extends Controller
         $ordinance = new Ordinance();
         $ordinance->fill($request->all());
         $ordinance->save();
-        dd($path);
+//        dd($path);
         return redirect('/admin/ordinances');
     }
 

@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration
             $table->increments('id');
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');
-            $table->integer('response_id')->unsigned();
+            $table->integer('response_id')->nullable()->unsigned();
             $table->foreign('response_id')->references('id')->on('responses');
             $table->string('answer');
             $table->timestamps();
