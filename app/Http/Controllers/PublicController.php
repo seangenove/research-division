@@ -8,6 +8,10 @@ use App\Ordinance;
 use App\Resolution;
 use App\Suggestion;
 use App\Page;
+use App\Question;
+use App\Questionnaire;
+use App\Value;
+use App\Answer;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -51,7 +55,10 @@ class PublicController extends Controller
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        return view('public.monitorAndEval');
+        $ordinances = DB::table('ordinances')
+            ->orderby('created_at', 'desc')
+            ->get();
+        return view('public.monitorAndEval', ['ordinances' => $ordinances]);
     }
 
     public function about()
@@ -92,6 +99,27 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
         $ordinances = Ordinance::findOrFail($id)->first();
         return view('public.showOrdinance',['ordinances' => $ordinances]);
+    }
+
+    public function showOrdinanceQuestionnaire($id)
+    {
+        LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
+        $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
+    }
+
+    public function submitOrdinanceAnswers(Request $request, $id)
+    {
+        $requestData = $request->all();
+        for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
+            $answer = new Answer;
+            $answer->answer = $requestData['answer'.$i];
+            $answer->question_id = $requestData['question_id'.$i];
+            $answer->save();
+        }
+        return redirect('monitorAndEval');
     }
 
     public function storeSuggestion(Request $request, $id){

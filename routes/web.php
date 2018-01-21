@@ -26,6 +26,9 @@ Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 Route::get('/resolutions', 'PublicController@resolutions');
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
+Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');
+Route::post('/submitOrdinanceAnswers/{id}', 'PublicController@submitOrdinanceAnswers');
+
 Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');
