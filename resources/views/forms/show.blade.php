@@ -6,7 +6,7 @@
       <!-- general form elements -->
       <div class="box box-primary" id="app">
          <div class="box-header with-border">
-            <h3 class="box-title">Edit Questionnaire</h3>
+            <h3 class="box-title">Questionnaire Preview</h3>
          </div>
          <questionnaire-details
                  action="{{ url("/admin/forms/{$questionnaire->id}/") }}"

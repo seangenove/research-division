@@ -70,7 +70,7 @@ class FormsController extends Controller
      */
     public function show($id)
     {
-        DB::transaction(function () use ($id) {
+//        DB::transaction(function () use ($id) {
             $questionnaire = Questionnaire::findOrFail($id);
             $questionnaire_json = new \stdClass();
             $questionnaire_json->name = $questionnaire->name;
@@ -97,7 +97,7 @@ class FormsController extends Controller
                 'questionnaire' => $questionnaire,
                 'questionnaire_json' => json_encode($questionnaire_json)
             ]);
-        });
+//        });
     }
 
     public function edit($id)

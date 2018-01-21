@@ -21,6 +21,7 @@ class CreateQuestionnairesTable extends Migration
             $table->foreign('ordinance_id')->references('id')->on('ordinances');
             $table->integer('resolution_id')->unsigned()->nullable();
             $table->foreign('resolution_id')->references('id')->on('resolutions');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

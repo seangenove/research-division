@@ -1,4 +1,3 @@
-<!-- TODO: add remove question and remove value -->
 <template>
     <div class="box-body">
         <div class="form-group">

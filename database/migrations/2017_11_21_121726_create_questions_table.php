@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->enum('type', ['short', 'long', 'radio', 'checkbox']);
             $table->integer('questionnaire_id')->unsigned();
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
