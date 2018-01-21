@@ -71,32 +71,32 @@ class FormsController extends Controller
     public function show($id)
     {
 //        DB::transaction(function () use ($id) {
-            $questionnaire = Questionnaire::findOrFail($id);
-            $questionnaire_json = new \stdClass();
-            $questionnaire_json->name = $questionnaire->name;
-            $questionnaire_json->description = $questionnaire->description;
-            $questionnaire_json->questions = [];
-            $temp = [];
-            foreach ($questionnaire->questions as $q) {
-                $temp_question = new \stdClass();
-                $temp_question->question = $q->question;
-                $temp_question->required = ($q->required === 1 ? true : false);
-                $temp_question->type = $q->type;
-                $temp_question->values = [];
-                if ($temp_question->type === 'checkbox' || $temp_question->type === 'radio') {
-                    foreach ($q->values as $v) {
-                        $vc = new \stdClass();
-                        $vc->value = $v->value;
-                        $temp_question->values[] = $vc;
-                    }
+        $questionnaire = Questionnaire::findOrFail($id);
+        $questionnaire_json = new \stdClass();
+        $questionnaire_json->name = $questionnaire->name;
+        $questionnaire_json->description = $questionnaire->description;
+        $questionnaire_json->questions = [];
+        $temp = [];
+        foreach ($questionnaire->questions as $q) {
+            $temp_question = new \stdClass();
+            $temp_question->question = $q->question;
+            $temp_question->required = ($q->required === 1 ? true : false);
+            $temp_question->type = $q->type;
+            $temp_question->values = [];
+            if ($temp_question->type === 'checkbox' || $temp_question->type === 'radio') {
+                foreach ($q->values as $v) {
+                    $vc = new \stdClass();
+                    $vc->value = $v->value;
+                    $temp_question->values[] = $vc;
                 }
-                $temp[] = $temp_question;
             }
-            $questionnaire_json->questions = $temp;
-            return view('forms.show', [
-                'questionnaire' => $questionnaire,
-                'questionnaire_json' => json_encode($questionnaire_json)
-            ]);
+            $temp[] = $temp_question;
+        }
+        $questionnaire_json->questions = $temp;
+        return view('forms.show', [
+            'questionnaire' => $questionnaire,
+            'questionnaire_json' => json_encode($questionnaire_json)
+        ]);
 //        });
     }
 
@@ -169,6 +169,21 @@ class FormsController extends Controller
             }
             return redirect('/admin/forms');
         });
+        return redirect('/admin/forms');
+    }
+
+    public function destroy($id)
+    {
+        $questions = Questionnaire::find($id)->questions;
+        foreach ($questions as $question) {
+            $values = $question->values;
+            foreach ($values as $value) {
+                $value->delete();
+            }
+            $question->delete();
+        }
+        Questionnaire::destroy($id);
+
         return redirect('/admin/forms');
     }
 

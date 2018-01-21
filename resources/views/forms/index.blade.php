@@ -32,13 +32,19 @@
                             {{-- Refactore below --}}
                             <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-' }}</td>
                             <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-'}}</td>
-                            <td> <span class="label label-success">Accepting Responses</span> </td>
+                            <td><span class="label label-success">Accepting Responses</span></td>
                             <td>
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}" class="btn btn-xs btn-success"><span>Results</span></a>
                                 <a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-xs btn-info"><span>Preview</span></a>
-                                <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}" class="btn btn-xs btn-warning">Edit</a>
+                                <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
+                                   class="btn btn-xs btn-warning">Edit</a>
                                 {{--<a href="" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>--}}
-                                    {{--Download</a>--}}
+                                {{--Download</a>--}}
+                                <form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

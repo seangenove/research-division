@@ -41,7 +41,7 @@ class PagesController extends Controller
         $page = new Page();
         $page->title=$request->title;
         $page->description=$request->description;
-        $page->content=$request->content;
+        $page->content=$request->input('content');
         $page->save();
         return redirect('/admin/pages');
     }
