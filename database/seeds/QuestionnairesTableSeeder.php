@@ -15,22 +15,30 @@ class QuestionnairesTableSeeder extends Seeder
     public function run()
     {
         // Questionnaires
-        $questionnaires = [
+        $questionnaires_ordinances = [
             [
                 'id' => 1,
                 'name' => 'Questionnaire for Ordinance #1',
-                'description' => 'Desc for Questionnaire #1'
+                'description' => 'Desc for Questionnaire #1',
+                'ordinance_id' => 1
             ],
             [
                 'id' => 2,
                 'name' => 'Questionnaire for Ordinance #2',
-                'description' => 'Desc for Questionnaire #2'
+                'description' => 'Desc for Questionnaire #2',
+                'ordinance_id' => 2
+
             ],
+
+        ];
+
+        $questionnaires_resolutions = [
             [
                 'id' => 3,
                 'name' => 'Questionnaire for Resolution #1',
-                'description' => 'Desc for Questionnaire #3'
-            ],
+                'description' => 'Desc for Questionnaire #3',
+                'resolution_id' => 1
+            ]
         ];
 
         $questions = [
@@ -138,23 +146,12 @@ class QuestionnairesTableSeeder extends Seeder
                 'value' => 'Female',
                 'question_id' => 7
             ],
-            // Question #8
-            // Question #1
-            [
-                'id' => 8,
-                'value' => 'Yes',
-                'question_id' => 8
-            ],
-            [
-                'id' => 9,
-                'value' => 'No',
-                'question_id' => 8
-            ],
 
         ];
 
         // Order: Questionnaire, Questions then values
-        Questionnaire::insert($questionnaires);
+        Questionnaire::insert($questionnaires_ordinances);
+        Questionnaire::insert($questionnaires_resolutions);
         Question::insert($questions);
         Value::insert($values);
     }
