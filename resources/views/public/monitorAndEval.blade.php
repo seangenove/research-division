@@ -19,6 +19,25 @@
             </div>
             <hr>
         @endforeach
+
+        <div class="resolution-heading">
+            <h1>Resolutions</h1>
+            <hr>
+        </div>
+        @foreach($resolutions as $resolution)
+            <div class="resolution-right-wrapper">
+                <h3>{{$resolution->title}}</h3>
+                <p>Date Signed by Mayor: {{$resolution->date_signed_by_mayor}} </p>
+                <p>By: {{$resolution->authors}} </p>
+                <p>{{$resolution->description}}</p>
+                <a href="public/showResolutionQuestionnaire/{{$resolution->id}}\">
+                <button class="btn-sm btn-success">
+                    Answer Questionnaire
+                </button>
+                </a>
+            </div>
+            <hr>
+        @endforeach
         {{--<form>--}}
                 {{--<div class="form-group">--}}
                     {{--<label for="email"> Q1: Where do you Smoke?</label>--}}
