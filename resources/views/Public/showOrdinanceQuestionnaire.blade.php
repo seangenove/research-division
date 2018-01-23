@@ -17,27 +17,28 @@
                                     {{ csrf_field() }}
                                     @foreach($questions as $question)
                                         <div class="form-group">
-                                            <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
+                                            <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                   id="answer" value="{{$question->id}}">
                                             <label for="answer">{{$counter.'. '.$question->question}}</label>
 
                                             @if($question->type == 'short')
-                                                <input name="answer{{$counter}}" type="text" class="form-control" id="answer">
+                                                <input name="answer{{$counter}}" type="text" class="form-control" id="answer" {{$question->required == 1 ? 'required' : ''}}>
                                             @endif
                                             @if($question->type == 'long')
-                                                <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}"></textarea>
+                                                <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}" {{$question->required == 1 ? 'required' : ''}}></textarea>
                                             @endif
                                             @if($question->type == 'radio')
                                                 @foreach($values as $value)
                                                     @if($value->question_id == $question->id)
                                                         <div class="radio">
-                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}">{{$value->value}}</label>
+                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
                                                         </div>
                                                     @endif
                                                 @endforeach
                                             @endif
                                             @if($question->type == 'checkbox')
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox" value="{{$value->value}}">{{$value->value}}</label>
+                                                    <label><input type="checkbox" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
                                                 </div>
                                             @endif
                                             @php
