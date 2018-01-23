@@ -2,7 +2,7 @@
 
 @section('styles')
     <style>
-        li {
+        div > li {
             font-size: 25px;
         }
     </style>
@@ -11,40 +11,47 @@
 
 @section('content')
     <div class="container" style="background-color: #FFFFFF">
-       <h1> Results </h1>
-        <div>
-            <h3>Question: lorem ipsum </h3>
-            <div id="Q1">
-                <ol>q
-                    <li>No, Because I regularly smoke when i have the sudden urge to smoke</li>
-                    <li>Yes, Because I get irritated when I smell the smoke of the cigarette </li>
-                </ol>
-            </div>
-        </div>
 
-        <div>
-            <h3>Question: Are you in favor of the Non-Smoking Ordinance?Why?</h3>
-            <div id="Q2:">
-                <ol>
-                    <li>No, Because I regularly smoke when i have the sudden urge to smoke</li>
-                    <li>Yes, Because I get irritated when I smell the smoke of the cigarette </li>
-                </ol>
-            </div>
-        </div>
+        <h1> Results </h1>
+            @foreach( $questions as $key)
+                <div>
+                    <h3> {{ $key->question}} </h3>
+                        <ol>
+                            @foreach( $answers as $ans )
+                                @if( $ans->question_id === $key->id)
+                                    <li> {{ $ans->answer }} </li>
+                                @endif
+                            @endforeach
+                        </ol>
+                </div>
+            @endforeach
 
-        <div>
-            <h3> Question: Are you Against Smoking? </h3>
-            <div id="Q3">
 
-            </div>
-        </div>
 
-        <div>
-            <h3> Question: Why do you Smoke?</h3>
-            <div id="Q4">
 
-            </div>
-        </div>
+        {{--<div>--}}
+            {{--<h3>Question: Are you in favor of the Non-Smoking Ordinance?Why?</h3>--}}
+            {{--<div id="Q2:">--}}
+                {{--<ol>--}}
+                    {{--<li>No, Because I regularly smoke when i have the sudden urge to smoke</li>--}}
+                    {{--<li>Yes, Because I get irritated when I smell the smoke of the cigarette </li>--}}
+                {{--</ol>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+        {{--<div>--}}
+            {{--<h3> Question: Are you Against Smoking? </h3>--}}
+            {{--<div id="Q3">--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
+
+        {{--<div>--}}
+            {{--<h3> Question: Why do you Smoke?</h3>--}}
+            {{--<div id="Q4">--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 @endsection
 
