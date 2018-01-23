@@ -29,7 +29,7 @@ class ResultController extends Controller
             ->where('responses.questionnaire_id' , '=' ,$id)
             ->get();
 
-     dd($allAnswers);
+ //    dd($allAnswers);
 //        dd($allQuestions);
 
         return view('admin.result.show')
