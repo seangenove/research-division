@@ -49823,7 +49823,7 @@ exports = module.exports = __webpack_require__(43)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    bottom: 18vh;\n    right: 7%;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    bottom: 18vh;\n    right: 14%;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap{\n    margin: 5%;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 0;\n    right: 195px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n", ""]);
 
 // exports
 
@@ -50174,6 +50174,28 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50940,56 +50962,108 @@ var render = function() {
                                           _c(
                                             "div",
                                             {
-                                              staticClass:
-                                                "input-group animated fadeInUp"
+                                              staticClass: "values-added-margin"
                                             },
                                             [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "validate",
-                                                    rawName: "v-validate",
-                                                    value: "required",
-                                                    expression: "'required'"
-                                                  },
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: val.value,
-                                                    expression: "val.value"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: {
-                                                  placeholder: "Enter value...",
-                                                  name:
-                                                    "Q" +
-                                                    _vm.questionnaire.questions.indexOf(
-                                                      question
-                                                    ) +
-                                                    " Value Name " +
-                                                    question.values.indexOf(
-                                                      val
-                                                    ),
-                                                  type: "text",
-                                                  required: ""
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "input-group animated fadeInUp"
                                                 },
-                                                domProps: { value: val.value },
-                                                on: {
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "validate",
+                                                        rawName: "v-validate",
+                                                        value: "required",
+                                                        expression: "'required'"
+                                                      },
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: val.value,
+                                                        expression: "val.value"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      placeholder:
+                                                        "Enter value...",
+                                                      name:
+                                                        "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        ),
+                                                      type: "text",
+                                                      required: ""
+                                                    },
+                                                    domProps: {
+                                                      value: val.value
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          val,
+                                                          "value",
+                                                          $event.target.value
+                                                        )
+                                                      }
                                                     }
-                                                    _vm.$set(
-                                                      val,
-                                                      "value",
-                                                      $event.target.value
-                                                    )
-                                                  }
-                                                }
-                                              }),
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "input-group-btn"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "btn btn-danger",
+                                                          attrs: {
+                                                            type: "button"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.removeValue(
+                                                                question,
+                                                                val
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-times",
+                                                            attrs: {
+                                                              "aria-hidden":
+                                                                "true"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
                                               _vm._v(" "),
                                               _c(
                                                 "span",
@@ -51029,42 +51103,6 @@ var render = function() {
                                                           )
                                                       )
                                                     )
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass: "input-group-btn"
-                                                },
-                                                [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-danger",
-                                                      attrs: { type: "button" },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.removeValue(
-                                                            question,
-                                                            val
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-times",
-                                                        attrs: {
-                                                          "aria-hidden": "true"
-                                                        }
-                                                      })
-                                                    ]
                                                   )
                                                 ]
                                               )
@@ -51109,56 +51147,108 @@ var render = function() {
                                           _c(
                                             "div",
                                             {
-                                              staticClass:
-                                                "input-group animated fadeInUp"
+                                              staticClass: "values-added-margin"
                                             },
                                             [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "validate",
-                                                    rawName: "v-validate",
-                                                    value: "required",
-                                                    expression: "'required'"
-                                                  },
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: val.value,
-                                                    expression: "val.value"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: {
-                                                  placeholder: "Enter value...",
-                                                  name:
-                                                    "Q" +
-                                                    _vm.questionnaire.questions.indexOf(
-                                                      question
-                                                    ) +
-                                                    " Value Name " +
-                                                    question.values.indexOf(
-                                                      val
-                                                    ),
-                                                  type: "text",
-                                                  required: ""
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "input-group animated fadeInUp"
                                                 },
-                                                domProps: { value: val.value },
-                                                on: {
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "validate",
+                                                        rawName: "v-validate",
+                                                        value: "required",
+                                                        expression: "'required'"
+                                                      },
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: val.value,
+                                                        expression: "val.value"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      placeholder:
+                                                        "Enter value...",
+                                                      name:
+                                                        "Q" +
+                                                        _vm.questionnaire.questions.indexOf(
+                                                          question
+                                                        ) +
+                                                        " Value Name " +
+                                                        question.values.indexOf(
+                                                          val
+                                                        ),
+                                                      type: "text",
+                                                      required: ""
+                                                    },
+                                                    domProps: {
+                                                      value: val.value
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          val,
+                                                          "value",
+                                                          $event.target.value
+                                                        )
+                                                      }
                                                     }
-                                                    _vm.$set(
-                                                      val,
-                                                      "value",
-                                                      $event.target.value
-                                                    )
-                                                  }
-                                                }
-                                              }),
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "input-group-btn"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "btn btn-danger",
+                                                          attrs: {
+                                                            type: "button"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              _vm.removeValue(
+                                                                question,
+                                                                val
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-times",
+                                                            attrs: {
+                                                              "aria-hidden":
+                                                                "true"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
                                               _vm._v(" "),
                                               _c(
                                                 "span",
@@ -51198,42 +51288,6 @@ var render = function() {
                                                           )
                                                       )
                                                     )
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass: "input-group-btn"
-                                                },
-                                                [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-danger",
-                                                      attrs: { type: "button" },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          _vm.removeValue(
-                                                            question,
-                                                            val
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-times",
-                                                        attrs: {
-                                                          "aria-hidden": "true"
-                                                        }
-                                                      })
-                                                    ]
                                                   )
                                                 ]
                                               )
@@ -51289,7 +51343,7 @@ var render = function() {
                         },
                         [
                           _c("span", { staticClass: "fa fa-check" }),
-                          _vm._v(" Submit")
+                          _vm._v(" Submit\n                    ")
                         ]
                       )
                     ]
@@ -51368,7 +51422,7 @@ var render = function() {
                                   _vm._v(
                                     " " +
                                       _vm._s(val.value) +
-                                      "\n                               "
+                                      "\n                                "
                                   )
                                 ])
                               : _vm._e(),
@@ -51379,7 +51433,7 @@ var render = function() {
                                   _vm._v(
                                     " " +
                                       _vm._s(val.value) +
-                                      "\n                               "
+                                      "\n                                "
                                   )
                                 ])
                               : _vm._e()

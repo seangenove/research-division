@@ -13,23 +13,34 @@
     /* submit */
     .fixed-button-1 {
         position: fixed;
-        bottom: 18vh;
-        right: 7%;
+        /*bottom: 18vh;*/
+        /*right: 7%;*/
+        bottom: 0;
+        right: 98px;
+        margin-bottom: 108px;
+
     }
 
     /** preview **/
     .fixed-button-2 {
         position: fixed;
-        bottom: 18vh;
-        right: 14%;
+        /*bottom: 18vh;*/
+        /*right: 14%;*/
+        bottom: 0;
+        right: 195px;
+        margin-bottom: 108px;
     }
 
     .content {
         height: 100%;
     }
 
-    .modal-body div.wrap{
+    .modal-body div.wrap {
         margin: 5%;
+    }
+
+    .values-added-margin {
+        margin: 8px 0;
     }
 </style>
 
@@ -104,20 +115,24 @@
                                         <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
                                         </button>
                                         <div v-for="val in question.values">
-                                            <div class="input-group animated fadeInUp">
-                                                <input placeholder="Enter value..." class="form-control"
-                                                       v-validate="'required'"
-                                                       :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
-                                                       type="text" v-model="val.value" required>
-                                                <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+                                            <div class="values-added-margin">
+                                                <div class="input-group animated fadeInUp">
+                                                    <input placeholder="Enter value..." class="form-control"
+                                                           v-validate="'required'"
+                                                           :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
+                                                           type="text" v-model="val.value" required>
+                                                    <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+
+                                                    <div class="input-group-btn">
+                                                        <button v-on:click="removeValue(question, val)" type="button"
+                                                                class="btn btn-danger"><i class="fa fa-times"
+                                                                                          aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                                 <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
                                                       class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
 
-                                                <div class="input-group-btn">
-                                                    <button v-on:click="removeValue(question, val)" type="button"
-                                                            class="btn btn-danger"><i class="fa fa-times"
-                                                                                      aria-hidden="true"></i></button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -128,20 +143,25 @@
                                         <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
                                         </button>
                                         <div v-for="val in question.values">
-                                            <div class="input-group animated fadeInUp">
-                                                <input placeholder="Enter value..." class="form-control"
-                                                       v-validate="'required'"
-                                                       :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
-                                                       type="text" v-model="val.value" required>
-                                                <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+                                            <div class="values-added-margin">
+                                                <div class="input-group animated fadeInUp">
+                                                    <input placeholder="Enter value..." class="form-control"
+                                                           v-validate="'required'"
+                                                           :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
+                                                           type="text" v-model="val.value" required>
+                                                    <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+
+                                                    <div class="input-group-btn">
+                                                        <button v-on:click="removeValue(question, val)" type="button"
+                                                                class="btn btn-danger"><i class="fa fa-times"
+                                                                                          aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
                                                 <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
                                                       class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
 
-                                                <div class="input-group-btn">
-                                                    <button v-on:click="removeValue(question, val)" type="button"
-                                                            class="btn btn-danger"><i class="fa fa-times"
-                                                                                      aria-hidden="true"></i></button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +176,9 @@
                     <form ref="form" v-bind:action="action" method="post" @submit.prevent="validateBeforeSubmit">
                         <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
                         <input type="hidden" name="_token" v-bind:value="csrf_token">
-                        <button class="fixed-button-1 btn btn-primary pull-right" type="submit"><span class="fa fa-check"></span> Submit</button>
+                        <button class="fixed-button-1 btn btn-primary pull-right" type="submit"><span
+                                class="fa fa-check"></span> Submit
+                        </button>
                     </form>
                 </div>
             </transition>
@@ -178,29 +200,29 @@
                         <h4 class="modal-title">Questionnaire Preview</h4>
                     </div>
                     <div class="modal-body">
-                       <div class="wrap">
-                           <h1>{{ questionnaire.name }}</h1>
-                           <p>{{ questionnaire.description }}</p>
-                           <div v-for="question in questionnaire.questions">
-                               <h2 class="page-header">{{ question.question }}</h2>
-                               <input class="form-control" v-if="question.type === 'short'" type="text">
-                               <textarea class="form-control" v-if="question.type === 'long'" cols="30"
-                                         rows="10"></textarea>
-                               <div v-for="val in question.values">
-                                   <div v-if="question.type === 'radio'">
-                                       <input type="radio"> {{ val.value }}
-                                   </div>
+                        <div class="wrap">
+                            <h1>{{ questionnaire.name }}</h1>
+                            <p>{{ questionnaire.description }}</p>
+                            <div v-for="question in questionnaire.questions">
+                                <h2 class="page-header">{{ question.question }}</h2>
+                                <input class="form-control" v-if="question.type === 'short'" type="text">
+                                <textarea class="form-control" v-if="question.type === 'long'" cols="30"
+                                          rows="10"></textarea>
+                                <div v-for="val in question.values">
+                                    <div v-if="question.type === 'radio'">
+                                        <input type="radio"> {{ val.value }}
+                                    </div>
 
-                                   <div v-if="question.type === 'checkbox'">
-                                       <input type="checkbox"> {{ val.value }}
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="modal-footer">
-                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                               <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                           </div>
-                       </div>
+                                    <div v-if="question.type === 'checkbox'">
+                                        <input type="checkbox"> {{ val.value }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                            </div>
+                        </div>
                     </div>
                     <!-- /.modal-content -->
                 </div>
