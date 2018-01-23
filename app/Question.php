@@ -21,4 +21,12 @@ class Question extends Model
     {
         return $this->hasMany('App\Value');
     }
+
+    /**
+     * Returns all values for a given question
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }
