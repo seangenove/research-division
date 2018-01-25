@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -116,4 +117,38 @@ class UsersController extends Controller
         }
         return view('admin.users.password');
     }
+
+    public function resetPassword($user_id){
+        $user = User::findorFail($user_id)->first();
+        $temporaryPassword = $this->generateRandomString(5);
+
+        $user->password = bcrypt($temporaryPassword);
+        $user->save();
+
+        Session::flash(
+            'flash_message',
+            "Password has been reset for" . $user->name . ". The temporary password is <b>". $temporaryPassword ."<b>.");
+
+        return redirect('/admin/users');
+    }
+
+    private function generateRandomString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
+
+    // TO DO
+//    public function changeStatus($id) {
+//        $user = User::findOrFail($id)->first();
+//
+//        $user->status = $user->status == "active" ? 'disabled' : 'active';
+//        $user->save();
+//    }
 }

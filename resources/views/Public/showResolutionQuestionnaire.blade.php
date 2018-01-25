@@ -17,16 +17,19 @@
                                     {{ csrf_field() }}
                                     @foreach($questions as $question)
                                         <div class="form-group">
-                                            <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
+
                                             <label for="answer">{{$counter.'. '.$question->question}}</label>
 
                                             @if($question->type == 'short')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
                                                 <input name="answer{{$counter}}" type="text" class="form-control" id="answer">
                                             @endif
                                             @if($question->type == 'long')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
                                                 <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}"></textarea>
                                             @endif
                                             @if($question->type == 'radio')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
                                                 @foreach($values as $value)
                                                     @if($value->question_id == $question->id)
                                                         <div class="radio">
@@ -36,9 +39,14 @@
                                                 @endforeach
                                             @endif
                                             @if($question->type == 'checkbox')
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" value="{{$value->value}}">{{$value->value}}</label>
-                                                </div>
+                                                @foreach($values as $value)
+                                                    @if($value->question_id == $question->id)
+                                                        <input name="question_id{{$counter}}" type="hidden" class="form-control" id="answer" value="{{$question->id}}">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="answer{{$counter}}" value="{{$value->value}}">{{$value->value}}</label>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                             @endif
                                             @php
                                                 $counter = $counter+1;

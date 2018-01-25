@@ -13,9 +13,11 @@
                 <p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>
                 <p>By: {{$ordinance->authors}} </p>
                 <p>{{$ordinance->description}}</p>
-                <button onclick="window.location.href='/public/showOrdinanceQuestionnaire/{{$ordinance->id}}\ ' " class="btn btn-success">
-                    Answer Questionnaire
-                </button>
+                <a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">
+                    <button class="btn-sm btn-success">
+                        Answer Questionnaire
+                    </button>
+                </a>
             </div>
             <hr>
         @endforeach

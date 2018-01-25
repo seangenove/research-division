@@ -68,6 +68,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         'result' => 'Admin\\ResultController'
     ]);
 
+    // Routes ONLY for Super Admin
+    Route::group(['middleware' => 'role:superadmin'],function () {
+        Route::resource('users','Admin\\UsersController');
+        Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
+    });
 
 });
 Auth::routes();

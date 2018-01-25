@@ -13,6 +13,7 @@ use App\Questionnaire;
 use App\Value;
 use App\Answer;
 use DB;
+use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -55,11 +56,11 @@ class PublicController extends Controller
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')
+        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::pluck('ordinance_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
-        $resolutions = DB::table('resolutions')
+        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::pluck('resolution_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
@@ -115,15 +116,24 @@ class PublicController extends Controller
         return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
     }
 
-    public function submitOrdinanceAnswers(Request $request, $id)
+    public function submitOrdinanceAnswers(Request $request)
     {
+
         $requestData = $request->all();
+
+        if($request->type === 'ordinance'){
+            $document = Questionnaire::findOrFail($request->id)->first()->ordinance;
+        }else{
+            $document = Questionnaire::findOrFail($request->id)->first()->resolution;
+        }
+//        dd($document->title);
         for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
             $answer = new Answer;
             $answer->answer = $requestData['answer'.$i];
             $answer->question_id = $requestData['question_id'.$i];
             $answer->save();
         }
+        Session::flash('flash_message', 'Thank you for answering the questionnaire for' . $document->title);
         return redirect('monitorAndEval');
     }
 
