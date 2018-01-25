@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
+use App\Response;
 use App\Suggestion;
 use App\Page;
 use App\Question;
@@ -16,6 +17,7 @@ use DB;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class PublicController extends Controller
 {
@@ -122,6 +124,14 @@ class PublicController extends Controller
         $requestData = $request->all();
 //        dd($requestData);
 
+        $response = new Response;
+        $response->firstname = $request->firstname;
+        $response->lastname = $request->lastname;
+        $response->email = $request->email;
+        $response->date = Carbon::now();
+        $response->questionnaire_id = $request->questionnaire_id;
+        $response->save();
+
         if($request->type === 'ordinance'){
             $document = Questionnaire::Where('ordinance_id','=',$request->id)->first()->ordinance;
         }else{
@@ -133,6 +143,7 @@ class PublicController extends Controller
                 $answer = new Answer;
                 $answer->answer = $requestData['answer' . $i];
                 $answer->question_id = $requestData['question_id' . $i];
+                $answer->response_id = $response->id;
                 $answer->save();
             }
         }
