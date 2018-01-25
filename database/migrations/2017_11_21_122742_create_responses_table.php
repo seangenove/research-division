@@ -16,9 +16,9 @@ class CreateResponsesTable extends Migration
         Schema::create('responses', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
+            $table->string('firstname')->nullable()->default(null);
+            $table->string('lastname')->nullable()->default(null);
+            $table->string('email')->nullable()->default(null);
             $table->integer('questionnaire_id')->unsigned();
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires');
             $table->timestamps();
