@@ -15,7 +15,6 @@ class ResultController extends Controller
     //
     public function index()
     {
-        dd(Answer::getAnswerCount(3));
         return view('admin.result.show');
     }// no data passed
 
@@ -26,26 +25,12 @@ class ResultController extends Controller
         $questionnaire = Questionnaire::find($id);
         $allQuestions = $questionnaire->questions;
 
-        $numOfQuestions = $allQuestions->count();
-        $answers = Answer::all();
-
-//        foreach($allQuestions as $question){
-//            $answers = $question->answers;
-//            // Echo Question name
-//            echo "Question: " . $question->question . "<br>";
-//            // echo all answers
-//            echo "Answers Array:<br>";
-//            echo "<pre>$answers</pre>";
-//            echo "<br>";
-//
-////        }
-//        echo $numOfQuestions;
-//        dd();
-
+//        $answers = Answer::all();
 
         return view('admin.result.show')
-            ->with('answers',$answers)
-            ->with('questions',$allQuestions);
+//            ->with('answers',$answers)
+//            ->with('questions',$allQuestions)
+            ->with('questionnaire', $questionnaire);
     }
 
     public function downloadExcel($id)

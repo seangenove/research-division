@@ -9,27 +9,68 @@
         div > ul {
             list-style: none;
             font-size: 20px;
+
+        }
+        ul.answer-values{
+            height: 200px;
+            overflow-y: scroll;
+        }
+        div.box-primary{
+            padding: 5%;
         }
     </style>
 
 @endsection
 
 @section('content')
-    <div class="container" style="background-color: #FFFFFF">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <a href="/admin/result/download/{{ $questionnaire->id }}" class="btn btn-success btn-md pull-right">
+                <span class="fa fa-excel"></span>Download Excel
+            </a>
+            <h1 class="box-title">Results for: <strong>{{ $questionnaire->name }}</strong></h1>
+            <p>{{ $questionnaire->description }}</p>
+        </div>
+        <div class="box-body">
+            <div class="content">
+                @foreach( $questionnaire->questions as $question)
+                    <div class="row box box-widget" style="margin: 5% 0">
+                        <div class="box-header with-border">
+                            <div class="user-block">
+                                <h3> {{ $question->question}} </h3>
+                            </div>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
 
-        <h1> Results </h1>
-            @foreach( $questions as $key)
-                <div    >
-                    <h3> {{ $key->question}} </h3>
-                        <ul>
-                            @foreach( $answers as $ans )
-                                @if( $ans->question_id === $key->id)
-                                    <li> {{ $ans->answer }} </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                </div>
-            @endforeach
+                        </div>
+                        <div class="box-body">
+                            <div class="col-md-5">
+
+                                <ul class="answer-values">
+                                    @foreach( $question->answers as $answer )
+                                        {{-- Re formatted this below--}}
+                                        {{--@if( $answer->question_id === $question->id)--}}
+                                        {{--<li> {{ $answer->answer }} </li>--}}
+                                        {{--@endif--}}
+                                        <li>{{ $answer->answer }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            {{-- Put graphs below  for each question --}}
+                            <div class="col-md-7">
+                                <code>
+                                    {{-- Here is the data--}}
+                                    {{ $question->getAnswerCounts() }}
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection
 
