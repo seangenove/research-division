@@ -120,20 +120,23 @@ class PublicController extends Controller
     {
 
         $requestData = $request->all();
+//        dd($requestData);
 
         if($request->type === 'ordinance'){
-            $document = Questionnaire::findOrFail($request->id)->first()->ordinance;
+            $document = Questionnaire::Where('ordinance_id','=',$request->id)->first()->ordinance;
         }else{
-            $document = Questionnaire::findOrFail($request->id)->first()->resolution;
+            $document = Questionnaire::Where('resolution_id','=',$request->id)->first()->resolution;
         }
-//        dd($document->title);
-        for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
-            $answer = new Answer;
-            $answer->answer = $requestData['answer'.$i];
-            $answer->question_id = $requestData['question_id'.$i];
-            $answer->save();
+
+        for ($i = 1; $i<$requestData['counter']; $i++) {
+            if(array_key_exists('answer'.$i, $requestData)) {
+                $answer = new Answer;
+                $answer->answer = $requestData['answer' . $i];
+                $answer->question_id = $requestData['question_id' . $i];
+                $answer->save();
+            }
         }
-        Session::flash('flash_message', 'Thank you for answering the questionnaire for' . $document->title);
+        Session::flash('flash_message', 'Thank you for answering the questionnaire for ' . $document->title);
         return redirect('monitorAndEval');
     }
 
