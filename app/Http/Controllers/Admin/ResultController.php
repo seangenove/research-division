@@ -15,7 +15,7 @@ class ResultController extends Controller
     //
     public function index()
     {
-        dd(Answer::getAnswerCount(1));
+        dd(Answer::getAnswerCount(3));
         return view('admin.result.show');
     }// no data passed
 
