@@ -22,6 +22,7 @@ class CreateResolutionsTable extends Migration
             $table->date('date_approved_by_council');
             $table->date('date_signed_by_vice_mayor');
             $table->date('date_signed_by_mayor')->nullable();
+            $table->tinyInteger('is_monitoring');
             $table->text('pdf_file_path')->nullable();
             $table->timestamps();
         });

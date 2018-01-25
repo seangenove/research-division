@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Ordinance;
 use App\Question;
 use App\Questionnaire;
+use App\Resolution;
 use App\Value;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +16,8 @@ class FormsController extends Controller
 
     const ALL = 'ALL',
         RESOLUTIONS = 'resolutions',
-        ORDINANCES = 'ordinances';
+        ORDINANCES = 'ordinances',
+        ME = 'ME';
 
     /**
      * Index page for Forms - Listing of all available forms
@@ -199,22 +202,47 @@ class FormsController extends Controller
         return redirect('/admin/forms');
     }
 
-
-    function ordinances()
+    function ordinancesIndex()
     {
-        return view('forms.index', [
-            'questionnaires' => Questionnaire::whereNotNull('ordinance_id')->get(),
-            'flag' => FormsController::ORDINANCES
+        $limit = 25;
+        $ordinances = Ordinance::where('is_monitoring', 1)->paginate($limit);
+
+        // Implement search
+
+        return view('admin.ordinances.index', [
+            'ordinances' => $ordinances,
+            'type' => FormsController::ME,
         ]);
     }
 
-    function resolutions()
+    function resolutionsIndex()
     {
-        return view('forms.index', [
-            'questionnaires' => Questionnaire::whereNotNull('resolution_id')->get(),
-            'flag' => FormsController::RESOLUTIONS
+        $limit = 25;
+        $resolutions = Resolution::where('is_monitoring', 1)->paginate($limit);
+
+        // Implement search
+
+        return view('admin.resolutions.index', [
+            'resolutions' => $resolutions,
+            'type' => FormsController::ME,
         ]);
     }
+
+//    function ordinancesIndex()
+//    {
+//        return view('forms.index', [
+//            'questionnaires' => Questionnaire::whereNotNull('ordinance_id')->get(),
+//            'flag' => FormsController::ORDINANCES
+//        ]);
+//    }
+//
+//    function resolutionsIndex()
+//    {
+//        return view('forms.index', [
+//            'questionnaires' => Questionnaire::whereNotNull('resolution_id')->get(),
+//            'flag' => FormsController::RESOLUTIONS
+//        ]);
+//    }
 
 
 }

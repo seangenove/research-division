@@ -54,8 +54,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword');
     Route::group(['prefix' => 'forms'], function(){
-        Route::get('ordinances', 'Admin\\FormsController@ordinances');
-        Route::get('resolutions', 'Admin\\FormsController@resolutions');
+        Route::get('ordinances', 'Admin\\FormsController@ordinancesIndex');
+        Route::get('resolutions', 'Admin\\FormsController@resolutionsIndex');
     });
     Route::resource('forms','Admin\\FormsController');
 

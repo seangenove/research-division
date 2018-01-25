@@ -150,7 +150,7 @@
                     <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
                         <a href="/admin/users">
                             <i class="fa fa-dashboard"></i>
-                            <span class="{{ Request::is('admin/users*') ? 'text-danger' : '' }}">Users</span>
+                            <span>Users</span>
                         </a>
 
                     </li>
@@ -162,7 +162,7 @@
                 <li class="{{ Request::is('admin') ? 'active' : '' }}">
                     <a href="/admin">
                         <i class="fa fa-dashboard"></i>
-                        <span class="{{ Request::is('admin') ? 'text-danger' : '' }}">Dashboard</span>
+                        <span>Dashboard</span>
                     </a>
 
                 </li>
@@ -173,47 +173,98 @@
                 {{--</span>--}}
                 {{--</a>--}}
                 {{--</li>--}}
-                <li class="{{ Request::is('admin/ordinances*') ? 'active' : '' }}">
-                    <a href="/admin/ordinances">
-                        <i class="fa fa-file-text"></i>
-                        <span class="{{ Request::is('admin/ordinances*') ? 'text-danger' : '' }}">Ordinances
-                        </span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('admin/resolutions*') ? 'active' : '' }}">
-                    <a href="/admin/resolutions">
-                        <i class="fa fa-file"></i> <span>Resolutions</span>
-                        <span class="pull-right-container">
-                        </span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('admin/forms*') ? 'active' : '' }} treeview menu-open">
+
+                <li class="@if(isset($ordinance))
+                            @if($ordinance->is_monitoring === 0)
+                                active
+                            @endif
+                            @elseif(isset($resolution))
+                                @if($resolution->is_monitoring === 0)
+                                        active
+                                @endif
+                            @elseif((Request::is('admin/ordinances*') or Request::is('admin/resolutions*'))
+                            or  request()->type === 'IEC')
+                                active
+                            @endif treeview menu">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span class="{{ Request::is('admin/forms*') ? 'text-danger' : '' }}">M&E</span>
+                        <span>IEC</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu" style="">
-                        <li class="{{ Request::is('admin/forms') ? 'active' : '' }}">
-                            <a href="/admin/forms">
-                                <i class="fa fa-book"></i>
-                                <span class="{{ Request::is('admin/forms') ? 'text-danger' : '' }}">Ordinances and Resolution</span>
-                                <span class="pull-right-container"></span>
+                        <li class="@if((Request::is('admin/ordinances*')
+                                    and request()->type === 'IEC') or Request::is('admin/ordinances*')) active @endif">
+                            <a href="/admin/ordinances">
+                                <i class="fa fa-circle-o"></i>
+                                <span>Ordinances</span>
                             </a>
                         </li>
-                        <li class="{{ Request::is('admin/forms/ordinances*') ? 'active' : '' }}">
-                            <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
-                                <span class="{{ Request::is('admin/forms/ordinances*') ? 'text-danger' : '' }}">
-                                    Ordinances
-                                </span></a>
+                        <li class="@if(isset($resolution))
+                                    @if($resolution->is_monitoring === 0)
+                                        active
+                                    @endif
+                                    @elseif((Request::is('admin/resolutions*')
+                                    and request()->type === 'IEC') or Request::is('admin/resolutions*')) active @endif">
+                            <a href="/admin/resolutions">
+                                <i class="fa fa-circle-o"></i> <span>Resolutions</span>
+                                <span class="pull-right-container">
+                        </span>
+                            </a>
                         </li>
-                        <li class="{{ Request::is('admin/forms/resolutions*') ? 'active' : '' }}">
+                    </ul>
+                </li>
+                <li class="@if(isset($ordinance))
+                                @if($ordinance->is_monitoring === 1)
+                                        active
+                                @endif
+                            @elseif(isset($resolution))
+                                @if($resolution->is_monitoring === 1)
+                                        active
+                                @endif
+                            @elseif(((Request::is('admin/forms/ordinances*') and request()->type === 'ME')
+                                or (Request::is('admin/forms/resolutions*') and request()->type === 'ME'))
+                                or (Request::is('admin/forms/ordinances*') or Request::is('admin/forms/resolutions*')))
+                                    active
+                            @endif treeview menu">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>M&E</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu" style="">
+                        {{--<li class="{{ Request::is('admin/forms') ? 'active' : '' }}">--}}
+                            {{--<a href="/admin/forms">--}}
+                                {{--<i class="fa fa-book"></i>--}}
+                                {{--<span class="{{ Request::is('admin/forms') ? 'text-danger' : '' }}">Ordinances and Resolution</span>--}}
+                                {{--<span class="pull-right-container"></span>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        <li class="@if(isset($ordinance))
+                                    @if($ordinance->is_monitoring === 1)
+                                        active
+                                    @endif
+                                    @elseif((Request::is('admin/forms/ordinances*')
+                                        and request()->type === 'ME') or Request::is('admin/forms/ordinances*'))
+                                    active
+                                    @endif">
+                            <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
+                                <span>Ordinances</span>
+                            </a>
+                        </li>
+                        <li class="@if(isset($resolution))
+                                @if($resolution->is_monitoring === 1)
+                                        active
+                                    @endif
+                                @elseif((Request::is('admin/forms/resolutions*')
+                                    and request()->type === 'ME') or Request::is('admin/forms/resolutions*'))
+                                        active
+                                @endif">
                             <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
-                                <span class="{{ Request::is('admin/forms/resolutions*') ? 'text-danger' : '' }}">
-                                    Resolutions
-                                </span>
+                                <span>Resolutions</span>
                             </a>
                         </li>
                     </ul>
@@ -221,14 +272,14 @@
                 <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
                     <a href="/admin/pages">
                         <i class="fa fa-file-code-o"></i>
-                        <span class="{{ Request::is('admin/forms/pages*') ? 'text-danger' : '' }}">Pages</span>
+                        <span>Pages</span>
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
                 <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                     <a href="/admin/logs">
                         <i class="fa fa-shield"></i>
-                        <span class="{{ Request::is('admin/forms/logs*') ? 'text-danger' : '' }}">Logs</span>
+                        <span>Logs</span>
                         <span class="pull-right-container">
                         </span>
                     </a>

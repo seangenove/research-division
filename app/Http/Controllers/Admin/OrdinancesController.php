@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Ordinance;
+use App\Questionnaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class OrdinancesController extends Controller
 {
+    const IEC = 'IEC';
     /**
      * Display a listing of the resource.
      *
@@ -17,12 +19,13 @@ class OrdinancesController extends Controller
     public function index()
     {
         $limit = 25;
-        $ordinances = Ordinance::paginate($limit);
+        $ordinances = Ordinance::where('is_monitoring', 0)->paginate($limit);
 
         // Implement search
 
         return view('admin.ordinances.index', [
-            'ordinances' => $ordinances
+            'ordinances' => $ordinances,
+            'type' => OrdinancesController::IEC,
         ]);
     }
 
@@ -53,7 +56,7 @@ class OrdinancesController extends Controller
                     $filename,
                     'google');
         }
-
+//        dd($request->all());
         $ordinance = new Ordinance();
         $ordinance->fill($request->all());
         $ordinance->save();
@@ -67,14 +70,15 @@ class OrdinancesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-{
-    $ordinance = Ordinance::findOrFail($id);
+    public function show($id){
+        $ordinance = Ordinance::findOrFail($id);
 
-    return view('admin.ordinances.show', [
-        'ordinance' => $ordinance
-    ]);
-}
+        return view('admin.ordinances.show', [
+            'ordinance' => $ordinance,
+            'questionnaires' => Questionnaire::whereNotNull('ordinance_id')->where('ordinance_id', $id)->get(),
+            'flag' => FormsController::ORDINANCES
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

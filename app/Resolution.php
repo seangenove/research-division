@@ -23,6 +23,7 @@ class Resolution extends Model
         'date_signed_by_vice_mayor',
         'date_signed_by_mayor',
         'pdf_file_path',
+        'is_monitoring',
     ];
 
     /**

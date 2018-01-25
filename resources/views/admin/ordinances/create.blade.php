@@ -12,50 +12,59 @@
             <!-- form start -->
             <form method="POST" action="{{ url('/admin/ordinances/') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="number">Number</label>
-                        <input name="number" type="text" class="form-control" id="number" value="{{ old('number') }}">
-                    </div>
+                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::IEC
+                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
+                        <div class="box-body">
+                            <input type="hidden" name="is_monitoring" value="{{ request()->type === 'ME' ? 1 : 0 }}">
+                            <div class="form-group">
+                                <label for="number">Number</label>
+                                <input name="number" type="text" class="form-control" id="number" value="{{ old('number') }}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input name="title" type="text" class="form-control" id="title" value="{{ old('title')}}">
-                    </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input name="title" type="text" class="form-control" id="title" value="{{ old('title')}}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">
-                    </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="authors">Authors</label>
-                        <input name="authors" type="text" class="form-control" id="authors" value="{{ old('authors')}}">
-                    </div>
+                            <div class="form-group">
+                                <label for="authors">Authors</label>
+                                <input name="authors" type="text" class="form-control" id="authors" value="{{ old('authors')}}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Approved By Council</label>
-                        <input name="date_approved_by_council" type="date" class="form-control" id="date_approved_by_the_council" value="{{ old('authors')}}">
-                    </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Date Approved By Council</label>
+                                <input name="date_approved_by_council" type="date" class="form-control" id="date_approved_by_the_council" value="{{ old('authors')}}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Signed By Vice Mayor</label>
-                        <input name="date_signed_by_vice_mayor" type="date" class="form-control" id="date_signed_by_vice_mayor" value="{{ old('authors')}}">
-                    </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Date Signed By Vice Mayor</label>
+                                <input name="date_signed_by_vice_mayor" type="date" class="form-control" id="date_signed_by_vice_mayor" value="{{ old('authors')}}">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Signed By Mayor</label>
-                        <input name="date_signed_by_mayor" type="date" class="form-control" id="date_signed_by_mayor" value="{{ old('authors')}}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Date Signed By Mayor</label>
+                                <input name="date_signed_by_mayor" type="date" class="form-control" id="date_signed_by_mayor" value="{{ old('authors')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="pdf">PDF File</label>
+                                <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">
+                            </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pdf">PDF File</label>
-                        <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">
-                    </div>
-                </div>
+                    @endif
+
+
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button type="submit" class="pull-right btn btn-primary">Create</button>
+                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::IEC
+                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
+                        <button type="submit" class="pull-right btn btn-primary">Create</button>
+                    @endif
                 </div>
             </form>
         </div>

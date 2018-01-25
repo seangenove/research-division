@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Questionnaire;
 use App\Resolution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ResolutionsController extends Controller
 {
+    const IEC = 'IEC';
+
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +19,13 @@ class ResolutionsController extends Controller
     public function index()
     {
         $limit = 25;
-        $resolutions = Resolution::paginate($limit);
+        $resolutions = Resolution::where('is_monitoring', 0)->paginate($limit);
 
         // Implement search
 
         return view('admin.resolutions.index', [
-            'resolutions' => $resolutions
+            'resolutions' => $resolutions,
+            'type' => ResolutionsController::IEC,
         ]);
     }
 
@@ -71,7 +75,9 @@ class ResolutionsController extends Controller
         $resolution = Resolution::findOrFail($id);
 
         return view('admin.resolutions.show', [
-            'resolution' => $resolution
+            'resolution' => $resolution,
+            'questionnaires' => Questionnaire::whereNotNull('resolution_id')->where('resolution_id', $id)->get(),
+            'flag' => FormsController::RESOLUTIONS,
         ]);
     }
 

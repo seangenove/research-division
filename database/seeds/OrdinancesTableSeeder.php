@@ -23,6 +23,7 @@ class OrdinancesTableSeeder extends Seeder
                 'date_approved_by_council' => Carbon::parse('2017-01-01'),
                 'date_signed_by_vice_mayor' => Carbon::parse('2017-01-02'),
                 'date_signed_by_mayor' => Carbon::parse('2017-01-02'),
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 2,
@@ -33,6 +34,7 @@ class OrdinancesTableSeeder extends Seeder
                 'date_approved_by_council' => Carbon::parse('2017-01-02'),
                 'date_signed_by_vice_mayor' => Carbon::parse('2017-01-03'),
                 'date_signed_by_mayor' => null,
+                'is_monitoring' => 1,
             ]
         );
         Ordinance::insert($ordinances);
