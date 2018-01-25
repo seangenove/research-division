@@ -17,6 +17,7 @@ class CreateQuestionnairesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->integer('isAccepting')->default(0);
             $table->integer('ordinance_id')->unsigned()->nullable();
             $table->foreign('ordinance_id')->references('id')->on('ordinances');
             $table->integer('resolution_id')->unsigned()->nullable();

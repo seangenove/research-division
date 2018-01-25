@@ -9,5 +9,4 @@ class Answer extends Model
     protected $fillable = [
         'answer'
     ];
-    //
 }

@@ -15,6 +15,18 @@
                                 @endphp
                                 <form method="POST" action="{{ url("/submitResolutionAnswers/{$questionnaire->id }/") }}">
                                     {{ csrf_field() }}
+                                    <input type="hidden" name="id"
+                                           value="{{$questionnaire->ordinance_id === null ? $questionnaire->resolution_id : $questionnaire->ordinance_id}}">
+                                    <input type="hidden" name="type"
+                                           value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
+                                    <input type="hidden" name="questionnaire_id" value="{{$questionnaire->id}}">
+                                    <label for="firstname">First Name</label>
+                                    <input name="firstname" type="text" class="form-control">
+                                    <label for="lastname">Last Name</label>
+                                    <input name="lastname" type="text" class="form-control">
+                                    <label for="email">E-mail</label>
+                                    <input name="email" type="text" class="form-control">
+                                    <br>
                                     @foreach($questions as $question)
                                         <div class="form-group">
 
@@ -53,7 +65,7 @@
                                             @endphp
                                         </div>
                                     @endforeach
-
+                                    <input name="counter" type="hidden" class="form-control" value="{{$counter}}">
                                     <button class="btn btn-success pull-right" type="submit"><i
                                                 class="fa fa-paper-plane"></i> Submit
                                     </button>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
+use App\Response;
 use App\Suggestion;
 use App\Page;
 use App\Question;
@@ -16,6 +17,7 @@ use DB;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 
 class PublicController extends Controller
 {
@@ -56,11 +58,11 @@ class PublicController extends Controller
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::pluck('ordinance_id'))
+        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::where('isAccepting','=',1)->pluck('ordinance_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
-        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::pluck('resolution_id'))
+        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::where('isAccepting','=',1)->pluck('resolution_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
@@ -120,20 +122,32 @@ class PublicController extends Controller
     {
 
         $requestData = $request->all();
+//        dd($requestData);
+
+        $response = new Response;
+        $response->firstname = $request->firstname;
+        $response->lastname = $request->lastname;
+        $response->email = $request->email;
+        $response->date = Carbon::now();
+        $response->questionnaire_id = $request->questionnaire_id;
+        $response->save();
 
         if($request->type === 'ordinance'){
-            $document = Questionnaire::findOrFail($request->id)->first()->ordinance;
+            $document = Questionnaire::Where('ordinance_id','=',$request->id)->first()->ordinance;
         }else{
-            $document = Questionnaire::findOrFail($request->id)->first()->resolution;
+            $document = Questionnaire::Where('resolution_id','=',$request->id)->first()->resolution;
         }
-//        dd($document->title);
-        for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
-            $answer = new Answer;
-            $answer->answer = $requestData['answer'.$i];
-            $answer->question_id = $requestData['question_id'.$i];
-            $answer->save();
+
+        for ($i = 1; $i<$requestData['counter']; $i++) {
+            if(array_key_exists('answer'.$i, $requestData)) {
+                $answer = new Answer;
+                $answer->answer = $requestData['answer' . $i];
+                $answer->question_id = $requestData['question_id' . $i];
+                $answer->response_id = $response->id;
+                $answer->save();
+            }
         }
-        Session::flash('flash_message', 'Thank you for answering the questionnaire for' . $document->title);
+        Session::flash('flash_message', 'Thank you for answering the questionnaire for ' . $document->title);
         return redirect('monitorAndEval');
     }
 

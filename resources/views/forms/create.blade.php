@@ -29,7 +29,8 @@
                 >
                     Loading Component...
                 </questionnaire-component>
-
+            @else
+                <?php return abort(404) ?>
             @endif
 
         </div>
