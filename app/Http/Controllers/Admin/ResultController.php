@@ -19,6 +19,7 @@ class ResultController extends Controller
 
     public function show($id)
     {
+        
         $allAnswers = DB::table('answers')
             ->join('responses','answers.response_id' , '=' , 'responses.id')
             ->where('responses.questionnaire_id' , '=' ,$id)
