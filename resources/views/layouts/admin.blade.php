@@ -89,6 +89,9 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
+                                    <a href="/admin/change-password" class="btn btn-default btn-flat">
+                                        Change Password
+                                    </a>
                                     <a href="#" class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Sign out</a>
@@ -141,12 +144,25 @@
             </form>
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
+            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('superadmin'))
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MANAGEMENT</li>
+                    <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
+                        <a href="/admin/users">
+                            <i class="fa fa-dashboard"></i>
+                            <span class="{{ Request::is('admin/users*') ? 'text-danger' : '' }}">Users</span>
+                        </a>
+
+                    </li>
+                </ul>
+            @endif
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
 
                 <li class="{{ Request::is('admin') ? 'active' : '' }}">
                     <a href="/admin">
-                        <i class="fa fa-dashboard"></i> <span class="text-danger">Dashboard</span>
+                        <i class="fa fa-dashboard"></i>
+                        <span class="{{ Request::is('admin') ? 'text-danger' : '' }}">Dashboard</span>
                     </a>
 
                 </li>
@@ -159,7 +175,8 @@
                 {{--</li>--}}
                 <li class="{{ Request::is('admin/ordinances*') ? 'active' : '' }}">
                     <a href="/admin/ordinances">
-                        <i class="fa fa-file-text"></i> <span>Ordinances
+                        <i class="fa fa-file-text"></i>
+                        <span class="{{ Request::is('admin/ordinances*') ? 'text-danger' : '' }}">Ordinances
                         </span>
                     </a>
                 </li>
@@ -172,7 +189,8 @@
                 </li>
                 <li class="{{ Request::is('admin/forms*') ? 'active' : '' }} treeview menu-open">
                     <a href="#">
-                        <i class="fa fa-book"></i> <span>M&E</span>
+                        <i class="fa fa-book"></i>
+                        <span class="{{ Request::is('admin/forms*') ? 'text-danger' : '' }}">M&E</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -180,46 +198,50 @@
                     <ul class="treeview-menu" style="">
                         <li class="{{ Request::is('admin/forms') ? 'active' : '' }}">
                             <a href="/admin/forms">
-                                <i class="fa fa-book"></i> <span>Ordinances and Resolution</span>
+                                <i class="fa fa-book"></i>
+                                <span class="{{ Request::is('admin/forms') ? 'text-danger' : '' }}">Ordinances and Resolution</span>
                                 <span class="pull-right-container"></span>
                             </a>
                         </li>
                         <li class="{{ Request::is('admin/forms/ordinances*') ? 'active' : '' }}">
-                            <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>Ordinances</a>
+                            <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
+                                <span class="{{ Request::is('admin/forms/ordinances*') ? 'text-danger' : '' }}">
+                                    Ordinances
+                                </span></a>
                         </li>
                         <li class="{{ Request::is('admin/forms/resolutions*') ? 'active' : '' }}">
-                            <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i> Resolutions</a>
+                            <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
+                                <span class="{{ Request::is('admin/forms/resolutions*') ? 'text-danger' : '' }}">
+                                    Resolutions
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </li>
-                <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
-                    <a href="/admin/users">
-                        <i class="fa fa-users"></i> <span>Users</span>
-                        <span class="pull-right-container">
-                        </span>
-                    </a>
-                </li>
                 <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
                     <a href="/admin/pages">
-                        <i class="fa fa-file-code-o"></i> <span>Pages</span>
+                        <i class="fa fa-file-code-o"></i>
+                        <span class="{{ Request::is('admin/forms/pages*') ? 'text-danger' : '' }}">Pages</span>
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
                 <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                     <a href="/admin/logs">
-                        <i class="fa fa-shield"></i> <span>Logs</span>
+                        <i class="fa fa-shield"></i>
+                        <span class="{{ Request::is('admin/forms/logs*') ? 'text-danger' : '' }}">Logs</span>
                         <span class="pull-right-container">
                         </span>
                     </a>
                 </li>
 
-                <li class="{{ Request::is('admin/change*') ? 'active' : '' }}">
-                    <a href="/admin/change-password">
-                        <i class="fa fa-wrench"></i> <span>Account</span>
-                        <span class="pull-right-container">
-                        </span>
-                    </a>
-                </li>
+                {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
+                    {{--<a href="/admin/change-password">--}}
+                        {{--<i class="fa fa-wrench"></i>--}}
+                        {{--<span class="{{ Request::is('admin/forms/change*') ? 'text-danger' : '' }} ">Account</span>--}}
+                        {{--<span class="pull-right-container">--}}
+                        {{--</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -231,6 +253,11 @@
         <section class="content" style="margin: 0 5%">
             <!-- Info boxes -->
             <div class="row">
+                @if(Session::has('flash_message'))
+                    <div class="alert {{Session::get('alert-class', 'alert-success')}}" style="margin-top: 8vh;">
+                        {!! Session::get('flash_message') !!}
+                    </div>
+                @endif
                 @yield('content')
             </div>
             <!-- /.row -->

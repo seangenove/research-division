@@ -6,6 +6,11 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-info">
                         <div class="panel-body">
+                            @if(Session::has('flash_message'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('flash_message') }}
+                                </div>
+                            @endif
                             <div class="col-md-12">
                                 <h2> {{$questionnaire->name}}</h2>
                                 {{$questionnaire->description}}
@@ -15,19 +20,28 @@
                                 @endphp
                                 <form method="POST" action="{{ url("/submitOrdinanceAnswers/{$questionnaire->id }/") }}">
                                     {{ csrf_field() }}
+                                    <input type="hidden" name="id"
+                                           value="{{$questionnaire->ordinance_id === null ? $questionnaire->resolution_id : $questionnaire->ordinance_id}}">
+                                    <input type="hidden" name="type"
+                                           value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
                                     @foreach($questions as $question)
                                         <div class="form-group">
-                                            <input name="question_id{{$counter}}" type="hidden" class="form-control"
-                                                   id="answer" value="{{$question->id}}">
+
                                             <label for="answer">{{$counter.'. '.$question->question}}</label>
 
                                             @if($question->type == 'short')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                       id="answer" value="{{$question->id}}">
                                                 <input name="answer{{$counter}}" type="text" class="form-control" id="answer" {{$question->required == 1 ? 'required' : ''}}>
                                             @endif
                                             @if($question->type == 'long')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                       id="answer" value="{{$question->id}}">
                                                 <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}" {{$question->required == 1 ? 'required' : ''}}></textarea>
                                             @endif
                                             @if($question->type == 'radio')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                       id="answer" value="{{$question->id}}">
                                                 @foreach($values as $value)
                                                     @if($value->question_id == $question->id)
                                                         <div class="radio">
@@ -37,9 +51,18 @@
                                                 @endforeach
                                             @endif
                                             @if($question->type == 'checkbox')
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
-                                                </div>
+                                                @foreach($values as $value)
+                                                    @if($value->question_id == $question->id)
+                                                        <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                               id="answer" value="{{$question->id}}">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
+                                                        </div>
+                                                        @php
+                                                            $counter=$counter+1;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
                                             @endif
                                             @php
                                                 $counter = $counter+1;
