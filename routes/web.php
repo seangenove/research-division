@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     /** TODO:  Logs, Parsley, back-end validation and flash **/
     Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword');
+
+    // admin/forms routes
     Route::group(['prefix' => 'forms'], function(){
         Route::get('ordinances', 'Admin\\FormsController@ordinances');
         Route::get('resolutions', 'Admin\\FormsController@resolutions');
@@ -61,13 +63,20 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
     Route::post('/acceptResponses/{id}', 'Admin\\FormsController@acceptResponses');
     Route::post('/declineResponses/{id}', 'Admin\\FormsController@declineResponses');
 
+    // admin/results routes
+    Route::group(['prefix' => 'result'], function(){
+        Route::get('download/{id}', 'Admin\\ResultController@downloadExcel');
+        Route::get('resolutions', 'Admin\\FormsController@resolutions');
+    });
+    Route::resource('result','Admin\\ResultController');
+
+
     Route::resources([
-//        'forms' => 'Admin\\FormsController',
         'users' => 'Admin\\UsersController', // TODO: Validations, Logs, Re-enter Password (Parsley.js)
         'ordinances' => 'Admin\\OrdinancesController', // TODO: Validations, Logs
         'pages' => 'Admin\\PagesController', // TODO: Validations, Logs
         'resolutions' => 'Admin\\ResolutionsController', // TODO: Validations, Logs
-        'result' => 'Admin\\ResultController'
+//        'result' => 'Admin\\ResultController'
     ]);
 
     // Routes ONLY for Super Admin
