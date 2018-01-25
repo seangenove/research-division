@@ -69,7 +69,7 @@
                                             @endphp
                                         </div>
                                     @endforeach
-
+                                    <input name="counter" type="hidden" class="form-control" value="{{$counter}}">
                                         <button class="btn btn-success pull-right" type="submit"><i
                                                     class="fa fa-paper-plane"></i> Submit
                                         </button>

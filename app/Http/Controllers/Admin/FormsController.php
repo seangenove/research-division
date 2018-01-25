@@ -199,6 +199,24 @@ class FormsController extends Controller
         return redirect('/admin/forms');
     }
 
+    public function acceptResponses($id)
+    {
+        $questionnaire = Questionnaire::find($id);
+        $questionnaire->isAccepting = 1;
+        $questionnaire->save();
+
+        return redirect('/admin/forms');
+    }
+
+    public function declineResponses($id)
+    {
+        $questionnaire = Questionnaire::find($id);
+        $questionnaire->isAccepting = 0;
+        $questionnaire->save();
+
+        return redirect('/admin/forms');
+    }
+
 
     function ordinances()
     {

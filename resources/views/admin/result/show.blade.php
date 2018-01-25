@@ -3,7 +3,12 @@
 @section('styles')
     <style>
         div > li {
-            font-size: 25px;
+            font-size: 30px;
+        }
+
+        div > ul {
+            list-style: none;
+            font-size: 20px;
         }
     </style>
 
@@ -14,44 +19,17 @@
 
         <h1> Results </h1>
             @foreach( $questions as $key)
-                <div>
+                <div    >
                     <h3> {{ $key->question}} </h3>
-                        <ol>
+                        <ul>
                             @foreach( $answers as $ans )
                                 @if( $ans->question_id === $key->id)
                                     <li> {{ $ans->answer }} </li>
                                 @endif
                             @endforeach
-                        </ol>
+                        </ul>
                 </div>
             @endforeach
-
-
-
-
-        {{--<div>--}}
-            {{--<h3>Question: Are you in favor of the Non-Smoking Ordinance?Why?</h3>--}}
-            {{--<div id="Q2:">--}}
-                {{--<ol>--}}
-                    {{--<li>No, Because I regularly smoke when i have the sudden urge to smoke</li>--}}
-                    {{--<li>Yes, Because I get irritated when I smell the smoke of the cigarette </li>--}}
-                {{--</ol>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-
-        {{--<div>--}}
-            {{--<h3> Question: Are you Against Smoking? </h3>--}}
-            {{--<div id="Q3">--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
-
-        {{--<div>--}}
-            {{--<h3> Question: Why do you Smoke?</h3>--}}
-            {{--<div id="Q4">--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
     </div>
 @endsection
 
@@ -157,10 +135,5 @@
 
             }]
         });
-        // 625 respondents
-    </script>
-
-    <script>
-
     </script>
 @endsection
