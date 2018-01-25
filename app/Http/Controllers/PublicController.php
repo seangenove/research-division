@@ -56,11 +56,11 @@ class PublicController extends Controller
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')
+        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::pluck('ordinance_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
-        $resolutions = DB::table('resolutions')
+        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::pluck('resolution_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
@@ -126,7 +126,7 @@ class PublicController extends Controller
         }else{
             $document = Questionnaire::findOrFail($request->id)->first()->resolution;
         }
-        dd($document->title);
+//        dd($document->title);
         for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
             $answer = new Answer;
             $answer->answer = $requestData['answer'.$i];
