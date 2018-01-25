@@ -13,6 +13,7 @@ use App\Questionnaire;
 use App\Value;
 use App\Answer;
 use DB;
+use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -115,15 +116,24 @@ class PublicController extends Controller
         return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
     }
 
-    public function submitOrdinanceAnswers(Request $request, $id)
+    public function submitOrdinanceAnswers(Request $request)
     {
+
         $requestData = $request->all();
+
+        if($request->type === 'ordinance'){
+            $document = Questionnaire::findOrFail($request->id)->first()->ordinance;
+        }else{
+            $document = Questionnaire::findOrFail($request->id)->first()->resolution;
+        }
+        dd($document->title);
         for ($i = 1; array_key_exists('answer'.$i, $requestData); $i++) {
             $answer = new Answer;
             $answer->answer = $requestData['answer'.$i];
             $answer->question_id = $requestData['question_id'.$i];
             $answer->save();
         }
+        Session::flash('flash_message', 'Thank you for answering the questionnaire for' . $document->title);
         return redirect('monitorAndEval');
     }
 

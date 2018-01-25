@@ -93,7 +93,11 @@
         </div>
 
     </header>
-
+    @if(Session::has('flash_message'))
+        <div class="alert {{Session::get('alert-class', 'alert-success')}}" style="margin-top: 8vh;">
+            {{ Session::get('flash_message') }}
+        </div>
+    @endif
     @yield('content')
 
     <!--bottom footer-->

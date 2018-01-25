@@ -16,12 +16,14 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Dan Ricky Ong',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('password'),
+                'role' => 'superadmin',
                 'created_at' => \Carbon\Carbon::now()
             ],
             [
                 'name' => 'Lina',
                 'email' => 'lina@example.com',
                 'password' => bcrypt('password'),
+                'role' => 'admin',
                 'created_at' => \Carbon\Carbon::now()
             ]
         );

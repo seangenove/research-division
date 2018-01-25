@@ -6,6 +6,11 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-info">
                         <div class="panel-body">
+                            @if(Session::has('flash_message'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('flash_message') }}
+                                </div>
+                            @endif
                             <div class="col-md-12">
                                 <h2> {{$questionnaire->name}}</h2>
                                 {{$questionnaire->description}}
@@ -15,6 +20,10 @@
                                 @endphp
                                 <form method="POST" action="{{ url("/submitOrdinanceAnswers/{$questionnaire->id }/") }}">
                                     {{ csrf_field() }}
+                                    <input type="hidden" name="id"
+                                           value="{{$questionnaire->ordinance_id === null ? $questionnaire->resolution_id : $questionnaire->ordinance_id}}">
+                                    <input type="hidden" name="type"
+                                           value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
                                     @foreach($questions as $question)
                                         <div class="form-group">
                                             <input name="question_id{{$counter}}" type="hidden" class="form-control"
