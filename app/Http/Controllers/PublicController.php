@@ -56,11 +56,11 @@ class PublicController extends Controller
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::pluck('ordinance_id'))
+        $ordinances = DB::table('ordinances')->whereIn('id',Questionnaire::where('isAccepting','=',1)->pluck('ordinance_id'))
             ->orderby('created_at', 'desc')
             ->get();
 
-        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::pluck('resolution_id'))
+        $resolutions = DB::table('resolutions')->whereIn('id',Questionnaire::where('isAccepting','=',1)->pluck('resolution_id'))
             ->orderby('created_at', 'desc')
             ->get();
 

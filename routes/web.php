@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'],function () {
         Route::get('resolutions', 'Admin\\FormsController@resolutions');
     });
     Route::resource('forms','Admin\\FormsController');
+    Route::post('/acceptResponses/{id}', 'Admin\\FormsController@acceptResponses');
+    Route::post('/declineResponses/{id}', 'Admin\\FormsController@declineResponses');
 
     Route::resources([
 //        'forms' => 'Admin\\FormsController',
