@@ -194,7 +194,8 @@
                         selected: true
                     });
                 }
-                alert(JSON.stringify($(v).parent().find('.currentChart')));
+
+                //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.currentChart').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -227,7 +228,7 @@
                         data: dataArr
                     }]
                 });
-                alert(JSON.stringify(dataArr));
+                //alert(JSON.stringify(dataArr));
 
 
             });
