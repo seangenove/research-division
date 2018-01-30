@@ -20,12 +20,14 @@ class QuestionnairesTableSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Questionnaire for Ordinance #1',
                 'description' => 'Desc for Questionnaire #1',
+                'isAccepting' => 1,
                 'ordinance_id' => 1
             ],
             [
                 'id' => 2,
                 'name' => 'Questionnaire for Ordinance #2',
                 'description' => 'Desc for Questionnaire #2',
+                'isAccepting' => 1,
                 'ordinance_id' => 2
 
             ],

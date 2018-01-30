@@ -207,8 +207,7 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 1;
         $questionnaire->save();
-
-        return redirect('/admin/forms');
+        return back();
     }
 
     public function declineResponses($id)
@@ -216,8 +215,7 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 0;
         $questionnaire->save();
-
-        return redirect('/admin/forms');
+        return back();
     }
 
     function ordinancesIndex()
