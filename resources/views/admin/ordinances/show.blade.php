@@ -23,16 +23,16 @@
                         <td>{{ $ordinance->number }}</td>
                     </tr>
                     <tr>
+                        <th>Series</th>
+                        <td>{{ $ordinance->series }}</td>
+                    </tr>
+                    <tr>
                         <th>Title</th>
                         <td>{{ $ordinance->title }}</td>
                     </tr>
                     <tr>
-                        <th>Description</th>
-                        <td>{{ $ordinance->description }}</td>
-                    </tr>
-                    <tr>
-                        <th>Authors</th>
-                        <td>{{ $ordinance->authors }}</td>
+                        <th>Keywords</th>
+                        <td>{{ $ordinance->keywords }}</td>
                     </tr>
                     </thead>
                 </table>

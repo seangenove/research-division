@@ -10,35 +10,42 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" action="{{ url("/admin/resolutions/{$resolution->id }/") }}">
+            <form method="post" action="{{ url("/admin/resolutions/{$resolution->id }/") }}" id="resolutionsForm">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="number">Number</label>
-                        <input name="number" type="text" class="form-control" id="number" placeholder="Enter resolution Number" value="{{ $resolution->number }}">
+                        <input name="number" type="text" class="form-control" id="number"
+                               value="{{ $resolution->number }}">
                     </div>
 
                     <div class="form-group">
                         <label for="series">Series</label>
                         <input name="series" type="text" class="form-control" id=series"
-                               placeholder="Enter Ordinance Series" value="{{ $ordinance->series }}">
+                               placeholder="Enter Ordinance Series" value="{{ $resolution->series }}">
                     </div>
 
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input name="title" type="text" class="form-control" id="title" placeholder="Enter Title" value="{{ $resolution->title }}">
+                        <input name="title" type="text" class="form-control" id="title" placeholder="Enter Title"
+                               value="{{ $resolution->title }}">
                     </div>
 
                     <div class="form-group">
                         <label for="keywords">Keywords</label>
-                        <textarea class="form-control" rows="5" name="keywords" id="keywords">{{ $ordinance->keywords }}</textarea>
+                        <textarea class="form-control" rows="5" name="keywords" id="keywords" form="resolutionsForm">
+                            {{ $resolution->keywords }}
+                        </textarea>
                     </div>
 
-                    <label for="is_accepting">Comments/Suggestions</label>
-                    <div class="checkbox">
-                        <label><input name="is_accepting" type="checkbox" value=1 @if($ordinance->is_accepting==1) {{"checked"}} @endif>Accept Comments</label>
-                    </div>
+                    @if(request()->type === 'ME')
+                        <label for="is_accepting">Comments/Suggestions</label>
+                        <div class="checkbox">
+                            <label><input name="is_accepting" type="checkbox" value=1
+                                        {{$resolution->is_accepting == 1 ? 'checked' : '' }}>Accept Comments</label>
+                        </div>
+                    @endif
 
                     <div class="form-group">
                         <label for="pdf">PDF File</label>

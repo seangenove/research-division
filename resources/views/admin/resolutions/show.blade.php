@@ -18,20 +18,20 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>resolution Number</th>
+                        <th>Resolution Number</th>
                         <td>{{ $resolution->number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Series</th>
+                        <td>{{ $resolution->series }}</td>
                     </tr>
                     <tr>
                         <th>Title</th>
                         <td>{{ $resolution->title }}</td>
                     </tr>
                     <tr>
-                        <th>Description</th>
-                        <td>{{ $resolution->description }}</td>
-                    </tr>
-                    <tr>
-                        <th>Authors</th>
-                        <td>{{ $resolution->authors }}</td>
+                        <th>Keywords</th>
+                        <td>{{ $resolution->keywords }}</td>
                     </tr>
                     </thead>
                 </table>

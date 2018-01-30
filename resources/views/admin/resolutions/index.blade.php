@@ -11,7 +11,9 @@
 @section('content')
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-file-text"></i> Resolutions under {{$type === 'IEC' ? 'IEC' : 'M&E'}}</h3>
+            <h3 class="box-title"><i class="fa fa-file-text"></i>
+                Resolutions under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
+            </h3>
         </div>
         <div class="box-body">
             <div>
@@ -21,10 +23,9 @@
                 <thead>
                 <tr>
                     <th>Resolution Number</th>
+                    <th>Series</th>
                     <th>Title</th>
-                    <th>Date Approved By Council</th>
-                    <th>Date Signed By Vice Mayor</th>
-                    <th>Date Approved By Mayor</th>
+                    <th>Keywords</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -32,10 +33,9 @@
                 @foreach($resolutions as $resolution)
                     <tr>
                         <td>{{ $resolution->number }}</td>
+                        <td>{{ $resolution->series }}</td>
                         <td>{{ $resolution->title }}</td>
-                        <td>{{ $resolution->date_approved_by_council }}</td>
-                        <td>{{ $resolution->date_signed_by_vice_mayor }}</td>
-                        <td>{{ $resolution->date_signed_by_mayor === null ? 'N/A' : $resolution->date_signed_by_mayor }}</td>
+                        <td>{{ $resolution->keywords }}</td>
                         <td>
                             <a href="/admin/resolutions/{{$resolution->id}}" class="btn btn-xs btn-primary">
                                 {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}

@@ -16,7 +16,7 @@ class CreateResolutionsTable extends Migration
         Schema::create('resolutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number', '30');
-            $table->text('series');
+            $table->year('series');
             $table->string('title', '150');
             $table->longText('keywords');
             $table->boolean('is_accepting')->default(false);
