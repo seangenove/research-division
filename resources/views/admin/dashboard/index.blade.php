@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-aqua">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{\App\Ordinance::where('is_monitoring',0)->count()}}</h3>
 
@@ -33,21 +33,21 @@
             </div>
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{\App\Resolution::where('is_monitoring',0)->count()}}</h3>
 
                         <p>Pending Resolutions</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-android-stopwatch"></i>
+                        <i class="ion ion-ios-stopwatch"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\Ordinance::where('is_monitoring',1)->count() }}</h3>
 
@@ -61,28 +61,28 @@
             </div>
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\Resolution::where('is_monitoring',1)->count() }}</h3>
 
                         <p>Monitored Resolutions</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-android-search"></i>
+                        <i class="ion ion-ios-search"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Ordinance::count() }}</h3>
+                        <h3>{{\App\Ordinance::where('is_monitoring',0)->count()}}</h3>
 
                         <p>Ordinances</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-list-alt"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -90,14 +90,14 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Resolution::count() }}</h3>
+                        <h3>{{\App\Resolution::where('is_monitoring',0)->count()}}</h3>
 
                         <p>Resolutions</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-ios-paper-outline"></i>
+                        <i class="fa fa-handshake-o"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -105,14 +105,14 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\Questionnaire::count() }}</h3>
 
                         <p>Questionnaires</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-question-circle-o"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -120,14 +120,14 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-aqua">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\Response::count() }}</h3>
 
                         <p>Feedback</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="ion ion-chatbox-working"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -138,14 +138,14 @@
         <div class="row">
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\Suggestion::count() }}</h3>
 
                         <p>Total Suggestions</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-social-usd"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -153,14 +153,14 @@
             
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3> {{ \App\Log::count() }}</h3>
 
                         <p>Total Visitors</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="ion ion-person-stalker"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -168,14 +168,14 @@
             
             <div class="col-lg-6 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-light-blue">
                     <div class="inner">
                         <h3>{{ \App\User::count() }}</h3>
 
                         <p>Users</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="ion ion-person"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
