@@ -11,7 +11,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" action="{{ url("/admin/ordinances/{$ordinance->id}/") }}">
+            <form method="post" action="{{ url("/admin/ordinances/{$ordinance->id}/") }}" id="ordinancesForm">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box-body">
@@ -35,13 +35,14 @@
 
                     <div class="form-group">
                         <label for="keywords">Keywords</label>
-                        <textarea class="form-control" rows="5" name="keywords" id="keywords">{{ $ordinance->keywords }}</textarea>
+                        <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm">{{ $ordinance->keywords }}</textarea>
                     </div>
-
-                    <label for="is_accepting">Comments/Suggestions</label>
-                    <div class="checkbox">
-                        <label><input name="is_accepting" type="checkbox" value=1 @if($ordinance->is_accepting==1) {{"checked"}} @endif>Accept Comments</label>
-                    </div>
+                    @if(request()->type === 'ME')
+                        <label for="is_accepting">Comments/Suggestions</label>
+                        <div class="checkbox">
+                            <label><input name="is_accepting" type="checkbox" value=1 @if($ordinance->is_accepting==1) {{"checked"}} @endif>Accept Comments</label>
+                        </div>
+                    @endif
                     {{--<div class="form-group">--}}
                         {{--<label for="description">Keywords</label>--}}
                         {{--<input name="keywords" type="text" class="form-control" id="description"--}}

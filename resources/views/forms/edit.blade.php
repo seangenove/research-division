@@ -11,7 +11,7 @@
             <questionnaire-update-component
                     action="{{ url("/admin/forms/{$questionnaire->id}/") }}"
                     csrf_token="{{ csrf_token() }}"
-                    old="{{$questionnaire_json }}">
+                    old="{{  $questionnaire_json }}">
                 Loading Component...
             </questionnaire-update-component>
 

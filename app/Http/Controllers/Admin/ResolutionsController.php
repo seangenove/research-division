@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ResolutionsController extends Controller
 {
-    const IEC = 'IEC';
+    const RR = 'RR';
 
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class ResolutionsController extends Controller
 
         return view('admin.resolutions.index', [
             'resolutions' => $resolutions,
-            'type' => ResolutionsController::IEC,
+            'type' => ResolutionsController::RR,
         ]);
     }
 
@@ -95,10 +95,11 @@ class ResolutionsController extends Controller
     public function show($id)
     {
         $resolution = Resolution::findOrFail($id);
+        $questionnaire = Questionnaire::where('resolution_id', $id)->first();
 
         return view('admin.resolutions.show', [
             'resolution' => $resolution,
-            'questionnaires' => Questionnaire::whereNotNull('resolution_id')->where('resolution_id', $id)->get(),
+            'questionnaire' => $questionnaire,
             'flag' => FormsController::RESOLUTIONS,
         ]);
     }
