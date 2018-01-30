@@ -49,16 +49,38 @@ class ResolutionsController extends Controller
     {
         // Check if User uploaded a PDF
 
-        if($request->has('pdf')){
-            $filename = $request->number . '.pdf';
-            $request->file('pdf')->storeAs(
-                env('GOOGLE_DRIVE_RESOLUTIONS_FOLDER_ID'),
-                $filename,
-                'google');
-        }
+//        if($request->has('pdf')){
+//            $filename = $request->number . '.pdf';
+//            $request->file('pdf')->storeAs(
+//                env('GOOGLE_DRIVE_RESOLUTIONS_FOLDER_ID'),
+//                $filename,
+//                'google');
+//        }
+//
+//        if ($request->has('pdf')) {
+//            $filename = $request->id . 'Ordinance' . $request->number . '.pdf';
+//
+//            if (env('APP_ENV') === 'local'){
+//                $path = $request->file('pdf')->storeAs(
+//                    'public/ordinances', $filename
+//                );
+//            } else {
+//                // save to google drive
+//                $path = $request->file('pdf')->storeAs(
+//                    env('GOOGLE_DRIVE_ORDINANCES_FOLDER_ID'),
+//                    $filename,
+//                    'google');
+//            }
+//        }
+
+        $file = $request->file('pdf');
 
         $resolution = new Resolution();
         $resolution->fill($request->all());
+        $resolution->save();
+        $resolution->pdf_file_path = $request->has('pdf') ?
+            app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions')
+            : '';
         $resolution->save();
 
         return redirect('/admin/resolutions');
