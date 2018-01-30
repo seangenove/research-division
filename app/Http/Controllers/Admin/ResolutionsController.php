@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ResolutionsController extends Controller
 {
-    const IEC = 'IEC';
+    const RR = 'RR';
 
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class ResolutionsController extends Controller
 
         return view('admin.resolutions.index', [
             'resolutions' => $resolutions,
-            'type' => ResolutionsController::IEC,
+            'type' => ResolutionsController::RR,
         ]);
     }
 
