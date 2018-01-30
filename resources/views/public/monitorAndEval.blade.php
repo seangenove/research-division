@@ -10,9 +10,9 @@
         @foreach($ordinances as $ordinance)
             <div class="ordinance-right-wrapper">
                 <h3>{{$ordinance->title}}</h3>
-                <p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>
-                <p>By: {{$ordinance->authors}} </p>
-                <p>{{$ordinance->description}}</p>
+                {{--<p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>--}}
+                {{--<p>By: {{$ordinance->authors}} </p>--}}
+                {{--<p>{{$ordinance->description}}</p>--}}
                 <a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">
                     <button class="btn-sm btn-success">
                         Answer Questionnaire
