@@ -37,10 +37,6 @@
                                 <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm"></textarea>
                             </div>
 
-                            {{--<div class="form-group">--}}
-                                {{--<label for="description">Keywords</label>--}}
-                                {{--<input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">--}}
-                            {{--</div>--}}
                             @if(request()->type === 'ME')
                                 <label for="is_accepting">Comments/Suggestions</label>
                                 <div class="checkbox">

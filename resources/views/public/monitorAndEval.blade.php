@@ -10,14 +10,19 @@
         @foreach($ordinances as $ordinance)
             <div class="ordinance-right-wrapper">
                 <h3>{{$ordinance->title}}</h3>
-                <p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>
-                <p>By: {{$ordinance->authors}} </p>
-                <p>{{$ordinance->description}}</p>
-                <a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">
-                    <button class="btn-sm btn-success">
-                        Answer Questionnaire
+
+                <p> {{$ordinance->series}} </p>
+                <p> {{$ordinance->number}} </p>
+                <a href="/public/showOrdinance/{{$ordinance->id}}">
+                    <button class="btn-sm btn-info">
+                        Read More
                     </button>
                 </a>
+                {{--<a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">--}}
+                    {{--<button class="btn-sm btn-success">--}}
+                        {{--Answer Questionnaire--}}
+                    {{--</button>--}}
+                {{--</a>--}}
             </div>
             <hr>
         @endforeach
@@ -29,14 +34,18 @@
         @foreach($resolutions as $resolution)
             <div class="resolution-right-wrapper">
                 <h3>{{$resolution->title}}</h3>
-                <p>Date Signed by Mayor: {{$resolution->date_signed_by_mayor}} </p>
-                <p>By: {{$resolution->authors}} </p>
-                <p>{{$resolution->description}}</p>
-                <a href="public/showResolutionQuestionnaire/{{$resolution->id}}\">
-                <button class="btn-sm btn-success">
-                    Answer Questionnaire
-                </button>
+                <p>{{$resolution->series}} </p>
+                <p>{{$resolution->number}} </p>
+                <a href="/public/showResolution/{{$resolution->id}}">
+                    <button class="btn-sm btn-info">
+                        Read More
+                    </button>
                 </a>
+                {{--<a href="public/showResolutionQuestionnaire/{{$resolution->id}}\">--}}
+                {{--<button class="btn-sm btn-success">--}}
+                    {{--Answer Questionnaire--}}
+                {{--</button>--}}
+                {{--</a>--}}
             </div>
             <hr>
         @endforeach
