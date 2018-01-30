@@ -34,4 +34,5 @@ class Ordinance extends Model
     {
         return $this->belongsToMany('App\Suggestion');
     }
+
 }
