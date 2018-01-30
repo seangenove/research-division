@@ -42,22 +42,26 @@
     .values-added-margin {
         margin: 8px 0;
     }
+
+    .value-group{
+        padding-left: 3%;
+    }
 </style>
 
 <template>
     <div class="box-body">
         <div class="col-md-9 content">
             <!--<div class="form-group" v-if="this.isOrdinance">-->
-                <!--<label>Associated Ordinance</label>-->
-                <!--<select class="form-control" v-model="questionnaire.associatedOrdinance">-->
-                    <!--<option v-for="ordinance in oor" v-bind:value="ordinance.id">{{ ordinance.title }}</option>-->
-                <!--</select>-->
+            <!--<label>Associated Ordinance</label>-->
+            <!--<select class="form-control" v-model="questionnaire.associatedOrdinance">-->
+            <!--<option v-for="ordinance in oor" v-bind:value="ordinance.id">{{ ordinance.title }}</option>-->
+            <!--</select>-->
             <!--</div>-->
             <!--<div class="form-group" v-if="this.isResolution">-->
-                <!--<label>Associated Resolution</label>-->
-                <!--<select class="form-control" v-model="questionnaire.associatedResolution">-->
-                    <!--<option v-for="resolution in oor" v-bind:value="resolution.id">{{ resolution.title }}</option>-->
-                <!--</select>-->
+            <!--<label>Associated Resolution</label>-->
+            <!--<select class="form-control" v-model="questionnaire.associatedResolution">-->
+            <!--<option v-for="resolution in oor" v-bind:value="resolution.id">{{ resolution.title }}</option>-->
+            <!--</select>-->
             <!--</div>-->
             <transition name="fade">
                 <div v-if="this.questionnaire.associatedResolution || this.questionnaire.associatedOrdinance">
@@ -102,70 +106,118 @@
                                 <div class="form-group">
                                     <label for="">Answer Type</label>
                                     <select v-model="question.type" id="quesType" class="form-control"
-                                            v-on:change="question.values = []">
+                                            v-on:change="checkType(question)">
                                         <option selected v-bind:value="'short'">Short Answer</option>
                                         <option v-bind:value="'long'">Long Answer</option>
                                         <option v-bind:value="'radio'">Multiple Choice</option>
                                         <option v-bind:value="'checkbox'">Checkboxes</option>
+                                        <option v-bind:value="'conditional'">Conditional</option>
                                     </select>
                                 </div>
-                                <transition name="fade">
-                                    <div v-if="question.type === 'radio'" class="form-group">
-                                        <label for="">Radio Box Values</label>
-                                        <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
-                                        </button>
-                                        <div v-for="val in question.values">
-                                            <div class="values-added-margin">
-                                                <div class="input-group animated fadeInUp">
-                                                    <input placeholder="Enter value..." class="form-control"
-                                                           v-validate="'required'"
-                                                           :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
-                                                           type="text" v-model="val.value" required>
-                                                    <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+                               <div class="value-group">
+                                   <transition name="fade">
+                                       <div v-if="question.type === 'conditional'" class="form-group">
+                                           <label for="">Conditional Values</label>
+                                           <!--<button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value-->
+                                           <!--</button>-->
 
-                                                    <div class="input-group-btn">
-                                                        <button v-on:click="removeValue(question, val)" type="button"
-                                                                class="btn btn-danger"><i class="fa fa-times"
-                                                                                          aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
-                                                      class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+                                           <div v-for="val in question.values">
+                                               <div v-if="question.values.indexOf(val) === question.values.length - 1">
+                                                   <p>Why (i.e. Yes. Because...)</p>
+                                               </div>
+                                               <div class="values-added-margin">
+                                                   <div class="animated fadeInUp">
+                                                       <input placeholder="Enter value..." class="form-control"
+                                                              v-validate="'required'"
+                                                              :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
+                                                              type="text" v-model="val.value" required>
+                                                   </div>
+                                                   <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
+                                                         class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </transition>
-                                <transition name="fade">
-                                    <div v-if="question.type === 'checkbox'">
-                                        <label for="">Check Box Values</label>
-                                        <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
-                                        </button>
-                                        <div v-for="val in question.values">
-                                            <div class="values-added-margin">
-                                                <div class="input-group animated fadeInUp">
-                                                    <input placeholder="Enter value..." class="form-control"
-                                                           v-validate="'required'"
-                                                           :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
-                                                           type="text" v-model="val.value" required>
-                                                    <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+                                               </div>
+                                           </div>
+                                           <!--<div v-for="val in question.values">-->
+                                           <!--<div class="values-added-margin">-->
+                                           <!--<div class="input-group animated fadeInUp">-->
+                                           <!--<input placeholder="Enter value..." class="form-control"-->
+                                           <!--v-validate="'required'"-->
+                                           <!--:name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"-->
+                                           <!--type="text" v-model="val.value" required>-->
+                                           <!--&lt;!&ndash;<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>&ndash;&gt;-->
 
-                                                    <div class="input-group-btn">
-                                                        <button v-on:click="removeValue(question, val)" type="button"
-                                                                class="btn btn-danger"><i class="fa fa-times"
-                                                                                          aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
+                                           <!--<div class="input-group-btn">-->
+                                           <!--<button v-on:click="removeValue(question, val)" type="button"-->
+                                           <!--class="btn btn-danger"><i class="fa fa-times"-->
+                                           <!--aria-hidden="true"></i>-->
+                                           <!--</button>-->
+                                           <!--</div>-->
+                                           <!--</div>-->
+                                           <!--<span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"-->
+                                           <!--class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>-->
 
-                                                </div>
-                                                <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
-                                                      class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+                                           <!--</div>-->
+                                           <!--</div>-->
+                                       </div>
+                                   </transition>
+                                   <transition name="fade">
+                                       <div v-if="question.type === 'radio'" class="form-group">
+                                           <label for="">Radio Box Values</label>
+                                           <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
+                                           </button>
+                                           <div v-for="val in question.values">
+                                               <div class="values-added-margin">
+                                                   <div class="input-group animated fadeInUp">
+                                                       <input placeholder="Enter value..." class="form-control"
+                                                              v-validate="'required'"
+                                                              :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
+                                                              type="text" v-model="val.value" required>
+                                                       <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </transition>
+                                                       <div class="input-group-btn">
+                                                           <button v-on:click="removeValue(question, val)" type="button"
+                                                                   class="btn btn-danger"><i class="fa fa-times"
+                                                                                             aria-hidden="true"></i>
+                                                           </button>
+                                                       </div>
+                                                   </div>
+                                                   <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
+                                                         class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </transition>
+                                   <transition name="fade">
+                                       <div v-if="question.type === 'checkbox'">
+                                           <label for="">Check Box Values</label>
+                                           <button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value
+                                           </button>
+                                           <div v-for="val in question.values">
+                                               <div class="values-added-margin">
+                                                   <div class="input-group animated fadeInUp">
+                                                       <input placeholder="Enter value..." class="form-control"
+                                                              v-validate="'required'"
+                                                              :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
+                                                              type="text" v-model="val.value" required>
+                                                       <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
+
+                                                       <div class="input-group-btn">
+                                                           <button v-on:click="removeValue(question, val)" type="button"
+                                                                   class="btn btn-danger"><i class="fa fa-times"
+                                                                                             aria-hidden="true"></i>
+                                                           </button>
+                                                       </div>
+
+                                                   </div>
+                                                   <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
+                                                         class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </transition>
+                               </div>
 
                             </div>
                             <div class="col-md-2"></div>
@@ -252,8 +304,8 @@
             console.log('Component mounted.')
             // console.log(this.data);
             console.log('----here----');
-            console.log('ORDINANCE',this.ordinance);
-            console.log('RESOLUTION',this.resolution);
+            console.log('ORDINANCE', this.ordinance);
+            console.log('RESOLUTION', this.resolution);
             // this.data = JSON.parse(this.data);
             console.log(typeof this.ordinance);
 
@@ -287,17 +339,25 @@
             },
             removeValue(question, val) {
                 question.values.splice(question.values.indexOf(val), 1);
+            },
+            checkType(q) {
+                q.values = [];
+                if (q.type === 'conditional') {
+                    q.values.push({value: "Yes"});
+                    q.values.push({value: "No"});
+                    q.values.push({value: "If [Yes/No]. Why?"});
+                } else {
+                }
             }
         },
         data() {
             return {
                 hello: 'Hello World from a Vue.js Component',
-                // oor: JSON.parse(this.data),
                 isOrdinance: this.flag === 'ordinances',
                 isResolution: this.flag === 'resolutions',
                 questionnaire: {
                     associatedOrdinance: this.ordinance ? JSON.parse(this.ordinance) : '',
-                    associatedResolution:   this.resolution ? JSON.parse(this.resolution) : '',
+                    associatedResolution: this.resolution ? JSON.parse(this.resolution) : '',
                     name: '',
                     description: '',
                     questions: [
