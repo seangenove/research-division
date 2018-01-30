@@ -18,11 +18,9 @@ class Ordinance extends Model
     protected $fillable = [
         'number',
         'title',
-        'description',
-        'authors',
-        'date_approved_by_council',
-        'date_signed_by_vice_mayor',
-        'date_signed_by_mayor',
+        'series',
+        'keywords',
+        'is_accepting',
         'pdf_file_path',
         'is_monitoring',
     ];
