@@ -194,7 +194,7 @@
                             @endif treeview menu">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span>IEC</span>
+                        <span>Research & Records</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -247,7 +247,7 @@
                             @endif treeview menu">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span>M&E</span>
+                        <span>Monitoring & Evaluation</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>

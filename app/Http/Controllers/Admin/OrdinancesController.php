@@ -89,10 +89,10 @@ class OrdinancesController extends Controller
      */
     public function show($id){
         $ordinance = Ordinance::findOrFail($id);
-
+        $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
         return view('admin.ordinances.show', [
             'ordinance' => $ordinance,
-            'questionnaires' => Questionnaire::whereNotNull('ordinance_id')->where('ordinance_id', $id)->get(),
+            'questionnaire' => $questionnaire,
             'flag' => FormsController::ORDINANCES
         ]);
     }
