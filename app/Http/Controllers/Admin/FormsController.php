@@ -63,9 +63,9 @@ class FormsController extends Controller
             $questionnaire->name = $questionnaire_object->name;
             $questionnaire->description = $questionnaire_object->description;
             if ($questionnaire_object->associatedOrdinance){
-                $questionnaire->ordinance_id = $questionnaire_object->associatedOrdinance;
+                $questionnaire->ordinance_id = $questionnaire_object->associatedOrdinance->id;
             } elseif($questionnaire_object->associatedResolution){
-                $questionnaire->resolution_id = $questionnaire_object->associatedResolution;
+                $questionnaire->resolution_id = $questionnaire_object->associatedResolution->id;
             } else{
                 dd('Invalid Request...');
             }

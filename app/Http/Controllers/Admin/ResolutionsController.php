@@ -95,10 +95,11 @@ class ResolutionsController extends Controller
     public function show($id)
     {
         $resolution = Resolution::findOrFail($id);
+        $questionnaire = Questionnaire::where('resolution_id', $id)->first();
 
         return view('admin.resolutions.show', [
             'resolution' => $resolution,
-            'questionnaires' => Questionnaire::whereNotNull('resolution_id')->where('resolution_id', $id)->get(),
+            'questionnaire' => $questionnaire,
             'flag' => FormsController::RESOLUTIONS,
         ]);
     }
