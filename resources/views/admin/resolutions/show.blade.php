@@ -132,7 +132,7 @@
     </div>
     <div class="col-md-7">
         <iframe src = "/ViewerJS/#../storage/resolutions/{{substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 )}}"
-                width='100%' height='400' allowfullscreen webkitallowfullscreen></iframe>
+                width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
     </div>
 
 
