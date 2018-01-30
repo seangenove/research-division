@@ -16,12 +16,10 @@ class Resolution extends Model
      */
     protected $fillable = [
         'number',
+        'series',
         'title',
-        'description',
-        'authors',
-        'date_approved_by_council',
-        'date_signed_by_vice_mayor',
-        'date_signed_by_mayor',
+        'keywords',
+        'is_accepting',
         'pdf_file_path',
         'is_monitoring',
     ];

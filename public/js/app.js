@@ -50419,14 +50419,19 @@ var Questions = function Questions() {
         'action': String,
         'csrf_token': String,
         'data': String,
+        'ordinance': String,
+        'resolution': String,
         'flag': String
     },
     mounted: function mounted() {
 
         console.log('Component mounted.');
-        console.log(this.data);
-        this.data = JSON.parse(this.data);
-        console.log(_typeof(this.data));
+        // console.log(this.data);
+        console.log('----here----');
+        console.log('ORDINANCE', this.ordinance);
+        console.log('RESOLUTION', this.resolution);
+        // this.data = JSON.parse(this.data);
+        console.log(_typeof(this.ordinance));
     },
 
     methods: {
@@ -50465,12 +50470,12 @@ var Questions = function Questions() {
     data: function data() {
         return {
             hello: 'Hello World from a Vue.js Component',
-            oor: JSON.parse(this.data),
+            // oor: JSON.parse(this.data),
             isOrdinance: this.flag === 'ordinances',
             isResolution: this.flag === 'resolutions',
             questionnaire: {
-                associatedOrdinance: '',
-                associatedResolution: '',
+                associatedOrdinance: this.ordinance ? JSON.parse(this.ordinance) : '',
+                associatedResolution: this.resolution ? JSON.parse(this.resolution) : '',
                 name: '',
                 description: '',
                 questions: [
@@ -50498,96 +50503,6 @@ var render = function() {
       "div",
       { staticClass: "col-md-9 content" },
       [
-        this.isOrdinance
-          ? _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Associated Ordinance")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.questionnaire.associatedOrdinance,
-                      expression: "questionnaire.associatedOrdinance"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.questionnaire,
-                        "associatedOrdinance",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.oor, function(ordinance) {
-                  return _c("option", { domProps: { value: ordinance.id } }, [
-                    _vm._v(_vm._s(ordinance.title))
-                  ])
-                })
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        this.isResolution
-          ? _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Associated Resolution")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.questionnaire.associatedResolution,
-                      expression: "questionnaire.associatedResolution"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.questionnaire,
-                        "associatedResolution",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.oor, function(resolution) {
-                  return _c("option", { domProps: { value: resolution.id } }, [
-                    _vm._v(_vm._s(resolution.title))
-                  ])
-                })
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
         _c("transition", { attrs: { name: "fade" } }, [
           this.questionnaire.associatedResolution ||
           this.questionnaire.associatedOrdinance

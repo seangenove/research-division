@@ -22,34 +22,29 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="series">Series</label>
+                                <input name="series" type="text" class="form-control" id="series" value="{{ old('series')}}">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="title">Title</label>
                                 <input name="title" type="text" class="form-control" id="title" value="{{ old('title')}}">
                             </div>
 
                             <div class="form-group">
-                                <label for="description">Description</label>
-                                <input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">
+                                <label for="keywords">Keywords</label>
+                                <textarea class="form-control" rows="5" name="keywords" id="keywords"></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="authors">Authors</label>
-                                <input name="authors" type="text" class="form-control" id="authors" value="{{ old('authors')}}">
+                            {{--<div class="form-group">--}}
+                                {{--<label for="description">Keywords</label>--}}
+                                {{--<input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">--}}
+                            {{--</div>--}}
+                            <label for="is_accepting">Comments/Suggestions</label>
+                            <div class="checkbox">
+                                <label><input name="is_accepting" type="checkbox" value=1>Accept Comments</label>
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Date Approved By Council</label>
-                                <input name="date_approved_by_council" type="date" class="form-control" id="date_approved_by_the_council" value="{{ old('authors')}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Date Signed By Vice Mayor</label>
-                                <input name="date_signed_by_vice_mayor" type="date" class="form-control" id="date_signed_by_vice_mayor" value="{{ old('authors')}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Date Signed By Mayor</label>
-                                <input name="date_signed_by_mayor" type="date" class="form-control" id="date_signed_by_mayor" value="{{ old('authors')}}">
-                            </div>
                             <div class="form-group">
                                 <label for="pdf">PDF File</label>
                                 <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">

@@ -22,42 +22,32 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="series">Series</label>
+                        <input name="series" type="text" class="form-control" id=series"
+                               placeholder="Enter Ordinance Series" value="{{ $ordinance->series }}">
+                    </div>
+
+                    <div class="form-group">
                         <label for="title">Title</label>
                         <input name="title" type="text" class="form-control" id="title" placeholder="Enter Title"
                                value="{{ $ordinance->title }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input name="description" type="text" class="form-control" id="description"
-                               placeholder="Enter description" value="{{ $ordinance->description }}">
+                        <label for="keywords">Keywords</label>
+                        <textarea class="form-control" rows="5" name="keywords" id="keywords">{{ $ordinance->keywords }}</textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Authors</label>
-                        <input name="authors" type="text" class="form-control" id="authors" placeholder="Enter Authors"
-                               value="{{ $ordinance->authors }}">
+                    <label for="is_accepting">Comments/Suggestions</label>
+                    <div class="checkbox">
+                        <label><input name="is_accepting" type="checkbox" value=1 @if($ordinance->is_accepting==1) {{"checked"}} @endif>Accept Comments</label>
                     </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="description">Keywords</label>--}}
+                        {{--<input name="keywords" type="text" class="form-control" id="description"--}}
+                               {{--placeholder="Enter description" value="{{ $ordinance->keywords }}">--}}
+                    {{--</div>--}}
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Approved By Council</label>
-                        <input name="date_approved_by_council" type="date" class="form-control"
-                               id="date_approved_by_the_council"
-                               value="{{ old('date_approved_by_council', $ordinance->date_approved_by_council)}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Signed By Vice Mayor</label>
-                        <input name="date_signed_by_vice_mayor" type="date" class="form-control"
-                               id="date_signed_by_vice_mayor"
-                               value="{{ old('date_signed_by_vice_mayor', $ordinance->date_signed_by_vice_mayor)}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Date Signed By Mayor</label>
-                        <input name="date_signed_by_mayor" type="date" class="form-control" id="date_signed_by_mayor"
-                               value="{{ old('date_signed_by_mayor', $ordinance->date_signed_by_mayor)}}">
-                    </div>
                 </div>
                 <!-- /.box-body -->
 
