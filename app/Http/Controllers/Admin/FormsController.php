@@ -142,9 +142,9 @@ class FormsController extends Controller
         $questionnaire_json->questions = [];
         $temp = [];
         if ($questionnaire->ordinance_id) {
-            $questionnaire_json->associatedResolution = Ordinance::find($questionnaire->ordinance_id)->toJson();
+            $questionnaire_json->associatedOrdinance = Ordinance::find($questionnaire->ordinance_id);
         } else if ($questionnaire->resolution_id) {
-            $questionnaire_json->associatedResolution = Resolution::find($questionnaire->resolution_id)->toJson();
+            $questionnaire_json->associatedResolution = Resolution::find($questionnaire->resolution_id);
         } else {
             abort(404);
         }
