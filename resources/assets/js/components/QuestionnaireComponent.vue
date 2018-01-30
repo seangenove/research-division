@@ -353,8 +353,8 @@
         data() {
             return {
                 hello: 'Hello World from a Vue.js Component',
-                isOrdinance: this.flag === 'ordinances',
-                isResolution: this.flag === 'resolutions',
+                // isOrdinance: this.flag === 'ordinances',
+                // isResolution: this.flag === 'resolutions',
                 questionnaire: {
                     associatedOrdinance: this.ordinance ? JSON.parse(this.ordinance) : '',
                     associatedResolution: this.resolution ? JSON.parse(this.resolution) : '',

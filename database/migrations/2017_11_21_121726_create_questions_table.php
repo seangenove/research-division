@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('question');
             $table->boolean('required');
-            $table->enum('type', ['short', 'long', 'radio', 'checkbox', 'ynw']);
+            $table->enum('type', ['short', 'long', 'radio', 'checkbox', 'conditional']);
             $table->integer('questionnaire_id')->unsigned();
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires')->onDelete('cascade');
             $table->softDeletes();

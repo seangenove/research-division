@@ -33,20 +33,20 @@ class FormsController extends Controller
 
     public function create(Request $request)
     {
-        if ($request->flag === 'ordinances' && $request->ordinance_id){
+        if ($request->flag === 'ordinances' && $request->ordinance_id) {
             return view('forms.create', [
                 'flag' => 'ordinances',
                 'ordinance_id' => $request->ordinance_id,
                 'ordinance_json' => Ordinance::find($request->ordinance_id)->toJson(),
             ]);
-        } elseif ($request->flag === 'resolutions' && $request->resolution_id){
+        } elseif ($request->flag === 'resolutions' && $request->resolution_id) {
 //            dd($request->flag, $request->resolution_id);
             return view('forms.create', [
                 'flag' => 'resolutions',
                 'resolution_id' => $request->resolution_id,
                 'resolution_json' => Resolution::find($request->resolution_id)->toJson(),
             ]);
-        } else{
+        } else {
             abort(404);
         }
         return view('forms.create');
@@ -62,11 +62,11 @@ class FormsController extends Controller
             $questionnaire = new Questionnaire();
             $questionnaire->name = $questionnaire_object->name;
             $questionnaire->description = $questionnaire_object->description;
-            if ($questionnaire_object->associatedOrdinance){
+            if ($questionnaire_object->associatedOrdinance) {
                 $questionnaire->ordinance_id = $questionnaire_object->associatedOrdinance->id;
-            } elseif($questionnaire_object->associatedResolution){
+            } elseif ($questionnaire_object->associatedResolution) {
                 $questionnaire->resolution_id = $questionnaire_object->associatedResolution->id;
-            } else{
+            } else {
                 dd('Invalid Request...');
             }
             $questionnaire->saveOrFail();
@@ -79,7 +79,7 @@ class FormsController extends Controller
 
                 $new_question->saveOrFail();
                 // If type is checkbox/radio
-                if ($q->type === 'radio' || $q->type === 'checkbox') {
+                if ($q->type === 'radio' || $q->type === 'checkbox' || $q->type === 'conditional') {
                     // For each of the values
                     foreach ($q->values as $v) {
                         $new_val = new Value();
@@ -135,32 +135,42 @@ class FormsController extends Controller
     public function edit($id)
     {
 
-            $questionnaire = Questionnaire::findOrFail($id);
-            $questionnaire_json = new \stdClass();
-            $questionnaire_json->name = $questionnaire->name;
-            $questionnaire_json->description = $questionnaire->description;
-            $questionnaire_json->questions = [];
-            $temp = [];
-            foreach ($questionnaire->questions as $q) {
-                $temp_question = new \stdClass();
-                $temp_question->question = $q->question;
-                $temp_question->required = ($q->required === 1 ? true : false);
-                $temp_question->type = $q->type;
-                $temp_question->values = [];
-                if ($temp_question->type === 'checkbox' || $temp_question->type === 'radio') {
-                    foreach ($q->values as $v) {
-                        $vc = new \stdClass();
-                        $vc->value = $v->value;
-                        $temp_question->values[] = $vc;
-                    }
+        $questionnaire = Questionnaire::findOrFail($id);
+        $questionnaire_json = new \stdClass();
+        $questionnaire_json->name = $questionnaire->name;
+        $questionnaire_json->description = $questionnaire->description;
+        $questionnaire_json->questions = [];
+        $temp = [];
+        if ($questionnaire->ordinance_id) {
+            $questionnaire_json->associatedResolution = Ordinance::find($questionnaire->ordinance_id)->toJson();
+        } else if ($questionnaire->resolution_id) {
+            $questionnaire_json->associatedResolution = Resolution::find($questionnaire->resolution_id)->toJson();
+        } else {
+            abort(404);
+        }
+
+        foreach ($questionnaire->questions as $q) {
+            $temp_question = new \stdClass();
+            $temp_question->question = $q->question;
+            $temp_question->required = ($q->required === 1 ? true : false);
+            $temp_question->type = $q->type;
+            $temp_question->values = [];
+            if ($temp_question->type === 'checkbox' || $temp_question->type === 'radio' || 'conditional') {
+                foreach ($q->values as $v) {
+                    $vc = new \stdClass();
+                    $vc->value = $v->value;
+                    $temp_question->values[] = $vc;
                 }
-                $temp[] = $temp_question;
             }
-            $questionnaire_json->questions = $temp;
-            return view('forms.edit', [
-                'questionnaire' => $questionnaire,
-                'questionnaire_json' => json_encode($questionnaire_json)
-            ]);
+            $temp[] = $temp_question;
+        }
+        $questionnaire_json->questions = $temp;
+//            dd(json_encode($questionnaire_json));
+//            return response()->json($questionnaire_json);
+        return view('forms.edit', [
+            'questionnaire' => $questionnaire,
+            'questionnaire_json' => json_encode($questionnaire_json)
+        ]);
     }
 
     public function update(Request $request, $id)
