@@ -18,7 +18,6 @@
         bottom: 0;
         right: 98px;
         margin-bottom: 108px;
-
     }
 
     /** preview **/
@@ -26,8 +25,18 @@
         position: fixed;
         /*bottom: 18vh;*/
         /*right: 14%;*/
-        bottom: 0;
-        right: 195px;
+        bottom: 43px;
+        right: 98px;
+        margin-bottom: 108px;
+    }
+
+    /** Add Questions**/
+    .fixed-button-3 {
+        position: fixed;
+        /*bottom: 18vh;*/
+        /*right: 14%;*/
+        bottom: 85px;
+        right: 98px;
         margin-bottom: 108px;
     }
 
@@ -79,7 +88,7 @@
                                   rows="10"></textarea>
                     </div>
                     <hr>
-                    <button v-on:click="addQuestion()" class="btn btn-success btn-sm">Add Question</button>
+                    <button v-on:click="addQuestion()" class="btn btn-success btn-md fixed-button-3">Add Question</button>
                     <div v-for="question in questionnaire.questions">
                         <div class="row animated slideInRight">
                             <div class="col-md-2"></div>

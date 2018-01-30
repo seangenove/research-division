@@ -49823,7 +49823,7 @@ exports = module.exports = __webpack_require__(43)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 0;\n    right: 195px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group{\n    padding-left: 3%;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 43px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** Add Questions**/\n.fixed-button-3 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 85px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group{\n    padding-left: 3%;\n}\n", ""]);
 
 // exports
 
@@ -50466,6 +50466,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -50668,7 +50677,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-success btn-sm",
+                      staticClass: "btn btn-success btn-md fixed-button-3",
                       on: {
                         click: function($event) {
                           _vm.addQuestion()
@@ -52568,6 +52577,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -52759,7 +52777,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-success btn-sm",
+                      staticClass: "btn btn-success btn-md fixed-button-3",
                       on: {
                         click: function($event) {
                           _vm.addQuestion()
@@ -53828,7 +53846,7 @@ exports = module.exports = __webpack_require__(43)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 0;\n    right: 195px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group {\n    padding-left: 3%;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 43px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** Add Questions**/\n.fixed-button-3 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 85px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group {\n    padding-left: 3%;\n}\n", ""]);
 
 // exports
 
