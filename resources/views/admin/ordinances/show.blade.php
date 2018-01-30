@@ -97,10 +97,16 @@
                                         <td> {{ $questionnaire->resolution ? $questionnaire->resolution->title : '-'}}</td>
                                         <td>
                                             @if($questionnaire->isAccepting == 0)
-                                                <span class="label label-danger">Responses Disabled</span>
+
+                                                <span class="label label-danger">
+                                        Not Accepting Responses
+                                    </span>
                                             @else
-                                                <span class="label label-success">Accepting Responses</span>
+                                                <span class="label label-success">
+                                        Accepting Responses
+                                    </span>
                                             @endif
+                                        </td>
                                         <td>
                                             <a href="{{"/admin/result/{$questionnaire->id}"}}" class="btn btn-xs btn-success"><span>Results</span></a>
                                             <a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-xs btn-info"><span>Preview</span></a>
@@ -121,7 +127,8 @@
                                                       action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                                     {{ csrf_field() }}
                                                     <button class="btn btn-xs btn-danger">
-                                                        Disable Responses
+
+                                                        Decline Responses
                                                     </button>
                                                 </form>
                                             @endif
