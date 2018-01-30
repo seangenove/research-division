@@ -16,12 +16,10 @@ class CreateOrdinancesTable extends Migration
         Schema::create('ordinances', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number', '30');
+            $table->text('series');
             $table->string('title', '150');
-            $table->text('description');
-            $table->text('authors');
-            $table->date('date_approved_by_council');
-            $table->date('date_signed_by_vice_mayor');
-            $table->date('date_signed_by_mayor')->nullable();
+            $table->longText('keywords');
+            $table->boolean('is_accepting')->default(false);
             $table->tinyInteger('is_monitoring');
             $table->text('pdf_file_path')->nullable();
             $table->timestamps();
