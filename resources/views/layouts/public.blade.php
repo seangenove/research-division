@@ -63,16 +63,16 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/ordinance">Ordinances</a></li>
                         <li><a href="/resolutions">Resolutions</a></li>
-                        {{--<li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>--}}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Monitoring & Evaluation <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/monitorAndEval">Questionnaire</a></li>
-                                <li><a href="/reports">Reports</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>
+                        {{--<li class="dropdown">--}}
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                                {{--Monitoring & Evaluation <span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="dropdown-menu">--}}
+                                {{--<li><a href="/monitorAndEval">Questionnaire</a></li>--}}
+                                {{--<li><a href="/reports">Reports</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
                         <li><a href="/about">About</a></li>
                         <li><a href="/contactUs">Contact</a></li>
                         {{--<li><a href="/reports">Reports</a></li>--}}

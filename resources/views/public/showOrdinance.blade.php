@@ -20,34 +20,62 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="container pb-cmnt-container" style="border-top: dotted lightseagreen; padding-top: 20px">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="panel panel-info">
-                                <div class="panel-body">
-                                    <form method="post" action="{{ url("/suggestions/{$ordinances->id }/") }}">
-                                        {{ csrf_field() }}
-                                        <input class="form-control" type="text" name="first_name"
-                                               placeholder="First Name">
-                                        <input class="form-control" type="text" name="last_name"
-                                               placeholder="Last Name">
-                                        <input class="form-control" type="hidden" name="type" value="ordinance">
-                                        <input class="form-control" type="email" name="email" placeholder="Email">
-                                        <textarea required class="form-control" name="suggestion" rows="5"
-                                                  placeholder="Please give us your suggestion on this ordinance"></textarea>
-                                        <br>
-                                        <div class="form-inline">
-                                            <button class="btn btn-success pull-right" type="submit"><i
-                                                        class="fa fa-paper-plane"></i> Send Now
-                                            </button>
+                @if($ordinances->is_monitoring == 1)
+                    <a href="">
+                        <button class="btn-sm btn-info">
+                            View Status Report
+                        </button>
+                    </a>
+                <br>
+                    <a href="">
+                        <button class="btn-sm btn-info">
+                            View Updates
+                        </button>
+                    </a>
+                <br>
+                    @if(!$questionnaire->isEmpty())
+                        <a href="/public/showOrdinanceQuestionnaire/{{$ordinances->id}}">
+                            <button class="btn-sm btn-success">
+                                Answer Questionnaire
+                            </button>
+                        </a>
+                    @endif
+                    @if($ordinances->is_accepting == 1)
+                        {{--<a href="">--}}
+                            {{--<button class="btn-sm btn-success">--}}
+                                {{--Give Comment--}}
+                            {{--</button>--}}
+                        {{--</a>--}}
+                        <div class="container pb-cmnt-container" style="border-top: dotted lightseagreen; padding-top: 20px">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <form method="post" action="{{ url("/suggestions/{$ordinances->id }/") }}">
+                                                {{ csrf_field() }}
+                                                <input class="form-control" type="text" name="first_name"
+                                                       placeholder="First Name">
+                                                <input class="form-control" type="text" name="last_name"
+                                                       placeholder="Last Name">
+                                                <input class="form-control" type="hidden" name="type" value="ordinance">
+                                                <input class="form-control" type="email" name="email" placeholder="Email">
+                                                <textarea required class="form-control" name="suggestion" rows="5"
+                                                          placeholder="Please give us your suggestion on this ordinance"></textarea>
+                                                <br>
+                                                <div class="form-inline">
+                                                    <button class="btn btn-success pull-right" type="submit"><i
+                                                                class="fa fa-paper-plane"></i> Send Now
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endif
+
             </div>
         </div>
     </div>
