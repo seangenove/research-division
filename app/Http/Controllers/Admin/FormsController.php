@@ -8,8 +8,12 @@ use App\Questionnaire;
 use App\Resolution;
 use App\Value;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Session;
+use Illuminate\Support\Facades\Redirect;
+use URL;
 
 class FormsController extends Controller
 {
@@ -33,6 +37,8 @@ class FormsController extends Controller
 
     public function create(Request $request)
     {
+        Session::flash('redirect_url', URL::previous());
+
         if ($request->flag === 'ordinances' && $request->ordinance_id) {
             return view('forms.create', [
                 'flag' => 'ordinances',
@@ -92,8 +98,9 @@ class FormsController extends Controller
                 $questionnaire->questions()->save($new_question);
             }
         });
+        return redirect($request->session()->get('redirect_url'));
 
-        return redirect('/admin/forms');
+
     }
 
     /**
@@ -134,7 +141,7 @@ class FormsController extends Controller
 
     public function edit($id)
     {
-
+        Session::flash('redirect_url', URL::previous());
         $questionnaire = Questionnaire::findOrFail($id);
         $questionnaire_json = new \stdClass();
         $questionnaire_json->name = $questionnaire->name;
@@ -173,22 +180,30 @@ class FormsController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Response $response)
     {
+
         // TODO: Refactor, add validation
-        DB::transaction(function () use ($id, $request) {
+        DB::transaction(function () use ($id, $request, $response) {
 
             // Json object passed by the view
             $questionnaire_object = json_decode($request->input('json-values'));
             // dd($questionnaire_object);
             $questionnaire = Questionnaire::findOrFail($id);
+            if ($questionnaire->ordinance_id) {
+                $redirect_url = '/admin/ordinances/' . $questionnaire->ordinance_id;
+            } else if ($questionnaire->resolution_id) {
+                $redirect_url = '/admin/resolutions/' . $questionnaire->resolution_id;
+            } else {
+                abort(404);
+            }
             $questionnaire->name = $questionnaire_object->name;
             $questionnaire->description = $questionnaire_object->description;
             $questionnaire->saveOrFail();
 
             /* Delete questions and values*/
             foreach ($questionnaire->questions as $q) {
-                foreach($q->values as $v){
+                foreach ($q->values as $v) {
                     $v->delete();
                 }
                 $q->delete();
@@ -213,9 +228,11 @@ class FormsController extends Controller
                 }
                 $questionnaire->questions()->save($new_question);
             }
-            return redirect('/admin/forms');
         });
-        return redirect('/admin/forms');
+        Session::flash('flash_message', 'Edit Success!');
+        return redirect($request->session()->get('redirect_url'));
+
+
     }
 
     public function destroy($id)
