@@ -44,4 +44,17 @@ class Questionnaire extends Model
     {
         return $this->belongsTo('App\Resolution');
     }
+
+    /**
+     * Returns true if a questionnaire with associated questions has answers
+     */
+    public function hasAnswers()
+    {
+        foreach($this->questions as $q){
+           if ($q->answers->count() != 0){
+            return true;
+           }
+        }
+        return false;
+    }
 }

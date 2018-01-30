@@ -12,8 +12,6 @@
 
                     @if($questionnaire)
                         {{--It has a questionnaire--}}
-
-
                         <div class="col-xs-12">
                             <div class="pull-right">
                                 @if($questionnaire->isAccepting == 0)
@@ -24,22 +22,24 @@
                                             <span class="fa fa-comments-o"></span> Accept Responses
                                         </button>
                                     </form>
+                                    @if(!$questionnaire->hasAnswers())
+                                        <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
+                                           class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                    @endif
                                 @else
                                     <form style="display: inline;" method="post"
                                           action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                         {{ csrf_field() }}
                                         <button class="btn btn-danger">
-
                                             <span class="fa fa-times"></span> Decline Responses
                                         </button>
                                     </form>
                                 @endif
+
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}"
                                    class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
                                 <a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span
                                                 class="fa fa-eye"></span> Preview</span></a>
-                                <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
-                                   class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                 <a href="" class="btn  btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
 
