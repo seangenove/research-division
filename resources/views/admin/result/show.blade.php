@@ -3,12 +3,12 @@
 @section('styles')
     <style>
         div > li {
-            font-size: 30px;
+            font-size: 15:px;
         }
 
         div > ul {
             list-style: none;
-            font-size: 20px;
+            font-size: 15px;
 
         }
 
@@ -20,6 +20,34 @@
         div.box-primary {
             padding: 5%;
         }
+        @media print {
+            .box-header, .code-container{
+                display: none;
+            }
+        }
+
+        .fa.fa-print{
+            margin-right: 5px;
+        }
+
+        a.print{
+             text-decoration: none;
+             display: inline-block;
+             width: 100px;
+             margin: 20px auto;
+             background: #dc143c;
+             background: linear-gradient(#e3647e, #DC143C);
+             text-align: center;
+             color: #fff;
+             padding: 3px 6px;
+             border-radius: 3px;
+             border: 1px solid #e3647e;
+         }
+
+        a.print:hover{
+            background: linear-gradient(#DC143C, #e3647e);
+            color: #fff;
+        }
     </style>
 
 @endsection
@@ -30,8 +58,15 @@
             <a href="/admin/result/download/{{ $questionnaire->id }}" class="btn btn-success btn-md pull-right">
                 <span class="fa fa fa-file-excel-o"> </span> Download Excel
             </a>
+
             <h1 class="box-title">Results for: <strong>{{ $questionnaire->name }}</strong></h1>
             <p>{{ $questionnaire->description }}</p>
+
+            <a href="" class="print pull-right ">
+                <i onclick="window.print()" class=" btn btn-md  fa fa-print">
+                    Print
+                </i>
+            </a>
         </div>
         <div class="box-body">
             <div class="content">
@@ -42,8 +77,8 @@
                                 <h3> {{ $question->question}} </h3>
                             </div>
                             <div class="box-tools">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
                                 </button>
                             </div>
 
@@ -58,12 +93,31 @@
                             </div>
                             {{-- Put graphs below  for each question --}}
                             <div class="col-md-7">
-                                <code>
+                                <code class="code-container">
                                     {{-- Here is the data--}}
                                     {{ $question->getAnswerCounts() }}
                                 </code>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" role="tab" href={{ '#pie' . $question->id }} >Pie</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" role="tab" href={{ '#bar'. $question->id}} >Bar</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane" role="tabpanel" id={{ 'pie'. $question->id}} >
                                         <div class="pieChart"></div>
+                                    </div>
+                                    <div class="tab-pane " role="tabpanel" id={{ 'bar'. $question->id}} >
                                         <div class="barGraph"></div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -97,6 +151,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.pieChart').highcharts({
                     chart: {
+                        height: 500,
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
                         plotShadow: false,
@@ -156,6 +211,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.barGraph').highcharts({
                     chart: {
+                        height: 500,
                         type: 'column'
                     },
                     exporting: {
@@ -166,7 +222,7 @@
                         text: 'Results'
                     },
                     tooltip: {
-                                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                     },
                     plotOptions: {
                         bar: {
@@ -187,7 +243,7 @@
                         data: dataArr
                     }]
                 });
-                alert(JSON.stringify(dataArr));
+//                alert(JSON.stringify(dataArr));
             });
 
 
