@@ -47,18 +47,18 @@
 <template>
     <div class="box-body">
         <div class="col-md-9 content">
-            <div class="form-group" v-if="this.isOrdinance">
-                <label>Associated Ordinance</label>
-                <select class="form-control" v-model="questionnaire.associatedOrdinance">
-                    <option v-for="ordinance in oor" v-bind:value="ordinance.id">{{ ordinance.title }}</option>
-                </select>
-            </div>
-            <div class="form-group" v-if="this.isResolution">
-                <label>Associated Resolution</label>
-                <select class="form-control" v-model="questionnaire.associatedResolution">
-                    <option v-for="resolution in oor" v-bind:value="resolution.id">{{ resolution.title }}</option>
-                </select>
-            </div>
+            <!--<div class="form-group" v-if="this.isOrdinance">-->
+                <!--<label>Associated Ordinance</label>-->
+                <!--<select class="form-control" v-model="questionnaire.associatedOrdinance">-->
+                    <!--<option v-for="ordinance in oor" v-bind:value="ordinance.id">{{ ordinance.title }}</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group" v-if="this.isResolution">-->
+                <!--<label>Associated Resolution</label>-->
+                <!--<select class="form-control" v-model="questionnaire.associatedResolution">-->
+                    <!--<option v-for="resolution in oor" v-bind:value="resolution.id">{{ resolution.title }}</option>-->
+                <!--</select>-->
+            <!--</div>-->
             <transition name="fade">
                 <div v-if="this.questionnaire.associatedResolution || this.questionnaire.associatedOrdinance">
                     <div class="form-group">
@@ -243,14 +243,19 @@
             'action': String,
             'csrf_token': String,
             'data': String,
+            'ordinance': String,
+            'resolution': String,
             'flag': String,
         },
         mounted() {
 
             console.log('Component mounted.')
-            console.log(this.data);
-            this.data = JSON.parse(this.data);
-            console.log(typeof this.data);
+            // console.log(this.data);
+            console.log('----here----');
+            console.log('ORDINANCE',this.ordinance);
+            console.log('RESOLUTION',this.resolution);
+            // this.data = JSON.parse(this.data);
+            console.log(typeof this.ordinance);
 
         },
         methods: {
@@ -287,12 +292,12 @@
         data() {
             return {
                 hello: 'Hello World from a Vue.js Component',
-                oor: JSON.parse(this.data),
+                // oor: JSON.parse(this.data),
                 isOrdinance: this.flag === 'ordinances',
                 isResolution: this.flag === 'resolutions',
                 questionnaire: {
-                    associatedOrdinance: '',
-                    associatedResolution: '',
+                    associatedOrdinance: this.ordinance ? JSON.parse(this.ordinance) : '',
+                    associatedResolution:   this.resolution ? JSON.parse(this.resolution) : '',
                     name: '',
                     description: '',
                     questions: [

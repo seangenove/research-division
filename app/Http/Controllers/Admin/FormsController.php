@@ -31,8 +31,24 @@ class FormsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->flag === 'ordinances' && $request->ordinance_id){
+            return view('forms.create', [
+                'flag' => 'ordinances',
+                'ordinance_id' => $request->ordinance_id,
+                'ordinance_json' => Ordinance::find($request->ordinance_id)->toJson(),
+            ]);
+        } elseif ($request->flag === 'resolutions' && $request->resolution_id){
+//            dd($request->flag, $request->resolution_id);
+            return view('forms.create', [
+                'flag' => 'resolutions',
+                'resolution_id' => $request->resolution_id,
+                'resolution_json' => Resolution::find($request->resolution_id)->toJson(),
+            ]);
+        } else{
+            abort(404);
+        }
         return view('forms.create');
     }
 
