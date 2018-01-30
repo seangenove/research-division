@@ -79,6 +79,8 @@
 
 @section('scripts')
     <script src="/bower_components/highcharts/highcharts.js"></script>
+    <script src="/bower_components/highcharts/exporting.js"></script>
+    <script src="/bower_components/highcharts/offline-exporting.js"></script>
     {{--<script>--}}
 
 
@@ -180,6 +182,7 @@
     {{--}]--}}
     {{--});--}}
     {{--</script>--}}
+
     <script>
         $(document).ready(function () {
             $('code').each(function (i, v) {
@@ -203,6 +206,10 @@
                         plotShadow: false,
                         type: 'pie'
                     },
+                    exporting: {
+                        enabled: true,
+                        filename: "",
+                    },
                     title: {
                         text: 'Results'
                     },
@@ -223,7 +230,7 @@
                         }
                     },
                     series: [{
-                        name: 'Brands',
+                        name: 'Answers',
                         colorByPoint: true,
                         data: dataArr
                     }]
