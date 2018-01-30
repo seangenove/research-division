@@ -11,7 +11,7 @@ use App\File;
 
 class OrdinancesController extends Controller
 {
-    const IEC = 'IEC';
+    const RR = 'RR';
 
     public function upload($instance, $file, $type){
         $filename = $instance->id . substr(ucfirst($type),0, strlen($type)-1) . $instance->number . '.pdf';
@@ -45,7 +45,7 @@ class OrdinancesController extends Controller
 
         return view('admin.ordinances.index', [
             'ordinances' => $ordinances,
-            'type' => OrdinancesController::IEC,
+            'type' => OrdinancesController::RR,
         ]);
     }
 
@@ -89,10 +89,10 @@ class OrdinancesController extends Controller
      */
     public function show($id){
         $ordinance = Ordinance::findOrFail($id);
-
+        $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
         return view('admin.ordinances.show', [
             'ordinance' => $ordinance,
-            'questionnaires' => Questionnaire::whereNotNull('ordinance_id')->where('ordinance_id', $id)->get(),
+            'questionnaire' => $questionnaire,
             'flag' => FormsController::ORDINANCES
         ]);
     }

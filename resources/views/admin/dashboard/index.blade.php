@@ -21,6 +21,62 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
+                        <h3>{{\App\Ordinance::where('is_monitoring',0)->count()}}</h3>
+
+                        <p>Pending Ordinances</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-stopwatch"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>{{\App\Resolution::where('is_monitoring',0)->count()}}</h3>
+
+                        <p>Pending Resolutions</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-stopwatch"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>{{ \App\Ordinance::where('is_monitoring',1)->count() }}</h3>
+
+                        <p>Monitored Ordinances</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-search"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>{{ \App\Resolution::where('is_monitoring',1)->count() }}</h3>
+
+                        <p>Monitored Resolutions</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-search"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
                         <h3>{{ \App\Ordinance::count() }}</h3>
 
                         <p>Ordinances</p>
@@ -34,7 +90,7 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-yellow">
                     <div class="inner">
                         <h3>{{ \App\Resolution::count() }}</h3>
 
@@ -49,7 +105,7 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-green">
                     <div class="inner">
                         <h3>{{ \App\Questionnaire::count() }}</h3>
 
@@ -64,9 +120,9 @@
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>{{ \App\Questionnaire::count() }}</h3>
+                        <h3>{{ \App\Response::count() }}</h3>
 
                         <p>Feedback</p>
                     </div>
@@ -94,37 +150,7 @@
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3>{{ \App\User::count() }}</h3>
-
-                        <p>Users</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>0</h3>
-
-                        <p>Monitored Ordinances</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
+            
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-green">
@@ -139,6 +165,23 @@
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            
+            <div class="col-lg-6 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>{{ \App\User::count() }}</h3>
+
+                        <p>Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            
 
         </div>
         <div class="row">

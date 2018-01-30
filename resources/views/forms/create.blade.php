@@ -9,13 +9,13 @@
                 <h3 class="box-title">Create Questionnaire</h3>
             </div>
 
-
             @if(request()->flag === 'ordinances')
+
                 <questionnaire-component
                         action="{{ url('/admin/forms') }}"
                         csrf_token="{{ csrf_token() }}"
-                        data="{{ \App\Ordinance::all()->toJson() }}"
                         flag="{{ request()->flag }}"
+                        ordinance="{{ $ordinance_json }}"
                 >
                     Loading Component...
                 </questionnaire-component>
@@ -24,8 +24,8 @@
                 <questionnaire-component
                         action="{{ url('/admin/forms') }}"
                         csrf_token="{{ csrf_token() }}"
-                        data="{{ \App\Resolution::all()->toJson() }}"
                         flag="{{ request()->flag }}"
+                        resolution="{{ $resolution_json }}"
                 >
                     Loading Component...
                 </questionnaire-component>

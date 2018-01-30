@@ -182,20 +182,31 @@
                                 @if($resolution->is_monitoring === 0)
                                         active
                                 @endif
-                            @elseif((Request::is('admin/ordinances*') or Request::is('admin/resolutions*'))
-                            or  request()->type === 'IEC')
+                            @elseif((Request::is('admin/ordinances/*/edit') or Request::is('admin/resolutions/*/edit')))
+                                active
+                            @elseif(isset($type))
+                                @if(($type === 'RR')
+                                and (Request::is('admin/ordinances*') or Request::is('admin/resolutions*')))
+                                    active
+                                @endif
+                            @elseif(request()->type === 'RR')
                                 active
                             @endif treeview menu">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span>IEC</span>
+                        <span>Research & Records</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu" style="">
-                        <li class="@if((Request::is('admin/ordinances*')
-                                    and request()->type === 'IEC') or Request::is('admin/ordinances*')) active @endif">
+                        <li class="@if(Request::is('admin/ordinances/create*') and request()->type === 'RR')
+                                        active
+                                    @elseif(isset($type))
+                                        @if($type === 'RR' and Request::is('admin/ordinances'))
+                                            active
+                                        @endif
+                                    @endif">
                             <a href="/admin/ordinances">
                                 <i class="fa fa-circle-o"></i>
                                 <span>Ordinances</span>
@@ -205,8 +216,13 @@
                                     @if($resolution->is_monitoring === 0)
                                         active
                                     @endif
-                                    @elseif((Request::is('admin/resolutions*')
-                                    and request()->type === 'IEC') or Request::is('admin/resolutions*')) active @endif">
+                                    @elseif(Request::is('admin/resolutions/create*') and request()->type === 'RR')
+                                        active
+                                    @elseif(isset($type))
+                                        @if($type === 'RR' and Request::is('admin/resolutions'))
+                                            active
+                                        @endif
+                                    @endif">
                             <a href="/admin/resolutions">
                                 <i class="fa fa-circle-o"></i> <span>Resolutions</span>
                                 <span class="pull-right-container">
@@ -225,12 +241,13 @@
                                 @endif
                             @elseif(((Request::is('admin/forms/ordinances*') and request()->type === 'ME')
                                 or (Request::is('admin/forms/resolutions*') and request()->type === 'ME'))
-                                or (Request::is('admin/forms/ordinances*') or Request::is('admin/forms/resolutions*')))
+                                or (Request::is('admin/forms/ordinances*') or Request::is('admin/forms/resolutions*'))
+                                or request()->type === 'ME')
                                     active
                             @endif treeview menu">
                     <a href="#">
                         <i class="fa fa-book"></i>
-                        <span>M&E</span>
+                        <span>Monitoring & Evaluation</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -247,8 +264,8 @@
                                     @if($ordinance->is_monitoring === 1)
                                         active
                                     @endif
-                                    @elseif((Request::is('admin/forms/ordinances*')
-                                        and request()->type === 'ME') or Request::is('admin/forms/ordinances*'))
+                                    @elseif(Request::is('admin/forms/ordinances*') or Request::is('admin/forms/ordinances*')
+                                    or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
                                     active
                                     @endif">
                             <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
@@ -259,8 +276,8 @@
                                 @if($resolution->is_monitoring === 1)
                                         active
                                     @endif
-                                @elseif((Request::is('admin/forms/resolutions*')
-                                    and request()->type === 'ME') or Request::is('admin/forms/resolutions*'))
+                                @elseif(Request::is('admin/forms/resolutions*')
+                                or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
                                         active
                                 @endif">
                             <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>

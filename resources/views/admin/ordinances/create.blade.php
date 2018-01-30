@@ -10,10 +10,11 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="{{ url('/admin/ordinances/') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url('/admin/ordinances/') }}" enctype="multipart/form-data" id="ordinancesForm">
                 {{ csrf_field() }}
-                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::IEC
-                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
+                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::RR
+                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME
+                    or Request::is('*edit*'))
                         <div class="box-body">
                             <input type="hidden" name="is_monitoring" value="{{ request()->type === 'ME' ? 1 : 0 }}">
                             <div class="form-group">
@@ -33,13 +34,15 @@
 
                             <div class="form-group">
                                 <label for="keywords">Keywords</label>
-                                <textarea class="form-control" rows="5" name="keywords" id="keywords"></textarea>
+                                <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm"></textarea>
                             </div>
 
-                            <label for="is_accepting">Comments/Suggestions</label>
-                            <div class="checkbox">
-                                <label><input name="is_accepting" type="checkbox" value=1>Accept Comments</label>
-                            </div>
+                            @if(request()->type === 'ME')
+                                <label for="is_accepting">Comments/Suggestions</label>
+                                <div class="checkbox">
+                                    <label><input name="is_accepting" type="checkbox" value=1>Accept Comments</label>
+                                </div>
+                            @endif
 
                             <div class="form-group">
                                 <label for="pdf">PDF File</label>
@@ -52,8 +55,9 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::IEC
-                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
+                    @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::RR
+                    or request()->type === \App\Http\Controllers\Admin\FormsController::ME
+                    or Request::is('*edit*'))
                         <button type="submit" class="pull-right btn btn-primary">Create</button>
                     @endif
                 </div>

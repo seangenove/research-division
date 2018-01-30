@@ -11,7 +11,9 @@
 @section('content')
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-file-text"></i> Ordinances under {{$type === 'IEC' ? 'IEC' : 'M&E'}}</h3>
+            <h3 class="box-title"><i class="fa fa-file-text"></i>
+                Ordinances under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
+            </h3>
         </div>
         <div class="box-body">
             <div>
@@ -25,10 +27,9 @@
                 <thead>
                 <tr>
                     <th>Ordinance Number</th>
+                    <th>Series</th>
                     <th>Title</th>
-                    <th>Date Approved By Council</th>
-                    <th>Date Signed By Vice Mayor</th>
-                    <th>Date Approved By Mayor</th>
+                    <th>Keywords</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -36,10 +37,9 @@
                 @foreach($ordinances as $ordinance)
                     <tr>
                         <td>{{ $ordinance->number }}</td>
+                        <td>{{ $ordinance->series }}</td>
                         <td>{{ $ordinance->title }}</td>
-                        <td>{{ $ordinance->date_approved_by_council }}</td>
-                        <td>{{ $ordinance->date_signed_by_vice_mayor }}</td>
-                        <td>{{ $ordinance->date_signed_by_mayor === null ? 'N/A' : $ordinance->date_signed_by_mayor }}</td>
+                        <td>{{ $ordinance->keywords }}</td>
                         <td>
                             <a href="/admin/ordinances/{{$ordinance->id}}" class="btn btn-xs btn-primary">
                                 {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
