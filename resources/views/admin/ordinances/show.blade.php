@@ -97,6 +97,7 @@
                                         <td> {{ $questionnaire->resolution ? $questionnaire->resolution->title : '-'}}</td>
                                         <td>
                                             @if($questionnaire->isAccepting == 0)
+
                                                 <span class="label label-danger">
                                         Not Accepting Responses
                                     </span>
@@ -126,6 +127,7 @@
                                                       action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                                     {{ csrf_field() }}
                                                     <button class="btn btn-xs btn-danger">
+
                                                         Decline Responses
                                                     </button>
                                                 </form>

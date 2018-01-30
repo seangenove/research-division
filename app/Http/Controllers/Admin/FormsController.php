@@ -207,7 +207,6 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 1;
         $questionnaire->save();
-
         return back();
     }
 
@@ -216,7 +215,6 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 0;
         $questionnaire->save();
-
         return back();
     }
 

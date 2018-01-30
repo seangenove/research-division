@@ -7,10 +7,30 @@ use App\Questionnaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\File;
 
 class OrdinancesController extends Controller
 {
     const IEC = 'IEC';
+
+    public function upload($instance, $file, $type){
+        $filename = $instance->id . substr(ucfirst($type),0, strlen($type)-1) . $instance->number . '.pdf';
+
+        if (env('APP_ENV') === 'local'){
+            $path = $file->storeAs(
+                'public/'.$type, $filename
+            );
+        } else {
+            // save to google drive
+            $path = $file->storeAs(
+                env('GOOGLE_DRIVE_'. strtoupper($type) .'_FOLDER_ID'),
+                $filename,
+                'google');
+        }
+
+        return $path;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,19 +68,16 @@ class OrdinancesController extends Controller
     public function store(Request $request)
     {
         // Check if User uploaded a PDF
+//        $path = $request->has('pdf') ? $this->upload($request, 'ordinances') : '';
 
-        if($request->has('pdf')){
-            $filename = $request->number . '.pdf';
-            $path = $request->file('pdf')->storeAs(
-                env('GOOGLE_DRIVE_ORDINANCES_FOLDER_ID'),
-                    $filename,
-                    'google');
-        }
-//        dd($request->all());
+        $file = $request->file('pdf');
+
         $ordinance = new Ordinance();
         $ordinance->fill($request->all());
         $ordinance->save();
-//        dd($path);
+        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+        $ordinance->save();
+
         return redirect('/admin/ordinances');
     }
 
