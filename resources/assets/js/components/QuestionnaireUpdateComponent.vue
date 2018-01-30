@@ -230,6 +230,7 @@
 
                     </div>
                     <form ref="form" v-bind:action="action" method="post" @submit.prevent="validateBeforeSubmit">
+                        <input type="hidden" name="_method" value="PATCH">
                         <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
                         <input type="hidden" name="_token" v-bind:value="csrf_token">
                         <button class="fixed-button-1 btn btn-primary pull-right" type="submit"><span
@@ -268,7 +269,12 @@
                                     <div v-if="question.type === 'radio'">
                                         <input type="radio"> {{ val.value }}
                                     </div>
-
+                                    <div v-if="question.type === 'conditional'">
+                                        <input type="radio"> {{ val.value }}
+                                        <span v-if="question.values.indexOf(val) === question.values.length - 1">
+                                            <input class="form-control" type="text">
+                                        </span>
+                                    </div>
                                     <div v-if="question.type === 'checkbox'">
                                         <input type="checkbox"> {{ val.value }}
                                     </div>

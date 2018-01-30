@@ -50460,6 +50460,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -51560,6 +51566,26 @@ var render = function() {
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
+                            question.type === "conditional"
+                              ? _c("div", [
+                                  _c("input", { attrs: { type: "radio" } }),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(val.value) +
+                                      "\n                                    "
+                                  ),
+                                  question.values.indexOf(val) ===
+                                  question.values.length - 1
+                                    ? _c("span", [
+                                        _c("input", {
+                                          staticClass: "form-control",
+                                          attrs: { type: "text" }
+                                        })
+                                      ])
+                                    : _vm._e()
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
                             question.type === "checkbox"
                               ? _c("div", [
                                   _c("input", { attrs: { type: "checkbox" } }),
@@ -52246,6 +52272,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -53523,6 +53555,14 @@ var render = function() {
                     },
                     [
                       _c("input", {
+                        attrs: {
+                          type: "hidden",
+                          name: "_method",
+                          value: "PATCH"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
                         attrs: { name: "json-values", type: "hidden" },
                         domProps: { value: JSON.stringify(_vm.questionnaire) }
                       }),
@@ -53622,6 +53662,26 @@ var render = function() {
                                       _vm._s(val.value) +
                                       "\n                                "
                                   )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            question.type === "conditional"
+                              ? _c("div", [
+                                  _c("input", { attrs: { type: "radio" } }),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(val.value) +
+                                      "\n                                    "
+                                  ),
+                                  question.values.indexOf(val) ===
+                                  question.values.length - 1
+                                    ? _c("span", [
+                                        _c("input", {
+                                          staticClass: "form-control",
+                                          attrs: { type: "text" }
+                                        })
+                                      ])
+                                    : _vm._e()
                                 ])
                               : _vm._e(),
                             _vm._v(" "),

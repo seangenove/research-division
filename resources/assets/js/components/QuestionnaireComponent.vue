@@ -264,6 +264,12 @@
                                     <div v-if="question.type === 'radio'">
                                         <input type="radio"> {{ val.value }}
                                     </div>
+                                    <div v-if="question.type === 'conditional'">
+                                        <input type="radio"> {{ val.value }}
+                                        <span v-if="question.values.indexOf(val) === question.values.length - 1">
+                                            <input class="form-control" type="text">
+                                        </span>
+                                    </div>
 
                                     <div v-if="question.type === 'checkbox'">
                                         <input type="checkbox"> {{ val.value }}

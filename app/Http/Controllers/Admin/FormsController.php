@@ -185,7 +185,12 @@ class FormsController extends Controller
             $questionnaire->name = $questionnaire_object->name;
             $questionnaire->description = $questionnaire_object->description;
             $questionnaire->saveOrFail();
+
+            /* Delete questions and values*/
             foreach ($questionnaire->questions as $q) {
+                foreach($q->values as $v){
+                    $v->delete();
+                }
                 $q->delete();
             }
             foreach ($questionnaire_object->questions as $q) {
@@ -196,7 +201,7 @@ class FormsController extends Controller
                 $new_question->questionnaire_id = $questionnaire->id;
                 $new_question->saveOrFail();
                 // If type is checkbox/radio
-                if ($q->type === 'radio' || $q->type === 'checkbox') {
+                if ($q->type === 'radio' || $q->type === 'checkbox' || $q->type === 'conditional') {
                     // For each of the values
                     foreach ($q->values as $v) {
                         $new_val = new Value();
