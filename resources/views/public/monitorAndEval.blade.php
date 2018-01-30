@@ -10,6 +10,7 @@
         @foreach($ordinances as $ordinance)
             <div class="ordinance-right-wrapper">
                 <h3>{{$ordinance->title}}</h3>
+
                 <p> {{$ordinance->series}} </p>
                 <p> {{$ordinance->number}} </p>
                 <a href="/public/showOrdinance/{{$ordinance->id}}">
