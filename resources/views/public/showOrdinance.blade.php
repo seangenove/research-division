@@ -6,21 +6,11 @@
                 <div class="col-md-12">
                     <div class="ordinance">
                         <div class="ordinance-heading">
-                            <h1>{{$ordinances->title}}</h1>
-                        </div>
-                        <div class="ordinasnce-right">
-                            <div class="ordinance-right-wrapper">
-                                <p> Authors: {{$ordinances->authors}}</p>
-                                <p> Date Approved: {{$ordinances->date_approved_by_council}}</p>
-                                <p> Date Signed by Vice Mayor: {{$ordinances->date_signed_by_vice_mayor}}</p>
-                                <p> Date Signed by Mayor: {{$ordinances->date_signed_by_mayor}}</p>
-                                <hr>
-                                <p> {{$ordinances->description}} </p>
-                            </div>
+                            <h1>{{$ordinance->title}}</h1>
                         </div>
                     </div>
                 </div>
-                @if($ordinances->is_monitoring == 1)
+                @if($ordinance->is_monitoring == 1)
                     <a href="">
                         <button class="btn-sm btn-info">
                             View Status Report
@@ -34,13 +24,14 @@
                     </a>
                 <br>
                     @if(!$questionnaire->isEmpty())
-                        <a href="/public/showOrdinanceQuestionnaire/{{$ordinances->id}}">
+                        <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">
                             <button class="btn-sm btn-success">
                                 Answer Questionnaire
                             </button>
                         </a>
                     @endif
-                    @if($ordinances->is_accepting == 1)
+
+                    @if($ordinance->is_accepting == 1)
                         {{--<a href="">--}}
                             {{--<button class="btn-sm btn-success">--}}
                                 {{--Give Comment--}}
@@ -72,10 +63,46 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     @endif
                 @endif
 
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <iframe src = "/ViewerJS/#../storage/ordinances/{{substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 )}}"
+                                                    width='100%' height='400' allowfullscreen webkitallowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Resolution Number</th>
+                                                    <td>{{ $ordinance->number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Series</th>
+                                                    <td>{{ $ordinance->series }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <td>{{ $ordinance->title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Keywords</th>
+                                                    <td>{{ $ordinance->keywords }}</td>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             </div>
         </div>
     </div>

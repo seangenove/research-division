@@ -17,9 +17,11 @@ class OrdinancesController extends Controller
         $filename = $instance->id . substr(ucfirst($type),0, strlen($type)-1) . $instance->number . '.pdf';
 
         if (env('APP_ENV') === 'local'){
-            $path = $file->storeAs(
+            $file->storeAs(
                 'public/'.$type, $filename
             );
+
+            $path = Storage::url($filename);
         } else {
             // save to google drive
             $path = $file->storeAs(

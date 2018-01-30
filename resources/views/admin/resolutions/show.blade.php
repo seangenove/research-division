@@ -56,15 +56,11 @@
                         </div>
                         <h2>{{ $questionnaire->name }}</h2>
                         <p>{{ $questionnaire->description }}</p>
-
-
-
                     @else
                         <div class="col-xs-12">
                             <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"
                                class="btn btn-success">Create Questionnaire</a>
                         </div>
-
                     @endif
                 </div>
             </div>
@@ -72,9 +68,8 @@
 
         </div>
     @endif
-
-    <div class="row">
-        <div class="col-md-5">
+    <div class="col-md-5">
+        <div class="row">
             <div class="box box-default color-palette-box">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-file-text"></i> resolution {{ $resolution->number }}
@@ -105,33 +100,39 @@
             </div>
         </div>
 
-        <div class="col-md-7">
-            <div class="box box-default color-palette-box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
-                </div>
+        @if($resolution->is_monitoring === 1)
+            <div class="row">
+                <div class="box box-default color-palette-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
+                    </div>
 
-                <div class="box-body box-comments">
-                    @foreach($resolution->suggestions as $suggestion)
-                        <div class="box-comment">
-                            <!-- User image -->
-                            {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
+                    <div class="box-body box-comments">
+                        @foreach($resolution->suggestions as $suggestion)
+                            <div class="box-comment">
+                                <!-- User image -->
+                                {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
 
-                            <div class="comment-text">
-                          <span class="username">
-                            {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                              <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                          </span><!-- /.username -->
-                                {{ $suggestion->suggestion }}
+                                <div class="comment-text">
+                              <span class="username">
+                                {{ $suggestion->first_name }} {{ $suggestion->last_name }}
+                                  <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
+                              </span><!-- /.username -->
+                                    {{ $suggestion->suggestion }}
+                                </div>
+                                <!-- /.comment-text -->
                             </div>
-                            <!-- /.comment-text -->
-                        </div>
 
-                    @endforeach
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+    </div>
+    <div class="col-md-7">
+        <iframe src = "/ViewerJS/#../storage/resolutions/{{substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 )}}"
+                width='100%' height='400' allowfullscreen webkitallowfullscreen></iframe>
     </div>
 
 

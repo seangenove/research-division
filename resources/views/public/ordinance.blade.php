@@ -13,9 +13,8 @@
                         @foreach($ordinances as $ordinance)
                         <div class="ordinance-right-wrapper">
                             <h3>{{$ordinance->title}}</h3>
-                            <p>Date Signed by Mayor: {{$ordinance->date_signed_by_mayor}} </p>
-                            <p>By: {{$ordinance->authors}} </p>
-                            <p>{{$ordinance->description}}</p>
+                            <p>Series: {{$ordinance->series}} </p>
+                            <p>{{$ordinance->keywords}}</p>
                             <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
                                     class="btn btn-info">Read More
                             </button>

@@ -106,9 +106,9 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
 
-        $ordinances = Ordinance::findOrFail($id);
+        $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id','=',$id)->where('isAccepting','=',1)->get();
-        return view('public.showOrdinance',['ordinances' => $ordinances], ['questionnaire' => $questionnaire]);
+        return view('public.showOrdinance',['ordinance' => $ordinance], ['questionnaire' => $questionnaire]);
     }
 
     public function showOrdinanceQuestionnaire($id)
@@ -190,9 +190,9 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /public/showResolution/{id}", 'public');
 
-        $resolutions = Resolution::findOrFail($id);
+        $resolution = Resolution::findOrFail($id);
         $questionnaire = Questionnaire::where('resolution_id','=',$id)->where('isAccepting','=',1)->get();
-        return view('public.showResolution', ['resolutions' => $resolutions], ['questionnaire' => $questionnaire]);
+        return view('public.showResolution', ['resolution' => $resolution], ['questionnaire' => $questionnaire]);
     }
 
     public function showResolutionQuestionnaire($id){

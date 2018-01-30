@@ -16,17 +16,14 @@
 
                                 <div class="ordinance-right-wrapper">
                                     <h3>{{$resolution->title}}</h3>
-                                    <p>{{$resolution->description}}</p>
-                                    <p>By: {{$resolution->authors}} </p>
-                                    <p>Date Signed by Mayor: {{$resolution->date_signed_by_mayor}} </p>
+                                    <p>Series: {{$resolution->series}} </p>
+                                    <p>{{$resolution->keywords}}</p>
                                     <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                            class="btn btn-info">Read
-                                        More
+                                            class="btn btn-info">Read More
                                     </button>
                                 </div>
                                 <hr>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
