@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <input name="description" type="text" class="form-control" id="description" placeholder="Enter description" value="{{ old('description')}}">
+                            <label for="keywords">Keywords</label>
+                            <textarea class="form-control" rows="5" name="keywords" id="keywords"></textarea>
                         </div>
 
                         <label for="is_accepting">Comments/Suggestions</label>

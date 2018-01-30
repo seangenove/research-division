@@ -36,10 +36,6 @@
                                 <textarea class="form-control" rows="5" name="keywords" id="keywords"></textarea>
                             </div>
 
-                            {{--<div class="form-group">--}}
-                                {{--<label for="description">Keywords</label>--}}
-                                {{--<input name="description" type="text" class="form-control" id="description" value="{{ old('description')}}">--}}
-                            {{--</div>--}}
                             <label for="is_accepting">Comments/Suggestions</label>
                             <div class="checkbox">
                                 <label><input name="is_accepting" type="checkbox" value=1>Accept Comments</label>
