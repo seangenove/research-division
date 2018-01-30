@@ -96,7 +96,13 @@
                                         {{-- Refactore below --}}
                                         <td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-' }}</td>
                                         <td> {{ $questionnaire->resolution ? $questionnaire->resolution->title : '-'}}</td>
-                                        <td><span class="label label-success">Accepting Responses</span></td>
+                                        <td>
+                                            @if($questionnaire->isAccepting == 0)
+                                                <span class="label label-danger">Responses Disabled</span>
+                                            @else
+                                                <span class="label label-success">Accepting Responses</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{"/admin/result/{$questionnaire->id}"}}" class="btn btn-xs btn-success"><span>Results</span></a>
                                             <a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-xs btn-info"><span>Preview</span></a>
@@ -104,6 +110,23 @@
                                                class="btn btn-xs btn-warning">Edit</a>
                                             {{--<a href="" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>--}}
                                             {{--Download</a>--}}
+                                            @if($questionnaire->isAccepting == 0)
+                                                <form style="display: inline;" method="post"
+                                                      action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
+                                                    {{ csrf_field() }}
+                                                    <button class="btn btn-xs btn-success">
+                                                        Accept Responses
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form style="display: inline;" method="post"
+                                                      action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
+                                                    {{ csrf_field() }}
+                                                    <button class="btn btn-xs btn-danger">
+                                                        Disable Responses
+                                                    </button>
+                                                </form>
+                                            @endif
                                             <form style="display: inline;" method="post"
                                                   action="{{ url('/admin/forms/' . $questionnaire->id) }}">
                                                 {{ method_field('DELETE') }}
