@@ -20,9 +20,19 @@
         div.box-primary {
             padding: 5%;
         }
+
         @media print {
-            .box-header, .code-container{
+            .box-header, .code-container, ul.nav-tabs, .highcharts-button{
                 display: none;
+            }
+
+            rect.highcharts-container {
+                width: 40%;
+                height: 50%;
+            }
+
+            ul.answer-values {
+                overflow: hidden;
             }
         }
 
@@ -62,8 +72,8 @@
             <h1 class="box-title">Results for: <strong>{{ $questionnaire->name }}</strong></h1>
             <p>{{ $questionnaire->description }}</p>
 
-            <a href="" class="print pull-right ">
-                <i onclick="window.print()" class=" btn btn-md  fa fa-print">
+            <a href="" onclick="window.print()" class="print btn btn-md pull-right ">
+                <i class=" fa fa-print">
                     Print
                 </i>
             </a>
@@ -109,16 +119,13 @@
 
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div class="tab-pane" role="tabpanel" id={{ 'pie'. $question->id}} >
+                                    <div class="tab-pane active" role="tabpanel" id={{ 'pie'. $question->id}} >
                                         <div class="pieChart"></div>
                                     </div>
                                     <div class="tab-pane " role="tabpanel" id={{ 'bar'. $question->id}} >
                                         <div class="barGraph"></div>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -151,7 +158,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.pieChart').highcharts({
                     chart: {
-                        height: 500,
+                        height: (3 / 4 * 100) + '%', // 16:9 ratio
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
                         plotShadow: false,
@@ -211,7 +218,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.barGraph').highcharts({
                     chart: {
-                        height: 500,
+                        height: (3 / 4 * 100) + '%', // 16:9 ratio
                         type: 'column'
                     },
                     exporting: {

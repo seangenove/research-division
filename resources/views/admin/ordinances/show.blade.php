@@ -136,7 +136,7 @@
     </div>
     <div class="col-md-7">
         <iframe src = "/ViewerJS/#../storage/ordinances/{{substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 )}}"
-                    width='100%' height='400' allowfullscreen webkitallowfullscreen></iframe>
+                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
     </div>
 
     @if($ordinance->is_monitoring === 1)

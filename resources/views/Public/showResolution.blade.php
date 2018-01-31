@@ -10,8 +10,6 @@
                                 <h1>{{$resolution->title}}</h1>
                             </div>
                             <hr/>
-
-
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="panel panel-info">
@@ -112,31 +110,32 @@
                                     </div>
                                 </div>
                             @endif
-                            <br>
-
-
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #content {
+            background-color: rgb(240, 248, 255);
+        }
 
-                        <style>
-                            #content {
-                                background-color: rgb(240, 248, 255);
-                            }
+        .pb-cmnt-container {
+            font-family: Lato;
+            margin-top: 100px;
+        }
 
-                            .pb-cmnt-container {
-                                font-family: Lato;
-                                margin-top: 100px;
-                            }
+        .pb-cmnt-textarea {
+            resize: none;
+            padding: 20px;
+            height: 130px;
+            width: 100%;
+            border: 1px solid #F2F2F2;
+        }
 
-                            .pb-cmnt-textarea {
-                                resize: none;
-                                padding: 20px;
-                                height: 130px;
-                                width: 100%;
-                                border: 1px solid #F2F2F2;
-                            }
-
-                            .form-control {
-                                margin-bottom: 10px;
-                            }
-                        </style>
+        .form-control {
+            margin-bottom: 10px;
+        }
+    </style>
 @endsection

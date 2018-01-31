@@ -40,6 +40,7 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
 
         $resolutions = DB::table('resolutions')
+            ->where('is_monitoring', 0)
             ->orderby('created_at', 'desc')
             ->get();
 
@@ -50,6 +51,7 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
         $ordinances = DB::table('ordinances')
+            ->where('is_monitoring', 0)
             ->orderby('created_at', 'desc')
             ->get();
         return view('public.ordinance', ['ordinances' => $ordinances]);
