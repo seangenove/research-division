@@ -35,36 +35,60 @@ class PublicController extends Controller
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
 
-    public function resolutions()
+    public function resolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
 
-        $resolutions = DB::table('resolutions')
-            ->where('is_monitoring', 0)
-            ->orderby('created_at', 'desc')
-            ->get();
+        if ($request->q) {
+            $q = $request->q;
+            $resolutions = Resolution::where('keywords', 'LIKE', '%' . $q . '%')
+                ->orWhere('number', 'LIKE', '%' . $q . '%')
+                ->orWhere('series', 'LIKE', '%' . $q . '%')
+                ->orWhere('title', 'LIKE', '%' . $q . '%')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $resolutions = $resolutions->where('is_monitoring', 0);
+
+        } else {
+            $resolutions = DB::table('resolutions')
+                ->where('is_monitoring', 0)
+                ->orderby('created_at', 'desc')
+                ->get();
+        }
 
         return view('public.resolution', ['resolutions' => $resolutions]);
     }
 
-    public function ordinance()
+    public function ordinance(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        $ordinances = DB::table('ordinances')
-            ->where('is_monitoring', 0)
-            ->orderby('created_at', 'desc')
-            ->get();
+        if ($request->q) {
+            $q = $request->q;
+            $ordinances = Ordinance::where('keywords', 'LIKE', '%' . $q . '%')
+                ->orWhere('number', 'LIKE', '%' . $q . '%')
+                ->orWhere('series', 'LIKE', '%' . $q . '%')
+                ->orWhere('title', 'LIKE', '%' . $q . '%')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $ordinances = $ordinances->where('is_monitoring', 0);
+        } else {
+            $ordinances = DB::table('ordinances')
+                ->where('is_monitoring', 0)
+                ->orderby('created_at', 'desc')
+                ->get();
+        }
+
         return view('public.ordinance', ['ordinances' => $ordinances]);
     }
 
     public function monitorAndEval()
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')->where("is_monitoring",'=',1)
+        $ordinances = DB::table('ordinances')->where("is_monitoring", '=', 1)
             ->orderby('created_at', 'desc')
             ->get();
 
-        $resolutions = DB::table('resolutions')->where("is_monitoring",'=',1)
+        $resolutions = DB::table('resolutions')->where("is_monitoring", '=', 1)
             ->orderby('created_at', 'desc')
             ->get();
 
@@ -94,6 +118,7 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /reports", 'public');
         return view('public.reports');
     }
+
     public function page($id)
     {
         $page = Page::findOrFail($id);
@@ -102,15 +127,15 @@ class PublicController extends Controller
             'page' => $page
         ]);
     }
-    
+
 
     public function showOrdinance($id)
     {
         LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
 
         $ordinance = Ordinance::findOrFail($id);
-        $questionnaire = Questionnaire::where('ordinance_id','=',$id)->where('isAccepting','=',1)->get();
-        return view('public.showOrdinance',['ordinance' => $ordinance], ['questionnaire' => $questionnaire]);
+        $questionnaire = Questionnaire::where('ordinance_id', '=', $id)->where('isAccepting', '=', 1)->get();
+        return view('public.showOrdinance', ['ordinance' => $ordinance], ['questionnaire' => $questionnaire]);
     }
 
     public function showOrdinanceQuestionnaire($id)
@@ -119,7 +144,7 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
     }
 
     public function submitOrdinanceAnswers(Request $request)
@@ -136,14 +161,14 @@ class PublicController extends Controller
         $response->questionnaire_id = $request->questionnaire_id;
         $response->save();
 
-        if($request->type === 'ordinance'){
-            $document = Questionnaire::Where('ordinance_id','=',$request->id)->first()->ordinance;
-        }else{
-            $document = Questionnaire::Where('resolution_id','=',$request->id)->first()->resolution;
+        if ($request->type === 'ordinance') {
+            $document = Questionnaire::Where('ordinance_id', '=', $request->id)->first()->ordinance;
+        } else {
+            $document = Questionnaire::Where('resolution_id', '=', $request->id)->first()->resolution;
         }
 
-        for ($i = 1; $i<$requestData['counter']; $i++) {
-            if(array_key_exists('answer'.$i, $requestData)) {
+        for ($i = 1; $i < $requestData['counter']; $i++) {
+            if (array_key_exists('answer' . $i, $requestData)) {
                 $answer = new Answer;
                 $answer->answer = $requestData['answer' . $i];
                 $answer->question_id = $requestData['question_id' . $i];
@@ -155,9 +180,10 @@ class PublicController extends Controller
         return redirect('monitorAndEval');
     }
 
-    public function storeSuggestion(Request $request, $id){
+    public function storeSuggestion(Request $request, $id)
+    {
 
-        if ($request->input('type') === 'ordinance'){
+        if ($request->input('type') === 'ordinance') {
             // Ordinances
             $suggestion = new Suggestion();
             $suggestion->first_name = $request->input('first_name');
@@ -171,7 +197,7 @@ class PublicController extends Controller
                 'ordinance_id' => $id,
                 'suggestion_id' => $suggestion->id
             ]);
-        } elseif ($request->input('type') === 'resolution'){
+        } elseif ($request->input('type') === 'resolution') {
             // Resolution
             $suggestion = new Suggestion();
             $suggestion->first_name = $request->input('first_name');
@@ -193,16 +219,17 @@ class PublicController extends Controller
         LogUtility::insertLog("HttpRequest on /public/showResolution/{id}", 'public');
 
         $resolution = Resolution::findOrFail($id);
-        $questionnaire = Questionnaire::where('resolution_id','=',$id)->where('isAccepting','=',1)->get();
+        $questionnaire = Questionnaire::where('resolution_id', '=', $id)->where('isAccepting', '=', 1)->get();
         return view('public.showResolution', ['resolution' => $resolution], ['questionnaire' => $questionnaire]);
     }
 
-    public function showResolutionQuestionnaire($id){
+    public function showResolutionQuestionnaire($id)
+    {
         LogUtility::insertLog("HttpRequest on /public/showResolutionQuestionnaire/{id}", 'public');
 
         $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        return view('public.showOrdinanceQuestionnaire',['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
     }
 }

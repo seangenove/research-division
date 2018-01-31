@@ -5,16 +5,25 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ordinance">
-                        <div class="ordinance-heading">
-                            <h1>Resolutions:</h1>
+                        <div class="page-header">
+                            <h1>Resolutions</h1>
                         </div>
-                        <hr/>
+                        <div class="col-md-12" style="margin-bottom: 30px">
+                            <div class="pull-right">
+                                <form action="/resolutions" class="form-inline">
+                                    <input value="{{ request()->q }}" name="q" class="form-control" type="search" placeholder="Search...">
+                                    <button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span
+                                                class="fa fa-search"></span></button>
+                                </form>
+                            </div><!-- /.col-lg-6 -->
+                        </div>
 
                         <div class="ordinance-right">
 
-                            @foreach($resolutions as $resolution)
+                            @foreach($resolutions as $k => $resolution)
 
-                                <div class="ordinance-right-wrapper">
+                                <div class="well col-md-5" style="margin: 10px 35px;">
+
                                     <h3>{{$resolution->title}}</h3>
                                     <p>Series: {{$resolution->series}} </p>
                                     <p>{{$resolution->keywords}}</p>
@@ -22,7 +31,9 @@
                                             class="btn btn-info">Read More
                                     </button>
                                 </div>
-                                <hr>
+                                @if($k % 2 !== 0)
+                                    <div class="clearfix"></div>
+                                @endif
                             @endforeach
                         </div>
                     </div>

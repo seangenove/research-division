@@ -5,6 +5,15 @@
         form {
             display: inline;
         }
+
+        .btn-equal-width {
+            margin: 0 auto;
+            width: 57px;
+        }
+
+        .add-magin{
+            margin: 7px 0;
+        }
     </style>
 @endsection
 
@@ -16,8 +25,19 @@
             </h3>
         </div>
         <div class="box-body">
-            <div>
-                <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success">Create</a>
+            <div class="add-magin">
+                <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
+                            class="fa fa-plus"></span> Add</a>
+                <form action="#" method="get" class="pull-right col-md-4">
+                    <div class="input-group">
+                        <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" id="search-btn" class="btn btn-flat">
+                              <i class="fa fa-search"></i>
+                            </button>
+                         </span>
+                    </div>
+                </form>
             </div>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -35,16 +55,18 @@
                         <td>{{ $resolution->number }}</td>
                         <td>{{ $resolution->series }}</td>
                         <td>{{ $resolution->title }}</td>
-                        <td>{{ $resolution->keywords }}</td>
+                        <td>{{  str_limit($resolution->keywords, $limit = 200, $end = '...')  }}</td>
                         <td>
-                            <a href="/admin/resolutions/{{$resolution->id}}" class="btn btn-xs btn-primary">
+                            <a href="/admin/resolutions/{{$resolution->id}}"
+                               class="btn btn-xs btn-primary btn-equal-width">
                                 {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
                             </a>
-                            <a href="/admin/resolutions/{{$resolution->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="/admin/resolutions/{{$resolution->id}}/edit"
+                               class="btn btn-xs btn-warning btn-equal-width">Edit</a>
                             <form action="/admin/resolutions/{{ $resolution->id }}" method="post">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button class="btn btn-xs btn-danger">Delete</button>
+                                <button class="btn btn-xs btn-danger btn-equal-width">Delete</button>
                             </form>
                         </td>
                     </tr>

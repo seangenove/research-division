@@ -14,19 +14,20 @@ class OrdinancesController extends Controller
 {
     const RR = 'RR';
 
-    public function upload($instance, $file, $type){
-        $filename = $instance->id . substr(ucfirst($type),0, strlen($type)-1) . $instance->number . '.pdf';
+    public function upload($instance, $file, $type)
+    {
+        $filename = $instance->id . substr(ucfirst($type), 0, strlen($type) - 1) . $instance->number . '.pdf';
 
-        if (env('APP_ENV') === 'local'){
+        if (env('APP_ENV') === 'local') {
             $file->storeAs(
-                'public/'.$type, $filename
+                'public/' . $type, $filename
             );
 
             $path = Storage::url($filename);
         } else {
             // save to google drive
             $path = $file->storeAs(
-                env('GOOGLE_DRIVE_'. strtoupper($type) .'_FOLDER_ID'),
+                env('GOOGLE_DRIVE_' . strtoupper($type) . '_FOLDER_ID'),
                 $filename,
                 'google');
         }
@@ -63,12 +64,25 @@ class OrdinancesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $limit = 25;
-        $ordinances = Ordinance::where('is_monitoring', 0)->paginate($limit);
-
-        // Implement search
+//        dd($request->has('forms'));
+        // search
+        if ($request->q) {
+            $q = $request->q;
+            $ordinances = Ordinance::where('keywords', 'LIKE', '%' . $q . '%')
+                ->orWhere('number', 'LIKE', '%' . $q . '%')
+                ->orWhere('series', 'LIKE', '%' . $q . '%')
+                ->orWhere('title', 'LIKE', '%' . $q . '%')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $ordinances = $ordinances->where('is_monitoring', 0);
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 0)
+                ->orderby('created_at', 'desc')
+                ->get();
+        }
 
         return view('admin.ordinances.index', [
             'ordinances' => $ordinances,
@@ -89,7 +103,7 @@ class OrdinancesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -112,10 +126,11 @@ class OrdinancesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
+    public function show($id)
+    {
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
         return view('admin.ordinances.show', [
@@ -128,7 +143,7 @@ class OrdinancesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -136,15 +151,15 @@ class OrdinancesController extends Controller
         $ordinance = Ordinance::findOrFail($id);
 
         return view('admin.ordinances.edit', [
-            'ordinance' =>$ordinance
+            'ordinance' => $ordinance
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -164,7 +179,7 @@ class OrdinancesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
