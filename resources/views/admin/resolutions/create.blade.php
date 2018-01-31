@@ -16,25 +16,29 @@
                     or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
                     <div class="box-body">
                         <input type="hidden" name="is_monitoring" value="{{ request()->type === 'ME' ? 1 : 0 }}">
-                        <div class="form-group">
+                        <div class="form-group {{$errors->has('number') ? 'has-error' : ''}}">
                             <label for="number">Number</label>
                             <input name="number" type="text" class="form-control" id="number"
                                    value="{{ old('number') }}">
+                            {!! $errors->first('number', '<p class="help-block">:message</p>') !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{$errors->has('series') ? 'has-error' : ''}}">
                             <label for="series">Series</label>
                             <input name="series" type="text" class="form-control" id="series" value="{{ old('series')}}">
+                            {!! $errors->first('series', '<p class="help-block">:message</p>') !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
                             <label for="title">Title</label>
                             <input name="title" type="text" class="form-control" id="title" value="{{ old('title')}}">
+                            {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{$errors->has('keywords') ? 'has-error' : ''}}">
                             <label for="description">Keywords</label>
                             <textarea class="form-control" rows="5" name="keywords" id="keywords" form="resolutionsForm"></textarea>
+                            {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                         </div>
 
                         @if(request()->type === 'ME')

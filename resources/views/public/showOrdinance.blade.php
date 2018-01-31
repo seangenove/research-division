@@ -31,7 +31,7 @@
                         </a>
                     @endif
 
-                    @if($ordinance->is_accepting == 1)
+                    @if(true)
                         {{--<a href="">--}}
                             {{--<button class="btn-sm btn-success">--}}
                                 {{--Give Comment--}}
@@ -42,7 +42,7 @@
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="panel panel-info">
                                         <div class="panel-body">
-                                            <form method="post" action="{{ url("/suggestions/{$ordinances->id }/") }}">
+                                            <form method="post" action="{{ url("/suggestions/{$ordinance->id }/") }}">
                                                 {{ csrf_field() }}
                                                 <input class="form-control" type="text" name="first_name"
                                                        placeholder="First Name">

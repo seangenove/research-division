@@ -6,6 +6,7 @@ use App\Ordinance;
 use App\Questionnaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\File;
 
@@ -31,6 +32,30 @@ class OrdinancesController extends Controller
         }
 
         return $path;
+    }
+
+    public function validateData($request){
+        if ($request->has('is_accepting')) {
+            $validatedData = $request->validate([
+                'number' => 'required|numeric',
+                'series' => 'required|numeric|digits:4',
+                'title' => 'required|string',
+                'keywords' => 'required|string',
+                'is_monitoring' => '',
+                'is_accepting' => '',
+                'pdf' => '',
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'number' => 'required|numeric',
+                'series' => 'required|numeric|digits:4',
+                'title' => 'required|string',
+                'keywords' => 'required|string',
+                'is_monitoring' => '',
+                'pdf' => '',
+            ]);
+        }
+        return $validatedData;
     }
 
     /**
@@ -69,17 +94,18 @@ class OrdinancesController extends Controller
      */
     public function store(Request $request)
     {
-        // Check if User uploaded a PDF
-//        $path = $request->has('pdf') ? $this->upload($request, 'ordinances') : '';
+        // Check if request has 'is_accepting'
+        $validatedData = $this->validateData($request);
 
         $file = $request->file('pdf');
 
         $ordinance = new Ordinance();
-        $ordinance->fill($request->all());
+        $ordinance->fill($validatedData);
         $ordinance->save();
         $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
         $ordinance->save();
 
+        Session::flash('flash_message', "Successfully added <b>" . $ordinance->title . "</b> ordinance!");
         return redirect('/admin/ordinances');
     }
 
@@ -123,7 +149,15 @@ class OrdinancesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Ordinance::find($id)->update($request->all());
+        $validatedData = $this->validateData($request);
+
+        $file = $request->file('pdf');
+        $ordinance = Ordinance::find($id);
+        $ordinance->update($validatedData);
+        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+        $ordinance->save();
+
+        Session::flash('flash_message', "Successfully updated <b>" . $ordinance->title . "</b> ordinance!");
         return redirect('/admin/ordinances');
     }
 

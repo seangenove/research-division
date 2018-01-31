@@ -6,6 +6,7 @@ use App\Questionnaire;
 use App\Resolution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ResolutionsController extends Controller
 {
@@ -47,36 +48,11 @@ class ResolutionsController extends Controller
      */
     public function store(Request $request)
     {
-        // Check if User uploaded a PDF
-
-//        if($request->has('pdf')){
-//            $filename = $request->number . '.pdf';
-//            $request->file('pdf')->storeAs(
-//                env('GOOGLE_DRIVE_RESOLUTIONS_FOLDER_ID'),
-//                $filename,
-//                'google');
-//        }
-//
-//        if ($request->has('pdf')) {
-//            $filename = $request->id . 'Ordinance' . $request->number . '.pdf';
-//
-//            if (env('APP_ENV') === 'local'){
-//                $path = $request->file('pdf')->storeAs(
-//                    'public/ordinances', $filename
-//                );
-//            } else {
-//                // save to google drive
-//                $path = $request->file('pdf')->storeAs(
-//                    env('GOOGLE_DRIVE_ORDINANCES_FOLDER_ID'),
-//                    $filename,
-//                    'google');
-//            }
-//        }
-
+        $validatedData = app('App\Http\Controllers\Admin\OrdinancesController')->validateData($request);
         $file = $request->file('pdf');
 
         $resolution = new Resolution();
-        $resolution->fill($request->all());
+        $resolution->fill($validatedData);
         $resolution->save();
         $resolution->pdf_file_path = $request->has('pdf') ?
             app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions')
@@ -128,7 +104,15 @@ class ResolutionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Resolution::find($id)->update($request->all());
+        $validatedData = app('App\Http\Controllers\Admin\OrdinancesController')->validateData($request);
+        $file = $request->file('pdf');
+
+        $resolution = Resolution::find($id);
+        $resolution->update($validatedData);
+        $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : '';
+        $resolution->save();
+
+        Session::flash('flash_message', "Successfully added <b>" . $resolution->title . "</b> ordinance!");
         return redirect('/admin/resolutions');
     }
 

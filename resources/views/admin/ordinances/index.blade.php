@@ -16,7 +16,7 @@
             </h3>
         </div>
         <div class="box-body">
-            <div>
+            <div class="box-title">
                 {{--<form action="/admin/ordinances/create">--}}
                     {{--{{csrf_field()}}--}}
                     {{--<input type="hidden" name="type" value="{{$type}}">--}}

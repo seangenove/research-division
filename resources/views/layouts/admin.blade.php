@@ -27,6 +27,10 @@
             display: inline;
         }
 
+        #flashMessage {
+            margin-top: 10px !important;
+        }
+
     </style>
 
 @yield('styles')
@@ -320,12 +324,12 @@
         <!-- Main content -->
         <section class="content" style="margin: 0 5%">
             <!-- Info boxes -->
+            @if(Session::has('flash_message'))
+                <div id="flashMessage"class="alert {{Session::get('alert-class', 'alert-success')}}" style="margin-top: 8vh;">
+                    {!! Session::get('flash_message') !!}
+                </div>
+            @endif
             <div class="row">
-                @if(Session::has('flash_message'))
-                    <div class="alert {{Session::get('alert-class', 'alert-success')}}" style="margin-top: 8vh;">
-                        {!! Session::get('flash_message') !!}
-                    </div>
-                @endif
                 @yield('content')
             </div>
             <!-- /.row -->
