@@ -14,7 +14,7 @@
 
 /* Public routes */
 Route::get('/', 'PublicController@index');
-Route::get('/ordinance', 'PublicController@ordinance');
+Route::get('/ordinances', 'PublicController@ordinance');
 /*Route::get(function ($id){
     $ordinance = Ordinance::findOrFail($id);
     return view('public.ordinance', compact($ordinance));
