@@ -11,8 +11,8 @@
             width: 57px;
         }
 
-        .add-magin{
-            margin: 7px 0;
+        .add-magin {
+            margin: 10px 0;
         }
     </style>
 @endsection
@@ -28,6 +28,17 @@
             <div class="add-magin">
                 <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
                             class="fa fa-plus"></span> Add</a>
+                <form action="#" method="get" class="pull-right col-md-4">
+                    <div class="input-group">
+                        <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" id="search-btn" class="btn btn-flat">
+                              <i class="fa fa-search"></i>
+                            </button>
+                         </span>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
             </div>
             <table class="table table-striped table-bordered">
                 <thead>

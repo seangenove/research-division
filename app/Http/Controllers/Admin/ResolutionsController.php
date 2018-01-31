@@ -16,11 +16,26 @@ class ResolutionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $limit = 25;
-        $resolutions = Resolution::where('is_monitoring', 0)->paginate($limit);
+        // $resolutions = Resolution::where('is_monitoring', 0)->paginate($limit);
+        if ($request->q) {
+            $q = $request->q;
+            $resolutions = Resolution::where('keywords', 'LIKE', '%' . $q . '%')
+                ->orWhere('number', 'LIKE', '%' . $q . '%')
+                ->orWhere('series', 'LIKE', '%' . $q . '%')
+                ->orWhere('title', 'LIKE', '%' . $q . '%')
+                ->where('is_monitoring', 0)
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $resolutions = $resolutions->where('is_monitoring', 0);
 
+        } else {
+            $resolutions = Resolution::where('is_monitoring', 0)
+                ->orderby('created_at', 'desc')
+                ->get();
+        }
         // Implement search
 
         return view('admin.resolutions.index', [

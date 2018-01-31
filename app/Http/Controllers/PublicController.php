@@ -45,9 +45,9 @@ class PublicController extends Controller
                 ->orWhere('number', 'LIKE', '%' . $q . '%')
                 ->orWhere('series', 'LIKE', '%' . $q . '%')
                 ->orWhere('title', 'LIKE', '%' . $q . '%')
-                ->where('is_monitoring', 0)
                 ->orderBy('created_at', 'desc')
                 ->get();
+            $resolutions = $resolutions->where('is_monitoring', 0);
 
         } else {
             $resolutions = DB::table('resolutions')
@@ -68,10 +68,9 @@ class PublicController extends Controller
                 ->orWhere('number', 'LIKE', '%' . $q . '%')
                 ->orWhere('series', 'LIKE', '%' . $q . '%')
                 ->orWhere('title', 'LIKE', '%' . $q . '%')
-                ->where('is_monitoring', 0)
                 ->orderBy('created_at', 'desc')
                 ->get();
-
+            $ordinances = $ordinances->where('is_monitoring', 0);
         } else {
             $ordinances = DB::table('ordinances')
                 ->where('is_monitoring', 0)
