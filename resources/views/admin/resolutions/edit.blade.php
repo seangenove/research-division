@@ -38,9 +38,7 @@
 
                         <div class="form-group {{$errors->has('keywords') ? 'has-error' : ''}}">
                             <label for="keywords">Keywords</label>
-                            <textarea class="form-control" rows="5" name="keywords" id="keywords" form="resolutionsForm">
-                            {{ $resolution->keywords }}
-                        </textarea>
+                            <textarea class="form-control" rows="5" name="keywords" id="keywords" form="resolutionsForm">{{ $resolution->keywords }}</textarea>
                             {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                         </div>
 
@@ -55,14 +53,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="pdf">
-                                {{$resolution->pdf_file_path == "" ? 'No File Uploaded': 'PDF File'}}
+                                {{$resolution->pdf_file_path == "" ? 'No File Uploaded': ('PDF File: ' . substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 ))}}
                             </label>
-                            @if($resolution->pdf_file_path == "")
-                                <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">
-                            @else
-                                <iframe src = "/ViewerJS/#../storage/resolutions/{{substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 )}}"
-                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
-                            @endif
+                            <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">
                         </div>
                     </div>
                 </div>

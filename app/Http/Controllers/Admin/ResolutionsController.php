@@ -74,6 +74,7 @@ class ResolutionsController extends Controller
             : '';
         $resolution->save();
 
+        Session::flash('flash_message', "Successfully added <b>" . $resolution->title . "</b> resolution!");
         return redirect('/admin/resolutions');
     }
 
@@ -127,7 +128,7 @@ class ResolutionsController extends Controller
         $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : '';
         $resolution->save();
 
-        Session::flash('flash_message', "Successfully added <b>" . $resolution->title . "</b> ordinance!");
+        Session::flash('flash_message', "Successfully updated <b>" . $resolution->title . "</b> resolution!");
         return redirect('/admin/resolutions');
     }
 
