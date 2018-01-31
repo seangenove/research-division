@@ -5,6 +5,15 @@
         form {
             display: inline;
         }
+
+        .btn-equal-width {
+            margin: 0 auto;
+            width: 57px;
+        }
+
+        .add-magin{
+            margin: 7px 0;
+        }
     </style>
 @endsection
 
@@ -16,12 +25,9 @@
             </h3>
         </div>
         <div class="box-body">
-            <div>
-                {{--<form action="/admin/ordinances/create">--}}
-                    {{--{{csrf_field()}}--}}
-                    {{--<input type="hidden" name="type" value="{{$type}}">--}}
-                {{--</form>--}}
-                <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success">Create</a>
+            <div class="add-magin">
+                <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
+                            class="fa fa-plus"></span> Add</a>
             </div>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -39,16 +45,18 @@
                         <td>{{ $ordinance->number }}</td>
                         <td>{{ $ordinance->series }}</td>
                         <td>{{ $ordinance->title }}</td>
-                        <td>{{ $ordinance->keywords }}</td>
+                        <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                         <td>
-                            <a href="/admin/ordinances/{{$ordinance->id}}" class="btn btn-xs btn-primary">
+                            <a href="/admin/ordinances/{{$ordinance->id}}"
+                               class="btn btn-xs btn-primary btn-equal-width ">
                                 {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
                             </a>
-                            <a href="/admin/ordinances/{{$ordinance->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
+                            <a href="/admin/ordinances/{{$ordinance->id}}/edit"
+                               class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
                             <form action="/admin/ordinances/{{ $ordinance->id }}" method="post">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button class="btn btn-xs btn-danger">Delete</button>
+                                <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button>
                             </form>
                         </td>
                     </tr>
