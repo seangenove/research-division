@@ -3,7 +3,7 @@
 @section('styles')
     <style>
         div > li {
-            font-size: 15:px;
+            font-size: 15px;
         }
 
         div > ul {
@@ -20,6 +20,12 @@
         div.box-primary {
             padding: 5%;
         }
+        div.question-print{
+            display: none;
+        }
+        .rd-header{
+            display: none;
+        }
 
         @media print {
             .box-header, .code-container, ul.nav-tabs, .highcharts-button{
@@ -32,8 +38,18 @@
             }
 
             ul.answer-values {
+                display: none;
                 overflow: hidden;
             }
+
+            div.question-print{
+                display: block;
+            }
+
+            .rd-header{
+                display: block;
+            }
+
         }
 
         .fa.fa-print{
@@ -80,6 +96,15 @@
         </div>
         <div class="box-body">
             <div class="content">
+                <div class="rd-header row">
+                    <div class="col-md-8">
+                        place image here
+                    </div>
+                    lorem ipsum...
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
                 @foreach( $questionnaire->questions as $question)
                     <div class="row box box-widget" style="margin: 5% 0">
                         <div class="box-header with-border">
@@ -108,9 +133,12 @@
                                     {{ $question->getAnswerCounts() }}
                                 </code>
                                 <!-- Nav tabs -->
+                                <div class="question-print">
+                                    <h3> {{ $question->question}} </h3>
+                                </div>
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" role="tab" href={{ '#pie' . $question->id }} >Pie</a>
+                                        <a class="nav-link selected" data-toggle="tab" role="tab" href={{ '#pie' . $question->id }} >Pie</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" role="tab" href={{ '#bar'. $question->id}} >Bar</a>
@@ -158,7 +186,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.pieChart').highcharts({
                     chart: {
-                        height: (3 / 4 * 100) + '%', // 16:9 ratio
+                        height: 400, //(3 / 4 * 100) + '%', // 16:9 ratio
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
                         plotShadow: false,
@@ -218,7 +246,7 @@
                 //alert(JSON.stringify($(v).parent().find('.currentChart')));
                 $(v).parent().find('.barGraph').highcharts({
                     chart: {
-                        height: (3 / 4 * 100) + '%', // 16:9 ratio
+                        height: 400,//(3 / 4 * 100) + '%', 4:3 16:9 ratio
                         type: 'column'
                     },
                     exporting: {
