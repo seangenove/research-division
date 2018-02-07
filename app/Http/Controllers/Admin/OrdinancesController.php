@@ -165,11 +165,10 @@ class OrdinancesController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $this->validateData($request);
-
         $file = $request->file('pdf');
         $ordinance = Ordinance::find($id);
         $ordinance->update($validatedData);
-        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path ;
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully updated <b>" . $ordinance->title . "</b> ordinance!");

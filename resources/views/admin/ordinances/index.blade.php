@@ -55,7 +55,7 @@
                     <tr>
                         <td>{{ $ordinance->number }}</td>
                         <td>{{ $ordinance->series }}</td>
-                        <td>{{ $ordinance->title }}</td>
+                        <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
                         <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                         <td>
                             <a href="/admin/ordinances/{{$ordinance->id}}"

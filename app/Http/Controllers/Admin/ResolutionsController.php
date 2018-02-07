@@ -125,7 +125,7 @@ class ResolutionsController extends Controller
 
         $resolution = Resolution::find($id);
         $resolution->update($validatedData);
-        $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : '';
+        $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
         $resolution->save();
 
         Session::flash('flash_message', "Successfully updated <b>" . $resolution->title . "</b> resolution!");

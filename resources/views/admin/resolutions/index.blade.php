@@ -54,7 +54,7 @@
                     <tr>
                         <td>{{ $resolution->number }}</td>
                         <td>{{ $resolution->series }}</td>
-                        <td>{{ $resolution->title }}</td>
+                        <td>{{ str_limit($resolution->title, $limit = 200, $end = '...')  }}</td>
                         <td>{{  str_limit($resolution->keywords, $limit = 200, $end = '...')  }}</td>
                         <td>
                             <a href="/admin/resolutions/{{$resolution->id}}"

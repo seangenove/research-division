@@ -32,8 +32,7 @@
 
                         <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
                             <label for="title">Title</label>
-                            <input name="title" type="text" class="form-control" id="title" placeholder="Enter Title"
-                                   value="{{old('title', $ordinance->title)}}">
+                            <textarea class="form-control" rows="5" name="title" id="title" form="ordinancesForm">{{old('title', $ordinance->title)}}</textarea>
                             {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                         </div>
 

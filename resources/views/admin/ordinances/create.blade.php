@@ -31,13 +31,13 @@
 
                             <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
                                 <label for="title">Title</label>
-                                <input name="title" type="text" class="form-control" id="title" value="{{ old('title')}}">
+                                <textarea class="form-control" rows="5" name="title" id="title" form="ordinancesForm">{{old('title')}}</textarea>
                                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                             </div>
 
                             <div class="form-group {{$errors->has('keywords') ? 'has-error' : ''}}">
                                 <label for="keywords">Keywords</label>
-                                <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm">{{old('title')}}</textarea>
+                                <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm">{{old('keywords')}}</textarea>
                                 {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                             </div>
 

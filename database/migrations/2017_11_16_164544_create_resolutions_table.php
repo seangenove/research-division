@@ -17,7 +17,7 @@ class CreateResolutionsTable extends Migration
             $table->increments('id');
             $table->string('number', '30');
             $table->unsignedInteger('series');
-            $table->string('title', '150');
+            $table->longText('title');
             $table->longText('keywords');
             $table->boolean('is_accepting')->default(false);
             $table->tinyInteger('is_monitoring');
