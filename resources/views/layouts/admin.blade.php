@@ -32,7 +32,22 @@
         }
 
     </style>
+<?php
 
+        function skin($user){
+            if ($user->hasRole('admin') || $user->hasRole('superadmin')){
+                return 'skin-black';
+            } elseif ($user->hasRole('rr')){
+                return 'skin-blue';
+            }elseif ($user->hasRole('me')){
+                return 'skin-red';
+            }else{
+                return 'skin-white';
+
+            }
+        }
+
+?>
 @yield('styles')
 
 
@@ -47,7 +62,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-black sidebar-mini fixed">
+<body class="hold-transition {{ skin(Auth::user()) }} sidebar-mini fixed">
 <div class="wrapper">
 
     <header class="main-header">
@@ -136,19 +151,19 @@
                 </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+                {{--<div class="input-group">--}}
+                    {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+                    {{--<span class="input-group-btn">--}}
+                {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat">--}}
+                  {{--<i class="fa fa-search"></i>--}}
+                {{--</button>--}}
+              {{--</span>--}}
+                {{--</div>--}}
+            {{--</form>--}}
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
-            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('superadmin'))
+            @if(Auth::user()->hasRole('superadmin'))
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MANAGEMENT</li>
                     <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
@@ -178,63 +193,70 @@
                 {{--</a>--}}
                 {{--</li>--}}
 
-                <li class="@if(isset($ordinance))
-                            @if($ordinance->is_monitoring === 0)
-                                active
-                            @endif
-                            @elseif(isset($resolution))
-                                @if($resolution->is_monitoring === 0)
-                                        active
-                                @endif
-                            @elseif((Request::is('admin/ordinances/*/edit') or Request::is('admin/resolutions/*/edit')))
-                                active
-                            @elseif(isset($type))
-                                @if(($type === 'RR')
-                                and (Request::is('admin/ordinances*') or Request::is('admin/resolutions*')))
+                {{--R R--}}
+                @if(Auth::user()->hasRole('rr') || Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
+                    <li class="@if(isset($ordinance))
+                                @if($ordinance->is_monitoring === 0)
                                     active
                                 @endif
-                            @elseif(request()->type === 'RR')
-                                active
-                            @endif treeview menu">
-                    <a href="#">
-                        <i class="fa fa-book"></i>
-                        <span>Research & Records</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu" style="">
-                        <li class="@if(Request::is('admin/ordinances/create*') and request()->type === 'RR')
-                                        active
-                                    @elseif(isset($type))
-                                        @if($type === 'RR' and Request::is('admin/ordinances'))
-                                            active
-                                        @endif
-                                    @endif">
-                            <a href="/admin/ordinances">
-                                <i class="fa fa-circle-o"></i>
-                                <span>Ordinances</span>
-                            </a>
-                        </li>
-                        <li class="@if(isset($resolution))
+                                @elseif(isset($resolution))
                                     @if($resolution->is_monitoring === 0)
+                                            active
+                                    @endif
+                                @elseif((Request::is('admin/ordinances/*/edit') or Request::is('admin/resolutions/*/edit')))
+                                    active
+                                @elseif(isset($type))
+                                    @if(($type === 'RR')
+                                    and (Request::is('admin/ordinances*') or Request::is('admin/resolutions*')))
                                         active
                                     @endif
-                                    @elseif(Request::is('admin/resolutions/create*') and request()->type === 'RR')
-                                        active
-                                    @elseif(isset($type))
-                                        @if($type === 'RR' and Request::is('admin/resolutions'))
+                                @elseif(request()->type === 'RR')
+                                    active
+                                @endif treeview menu">
+                        <a href="#">
+                            <i class="fa fa-book"></i>
+                            <span>Research & Records</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="">
+                            <li class="@if(Request::is('admin/ordinances/create*') and request()->type === 'RR')
+                                            active
+                                        @elseif(isset($type))
+                                            @if($type === 'RR' and Request::is('admin/ordinances'))
+                                                active
+                                            @endif
+                                        @endif">
+                                <a href="/admin/ordinances">
+                                    <i class="fa fa-circle-o"></i>
+                                    <span>Ordinances</span>
+                                </a>
+                            </li>
+                            <li class="@if(isset($resolution))
+                                        @if($resolution->is_monitoring === 0)
                                             active
                                         @endif
-                                    @endif">
-                            <a href="/admin/resolutions">
-                                <i class="fa fa-circle-o"></i> <span>Resolutions</span>
-                                <span class="pull-right-container">
-                        </span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                                        @elseif(Request::is('admin/resolutions/create*') and request()->type === 'RR')
+                                            active
+                                        @elseif(isset($type))
+                                            @if($type === 'RR' and Request::is('admin/resolutions'))
+                                                active
+                                            @endif
+                                        @endif">
+                                <a href="/admin/resolutions">
+                                    <i class="fa fa-circle-o"></i> <span>Resolutions</span>
+                                    <span class="pull-right-container">
+                            </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+                {{-- ME --}}
+                @if(Auth::user()->hasRole('me') || Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
+
                 <li class="@if(isset($ordinance))
                                 @if($ordinance->is_monitoring === 1)
                                         active
@@ -290,21 +312,24 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
-                    <a href="/admin/pages">
-                        <i class="fa fa-file-code-o"></i>
-                        <span>Pages</span>
-                        <span class="pull-right-container"></span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
-                    <a href="/admin/logs">
-                        <i class="fa fa-shield"></i>
-                        <span>Logs</span>
-                        <span class="pull-right-container">
-                        </span>
-                    </a>
-                </li>
+                @endif
+                @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
+                    <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
+                        <a href="/admin/pages">
+                            <i class="fa fa-file-code-o"></i>
+                            <span>Pages</span>
+                            <span class="pull-right-container"></span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
+                        <a href="/admin/logs">
+                            <i class="fa fa-shield"></i>
+                            <span>Logs</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                @endif
 
                 {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
                     {{--<a href="/admin/change-password">--}}

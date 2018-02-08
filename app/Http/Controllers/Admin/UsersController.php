@@ -40,8 +40,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required',
+            'role' => 'required',
+            'repassword' => 'required|same:password'
+
+        ]);
         $user = new User();
         $user->fill($request->all());
+        $user->password = bcrypt($request->password);
         $user->save();
         return redirect('/admin/users');
     }
