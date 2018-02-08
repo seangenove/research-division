@@ -54,8 +54,9 @@
                                 </form>
                             </div>
                         </div>
-                        <h2>{{ $questionnaire->name }}</h2>
+                        {{--<h2>{{ $questionnaire->name }}</h2>--}}
                         <p>{{ $questionnaire->description }}</p>
+                        <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
                     @else
                         <div class="col-xs-12">
                             <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"

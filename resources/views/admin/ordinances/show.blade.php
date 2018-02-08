@@ -59,9 +59,9 @@
                             </form>
                         </div>
                 </div>
-                <h2>{{ $questionnaire->name }}</h2>
+                {{--<h2>{{ $questionnaire->name }}</h2>--}}
                 <p>{{ $questionnaire->description }}</p>
-                <p><strong>Number of Responses:</strong> Add feature later...</p>
+                <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
 
 
                 @else
