@@ -78,8 +78,7 @@
         <div class="row">
             <div class="box box-default color-palette-box">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-file-text"></i> ORDINANCE {{ $ordinance->number }}
-                        : {{  $ordinance->title }}</h3>
+                    <h3 class="box-title"><i class="fa fa-file-text"></i> ORDINANCE {{ $ordinance->number }}</h3>
                 </div>
                 <div class="box-body">
                     <table class="table table-striped table-bordered">

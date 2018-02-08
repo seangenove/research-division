@@ -6,13 +6,21 @@ use App\Ordinance;
 use App\Questionnaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\File;
+use Mockery\Exception;
 
 class OrdinancesController extends Controller
 {
     const RR = 'RR';
+    const ordinanceColumns = [
+        'number',
+        'series',
+        'title',
+        'keywords',
+    ];
 
     public function upload($instance, $file, $type)
     {
@@ -66,23 +74,39 @@ class OrdinancesController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = 25;
-//        dd($request->has('forms'));
-        // search
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
+
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
         if ($request->q) {
             $q = $request->q;
-            $ordinances = Ordinance::where('keywords', 'LIKE', '%' . $q . '%')
-                ->orWhere('number', 'LIKE', '%' . $q . '%')
-                ->orWhere('series', 'LIKE', '%' . $q . '%')
-                ->orWhere('title', 'LIKE', '%' . $q . '%')
-                ->orderBy('created_at', 'desc')
-                ->get();
-            $ordinances = $ordinances->where('is_monitoring', 0);
+            $ordinances = Ordinance::where(function($query) use ($q){
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function($query){
+                $query->where('is_monitoring', 0);
+                });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 0)
-                ->orderby('created_at', 'desc')
-                ->get();
+            $ordinances = Ordinance::where('is_monitoring', 0);
         }
+
+        // Implement filtering / sorting
+        $ordinances = $ordinances->orderBy($colName, $order);
+
+        // Paginate with filters
+        $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         return view('admin.ordinances.index', [
             'ordinances' => $ordinances,
@@ -119,7 +143,7 @@ class OrdinancesController extends Controller
         $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
         $ordinance->save();
 
-        Session::flash('flash_message', "Successfully added <b>" . $ordinance->title . "</b> ordinance!");
+        Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
         return redirect('/admin/ordinances');
     }
 
@@ -171,7 +195,7 @@ class OrdinancesController extends Controller
         $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path ;
         $ordinance->save();
 
-        Session::flash('flash_message', "Successfully updated <b>" . $ordinance->title . "</b> ordinance!");
+        Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
         return redirect('/admin/ordinances');
     }
 
