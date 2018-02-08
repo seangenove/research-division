@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('update-password', 'Admin\\UsersController@updatePassword');
 
     /** Monitoring and Evaluation */
-    Route::group(['middleware' => 'role:me'], function () {
+    Route::group(['middleware' => 'role:me,superadmin,admin'], function () {
 
         Route::group(['prefix' => 'forms'], function () {
             Route::get('ordinances', 'Admin\\FormsController@ordinancesIndex');
