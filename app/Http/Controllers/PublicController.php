@@ -81,18 +81,82 @@ class PublicController extends Controller
         return view('public.ordinance', ['ordinances' => $ordinances]);
     }
 
-    public function monitorAndEval()
+    public function monitorAndEval(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEval", 'public');
-        $ordinances = DB::table('ordinances')->where("is_monitoring", '=', 1)
-            ->orderby('created_at', 'desc')
-            ->get();
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
 
-        $resolutions = DB::table('resolutions')->where("is_monitoring", '=', 1)
-            ->orderby('created_at', 'desc')
-            ->get();
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
 
-        return view('public.monitorAndEval', ['ordinances' => $ordinances, 'resolutions' => $resolutions]);
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $ordinances = Ordinance::where(function ($query) use ($q) {
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function ($query) {
+                $query->where('is_monitoring', 1);
+            });
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 1);
+        }
+
+        // Implement filtering / sorting
+        $ordinances = $ordinances->orderBy($colName, $order);
+
+        // Paginate with filters
+        $ordinances = $ordinances->paginate($limit)->appends($request->all());
+
+
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
+
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $resolutions = Resolution::where(function ($query) use ($q) {
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function ($query) {
+                $query->where('is_monitoring', 1);
+            });
+        } else {
+            $resolutions = Resolution::where('is_monitoring', 1);
+        }
+
+        // Implement filtering / sorting
+        $resolutions = $resolutions->orderBy($colName, $order);
+
+        // Paginate with filters
+        $resolutions = $resolutions->paginate($limit)->appends($request->all());
+
+        return view('public.monitorAndEval', [
+            'ordinances' => $ordinances,
+            'resolutions' => $resolutions
+        ]);
     }
 
     public function about()
