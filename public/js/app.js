@@ -50493,6 +50493,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
 
 
 var Questions = function Questions() {
@@ -52282,7 +52283,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 43px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** Add Questions**/\n.fixed-button-3 {\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 85px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group {\n    padding-left: 3%;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n    -webkit-transition: opacity .5s;\n    transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */\n{\n    opacity: 0;\n}\n\n/* submit */\n.fixed-button-1 {\n    min-width: 120px;\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 7%;*/\n    bottom: 0;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** preview **/\n.fixed-button-2 {\n    min-width: 120px;\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 43px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n\n/** Add Questions**/\n.fixed-button-3 {\n    min-width: 120px;\n    position: fixed;\n    /*bottom: 18vh;*/\n    /*right: 14%;*/\n    bottom: 85px;\n    right: 98px;\n    margin-bottom: 108px;\n}\n.content {\n    height: 100%;\n}\n.modal-body div.wrap {\n    margin: 5%;\n}\n.values-added-margin {\n    margin: 8px 0;\n}\n.value-group {\n    padding-left: 3%;\n}\n", ""]);
 
 // exports
 
@@ -52297,6 +52298,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52630,6 +52646,22 @@ var Questions = function Questions() {
     },
 
     methods: {
+        flipConditional: function flipConditional(valueObject) {
+            alert(JSON.stringify(valueObject));
+            valueObject.checked = !valueObject.checked;
+        },
+        conditionalChecked: function conditionalChecked(valObject, currentValue) {
+            if (valObject.value.endsWith(";1")) {
+                if (valObject.value.startsWith('Yes')) {
+                    valObject.value = 'Yes';
+                }
+                if (valObject.value.startsWith('No')) {
+                    valObject.value = 'No';
+                }
+            } else {
+                valObject.value = valObject.value + ';1';
+            }
+        },
         validateBeforeSubmit: function validateBeforeSubmit() {
             var _this = this;
 
@@ -52664,9 +52696,9 @@ var Questions = function Questions() {
         checkType: function checkType(q) {
             q.values = [];
             if (q.type === 'conditional') {
-                q.values.push({ value: "Yes" });
-                q.values.push({ value: "No" });
-                q.values.push({ value: "If [Yes/No]. Why?" });
+                q.values.push({ value: "Yes", checked: false });
+                q.values.push({ value: "No", checked: false });
+                // q.values.push({value: "If [Yes/No]. Why?"});
             } else {}
         }
     },
@@ -52700,62 +52732,21 @@ var render = function() {
                 "div",
                 [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "questionnaireName" } }, [
-                      _vm._v("Questionnaire Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.questionnaire.name,
-                          expression: "questionnaire.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "name",
-                        id: "questionnaireName",
-                        type: "text",
-                        placeholder: "Questionnaire Name..."
-                      },
-                      domProps: { value: _vm.questionnaire.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.questionnaire,
-                            "name",
-                            $event.target.value
+                    _vm.questionnaire.associatedOrdinance
+                      ? _c("h1", [
+                          _vm._v(
+                            _vm._s(_vm.questionnaire.associatedOrdinance.title)
                           )
-                        }
-                      }
-                    }),
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.errors.has("name"),
-                            expression: "errors.has('name')"
-                          }
-                        ],
-                        staticClass: "help is-danger text-danger"
-                      },
-                      [_vm._v(_vm._s(_vm.errors.first("name")))]
-                    )
+                    _vm.questionnaire.associatedResolution
+                      ? _c("h1", [
+                          _vm._v(
+                            _vm._s(_vm.questionnaire.associatedResolution.title)
+                          )
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -52800,7 +52791,10 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Add Question")]
+                    [
+                      _c("span", { staticClass: "fa fa-plus" }),
+                      _vm._v(" Add Question\n                ")
+                    ]
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.questionnaire.questions, function(question) {
@@ -52829,11 +52823,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "label",
-                              { attrs: { for: "questionnaireName" } },
-                              [_vm._v("Question Name")]
-                            ),
+                            _c("label", [_vm._v("Question Name")]),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -53023,7 +53013,7 @@ var render = function() {
                                 _c(
                                   "option",
                                   { domProps: { value: "conditional" } },
-                                  [_vm._v("Conditional")]
+                                  [_vm._v("Conditional (Yes/No)")]
                                 )
                               ]
                             )
@@ -53040,22 +53030,17 @@ var render = function() {
                                       { staticClass: "form-group" },
                                       [
                                         _c("label", { attrs: { for: "" } }, [
-                                          _vm._v("Conditional Values")
+                                          _vm._v("Conditional Yes/No")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("p", [
+                                          _vm._v(
+                                            "Check if a textbox is to be shown upon selecting the value"
+                                          )
                                         ]),
                                         _vm._v(" "),
                                         _vm._l(question.values, function(val) {
                                           return _c("div", [
-                                            question.values.indexOf(val) ===
-                                            question.values.length - 1
-                                              ? _c("div", [
-                                                  _c("p", [
-                                                    _vm._v(
-                                                      "Why (i.e. Yes. Because...)"
-                                                    )
-                                                  ])
-                                                ])
-                                              : _vm._e(),
-                                            _vm._v(" "),
                                             _c(
                                               "div",
                                               {
@@ -53071,102 +53056,31 @@ var render = function() {
                                                   },
                                                   [
                                                     _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "validate",
-                                                          rawName: "v-validate",
-                                                          value: "required",
-                                                          expression:
-                                                            "'required'"
-                                                        },
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value: val.value,
-                                                          expression:
-                                                            "val.value"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-control",
                                                       attrs: {
-                                                        placeholder:
-                                                          "Enter value...",
-                                                        name:
-                                                          "Q" +
-                                                          _vm.questionnaire.questions.indexOf(
-                                                            question
-                                                          ) +
-                                                          " Value Name " +
-                                                          question.values.indexOf(
-                                                            val
-                                                          ),
-                                                        type: "text",
-                                                        required: ""
-                                                      },
-                                                      domProps: {
-                                                        value: val.value
+                                                        type: "checkbox"
                                                       },
                                                       on: {
-                                                        input: function(
+                                                        change: function(
                                                           $event
                                                         ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
+                                                          _vm.conditionalChecked(
                                                             val,
-                                                            "value",
-                                                            $event.target.value
+                                                            val.value
                                                           )
                                                         }
                                                       }
-                                                    })
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value: _vm.errors.has(
-                                                          "Q" +
-                                                            _vm.questionnaire.questions.indexOf(
-                                                              question
-                                                            ) +
-                                                            " Value Name " +
-                                                            question.values.indexOf(
-                                                              val
-                                                            )
-                                                        ),
-                                                        expression:
-                                                          "errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
-                                                      }
-                                                    ],
-                                                    staticClass:
-                                                      "help is-danger text-danger"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm.errors.first(
-                                                          "Q" +
-                                                            _vm.questionnaire.questions.indexOf(
-                                                              question
-                                                            ) +
-                                                            " Value Name " +
-                                                            question.values.indexOf(
-                                                              val
-                                                            )
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("label", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          val.value.replace(
+                                                            ";1",
+                                                            ""
+                                                          )
                                                         )
                                                       )
-                                                    )
+                                                    ])
                                                   ]
                                                 )
                                               ]
@@ -53632,11 +53546,7 @@ var render = function() {
           _vm._v("For development (JSON passed to controller)")
         ]),
         _vm._v(" "),
-        _c("pre", [_vm._v(_vm._s(_vm.questionnaire))]),
-        _vm._v(" "),
-        _c("h6", [
-          _vm._v(_vm._s(_vm.isOrdinance) + " || " + _vm._s(_vm.isResolution))
-        ])
+        _c("pre", [_vm._v(_vm._s(_vm.questionnaire))])
       ],
       1
     ),
@@ -53660,7 +53570,21 @@ var render = function() {
                 "div",
                 { staticClass: "wrap" },
                 [
-                  _c("h1", [_vm._v(_vm._s(_vm.questionnaire.name))]),
+                  _vm.questionnaire.associatedOrdinance
+                    ? _c("h1", [
+                        _vm._v(
+                          _vm._s(_vm.questionnaire.associatedOrdinance.title)
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.questionnaire.associatedResolution
+                    ? _c("h1", [
+                        _vm._v(
+                          _vm._s(_vm.questionnaire.associatedResolution.title)
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(_vm.questionnaire.description))]),
                   _vm._v(" "),
@@ -53690,7 +53614,16 @@ var render = function() {
                           return _c("div", [
                             question.type === "radio"
                               ? _c("div", [
-                                  _c("input", { attrs: { type: "radio" } }),
+                                  _c("input", {
+                                    attrs: {
+                                      name:
+                                        "radiovalue:" +
+                                        _vm.questionnaire.questions.indexOf(
+                                          question
+                                        ),
+                                      type: "radio"
+                                    }
+                                  }),
                                   _vm._v(
                                     " " +
                                       _vm._s(val.value) +
@@ -53700,23 +53633,64 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             question.type === "conditional"
-                              ? _c("div", [
-                                  _c("input", { attrs: { type: "radio" } }),
-                                  _vm._v(
-                                    " " +
-                                      _vm._s(val.value) +
-                                      "\n                                    "
-                                  ),
-                                  question.values.indexOf(val) ===
-                                  question.values.length - 1
-                                    ? _c("span", [
-                                        _c("input", {
-                                          staticClass: "form-control",
-                                          attrs: { type: "text" }
-                                        })
-                                      ])
-                                    : _vm._e()
-                                ])
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: question.checked,
+                                          expression: "question.checked"
+                                        }
+                                      ],
+                                      attrs: {
+                                        type: "radio",
+                                        name:
+                                          "questionnaire.questions.indexOf(question)"
+                                      },
+                                      domProps: {
+                                        value: val.value,
+                                        checked: _vm._q(
+                                          question.checked,
+                                          val.value
+                                        )
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          _vm.$set(
+                                            question,
+                                            "checked",
+                                            val.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(val.value.replace(";1", "")) +
+                                        "\n                                    "
+                                    ),
+                                    _c(
+                                      "transition",
+                                      { attrs: { name: "fade" } },
+                                      [
+                                        val.value.endsWith(";1") &&
+                                        val.value === question.checked
+                                          ? _c("input", {
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                placeholder: "Why?",
+                                                type: "text"
+                                              }
+                                            })
+                                          : _vm._e()
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
                               : _vm._e(),
                             _vm._v(" "),
                             question.type === "checkbox"

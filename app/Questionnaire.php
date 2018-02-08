@@ -57,4 +57,20 @@ class Questionnaire extends Model
         }
         return false;
     }
+
+    /**
+     * Returns the count of answers in this specific questionnaire
+     * @return int
+     */
+    public function getResponseCount()
+    {
+        $count = 0;
+        foreach($this->questions as $q){
+            // Can be simplified using SQL queries
+            if ($q->answers->count() > $count){
+                $count = $q->answers->count();
+            }
+        }
+        return $count;
+    }
 }

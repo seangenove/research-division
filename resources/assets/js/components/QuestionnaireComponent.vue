@@ -249,6 +249,7 @@
 
                     </div>
                     <form ref="form" v-bind:action="action" method="post" @submit.prevent="validateBeforeSubmit">
+                        <!--<input type="hidden" name="_method" value="PATCH">-->
                         <input name="json-values" type="hidden" v-bind:value="JSON.stringify(questionnaire)">
                         <input type="hidden" name="_token" v-bind:value="csrf_token">
                         <button class="fixed-button-1 btn btn-primary pull-right" type="submit"><span
