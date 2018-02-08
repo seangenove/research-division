@@ -266,12 +266,41 @@ class FormsController extends Controller
         return back();
     }
 
-    function ordinancesIndex()
+    function ordinancesIndex(Request $request)
     {
-        $limit = 25;
-        $ordinances = Ordinance::where('is_monitoring', 1)->paginate($limit);
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
 
-        // Implement search
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $ordinances = Ordinance::where(function ($query) use ($q) {
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function ($query) {
+                $query->where('is_monitoring', 1);
+            });
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 1);
+        }
+
+        // Implement filtering / sorting
+        $ordinances = $ordinances->orderBy($colName, $order);
+
+        // Paginate with filters
+        $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         return view('admin.ordinances.index', [
             'ordinances' => $ordinances,
@@ -279,12 +308,41 @@ class FormsController extends Controller
         ]);
     }
 
-    function resolutionsIndex()
+    function resolutionsIndex(Request $request)
     {
-        $limit = 25;
-        $resolutions = Resolution::where('is_monitoring', 1)->paginate($limit);
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
 
-        // Implement search
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $resolutions = Resolution::where(function ($query) use ($q) {
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function ($query) {
+                $query->where('is_monitoring', 1);
+            });
+        } else {
+            $resolutions = Resolution::where('is_monitoring', 1);
+        }
+
+        // Implement filtering / sorting
+        $resolutions = $resolutions->orderBy($colName, $order);
+
+        // Paginate with filters
+        $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
         return view('admin.resolutions.index', [
             'resolutions' => $resolutions,
