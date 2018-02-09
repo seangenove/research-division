@@ -2,14 +2,9 @@
 
 @section('styles')
     <style>
-        div > li {
-            font-size: 15px;
-        }
-
-        div > ul {
+        ul.answer-values > li {
             list-style: none;
             font-size: 15px;
-
         }
 
         ul.answer-values {
@@ -20,15 +15,12 @@
         div.box-primary {
             padding: 5%;
         }
-        div.question-print{
-            display: none;
-        }
-        .rd-header{
+        div.question-print, .rd-header, .code-container{
             display: none;
         }
 
         @media print {
-            .box-header, .code-container, ul.nav-tabs, .highcharts-button{
+            .box-header, ul.nav-tabs, .highcharts-button{
                 display: none;
             }
 
@@ -49,7 +41,6 @@
             .rd-header{
                 display: block;
             }
-
         }
 
         .fa.fa-print{
@@ -132,6 +123,8 @@
                                     {{-- Here is the data--}}
                                     {{ $question->getAnswerCounts() }}
                                 </code>
+                                {{-- start of drop down list--}}
+
                                 <!-- Nav tabs -->
                                 <div class="question-print">
                                     <h3> {{ $question->question}} </h3>
