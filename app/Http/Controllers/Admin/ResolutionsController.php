@@ -6,11 +6,18 @@ use App\Questionnaire;
 use App\Resolution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ResolutionsController extends Controller
 {
     const RR = 'RR';
+    const resolutionColumns = [
+        'number',
+        'series',
+        'title',
+        'keywords',
+    ];
 
     /**
      * Display a listing of the resource.
@@ -19,25 +26,39 @@ class ResolutionsController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = 25;
-        // $resolutions = Resolution::where('is_monitoring', 0)->paginate($limit);
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
+
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
         if ($request->q) {
             $q = $request->q;
-            $resolutions = Resolution::where('keywords', 'LIKE', '%' . $q . '%')
-                ->orWhere('number', 'LIKE', '%' . $q . '%')
-                ->orWhere('series', 'LIKE', '%' . $q . '%')
-                ->orWhere('title', 'LIKE', '%' . $q . '%')
-                ->where('is_monitoring', 0)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            $resolutions = $resolutions->where('is_monitoring', 0);
-
+            $resolutions = Resolution::where(function($query) use ($q){
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+            })->where(function($query){
+                $query->where('is_monitoring', 0);
+            });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 0)
-                ->orderby('created_at', 'desc')
-                ->get();
+            $resolutions = Resolution::where('is_monitoring', 0);
         }
-        // Implement search
+
+        // Implement filtering / sorting
+        $resolutions = $resolutions->orderBy($colName, $order);
+
+        // Paginate with filters
+        $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
         return view('admin.resolutions.index', [
             'resolutions' => $resolutions,
@@ -74,7 +95,7 @@ class ResolutionsController extends Controller
             : '';
         $resolution->save();
 
-        Session::flash('flash_message', "Successfully added <b>" . $resolution->title . "</b> resolution!");
+        Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
         return redirect('/admin/resolutions');
     }
 
@@ -128,7 +149,7 @@ class ResolutionsController extends Controller
         $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
         $resolution->save();
 
-        Session::flash('flash_message', "Successfully updated <b>" . $resolution->title . "</b> resolution!");
+        Session::flash('flash_message', "Successfully updated <strong>Resolution" . $resolution->number . "</strong>!");
         return redirect('/admin/resolutions');
     }
 

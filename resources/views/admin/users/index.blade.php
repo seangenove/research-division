@@ -23,8 +23,9 @@
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Role</th>
                     <th>Email</th>
-                    <th>Status</th>
+                    {{--<th>Status</th>--}}
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Manage</th>
@@ -34,8 +35,9 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ $user->name }}</td>
+                        <td>{{ $user->role }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->status }}</td>
+                        {{--<td>{{ $user->status }}</td>--}}
                         <td>{{ $user->created_at }}</td>
                         <td>{{ $user->updated_at }}</td>
                         <td>

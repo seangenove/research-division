@@ -40,8 +40,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required',
+            'role' => 'required',
+            'repassword' => 'required|same:password'
+
+        ]);
         $user = new User();
         $user->fill($request->all());
+        $user->password = bcrypt($request->password);
         $user->save();
         return redirect('/admin/users');
     }
@@ -79,6 +88,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+//            'email' => 'required|unique:users|email',
+            'role' => 'required',
+        ]);
         User::find($id)->update($request->all());
         return redirect('/admin/users');
     }

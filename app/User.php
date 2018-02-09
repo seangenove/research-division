@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role'
     ];
 
     /**
@@ -28,8 +28,12 @@ class User extends Authenticatable
         'password', 'role', 'status', 'remember_token',
     ];
 
+    /**
+     * Checks user role
+     * @param $role
+     * @return bool
+     */
     public function hasRole($role){
         $flag = Auth::user()->role == $role ? true : false;
-
         return $flag;
     }}
