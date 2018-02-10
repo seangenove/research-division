@@ -25,18 +25,19 @@ class ResultController extends Controller
         $questionnaire = Questionnaire::find($id);
         $allQuestions = $questionnaire->questions;
 
-//        $answers = Answer::all();
 
         return view('admin.result.show')
-//            ->with('answers',$answers)
-//            ->with('questions',$allQuestions)
             ->with('questionnaire', $questionnaire);
     }
 
     public function downloadExcel($id)
     {
+        // file name to ordinance num
+
         try {
-            Excel::create('file', function ($excel) use ($id) {
+            $questionnaire = Questionnaire::find($id);
+            $file_name = $questionnaire->name;
+            Excel::create($file_name, function ($excel) use ($id) {
                 $excel->sheet('Excel sheet', function ($sheet) use ($id) {
                     $questions_arr = [];
                     $answers_arr = [];
@@ -49,6 +50,7 @@ class ResultController extends Controller
                         }
                         $count += 1;
                     }
+                    // filling arrays with data ^
                     $sheet->appendRow($questions_arr);
                     $rows = [];
                     for ($x = 0; $x < count($answers_arr); $x++) {
@@ -56,11 +58,10 @@ class ResultController extends Controller
                             $rows[$y][$x] = $answers_arr[$x][$y];
                         }
                     }
+
                     foreach ($rows as $row) {
                         $sheet->appendRow($row);
                     }
-
-//                dd($rows);
 
                     $sheet->setOrientation('landscape');
 
