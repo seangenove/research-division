@@ -247,6 +247,9 @@ class PublicController extends Controller
 
     public function storeSuggestion(Request $request, $id)
     {
+        $request->validate([
+            'g-recaptcha-response' => 'required',
+        ]);
 
         if ($request->input('type') === 'ordinance') {
             // Ordinances
