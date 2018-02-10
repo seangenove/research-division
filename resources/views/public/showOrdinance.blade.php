@@ -92,7 +92,14 @@
                                         <input class="form-control" type="email" name="email" placeholder="Email">
                                         <textarea required class="form-control" name="suggestion" rows="5"
                                                   placeholder="Please give us your suggestion on this ordinance"></textarea>
-                                        <br>
+
+                                        {!! NoCaptcha::display() !!}
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                        @endif
+
                                         <div class="form-inline">
                                             <button class="btn btn-success pull-right" type="submit"><i
                                                         class="fa fa-paper-plane"></i> Send Now

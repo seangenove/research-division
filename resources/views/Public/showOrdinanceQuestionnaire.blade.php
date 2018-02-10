@@ -26,11 +26,11 @@
                                            value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
                                     <input type="hidden" name="questionnaire_id" value="{{$questionnaire->id}}">
                                     <label for="firstname">First Name</label>
-                                    <input name="firstname" type="text" class="form-control">
+                                    <input name="firstname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
                                     <label for="lastname">Last Name</label>
-                                    <input name="lastname" type="text" class="form-control">
+                                    <input name="lastname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
                                     <label for="email">E-mail</label>
-                                    <input name="email" type="text" class="form-control">
+                                    <input name="email" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
                                     <br>
 
                                     @foreach($questions as $question)
@@ -78,6 +78,14 @@
                                             @endphp
                                         </div>
                                     @endforeach
+
+                                    {!! NoCaptcha::display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+
                                     <input name="counter" type="hidden" class="form-control" value="{{$counter}}">
                                         <button class="btn btn-success pull-right" type="submit"><i
                                                     class="fa fa-paper-plane"></i> Submit

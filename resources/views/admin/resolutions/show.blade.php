@@ -38,8 +38,8 @@
 
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}"
                                    class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
-                                <a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span
-                                                class="fa fa-eye"></span> Preview</span></a>
+                                {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span--}}
+                                                {{--class="fa fa-eye"></span> Preview</span></a>--}}
                                 <a href="" class="btn  btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
 
@@ -52,6 +52,13 @@
                                         <span class="fa fa-trash"></span> Delete
                                     </button>
                                 </form>
+                                    <br>
+                                    @if($questionnaire->isAccepting == 1)
+                                        Public Link: <a href="/public/showResolutionQuestionnaire/{{$resolution->id}}">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}</a>
+                                        <br>
+                                        Required Link: <a href="/public/showResolutionQuestionnaire/{{$resolution->id}}/required">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}/required</a>
+                                    @endif
+
                             </div>
                         </div>
                         {{--<h2>{{ $questionnaire->name }}</h2>--}}

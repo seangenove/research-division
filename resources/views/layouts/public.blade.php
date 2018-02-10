@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    {!! NoCaptcha::renderJs() !!}
     <!-- =======================================================
     Theme Name: MyBiz
     Theme URL: https://bootstrapmade.com/mybiz-free-business-bootstrap-theme/

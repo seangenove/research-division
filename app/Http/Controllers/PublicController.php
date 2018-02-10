@@ -208,14 +208,26 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
+        $required=false;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
+    }
+
+    public function showRequiredOrdinanceQuestionnaire($id)
+    {
+        LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
+        $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        $required=true;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
     public function submitOrdinanceAnswers(Request $request)
     {
-
+        $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
         $requestData = $request->all();
-//        dd($requestData);
 
         $response = new Response;
         $response->firstname = $request->firstname;
@@ -246,6 +258,9 @@ class PublicController extends Controller
 
     public function storeSuggestion(Request $request, $id)
     {
+        $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
 
         if ($request->input('type') === 'ordinance') {
             // Ordinances
@@ -294,6 +309,18 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values);
+        $required=false;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required',$required);
+    }
+
+    public function showRequiredResolutionQuestionnaire($id)
+    {
+        LogUtility::insertLog("HttpRequest on /public/showResolutionQuestionnaire/{id}", 'public');
+
+        $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        $required=true;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required',$required);
     }
 }

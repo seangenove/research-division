@@ -190,7 +190,7 @@
                                    class="btn btn-xs btn-primary btn-equal-width ">
                                     {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
                                 </a>
-                                <a href="/admin/resolutions/{{$resolution->id}}/edit"
+                                <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
                                 <form action="/admin/resolutions/{{ $resolution->id }}" method="post">
                                     {{ method_field('DELETE') }}
