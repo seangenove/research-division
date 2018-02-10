@@ -213,9 +213,10 @@ class PublicController extends Controller
 
     public function submitOrdinanceAnswers(Request $request)
     {
-
+        $request->validate([
+            'g-recaptcha-response' => 'required',
+        ]);
         $requestData = $request->all();
-//        dd($requestData);
 
         $response = new Response;
         $response->firstname = $request->firstname;

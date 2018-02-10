@@ -78,6 +78,14 @@
                                             @endphp
                                         </div>
                                     @endforeach
+
+                                    {!! NoCaptcha::display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+
                                     <input name="counter" type="hidden" class="form-control" value="{{$counter}}">
                                         <button class="btn btn-success pull-right" type="submit"><i
                                                     class="fa fa-paper-plane"></i> Submit
