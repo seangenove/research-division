@@ -20,7 +20,7 @@ class CreateOrdinancesTable extends Migration
             $table->longText('title');
             $table->longText('keywords');
             $table->boolean('is_accepting')->default(false);
-            $table->tinyInteger('is_monitoring');
+            $table->boolean('is_monitoring')->default(false);
             $table->text('pdf_file_path')->nullable();
             $table->timestamps();
         });
