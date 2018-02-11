@@ -73,6 +73,19 @@
                                                     @endif
                                                 @endforeach
                                             @endif
+
+                                            @if($question->type == 'conditional')
+                                                <input name="question_id{{$counter}}" type="hidden" class="form-control"
+                                                       id="answer" value="{{$question->id}}">
+                                                @foreach($values as $value)
+                                                    @if($value->question_id == $question->id)
+                                                        <div class="radio">
+                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
                                             @php
                                                 $counter = $counter+1;
                                             @endphp
