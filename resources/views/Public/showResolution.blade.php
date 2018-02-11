@@ -7,7 +7,7 @@
                     <div class="resolution">
                         <div style="text-align: center">
                             <div class="resolution-heading">
-                                <h1>{{$resolution->title}}</h1>
+                                <h3>{{$resolution->title}}</h3>
                             </div>
                             <hr/>
                             <div class="row">
@@ -144,6 +144,13 @@
 
         .form-control {
             margin-bottom: 10px;
+        }
+
+        .resolution-heading h3{
+            white-space: nowrap;
+            width: 20em;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     </style>
 @endsection
