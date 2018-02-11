@@ -225,7 +225,7 @@ class PublicController extends Controller
     public function submitOrdinanceAnswers(Request $request)
     {
         $request->validate([
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required',
         ]);
         $requestData = $request->all();
 
@@ -259,7 +259,7 @@ class PublicController extends Controller
     public function storeSuggestion(Request $request, $id)
     {
         $request->validate([
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required',
         ]);
 
         if ($request->input('type') === 'ordinance') {
