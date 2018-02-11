@@ -247,7 +247,7 @@ class FormsController extends Controller
         }
         Questionnaire::destroy($id);
 
-        return redirect('/admin/forms');
+        return back();
     }
 
     public function acceptResponses($id)

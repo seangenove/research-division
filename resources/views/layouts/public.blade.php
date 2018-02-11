@@ -21,6 +21,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+    @yield('styles')
 </head>
 
 <body id="top" data-spy="scroll">
@@ -74,9 +75,6 @@
                                 {{--<li><a href="/reports">Reports</a></li>--}}
                             {{--</ul>--}}
                         {{--</li>--}}
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contactUs">Contact</a></li>
-                        {{--<li><a href="/reports">Reports</a></li>--}}
                         @if (\App\Page::all()->count() > 0)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -88,6 +86,8 @@
                                     @endforeach
                                 </ul>
                         @endif
+                        <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>
@@ -113,42 +113,33 @@
 @yield('content')
 
 <!--bottom footer-->
-<div id="bottom-footer" class="hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="col-md-2">
-                    <img src="/images/client/Seal_of_baguio_city.png" alt="">
-                </div>
-                <div class="col-md-6">
-                    <br>
-                    <p>Baguio City Government Contacts:</p>
-                    <p>Telephone: (6374) 300 6500</p>
-                    <p>Fax: (6374) 442 7228</p>
-                    <p>Email: baguio.webmin@gmail.com</p>
-                    <p>Address: City Hall Loop, Baguio City</p>
-                </div>
-                <div class="col-md-offset-9">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <p>&copy; MyBix Theme. All rights reserved</p>
-                    <p>Pictures all taken from Google</p>
-                    <div class="credits">
-                        <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyBiz
-          -->
-                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
+<footer class="footer" id="bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-2">
+                        <img src="/images/client/Seal_of_baguio_city.png" alt="Seal_of_baguio_city">
+                    </div>
+                    <div class="col-md-6">
+                        <br>
+                        <p>Baguio City Government Contacts:</p>
+                        <p>Telephone: (074) 446-3366</p>
+                        <p>Email: baguio.webmin@gmail.com</p>
+                        <p>Address: City Hall Loop, Baguio City</p>
+                    </div>
+                    <div class="col-md-offset-9">
+                        <br>
+                        <p>&copy; MyBix Theme. All rights reserved</p>
+                        <p>Pictures all taken from Google</p>
+                        <div class="credits">
+                            <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+</footer>
+
 
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>

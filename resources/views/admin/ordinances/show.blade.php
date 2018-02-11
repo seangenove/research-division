@@ -144,6 +144,15 @@
         <iframe src = "/ViewerJS/#../storage/ordinances/{{substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 )}}"
                     width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
     </div>
+    @if($ordinance->is_monitoring === 1)
+        <div class="col-md-10">
+            <div class="box box-default color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions Statistics</h3>
+                </div>
+            </div>
+        </div>
+    @endif
 
     @if($ordinance->is_monitoring === 1)
         {{--IS in M&E--}}
