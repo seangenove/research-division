@@ -20,10 +20,21 @@
             @endif
             <!-- /.box-header -->
                 <!-- form start -->
+
+                    @if(Auth::user()->role == "superadmin")
                 <form method="post" action="{{ url("/admin/users/{$user->id}/") }}">
+                    @else
+                <form method="post" action="{{ url("/admin/show") }}">
+                    @endif
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}
                     <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="image">Profile Picture</label>
+                            <input name="image" type="file" class="form-control" id="image"
+                                   placeholder="Upload Picture" value="{{ $user->image }}">
+                        </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
@@ -41,10 +52,14 @@
                             <label for="exampleInputEmail1">Role</label>
                             <select name="role" class="form-control">
                                 <option value="">Please select..</option>
-                                <option {{ $user->role ===  'admin' ? 'selected' : ''}}  value="admin">Admin</option>
-                                <option {{ $user->role ===  'rr' ? 'selected' : ''}} value="rr">Research and Records
+                                <option {{ $user->role ===  'admin' ? 'selected' : ''}}  value="admin">
+                                    Admin
                                 </option>
-                                <option {{ $user->role ===  'me' ? 'selected' : ''}} value="me">Monitoring and
+                                <option {{ $user->role ===  'rr' ? 'selected' : ''}} value="rr">Research and
+                                    Records
+                                </option>
+                                <option {{ $user->role ===  'me' ? 'selected' : ''}} value="me">Monitoring
+                                    and
                                     Evaluation
                                 </option>
                             </select>

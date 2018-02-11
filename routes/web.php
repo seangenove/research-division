@@ -38,6 +38,9 @@ Route::get('/contactUs', 'PublicController@contactUs');
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\\DashboardController@index');
+    Route::get('/edit', 'Admin\\UsersController@edit');
+    Route::get('/show', 'Admin\\UsersController@show');
+
 
     Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword');

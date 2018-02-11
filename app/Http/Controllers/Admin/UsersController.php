@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class UsersController extends Controller
 {
@@ -61,9 +62,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $id = Auth::user()->id;
+
+        return view('admin.users.show', [
+            'user' => User::find($id)
+        ]);
     }
 
     /**
@@ -72,8 +77,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
+
+        $id = Auth::user()->id;
+
         return view('admin.users.edit', [
             'user' => User::find($id)
         ]);
@@ -93,7 +101,25 @@ class UsersController extends Controller
 //            'email' => 'required|unique:users|email',
             'role' => 'required',
         ]);
+
+        $user = User::find($id);
+
         User::find($id)->update($request->all());
+
+        if($request->file('image')!=null){
+            $profpic = 'user-'.$user->id. '.jpg';
+
+            $path = base_path() . '/public/uploads/'.$profpic;
+            $user->image = $path;
+
+            $request->file('company_logo')->move(
+                base_path() . '/public/uploads/', $profpic
+            );
+
+            $user->save();
+
+        }
+
         return redirect('/admin/users');
     }
 

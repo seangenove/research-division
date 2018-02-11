@@ -107,6 +107,11 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
+
+                                    <a href="admin/edit" class="btn btn-default btn-flat">
+                                        <span class="glyphicon glyphicon-pencil" ></span>
+                                    </a>
+
                                     <a href="/admin/change-password" class="btn btn-default btn-flat">
                                         Change Password
                                     </a>
@@ -138,8 +143,11 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
+
                     {{-- Make this a png file later depending on the role of the user --}}
                     <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+{{--                    <img alt="" src="/uploads/admin-{{ $admin->id }}.jpg">--}}
                 </div>
                 <div class="pull-left info">
                     <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}
