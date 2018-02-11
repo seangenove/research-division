@@ -98,8 +98,7 @@
                                 <p>
                                     {{ \Illuminate\Support\Facades\Auth::user()->name }}
                                     <small>{{ \Illuminate\Support\Facades\Auth::user()->email }}</small>
-                                    <small>Member
-                                        since: {{ \Illuminate\Support\Facades\Auth::user()->created_at  }}</small>
+                                    <small>Member since: {{ \Illuminate\Support\Facades\Auth::user()->created_at  }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->

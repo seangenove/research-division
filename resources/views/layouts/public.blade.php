@@ -74,9 +74,6 @@
                                 {{--<li><a href="/reports">Reports</a></li>--}}
                             {{--</ul>--}}
                         {{--</li>--}}
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contactUs">Contact</a></li>
-                        {{--<li><a href="/reports">Reports</a></li>--}}
                         @if (\App\Page::all()->count() > 0)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -88,6 +85,8 @@
                                     @endforeach
                                 </ul>
                         @endif
+                        <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </li>
