@@ -15,59 +15,66 @@
         </div><!-- /.col-lg-6 -->
     </div>
     <div class="col-md-12">
-        <div class="ordinance-heading">
-            <h1>Ordinances</h1>
+        @if($ordinances !== null)
+            <div class="ordinance-heading">
+                <h1>Ordinances</h1>
+                <hr>
+            </div>
+            @foreach($ordinances as $ordinance)
+                <div class="ordinance-right-wrapper">
+                    <h3>{{$ordinance->title}}</h3>
 
-        </div>
-
-        @foreach($ordinances as $ordinance)
-            <div class="ordinance-right-wrapper">
-                <h3>{{$ordinance->title}}</h3>
-
-                <p> {{$ordinance->series}} </p>
-                <p> {{$ordinance->number}} </p>
-                <a href="/public/showOrdinance/{{$ordinance->id}}">
-                    <button class="btn-sm btn-info">
-                        Read More
-                    </button>
-                </a>
-                {{--<a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">--}}
+                    <p> {{$ordinance->series}} </p>
+                    <p> {{$ordinance->number}} </p>
+                    <a href="/public/showOrdinance/{{$ordinance->id}}">
+                        <button class="btn-sm btn-info">
+                            Read More
+                        </button>
+                    </a>
+                    {{--<a href="public/showOrdinanceQuestionnaire/{{$ordinance->id}}\">--}}
+                        {{--<button class="btn-sm btn-success">--}}
+                            {{--Answer Questionnaire--}}
+                        {{--</button>--}}
+                    {{--</a>--}}
+                </div>
+                <div class="row text-center">
+                    {{$ordinances->links()}}
+                </div>
+                <hr>
+            @endforeach
+        @elseif ($resolutions !== null)
+            <div class="resolution-heading">
+                <h1>Resolutions</h1>
+                <hr>
+            </div>
+            @foreach($resolutions as $resolution)
+                <div class="resolution-right-wrapper">
+                    <h3>{{$resolution->title}}</h3>
+                    <p>{{$resolution->series}} </p>
+                    <p>{{$resolution->number}} </p>
+                    <a href="/public/showResolution/{{$resolution->id}}">
+                        <button class="btn-sm btn-info">
+                            Read More
+                        </button>
+                    </a>
+                    {{--<a href="public/showResolutionQuestionnaire/{{$resolution->id}}\">--}}
                     {{--<button class="btn-sm btn-success">--}}
                         {{--Answer Questionnaire--}}
                     {{--</button>--}}
-                {{--</a>--}}
+                    {{--</a>--}}
+                </div>
+                <div class="row text-center">
+                    {{$resolutions->links()}}
+                </div>
+                <hr>
+            @endforeach
+        @else
+            <div class="resolution-heading">
+                <h1>No Monitored ordinances or resolutions</h1>
+                <hr>
             </div>
-            <div class="row text-center">
-                {{$ordinances->links()}}
-            </div>
-            <hr>
-        @endforeach
+        @endif
 
-        <div class="resolution-heading">
-            <h1>Resolutions</h1>
-            <hr>
-        </div>
-        @foreach($resolutions as $resolution)
-            <div class="resolution-right-wrapper">
-                <h3>{{$resolution->title}}</h3>
-                <p>{{$resolution->series}} </p>
-                <p>{{$resolution->number}} </p>
-                <a href="/public/showResolution/{{$resolution->id}}">
-                    <button class="btn-sm btn-info">
-                        Read More
-                    </button>
-                </a>
-                {{--<a href="public/showResolutionQuestionnaire/{{$resolution->id}}\">--}}
-                {{--<button class="btn-sm btn-success">--}}
-                    {{--Answer Questionnaire--}}
-                {{--</button>--}}
-                {{--</a>--}}
-            </div>
-            <div class="row text-center">
-                {{$resolutions->links()}}
-            </div>
-            <hr>
-        @endforeach
         {{--<form>--}}
                 {{--<div class="form-group">--}}
                     {{--<label for="email"> Q1: Where do you Smoke?</label>--}}

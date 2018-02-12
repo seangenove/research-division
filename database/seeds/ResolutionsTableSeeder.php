@@ -81,7 +81,7 @@ class ResolutionsTableSeeder extends Seeder
             ],
             [
                 'id' => 7,
-                'number'=> '07',
+                'number'=> '7',
                 'series'=> '2016',
                 'title'=> 'STRONGLY SUPPORTING HOUSE BILL NO. 180 [AN ACT CREATING THE BARANGAY PENSION FUND TO PROVIDE PENSION BENEFITS TO ALL BARANGAY OFFICIALS] INTRODUCED BY BAYAN MUNA PARTY LIST REPRESENTATIVES NERI J. COLMENARES AND CARLOS ISAGANI T. ZARATE.',
                 'keywords' => '2016, HOUSE BIL NO. 180, BAYAN MUNA PARTY LIST, NERI J. COLMENARES, CARLOS ISAGANI T. ZARATE',
@@ -138,18 +138,11 @@ class ResolutionsTableSeeder extends Seeder
             
         );
         Resolution::insert($researchAndRecordsResolutions);
+
         $monitoringAndEvaluationResolutions = array(
-//            [
-//               'id' => 1,
-//               'number'=> '1',
-//               'series'=> '2017',
-//               'title'=> '',
-//                'keywords' => '',
-//               'is_monitoring' => 1,
-//            ],
             [
                 'id' => 8,
-                'number'=> '08',
+                'number'=> '8',
                 'series'=> '2016',
                 'title'=> 'CONFIRMING THE MEMORANDUM OF AGREEMENT ENTERED INTO BY AND AMONG THE CITY GOVERNMENT OF BAGUIO, THROUGH THE CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, AND THE WRIGHT PARK PONY BOYS ASSOCIATION, RELATIVE TO THE PROTECTION AND CONSERVATION OF THE WRIGHT PARK AREA AND ITS VICINITY.',
                 'keywords' => '2016, MEMORANDUM OF AGREEMENT, CITY GOVERNMENT OF BAGUIO, CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, THE WRIGHT PARK PONY BOYS ASSOCIATION, PROTECTION, CONSERVATION, WRIGHT PARK',
@@ -276,6 +269,16 @@ class ResolutionsTableSeeder extends Seeder
             ],
         );
         Resolution::insert($monitoringAndEvaluationResolutions);
+
+        //            [
+//               'id' => 1,
+//               'number'=> '1',
+//               'series'=> '2017',
+//               'title'=> '',
+//                'keywords' => '',
+//               'is_monitoring' => 1,
+//            ],
+
         /** Resolution Suggestion */
 //        $resolution_suggestion = array(
 //            [

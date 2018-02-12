@@ -17,8 +17,12 @@ Route::get('/', 'PublicController@index');
 Route::get('/ordinances', 'PublicController@ordinance');
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
+
 Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
+
 Route::get('/resolutions', 'PublicController@resolutions');
+Route::get('/monitorAndEval/ordinances', 'PublicController@monitorAndEvalOrdinances');
+Route::get('/monitorAndEval/resolutions', 'PublicController@monitorAndEvalResolutions');
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
 Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');

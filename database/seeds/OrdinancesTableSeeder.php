@@ -162,9 +162,6 @@ class OrdinancesTableSeeder extends Seeder
         );
         Ordinance::insert($researchAndRecordsOrdinances);
 
-
-//         M&E Ordinances (2017 Ordinances 1-15)
-        $monitoringAndEvaluationOrdinances = array(
 //            [
 //               'id' => 1,
 //               'number'=> '1',
@@ -173,9 +170,12 @@ class OrdinancesTableSeeder extends Seeder
 //                'keywords' => '',
 //               'is_monitoring' => 1,
 //            ],
+
+//         M&E Ordinances (2017 Ordinances 1-15)
+        $monitoringAndEvaluationOrdinances = array(
             [
                 'id' => 8,
-                'number'=> '08',
+                'number'=> '8',
                 'series'=> '2016',
                 'title'=> 'APRROVING THE REQUESTS OF TEAM LAKAY TAP TEAM INC. FOR EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE BAGUIO CONVENTION CENTER FOR THE MIXED MARTIAL ARTS (MMA) EVENT ON 27 FEBRUARY 2016.',
                 'keywords' => '2016, TEAM LAKAY TAP TEAM INC., AMUSEMENT TAX, FREE USE, BAGUIO CONVENTION CENTER',
@@ -296,7 +296,8 @@ class OrdinancesTableSeeder extends Seeder
                 'is_monitoring' => 1,
             ],
         );
-        Ordinance::insert($researchAndRecordsOrdinances);
+
+        Ordinance::insert($monitoringAndEvaluationOrdinances);
 
 
 //         M&E Ordinances (2017 Ordinances 1-15)
@@ -313,8 +314,6 @@ class OrdinancesTableSeeder extends Seeder
 //        Ordinance::insert($monitoringAndEvaluationOrdinances);
 //                'is_monitoring' => 1,
 //            ]
-//       );
-//        Ordinance::insert($monitoringAndEvaluationOrdinances);
         // ==============================================================================================
 
         /** Ordinance Suggestions */
