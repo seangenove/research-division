@@ -34,6 +34,9 @@ Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');
 Route::get('/contactUs', 'PublicController@contactUs');
 
+Route::get('/downloadPDF/{directory}/{file}', 'PublicController@downloadPDF');
+Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
+
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
@@ -60,6 +63,21 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             Route::get('resolutions', 'Admin\\FormsController@resolutions');
         });
         Route::resource('result', 'Admin\\ResultController');
+
+        /** Status and Update Reports */
+        Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
+        Route::get('/ordinances/{id}/upload-update-report', 'Admin\\OrdinancesController@updateReportCreate');
+        Route::get('/resolutions/{id}/upload-status-report', 'Admin\\ResolutionsController@statusReportCreate');
+        Route::get('/resolutions/{id}/upload-update-report', 'Admin\\ResolutionsController@updateReportCreate');
+
+        Route::post('/ordinance-upload-status-report',
+            'Admin\\OrdinancesController@storeStatusReport')->name('ordinanceStoreStatusReport');
+        Route::post('/ordinance-upload-update-report',
+            'Admin\\OrdinancesController@storeUpdateReport')->name('ordinanceStoreUpdateReport');
+        Route::post('/resolution-upload-status-report',
+            'Admin\\ResolutionsController@storeStatusReport')->name('resolutionStoreStatusReport');
+        Route::post('/resolution-pload-update-report',
+            'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
     });
 
     /** END --- Monitoring and Evaluation */

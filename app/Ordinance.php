@@ -33,4 +33,14 @@ class Ordinance extends Model
         return $this->belongsToMany('App\Suggestion');
     }
 
+    public function statusReport()
+    {
+        return $this->hasOne('App\StatusReport');
+    }
+
+    public function updateReport()
+    {
+        return $this->hasMany('App\UpdateReport');
+    }
+
 }

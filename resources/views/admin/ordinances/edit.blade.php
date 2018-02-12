@@ -7,7 +7,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 {{--'number', 'title', 'description', 'authors'--}}
-                <h3 class="box-title">Edit ORDINANCE {{ $ordinance->number }} : {{  $ordinance->title }}</h3>
+                <h3 class="box-title">Edit ORDINANCE {{ $ordinance->number }}</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

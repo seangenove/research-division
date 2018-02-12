@@ -187,8 +187,8 @@
                             <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
                             <td>
                                 <a href="/admin/resolutions/{{$resolution->id}}"
-                                   class="btn btn-xs btn-primary btn-equal-width ">
-                                    {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
+                                   class="btn btn-xs btn-primary btn-equal-width">
+                                    View
                                 </a>
                                 <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
