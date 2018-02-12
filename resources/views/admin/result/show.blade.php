@@ -70,6 +70,7 @@
 @endsection
 
 @section('content')
+    <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
     <div class="box box-primary">
         <div class="box-header with-border">
             <a href="/admin/result/download/{{ $questionnaire->id }}" class="btn btn-success btn-md pull-right">
@@ -113,7 +114,15 @@
                             <div class="col-md-5">
                                 <ul class="answer-values">
                                     @foreach( $question->answers as $answer )
-                                        <li>{{ $answer->answer }}</li>
+                                            <li>
+                                                @if($question->type === "short")
+                                                    <a href="" class="update" data-url="{{ url('/admin/updateAnswer/') }}" data-name="name" data-type="text" data-pk="{{$answer->id}}" data-title="Enter answer">{{ $answer->answer }}</a>
+                                                @elseif($question->type === "long")
+                                                    <a href="" class="update" data-url="{{ url('/admin/updateAnswer/') }}" data-name="name" data-type="textarea" data-pk="{{$answer->id}}" data-title="Enter answer">{{ $answer->answer }}</a>
+                                                @else
+                                                    {{$answer->answer}}
+                                                @endif
+                                            </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -160,6 +169,7 @@
     <script src="/bower_components/highcharts/highcharts.js"></script>
     <script src="/bower_components/highcharts/exporting.js"></script>
     <script src="/bower_components/highcharts/offline-exporting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
     {{--pie chart --}}
     <script>
@@ -275,6 +285,24 @@
             });
 
 
+        });
+    </script>
+
+    <script>
+//        $.fn.editable.defaults.send = "always";
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+        $.fn.editable.defaults.mode = 'inline';
+        $(function(){
+            $('.update').editable({
+                params: function(params) {
+                    // add additional params from data-attributes of trigger element
+                    params._token = $("#_token").data("token");
+                    params.name = $(this).editable().data('name');
+                    return params;
+                },
+                title: 'Enter answer'
+            });
         });
     </script>
 @endsection

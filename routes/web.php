@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             Route::get('resolutions', 'Admin\\FormsController@resolutions');
         });
         Route::resource('result', 'Admin\\ResultController');
+        Route::post('/updateAnswer', 'Admin\\ResultController@updateAnswer');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
