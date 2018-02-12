@@ -51,7 +51,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    @if($ordinances->first() !== null)
+                    @if($ordinances->first() !== null  or !request()->has('q'))
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -160,7 +160,7 @@
                                     <td>
                                         <a href="/admin/ordinances/{{$ordinance->id}}"
                                            class="btn btn-xs btn-primary btn-equal-width ">
-                                            {{ Request::is('admin/forms*') ? 'Profile' : 'View' }}
+                                            View
                                         </a>
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>

@@ -21,7 +21,6 @@
                         <div class="ordinance-right">
                             @foreach($resolutions as $k => $resolution)
                                 {{--<div class="well col-md-5" style="margin: 10px 35px;">--}}
-
                                     {{--<h3>{{$resolution->title}}</h3>--}}
                                     {{--<p><strong>Series: </strong> {{$resolution->series}} </p>--}}
                                     {{--<p><strong>Keywords: </strong>{{ str_limit($resolution->keywords, $limit = 150, $end = '...') }}</p>--}}

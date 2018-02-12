@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\OrdinancesController;
 use App\Http\Controllers\Controller;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
 use App\Response;
+use App\StatusReport;
 use App\Suggestion;
 use App\Page;
 use App\Question;
 use App\Questionnaire;
+use App\UpdateReport;
 use App\Value;
 use App\Answer;
 use DB;
+use Illuminate\Support\Facades\Storage;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,6 +32,86 @@ class PublicController extends Controller
         'title',
         'keywords',
     ];
+    public function downloadPDF($directory, $filename) {
+
+        if(env('APP_ENV') === 'local') {
+
+            return response()->download(storage_path().'/app/public/'.$directory.'/'.$filename);
+
+        } else {
+            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+
+            //return $file; // array with file info
+            $rawData = Storage::cloud()->get($file['path']);
+
+            return response($rawData, 200)
+                ->header('ContentType', $file['mimetype'])
+                ->header('Content-Disposition', "attachment; filename='$filename'");
+        }
+    }
+
+    public function deletePDF($directory, $filename){
+        $instanceID = substr($filename,0);
+
+        // Get instance (Ordinance, Resolution, UpdateReport, StatusReport), then update certain fields
+        if ($directory === 'updatereports') {
+            $instance = UpdateReport::findOrFail($instanceID);
+
+            $instance->is_deleted = 1;
+            $instance->save();
+        } else {
+            if ($directory === 'ordinances') {
+                $instance = Ordinance::findOrFail($instanceID);
+            } elseif ($directory === 'resolutions') {
+                $instance = Resolution::findOrFail($instanceID);
+            } elseif ($directory === 'statusreports') {
+                $instance = StatusReport::findOrFail($instanceID);
+            }
+
+            $instance->pdf_file_path = " ";
+            $instance->pdf_file_name = " ";
+            $instance->save();
+        }
+
+        // Set directory for the blade (admin.ordinances.show OR admin.resolutions.show)
+        // FOR GOOGLE DRIVE UPLOAD
+        if($directory === 'statusreports' or $directory === 'updatereports'){
+            // Check if it is associated to a resolution or a ordinance
+            if ($instance->resolution !== null) {
+                $directory = 'resolutions';
+
+                // set its Resolution instance
+                $instance = $instance->resolution;
+            } else {
+                $directory =  'ordinances';
+
+                // set its Ordinance instance
+                $instance = $instance->ordinance;
+            }
+        }
+
+        // DELETE FILE
+        if(env('APP_ENV') === 'local') {
+            Storage::disk('local')->delete(storage_path().'/app/public/'.$directory.'/'.$filename);
+
+            Session::flash('flash_message', 'Successfully deleted file!');
+            return redirect('/admin/' . $directory . '/' . $instance->id);
+        } else {
+            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+
+            // Delete File
+            Storage::disk('google')->delete($file['path']);
+
+            return response()
+                ->view('admin.deleteSuccess',
+                    [
+                        'directory' => $type,
+                        'instance' => $instance,
+                    ],
+                    200);
+
+        }
+    }
 
     public function index()
     {

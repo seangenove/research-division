@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="ordinance-right">
-                            @foreach($ordinances as $k => $ordinance)
+                                @foreach($ordinances as $k => $ordinance)
                                 {{--<div class="well col-md-5" style="margin: 10px 35px;">--}}
                                     {{--<h3>{{$ordinance->title}}</h3>--}}
                                     {{--<p>Series: {{$ordinance->series}} </p>--}}

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Ordinance;
 use App\Questionnaire;
+use App\StatusReport;
+use App\UpdateReport;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +25,72 @@ class OrdinancesController extends Controller
         'keywords',
     ];
 
-    public function upload($instance, $file, $type)
+    public function getFileFromCloud($filename){
+        $dir = '/';
+        $recursive = true; // Get subdirectories also?
+        $contents = collect(Storage::disk('google')->listContents($dir, $recursive));
+
+        // Check if file exists
+        $file = $contents
+            ->where('type', '=', 'file')
+            ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
+            ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
+            ->first();
+
+        return $file;
+    }
+
+    public function upload($instance, $pdfFile, $directory)
     {
-        $filename = $instance->id . substr(ucfirst($type), 0, strlen($type) - 1) . $instance->number . '.pdf';
+        /** Custom naming for files depending on what type:
+         * (Ordinance, Resolution, Status Report, Update Report)
+         */
+
+        if (get_class($instance->ordinance) == 'App\\Ordinance') {
+            $basedOn = 'Ordinance' . $instance->ordinance->number;
+        } elseif (get_class($instance->resolution) == 'App\\Resolution') {
+            $basedOn = 'Resolution' . $instance->resolution->number;
+        }
+
+        if ($directory === 'statusreports' or $directory === 'updatereports') {
+            $filename =
+                $instance->id .
+                '-' .
+                substr(get_class($instance), strrpos(get_class($instance), "\\" ) + 1 ) .
+                '-' .
+                $basedOn .
+                '.pdf';
+        } else {
+            $filename = $instance->id .
+                '-' .
+                substr(get_class($instance), strrpos(get_class($instance), "\\" ) + 1 ) .
+                $instance->number . '.pdf';
+        }
+
+        /**
+         * File upload will depend on environment
+         * local = local upload
+         * production = Google Drive
+         */
 
         if (env('APP_ENV') === 'local') {
-            $file->storeAs(
-                'public/' . $type, $filename
+            $pdfFile->storeAs(
+                'public/' . $directory, $filename
             );
 
             $path = Storage::url($filename);
         } else {
-            // save to google drive
-            $path = $file->storeAs(
-                env('GOOGLE_DRIVE_' . strtoupper($type) . '_FOLDER_ID'),
+            // Get file listing...
+            $file = $this->getFileFromCloud($filename);
+
+            // If file does exist, delete the existing file
+            if ($file !== null and $directory !== 'updatereports') {
+                Storage::disk('google')->delete($file['path']);
+            }
+
+            // save NEW FILE to Google Drive
+            $path = $pdfFile->storeAs(
+                env('GOOGLE_DRIVE_' . strtoupper($directory) . '_FOLDER_ID'),
                 $filename,
                 'google');
         }
@@ -140,11 +195,17 @@ class OrdinancesController extends Controller
         $ordinance = new Ordinance();
         $ordinance->fill($validatedData);
         $ordinance->save();
-        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+        $ordinance->pdf_file_path =
+            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+        $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
+            substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 );
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
-        return redirect('/admin/ordinances');
+
+        $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
+
+        return redirect($redirectLink);
     }
 
     /**
@@ -157,6 +218,7 @@ class OrdinancesController extends Controller
     {
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
+
         return view('admin.ordinances.show', [
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
@@ -190,13 +252,19 @@ class OrdinancesController extends Controller
     {
         $validatedData = $this->validateData($request);
         $file = $request->file('pdf');
+
         $ordinance = Ordinance::find($id);
         $ordinance->update($validatedData);
-        $ordinance->pdf_file_path = $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path ;
+        $ordinance->pdf_file_path =
+            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path ;
+        $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
+            substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 );
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
-        return redirect('/admin/ordinances');
+        $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
+
+        return redirect($redirectLink);
     }
 
     /**
@@ -209,5 +277,73 @@ class OrdinancesController extends Controller
     {
         Ordinance::destroy($id);
         return redirect('/admin/ordinances');
+    }
+
+    public function statusReportCreate($ordinanceID) {
+        $ordinance = Ordinance::findOrFail($ordinanceID);
+
+        return view('admin.ordinances.uploadStatusReport', [
+            'ordinance' => $ordinance,
+        ]);
+
+    }
+
+    public function updateReportCreate($ordinanceID) {
+        $ordinance = Ordinance::findOrFail($ordinanceID);
+
+        return view('admin.ordinances.uploadUpdateReport', [
+            'ordinance' => $ordinance,
+        ]);
+    }
+
+    public function storeStatusReport(Request $request) {
+        $validatedData = $request->validate([
+            'ordinance_id' => '',
+            'pdf' => 'required|file',
+        ]);
+
+        // Check if there is existing Status Report
+        if (Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport !== null)  {
+            $statusReport = Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport ;
+        } else {
+            $statusReport = new StatusReport();
+        }
+
+        $file = $request->file('pdf');
+
+        // Store Status Report
+        $statusReport->ordinance_id = $validatedData['ordinance_id'];
+        $statusReport->save();
+        $statusReport->pdf_file_path = $this->upload($statusReport, $file, 'statusreports');
+        $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
+            strrpos( $statusReport->pdf_file_path, '/' ) + 1 );
+        $statusReport->save();
+
+        Session::flash('flash_message',
+            "Successfully uploaded status report for <strong> Ordinance " . $statusReport->ordinance->number . "</strong>!");
+
+        return redirect('/admin/ordinances/' . $statusReport->ordinance_id);
+    }
+
+    public function storeUpdateReport(Request $request) {
+        $validatedData = $request->validate([
+            'ordinance_id' => '',
+            'pdf' => 'required|file',
+        ]);
+
+        $file = $request->file('pdf');
+        $updateReport = new UpdateReport();
+
+        // Store Update Report
+        $updateReport->ordinance_id = $validatedData['ordinance_id'];
+        $updateReport->save();
+        $updateReport->pdf_file_path = $this->upload($updateReport, $file, 'updatereports');
+        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos( $updateReport->pdf_file_path, '/' ) + 1 );
+        $updateReport->save();
+
+        Session::flash('flash_message',
+            "Successfully uploaded update report for<strong> Ordinance " . $updateReport->ordinance->number . "</strong>!");
+
+        return redirect('/admin/ordinances/' . $updateReport->ordinance_id);
     }
 }

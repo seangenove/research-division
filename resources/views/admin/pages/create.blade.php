@@ -14,9 +14,19 @@
     <div class="box-body">
         <div>
             <a href="/admin/pages" class="btn btn-info">Back</a>
-
         </div>
-        <form method="post" action="{{ url("/admin/pages/") }}">
+
+        <br/>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="post" action="{{ url("/admin/pages/") }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="box-header">

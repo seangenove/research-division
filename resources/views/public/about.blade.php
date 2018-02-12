@@ -2,6 +2,9 @@
 @section('content')
     <div class="container">
         <div class="row">
+            This is the about page which contains the information about what this website does.
+        </div>
+    </div>
             <h2>About Us</h2>
 
             <div class=" aboutus col-md-6">

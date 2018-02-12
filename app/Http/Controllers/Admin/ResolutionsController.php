@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Questionnaire;
 use App\Resolution;
+use App\StatusReport;
+use App\UpdateReport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -93,10 +95,14 @@ class ResolutionsController extends Controller
         $resolution->pdf_file_path = $request->has('pdf') ?
             app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions')
             : '';
+        $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
+            substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 );
         $resolution->save();
 
         Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
-        return redirect('/admin/resolutions');
+
+        $redirectLink = $resolution->is_monitoring == 1 ? '/admin/forms/resolutions' : '/admin/resolutions';
+        return redirect($redirectLink);
     }
 
     /**
@@ -147,6 +153,8 @@ class ResolutionsController extends Controller
         $resolution = Resolution::find($id);
         $resolution->update($validatedData);
         $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
+        $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
+            substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 );
         $resolution->save();
 
         Session::flash('flash_message', "Successfully updated <strong>Resolution" . $resolution->number . "</strong>!");
@@ -163,5 +171,73 @@ class ResolutionsController extends Controller
     {
         Resolution::destroy($id);
         return redirect('/admin/resolutions');
+    }
+
+    public function statusReportCreate($resolutionID) {
+        $resolution = Resolution::findOrFail($resolutionID);
+
+        return view('admin.resolutions.uploadStatusReport', [
+            'resolution' => $resolution,
+        ]);
+
+    }
+
+    public function updateReportCreate($resolutionID) {
+        $resolution = Resolution::findOrFail($resolutionID);
+
+        return view('admin.resolutions.uploadUpdateReport', [
+            'resolution' => $resolution,
+        ]);
+    }
+
+    public function storeStatusReport(Request $request) {
+        $validatedData = $request->validate([
+            'resolution_id' => '',
+            'pdf' => 'required|file',
+        ]);
+
+        // Check if there is existing Status Report
+        if (Resolution::findOrFail($validatedData['resolution_id'])->statusReport !== null)  {
+            $statusReport = Resolution::findOrFail($validatedData['resolution_id'])->statusReport ;
+        } else {
+            $statusReport = new StatusReport();
+        }
+
+        $file = $request->file('pdf');
+
+        // Store Status Report
+        $statusReport->resolution_id = $validatedData['resolution_id'];
+        $statusReport->save();
+        $statusReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($statusReport, $file, 'statusreports');
+        $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
+            strrpos( $statusReport->pdf_file_path, '/' ) + 1 );
+        $statusReport->save();
+
+        Session::flash('flash_message',
+            "Successfully uploaded status report for <strong> Resolution " . $statusReport->resolution->number . "</strong>!");
+
+        return redirect('/admin/resolutions/' . $statusReport->resolution_id);
+    }
+
+    public function storeUpdateReport(Request $request) {
+        $validatedData = $request->validate([
+            'resolution_id' => '',
+            'pdf' => 'required|file',
+        ]);
+
+        $file = $request->file('pdf');
+        $updateReport = new UpdateReport();
+
+        // Store Update Report
+        $updateReport->resolution_id = $validatedData['resolution_id'];
+        $updateReport->save();
+        $updateReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($updateReport, $file, 'updatereports');
+        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos( $updateReport->pdf_file_path, '/' ) + 1 );
+        $updateReport->save();
+
+        Session::flash('flash_message',
+            "Successfully uploaded update report for<strong> Resolution " . $updateReport->resolution->number . "</strong>!");
+
+        return redirect('/admin/resolutions/' . $updateReport->resolution_id);
     }
 }
