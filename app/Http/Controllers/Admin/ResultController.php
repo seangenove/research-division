@@ -72,4 +72,14 @@ class ResultController extends Controller
         }
 
     }
+
+    public function updateAnswer(Request $request)
+    {
+        $answer = Answer::find($request->pk);
+        $answer->answer = $request->value;
+        $answer->save();
+
+        return response()->json(['success'=>'done']);
+
+    }
 }
