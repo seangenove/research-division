@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="/css/animate.css">
+    <!-- X-editable -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+
 
     <style>
         form button {
