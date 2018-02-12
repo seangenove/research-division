@@ -146,11 +146,11 @@
             margin-bottom: 10px;
         }
 
-        .resolution-heading h3{
-            white-space: nowrap;
-            width: 20em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        /*.resolution-heading h3{*/
+            /*white-space: nowrap;*/
+            /*width: 20em;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+        /*}*/
     </style>
 @endsection
