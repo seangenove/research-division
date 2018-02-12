@@ -24,7 +24,7 @@
 
                                 <div class="well col-md-5" style="margin: 10px 35px;">
 
-                                    <h3>{{$resolution->title}}</h3>
+                                    <h3>{{ str_limit($resolution->title, $limit = 100, $end = '...') }}</h3>
                                     <p><strong>Series: </strong> {{$resolution->series}} </p>
                                     <p><strong>Keywords: </strong>{{ str_limit($resolution->keywords, $limit = 150, $end = '...') }}</p>
                                     <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "

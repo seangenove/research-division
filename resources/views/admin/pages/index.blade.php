@@ -35,7 +35,7 @@
                         <td>
                             <a href="/admin/pages/{{$page->id}}" class="btn btn-xs btn-info" >Preview</a>
                             <a href="/admin/pages/{{$page->id}}/edit" class="btn btn-xs btn-warning" >Edit</a>
-                            <form action="/admin/pages/{{ $page->id }}" method="post">
+                            <form action="/admin/pages/{{ $page->id }}" method="post" onsubmit="return confirm('Are you sure?')">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button class="btn btn-xs btn-danger">Delete</button>

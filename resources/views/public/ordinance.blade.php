@@ -22,7 +22,7 @@
                         <div class="ordinance-right">
                             @foreach($ordinances as $k => $ordinance)
                                 <div class="well col-md-5" style="margin: 10px 35px;">
-                                    <h3>{{$ordinance->title}}</h3>
+                                    <h3>{{ str_limit($ordinance->title, $limit = 100, $end = '...') }}</h3>
                                     <p>Series: {{$ordinance->series}} </p>
                                     <p>{{ str_limit($ordinance->keywords, $limit = 150, $end = '...') }}</p>
                                     <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "

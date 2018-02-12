@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class UsersController extends Controller
 {
@@ -15,6 +16,16 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $user_validation = [
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'name' => 'required',
+        'email' => 'required|unique:users|email',
+        'password' => 'required',
+        'role' => 'required',
+        'repassword' => 'required|same:password'
+    ];
+
     public function index()
     {
         return view('admin.users.index', [
@@ -35,20 +46,14 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required',
-            'role' => 'required',
-            'repassword' => 'required|same:password'
-
-        ]);
+        $request->validate($this->user_validation);
         $user = new User();
+
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
@@ -58,49 +63,83 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $id = Auth::user()->id;
+
+        Session::flash(
+            'flash_message',
+            "Profile Updated!");
+
+        return view('admin.users.show', [
+            'user' => User::find($id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
+
+        $id = Auth::user()->id;
+
         return view('admin.users.edit', [
-            'user' => User::find($id)
+            'user' => User::findOrFail($id)
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'name' => 'required',
-//            'email' => 'required|unique:users|email',
-            'role' => 'required',
+            'email' => 'required|email',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        User::find($id)->update($request->all());
-        return redirect('/admin/users');
+
+        $requestData = $request->all();
+
+        $user = User::findOrFail($id);
+        $user->update($requestData);
+
+        if ($request->file('image') != null) {
+            $profpic = 'user-' . $user->id . '.jpg';
+
+            $path = base_path() . '/public/uploads/' . $profpic;
+            $user->image = $path;
+
+            $request->file('image')->move(
+                base_path() . '/public/uploads/', $profpic
+            );
+
+            $user->save();
+
+        }
+
+        if (Auth::user()->role == "superadmin") {
+            return redirect('/admin/users');
+        } else
+            return redirect('/admin/show');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -112,18 +151,20 @@ class UsersController extends Controller
     /**
      * The get route for changing password
      */
-    public function changePassword(){
+    public function changePassword()
+    {
         return view('admin.users.password');
     }
 
     /**
      * The get route for changing password
      */
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
         $old = $request->input('old-password');
         $new = $request->input('new-password');
 
-        if (Auth::check($old, Auth::user()->getAuthPassword())){
+        if (Auth::check($old, Auth::user()->getAuthPassword())) {
             $user = Auth::user();
             $user->password = bcrypt($new);
             $user->save();
@@ -132,7 +173,8 @@ class UsersController extends Controller
         return view('admin.users.password');
     }
 
-    public function resetPassword($user_id){
+    public function resetPassword($user_id)
+    {
         $user = User::findorFail($user_id)->first();
         $temporaryPassword = $this->generateRandomString(5);
 
@@ -141,12 +183,13 @@ class UsersController extends Controller
 
         Session::flash(
             'flash_message',
-            "Password has been reset for" . $user->name . ". The temporary password is <b>". $temporaryPassword ."<b>.");
+            "Password has been reset for" . $user->name . ". The temporary password is <b>" . $temporaryPassword . "<b>.");
 
         return redirect('/admin/users');
     }
 
-    private function generateRandomString($length) {
+    private function generateRandomString($length)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';

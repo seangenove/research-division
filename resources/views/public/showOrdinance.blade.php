@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="ordinance">
                         <div class="ordinance-heading">
-                            <h1>{{$ordinance->title}}</h1>
+                            <h3>{{$ordinance->title}}</h3>
                         </div>
                     </div>
                 </div>
@@ -128,5 +128,12 @@
         .form-control {
             margin-bottom: 10px;
         }
+
+        /*.ordinance-heading h3{*/
+            /*white-space: nowrap;*/
+            /*width: 20em;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+        /*}*/
     </style>
 @endsection
