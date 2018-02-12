@@ -41,8 +41,8 @@ class ResolutionsTableSeeder extends Seeder
                 'id' => 1,
                 'number'=> '1',
                 'series'=> '2016',
-                'title'=> '.',
-                'keywords' => '',
+                'title'=> 'APPROVING THE 2016 ANNUAL INVESTMENT PLAN (AIP) FOR BAGUIO CITY.',
+                'keywords' => '2016, ANNUAL INVESTMENT PLAN, AIP',
             ],
             [
                 'id' => 2,
@@ -86,12 +86,25 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'STRONGLY SUPPORTING HOUSE BILL NO. 180 [AN ACT CREATING THE BARANGAY PENSION FUND TO PROVIDE PENSION BENEFITS TO ALL BARANGAY OFFICIALS] INTRODUCED BY BAYAN MUNA PARTY LIST REPRESENTATIVES NERI J. COLMENARES AND CARLOS ISAGANI T. ZARATE.',
                 'keywords' => '2016, HOUSE BIL NO. 180, BAYAN MUNA PARTY LIST, NERI J. COLMENARES, CARLOS ISAGANI T. ZARATE',
             ],
+            
+        );
+        Resolution::insert($researchAndRecordsResolutions);
+        $monitoringAndEvaluationResolutions = array(
+//            [
+//               'id' => 1,
+//               'number'=> '1',
+//               'series'=> '2017',
+//               'title'=> '',
+//                'keywords' => '',
+//               'is_monitoring' => 1,
+//            ],
             [
                 'id' => 8,
                 'number'=> '08',
                 'series'=> '2016',
                 'title'=> 'CONFIRMING THE MEMORANDUM OF AGREEMENT ENTERED INTO BY AND AMONG THE CITY GOVERNMENT OF BAGUIO, THROUGH THE CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, AND THE WRIGHT PARK PONY BOYS ASSOCIATION, RELATIVE TO THE PROTECTION AND CONSERVATION OF THE WRIGHT PARK AREA AND ITS VICINITY.',
                 'keywords' => '2016, MEMORANDUM OF AGREEMENT, CITY GOVERNMENT OF BAGUIO, CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, THE WRIGHT PARK PONY BOYS ASSOCIATION, PROTECTION, CONSERVATION, WRIGHT PARK',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 9,
@@ -99,6 +112,7 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 004, SERIES OF 2015 [AN ORDINANCE PROHIBITING RESIDENTS FROM DRAINING WATER FROM THEIR SEPTIC TANKS ANYTIME OF THE YEAR MOST ESPECIALLY DURING HEAVY DOWN POUR OF RAINS], OF THE MIDDLE QUIRINO HILL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, ORDINANCE NO. 004 SERIES OF 2015, MIDDLE QUIRINO HILL',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 10,
@@ -106,6 +120,7 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'HIRING OF ONE (1) ADMINISTRATIVE AIDE III (CLERK I) ON CASUAL STATUS, FOR THE PERIOD JANUARY 2016 TO 30 JUNE 2016 IN THE CITY SOCIAL WELFARE AND DEVELOPMENT OFFICE.',
                 'keywords' => '2016, ADMINISTRATIVE AIDE III, CLERK I, CASUAL STATUS, CITY SOCIAL WELFARE AND DEVELOPMENT OFFICE',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 11,
@@ -113,13 +128,15 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'HIRING OF THREE (3) NURSE II, SG-15/1; ONE (1) DENTAL AIDE IV, SG-4/1; ONE (1) LABORATORY AIDE II, SG-4/1; AND ONE (1) SANITATION INSPECTOR I, SG-6/1, ALL ON CASUAL STATUS FOR THE PERIOD JANUARY 2016 TO 30 JUNE 2016 IN THE CITY HEALTH SERVICES OFFICE.',
                 'keywords' => '2016, NURSE II, DENTAL AIDE IV, LABORATORY AIDE II, SANITATION INSPECTOR I, SG, CITY HEALTH SERVICES OFFICE',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 12,
                 'number'=> '12',
                 'series'=> '2016',
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 01, SERIES OF 2015 [AN ORDINANCE ENACTING A COMPREHENSIVE BARANGAY TAX ORDINANCE IMPOSING TAXES OR BARANGAY FEES (BARANGAY CLEARANCE FEES, BARANGAY BUSINESS CLEARANCE FEES, CERTIFICATION FEES AND FILING FEES) AND CHARGES FOR SERVICE RENDERED WITHIN THE BARANGAY OF CABINET HILL-TEACHERS CAMP BARANGAY, BAGUIO CITY AND FOR OTHER PURPOSES.], OF CABINET HILL-TEACHER’S CAMP BARANGAY, BAGUIO CITY.',
-                'keywords' => '2016, ORDINANCE NO. 001 SERIES OF 2015, CABINET HILL, TEACHERS CAMP'
+                'keywords' => '2016, ORDINANCE NO. 001 SERIES OF 2015, CABINET HILL, TEACHERS CAMP',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 13,
@@ -127,6 +144,7 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 008, SERIES OF 2015 [AN ORDINANCE INSTITUTIONALIZING THE CONDUCT OF MASS FEEDING DURING BARANGAY OFFICIALS BIRTHDAYS], OF MIDDLE QUIRINO HILL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, ORDINANCE NO. 008 SERIES OF 2015, MIDDLE QUIRINO HILL',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 14,
@@ -134,6 +152,7 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'AUTHORIZING HON. MAURICIO G. DOMOGAN, CITY MAYOR, TO ENTER INTO A MEMORANDUM OF AGREEMENT WITH THE DIFFERENT PARTICIPATING NATIONAL LINE AGENCIES FOR THE IMPLEMENTATION OF THE LOCAL POVERTY REDUCTION ACTION PLAN (LPRAP) OF THE CITY BAGUIO FOR FISCAL YEAR 2016 UNDER THE GRASSROOTS PARTICIPATORY BUDGETING (GPB) PROCESS (FORMERLY CALLED BOTTOM-UP BUDGETING).',
                 'keywords' => '2016, HON. MAURICIO G. DOMOGAN, CITY MAYOR, MEMORANDUM OF AGREEMENT, NATIONAL LINE AGENCIES, LOCAL POVERTY REDUCTION ACTION PLAN, LPRAP, FISCAL YEAR, GRASSROOTS PARTICIPATORY BUDGETING, GPB',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 15,
@@ -141,10 +160,10 @@ class ResolutionsTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'STRONGLY APPEALING TO HIS EXCELLENCY, PRESIDENT BENIGNO SIMEON C. AQUINO III AND THE HONORABLE MEMBERS OF THE CONGRESS OF THE PHILIPPINES TO TAKE IMMEDIATE MEASURES TO ALLEVIATE THE PLIGHT OF INDIGIENT SOCIAL SECURITY SYSTEM (SSS) PENSIONERS.',
                 'keywords' => '2016, PRESIDENT BENIGNO SIMEON C. AQUINO III, HONORABLE MEMBERS OF THE CONGRESS OF THE PHILIPPINES, SOCIAL SECURITY SYSTEM, SSS',
+                'is_monitoring' => 1,
             ]
         );
-        Resolution::insert($researchAndRecordsResolutions);
-        
+        Resolution::insert($monitoringAndEvaluationResolutions);
         /** Resolution Suggestion */
 //        $resolution_suggestion = array(
 //            [

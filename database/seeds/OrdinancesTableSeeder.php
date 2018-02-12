@@ -107,12 +107,28 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'APPROVING THE REQUESTS OF THE MEMOIRS EVENTS ORGANIZING AND SUPPLIES SPECIALIST FOR THE EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND OTHER CITY FEES AND FOR THE FREE USE OF BAGUIO CONVENTION CENTER FOR THEIR MUSICAL DRAMA "#POPEPULAR, PAANO KUNG PINOY SI KIKO?" ON 18 TO 21 JANUARY 2016.',
                 'keywords' => '2016, MEMOIRS EVENTS ORGANIZING AND SUPPLIES SPECIALIST, AMUSEMENT TAX, OTHER CITY FEES, FREE USE, BAGUIO CONVENTION CENTER',
             ],
+            
+        );
+        Ordinance::insert($researchAndRecordsOrdinances);
+
+
+//         M&E Ordinances (2017 Ordinances 1-15)
+        $monitoringAndEvaluationOrdinances = array(
+//            [
+//               'id' => 1,
+//               'number'=> '1',
+//               'series'=> '2017',
+//               'title'=> '',
+//                'keywords' => '',
+//               'is_monitoring' => 1,
+//            ],
             [
                 'id' => 8,
                 'number'=> '08',
                 'series'=> '2016',
                 'title'=> 'APRROVING THE REQUESTS OF TEAM LAKAY TAP TEAM INC. FOR EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE BAGUIO CONVENTION CENTER FOR THE MIXED MARTIAL ARTS (MMA) EVENT ON 27 FEBRUARY 2016.',
                 'keywords' => '2016, TEAM LAKAY TAP TEAM INC., AMUSEMENT TAX, FREE USE, BAGUIO CONVENTION CENTER',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 9,
@@ -120,6 +136,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'REALIGNING THE AMOUNT OF Php200,000 FROM THE PROJECT "REHABILITATION AND RIPRAPPING AT INTERIOR REGIDOR BETWEEN MOLINTAS RESIDENCE AND LATUS RESIDENCE" UNDER THE 2015 ANNUAL INVESTMENT PLAN (AIP) TO "CONSTRUCTION OF PUBLIC COMFORT ROOM AT THE BASEMENT OF THE OLD BARANGAY HALL", AT PACDAL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, REHABILIATION, RIPRAPPING, INTERIOR RIGEDOR, MOLINTAS, LATUS, ANNUAL INVESTMENT PLAN, AIP, CONSTRUCTION, PUBLIC COMFORT ROOM, PACDAL',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 10,
@@ -127,6 +144,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'REALIGNING THE AMOUNT OF Php1,351,311.77 FROM THE PROJECT "REHABILITATION OF FLOOD CONTROL ALONG BALILI RIVER" UNDER THE 2014 LOCAL DEVELOPMENT FUND OF THE CITY OF BAGUIO  TO "CONSTRUCTION  OF THE PROPOSED MAIN SEWER LINE CONNECTION AT PUROK 1" AT LOWER MAGSAYSAY BARANGAY, BAGUIO.',
                 'keywords' => '2016, REHABILITAION, FLOOD CONTORL, BALILI RIVER, LOCAL DEVELOPMENT FUND, CONSTRUCTION, PRPOSED MAIN SEWER LINE CONNECTION, LOWER MAGSAYSAY',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 11,
@@ -134,6 +152,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'APPROVING THE REQUESTS OF THE HILLTOP ASSEMBLY OF GOD FOR EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE BAGUIO CONVENTION CENTER FOR THE BREAKTHROUGH CONCERT 2015 ON 18 NOVEMBER 2016, SUBJECT OT CONDITIONS.',
                 'keywords' => '2016, HILLTOP ASSEMBLY OF GOD, AMUSEMENT TAX, FREE USE, BAGUIO CONVENTION CENTER, BREAKTHROUGH',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 12,
@@ -141,6 +160,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'APPROVING THE REQUESTS OF THE CAR-BAGUIO GERMAN SHEPHERD DOG CLUB, INCORPORATED FOR THE EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE MELVIN JONES, BURNHAM PARK, BAGUIO CITY, AS VENUE FOR THE 53RD LANDESGRUPPEN DOG SHOW ON 24 APRIL 2016.',
                 'keywords' => '2016, CAR-BAGUIO GERMAN SHEPHERD DOG CLUB INCORPORATED, AMUSEMENT TAX, FREE USE, MELVIN JONES, BURNHAM PARK, LANDESGRUPPEN DOG SHOW',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 13,
@@ -148,6 +168,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'AUTHORIZING A SUPPLEMENTAL BUDGET INVOLVING AN AMOUNT OF NINETY MILLION TWO HUNDRED SIXTY THOUSAND PESOS (Php90,260,000.00) TO AUGMENT THE 2015 DEVELOPMENT/INVESTMENT PRIORITY PROJECTS OF THE CITY OF BAGUIO.',
                 'keywords' => '2016, SUPPLEMENTAL BUDGET, DEVELOPMENT/INVESTMENT PRIORITY PROJECTS',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 14,
@@ -155,6 +176,7 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'ESTABLISHING, INAUGURATING AND INSTITUTING 16 JUNE 1916 AS THE FOUNDATION DAY OF THE BAGUIO CITY NATIONAL HIGH SCHOOL, APPROPRIATING FUNDS FOR ITS 2016 CENTENNIAL CELEBRATION, AND FOR OTHER PURPOSES.',
                 'keywords' => '2016, FOUNDATION DAY, BAGUIO CITY NATIONAL HIGH SCHOOL, CENTENNIAL CELEBRATION, OTHER PURPOSES',
+                'is_monitoring' => 1,
             ],
             [
                 'id' => 15,
@@ -162,23 +184,10 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'GRANTING AMNESTY TO APPLICANTS FOR ELECTRIC AND WATER CONNECTIONS IN THE CITY OF BAGUIO.',
                 'keywords' => '2016, AMNESTY, APPLICANTS, ELECTRIC AND WATER CONNECTIONS',
+                'is_monitoring' => 1,
             ]
-        );
-        Ordinance::insert($researchAndRecordsOrdinances);
-
-
-//         M&E Ordinances (2017 Ordinances 1-15)
-//        $monitoringAndEvaluationOrdinances = array(
-//            [
-//                'id' => 1,
-//                'number'=> '1',
-//                'series'=> '2017',
-//                'title'=> '',
-//                'keywords' => '',
-//                'is_monitoring' => 1,
-//            ],
-//        );
-//        Ordinance::insert($monitoringAndEvaluationOrdinances);
+       );
+        Ordinance::insert($monitoringAndEvaluationOrdinances);
         // ==============================================================================================
 
         /** Ordinance Suggestions */
