@@ -14,6 +14,13 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $page_validation = [
+        'title' => 'required',
+        'description' => 'required',
+        'content' => 'required',
+    ];
+
     public function index()
     {
         return view('admin.pages.index', [
@@ -38,6 +45,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->page_validation);
+
         $page = new Page();
         $page->title=$request->title;
         $page->description=$request->description;
@@ -81,6 +90,8 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate($this->page_validation);
+
         Page::find($id)->update($request->all());
         return redirect('/admin/pages');
     }
