@@ -57,7 +57,7 @@
                                                         echo request()->fullUrlWithQuery($currentUrlQueries);
                                                     @endphp
                                                     @endif">
-                                                        Ordinance Number
+                                                        Resolution Number
                                                     </a>
                                                 </th>
                                                 <th>

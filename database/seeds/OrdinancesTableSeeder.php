@@ -50,8 +50,6 @@ class OrdinancesTableSeeder extends Seeder
 //            ]
 //        );
 //        DB::table('ordinance_suggestion')->insert($ordinance_suggestions);
-
-
         // ==============================================================================================
         // R&R Ordinances (2016 Ordinances 1-15)
         $researchAndRecordsOrdinances = array(
@@ -59,10 +57,7 @@ class OrdinancesTableSeeder extends Seeder
                 'id' => 1,
                 'number'=> '1',
                 'series'=> '2016',
-                'title'=> 'AUTHORIZING THE ANNUAL BUDGET OF THE CITY OF BAGUIO FOR FISCAL YEAR 2016 
-                IN THE TOTAL AMOUNT OF ONE BILLION SIX HUNDRED TWENTY-TWO MILLION NINE HUNDRED TEN 
-                THOUSAND PESOS (P1.622,910,000.00) COVERING THE VARIOUS EXPENDITURES FOR THE OPERATION 
-                FISCAL YEAR 2016 AND APPROPRIATING THE NECESSARY FUNDS FOR THE PURPOSE.',
+                'title'=> 'AUTHORIZING THE ANNUAL BUDGET OF THE CITY OF BAGUIO FOR FISCAL YEAR 2016 IN THE TOTAL AMOUNT OF ONE BILLION SIX HUNDRED TWENTY-TWO MILLION NINE HUNDRED TEN THOUSAND PESOS (P1.622,910,000.00) COVERING THE VARIOUS EXPENDITURES FOR THE OPERATION FISCAL YEAR 2016 AND APPROPRIATING THE NECESSARY FUNDS FOR THE PURPOSE.',
                 'keywords' => '2016, ANNUAL BUDGET, EXPENDITURES, FUNDS, FISCAL YEAR',
             ],
             [
@@ -162,7 +157,63 @@ class OrdinancesTableSeeder extends Seeder
                 'series'=> '2016',
                 'title'=> 'GRANTING AMNESTY TO APPLICANTS FOR ELECTRIC AND WATER CONNECTIONS IN THE CITY OF BAGUIO.',
                 'keywords' => '2016, AMNESTY, APPLICANTS, ELECTRIC AND WATER CONNECTIONS',
-            ]
+            ],
+            [
+                'id' => 16,
+                'number'=> '1',
+                'series'=> '2017',
+                'title'=> 'GRANTING AMNESTY OR RELIEF ON PENALTIES, FINES, SURCHARGES, INTERESTS, AND/OR ARREARS TO DELINQUENT REAL PROPERTY TAXPAYERS (THE 2017 REAL PROPERTY TAX AMNESTY ORDINANCE OF THE CITY OF BAGUIO)',
+                'keywords' => '2017, TAXPAYERS, REAL PROPERTY TAX AMNESTY ORDINANCE',
+            ],
+            [
+                'id' => 17,
+                'number'=> '2',
+                'series'=> '2017',
+                'title'=> 'APPROVING THE REQUESTS OF THE BAGUIO FLOWER FESTIVAL FOUNDATION, INC. (BFFI) FOR THE TEMPORARY CLOSURE TO VEHICULAR TRAFFIC OF VARIOUS ROADS AND FOR THE USE OF PUBLIC PLACES AND PARKS IN THE CITY OF BAGUIO ON 01 FEBRUARY 2017 FOR THE PANAGBENGA FESTIVAL 2017, SUBJECT TO CONDITIONS.',
+                'keywords' => '',
+            ],
+            [
+                'id' => 18,
+                'number'=> '3',
+                'series'=> '2017',
+                'title'=> 'AMENDING CITY ORDINANCE NUMBERED 513, SERIES OF 1969 [ AN ORDINANCE REGULATING THE MANAGEMENT, OPERATION AND MAINTENANCE OF DORMITORIES, BOARDING HOUSES, HOTELS AND TENEMENT HOUSES, AND PROVIDING FOR OTHER PURPOSES.]',
+                'keywords' => '',
+            ],
+            [
+                'id' => 19,
+                'number'=> '4',
+                'series'=> '2017',
+                'title'=> 'ESTABLISHING THE SEARCH FOR THE BEST CHILD-FRIENDLY POLICE STATION IN THE CITY OF BAGUIO AND PROVIDING THE MECHANICS AND GUIDELINES FOR ITS IMPLEMENTATION.',
+                'keywords' => '',
+            ],
+            [
+                'id' => 20,
+                'number'=> '5',
+                'series'=> '2017',
+                'title'=> 'REGULATING THE USE OF STREETS IN THE CITY OF BAGUIO BY HEAVY EQUIPMENT VEHICLES, TRAILERS, DUMP TRUCKS, AND OTHER FREIGHT TRUCKS (SIX-WHEELERS AND ABOVE), WITH GROSS WEIGHT CAPACITY OF 4,500 KILOGRAMS OR MORE, REPEALING FOR THE PURPOSE ORDINANCE NUMBERED 52, SERIES OF 1976, AND ARTICLE XI, SECTION 10 OF ORDINANCE NUMBERED 07, SERIES OF 1984, AND PROVIDING PENALTIES THEREFOR.',
+                'keywords' => '',
+            ],
+            [
+                'id' => 21,
+                'number'=> '6',
+                'series'=> '2017',
+                'title'=> 'APPROVING THE REQUEST OF THE CITY SOCIAL WELFARE AND DEVELOPMENT OFFICE TO PURCHASE A COMMUTER VAN IN ACCORDANCE WITH THE DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT MEMORANDUM CIRCULAR NO. 2014-47, SERIES OF 2013, AS AMENDED',
+                'keywords' => '',
+            ],
+            [
+                'id' => 22,
+                'number'=> '7',
+                'series'=> '2017',
+                'title'=> 'CHANGING THE PROJECT TITLE FROM "IDENTIFYING THE UNFINISHED WAITING SHED AND BARANGAY TANOD OUTPOST LOCATED AT MERCURY STREET" TO "CONSTRUCTION FO WAITING SHED AND TANOD OUTPOST AT MERCURY STREET", UPPER QUEZON HILL BARANGAY, BAGUIO CITY, UNDER CALENDAR YEAR 2013 ANNUAL INVESTMENT PROGRAM (AIP) OF THE CITY OF BAGUIO IN THE AMOUNT OF PHP 100,000.00',
+                'keywords' => '',
+            ],
+            [
+                'id' => 23,
+                'number'=> '8',
+                'series'=> '2017',
+                'title'=> 'PROHIBITING INTER-MUNICIPALITY PUBLIC UTILITY JEEPNEYS FROM PICKING UP PASSENGERS ALONG EXISTING BAGUIO CITY PUBLIC UTILITY JEEPNEY ROUTES AND PROVIDING PENALTIES THEREFOR.',
+                'keywords' => '',
+            ],
         );
         Ordinance::insert($researchAndRecordsOrdinances);
 

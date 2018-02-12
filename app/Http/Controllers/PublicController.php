@@ -130,7 +130,7 @@ class PublicController extends Controller
     public function resolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
-        $limit = 5;
+        $limit = 10;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -143,7 +143,6 @@ class PublicController extends Controller
         if (!$order) {
             $order = 'desc';
         }
-
 //        if ($request->q) {
 //            $q = $request->q;
 //            $resolutions = Resolution::where('keywords', 'LIKE', '%' . $q . '%')
@@ -160,22 +159,23 @@ class PublicController extends Controller
 //                ->orderby('id', 'desc')
 //                ->get();
 //        }
-
-
         if ($request->q) {
             $q = $request->q;
             $resolutions = Resolution::where(function($query) use ($q){
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%')
+                    ->orderBy('series', 'desc');
             })->where(function($query){
                 $query->where('is_monitoring', 0)
-                    ->orWhere('is_monitoring', 1);
+                    ->orWhere('is_monitoring', 1)
+                    ->orderBy('series', 'desc');
             });
         } else {
             $resolutions = Resolution::where('is_monitoring', 0)
-                ->orWhere('is_monitoring', 1);
+                ->orWhere('is_monitoring', 1)
+                ->orderBy('series', 'desc');
         }
 
         // Implement filtering / sorting
@@ -193,7 +193,7 @@ class PublicController extends Controller
     public function ordinance(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        $limit = 5;
+        $limit = 10;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -206,7 +206,6 @@ class PublicController extends Controller
         if (!$order) {
             $order = 'desc';
         }
-
 //        if ($request->q) {
 //            $q = $request->q;
 //            $ordinances = Ordinance::where('keywords', 'LIKE', '%' . $q . '%')
@@ -222,21 +221,23 @@ class PublicController extends Controller
 //                ->orderby('id', 'desc')
 //                ->get();
 //        }
-
         if ($request->q) {
             $q = $request->q;
             $ordinances = Ordinance::where(function($query) use ($q){
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%')
+                    ->orderBy('series', 'desc');
             })->where(function($query){
                 $query->where('is_monitoring', 0)
-                ->orWhere('is_monitoring', 1);
+                    ->orWhere('is_monitoring', 1)
+                    ->orderBy('series', 'desc');
             });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1)
-                ->orWhere('is_monitoring', 1);
+                ->orWhere('is_monitoring', 0)
+                ->orderBy('series', 'desc');
         }
 
         // Implement filtering / sorting
