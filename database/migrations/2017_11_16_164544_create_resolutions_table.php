@@ -22,6 +22,7 @@ class CreateResolutionsTable extends Migration
             $table->boolean('is_accepting')->default(false);
             $table->boolean('is_monitoring')->default(false);
             $table->text('pdf_file_path')->nullable();
+            $table->text('pdf_file_name')->nullable();
             $table->timestamps();
         });
     }

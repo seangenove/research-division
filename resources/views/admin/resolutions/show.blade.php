@@ -3,7 +3,7 @@
 @section('content')
     @if($resolution->is_monitoring === 1)
         {{-- IS in M&E --}}
-        <div class="box box-default color-palette-box">
+        <div class="box box-primary color-palette-box">
             <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-file-text"></i> Questionnaire</h3>
             </div>
@@ -76,72 +76,6 @@
 
         </div>
     @endif
-    <div class="col-md-5">
-        <div class="row">
-            <div class="box box-default color-palette-box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-file-text"></i> resolution {{ $resolution->number }}</h3>
-                </div>
-                <div class="box-body">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Resolution Number</th>
-                            <td>{{ $resolution->number }}</td>
-                        </tr>
-                        <tr>
-                            <th>Series</th>
-                            <td>{{ $resolution->series }}</td>
-                        </tr>
-                        <tr>
-                            <th>Title</th>
-                            <td>{{ $resolution->title }}</td>
-                        </tr>
-                        <tr>
-                            <th>Keywords</th>
-                            <td>{{ $resolution->keywords }}</td>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        @if($resolution->is_monitoring === 1)
-            <div class="row">
-                <div class="box box-default color-palette-box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
-                    </div>
-
-                    <div class="box-body box-comments">
-                        @foreach($resolution->suggestions as $suggestion)
-                            <div class="box-comment">
-                                <!-- User image -->
-                                {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
-
-                                <div class="comment-text">
-                              <span class="username">
-                                {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                                  <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                              </span><!-- /.username -->
-                                    {{ $suggestion->suggestion }}
-                                </div>
-                                <!-- /.comment-text -->
-                            </div>
-
-                        @endforeach
-
-                    </div>
-                </div>
-            </div>
-        @endif
-    </div>
-    <div class="col-md-7">
-        <iframe src = "/ViewerJS/#../storage/resolutions/{{substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 )}}"
-                width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
-    </div>
-
 
     {{--@if($resolution->is_monitoring === 1)--}}
     {{--<div class="row">--}}
@@ -230,4 +164,206 @@
     {{--</div>--}}
     {{--</div>--}}
     {{--@endif--}}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="box box-success color-palette-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-file-text"></i> RESOLUTION {{ $resolution->number }}</h3>
+                        <div class="pull-right">
+                            <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$resolution->is_monitoring === 1 ? 'ME' : 'RR'}}"
+                               class="btn btn-xs btn-warning">
+                                <i class="fa fa-edit"></i>
+                                Edit
+                            </a>
+                            <a href="{{$resolution->pdf_file_path === "" ? '#' : ("/downloadPDF/resolutions/".$resolution->pdf_file_name)}}"
+                               class="btn btn-xs btn-primary {{$resolution->pdf_file_path === "" ? 'disabled' : ''}}">
+                                <i class="fa fa-download"></i>
+                                Download Resolution
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Resolution Number</th>
+                                <td>{{ $resolution->number }}</td>
+                            </tr>
+                            <tr>
+                                <th>Series</th>
+                                <td>{{ $resolution->series }}</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td>{{ $resolution->title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Keywords</th>
+                                <td>{{ $resolution->keywords }}</td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            @if($resolution->is_monitoring === 1)
+                <div class="row">
+                    <div class="box box-danger color-palette-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
+                        </div>
+
+                        <div class="box-body box-comments">
+                            @foreach($resolution->suggestions as $suggestion)
+                                <div class="box-comment">
+                                    <!-- User image -->
+                                    {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
+
+                                    <div class="comment-text">
+                              <span class="username">
+                                {{ $suggestion->first_name }} {{ $suggestion->last_name }}
+                                  <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
+                              </span><!-- /.username -->
+                                        {{ $suggestion->suggestion }}
+                                    </div>
+                                    <!-- /.comment-text -->
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        <div class="col-md-6">
+            <div class="box box-success color-palette-box">
+                <div class="box-header with-border">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
+                        <li {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
+                            <a {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
+                                Update Reports
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box-body">
+                    <div class="tab-content">
+                        <div id="status" class="tab-pane fade in active">
+                            <div class="row" style="margin-bottom: 5px;">
+                                <div class="col-md-12">
+                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
+                                        <i class="fa fa-file-text"></i>
+                                        {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
+                                        <table class="table table-striped table-bordered">
+                                            <tr class="text-center">
+                                                <th>Status Report Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{$resolution->statusReport->pdf_file_name}}</td>
+                                                <td>
+                                                    <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
+                                                       class="btn btn-xs btn-primary btn-equal-width">
+                                                        Download
+                                                    </a>
+                                                    <a href="/deletePDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
+                                                       class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @else
+                                        <div class="row text-center">
+                                            <h4>No uploaded status report.</h4>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="update" class="tab-pane fade">
+                            <div class="row" style="margin-bottom: 5px;">
+                                <div class="col-md-12">
+                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-update-report"
+                                       class="btn btn-xs btn-group btn-primary ">
+                                        <i class="fa fa-file-text"></i>
+                                        Upload Update Report
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if($resolution->updateReport()->where('is_deleted', 0)->first())
+                                        <table class="table table-striped table-bordered">
+                                            <tr class="text-center">
+                                                <th>Update Report Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            @foreach($resolution->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                                <tr>
+                                                    <td>{{$updateReport->pdf_file_name}}</td>
+                                                    <td>
+                                                        <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                           class="btn btn-xs btn-primary btn-equal-width">
+                                                            Download
+                                                        </a>
+                                                        <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                           class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
+                                                            Delete
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    @else
+                                        <div class="row text-center">
+                                            <h4>No uploaded update reports.</h4>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if($resolution->is_monitoring == 1)
+        <div class="row">
+            @endif
+
+            @if($resolution->is_monitoring === 1)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-danger color-palette-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions Statistics</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    @endif
+@endsection
+            @section('scripts')
+                <script type="text/javascript">
+                    $('.deletePDFButton').click(function(e) {
+                        var link = e.target;
+                        var fileName = $(link).parent().parent().children().first().text();
+
+                        return confirm( "Are you sure you want to delete the file " + fileName +"?");
+                    });
+                </script>
 @endsection
