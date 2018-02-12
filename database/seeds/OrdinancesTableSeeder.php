@@ -296,7 +296,7 @@ class OrdinancesTableSeeder extends Seeder
                 'is_monitoring' => 1,
             ],
         );
-        Ordinance::insert($researchAndRecordsOrdinances);
+        Ordinance::insert($monitoringAndEvaluationOrdinances);
 
 
 //         M&E Ordinances (2017 Ordinances 1-15)
