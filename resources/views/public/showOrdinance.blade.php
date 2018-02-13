@@ -23,11 +23,13 @@
                                     <div class="panel panel-info">
                                         <div class="panel-body">
                                             @if($ordinance->is_monitoring == 1)
-                                                <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}">
-                                                    <button class="btn-sm btn-info">
-                                                        Download Status Report
-                                                    </button>
-                                                </a>
+                                                @if($ordinance->statusReport !== null and $ordinance->statusReport->pdf_file_path !== " ")
+                                                    <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}">
+                                                        <button class="btn-sm btn-info">
+                                                            Download Status Report
+                                                        </button>
+                                                    </a>
+                                                @endif
 
                                                 {{--<a href="">--}}
                                                     {{--<button class="btn-sm btn-info">--}}

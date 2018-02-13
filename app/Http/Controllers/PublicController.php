@@ -507,7 +507,18 @@ class PublicController extends Controller
         for ($i = 1; $i < $requestData['counter']; $i++) {
             if (array_key_exists('answer' . $i, $requestData)) {
                 $answer = new Answer;
+
                 $answer->answer = $requestData['answer' . $i];
+                if (array_key_exists('1conditionalAnswer' . $i, $requestData)) {
+                    if($requestData['1conditionalAnswer' . $i] != null){
+                        $answer->answer = $requestData['answer' . $i].", ".$requestData['1conditionalAnswer' . $i];
+                    }
+                }
+                if(array_key_exists('2conditionalAnswer' . $i, $requestData )){
+                    if($requestData['2conditionalAnswer' . $i] != null){
+                        $answer->answer = $requestData['answer' . $i].", ".$requestData['2conditionalAnswer' . $i];
+                    }
+                }
                 $answer->question_id = $requestData['question_id' . $i];
                 $answer->response_id = $response->id;
                 $answer->save();
