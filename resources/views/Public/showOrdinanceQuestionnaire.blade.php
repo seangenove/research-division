@@ -77,11 +77,27 @@
                                             @if($question->type == 'conditional')
                                                 <input name="question_id{{$counter}}" type="hidden" class="form-control"
                                                        id="answer" value="{{$question->id}}">
+                                                @php
+                                                    $count=0;
+                                                @endphp
                                                 @foreach($values as $value)
                                                     @if($value->question_id == $question->id)
+                                                        @php
+                                                            $split=explode(";",$value->value.";");
+                                                            $count=$count+1;
+                                                        @endphp
                                                         <div class="radio">
-                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
+                                                            <label><input id="watch-me{{$count}}" onclick="show{{$count}}({{$counter}})" type="radio" name="answer{{$counter}}" value="{{$split[0]}}" {{$question->required == 1 ? 'required' : ''}}>{{$split[0]}}</label>
                                                         </div>
+                                                        @if($split[1]==="1")
+                                                            <div id='show-me{{$count}}-{{$counter}}' style='display:none'>
+                                                                <textarea class="form-control" rows="5" id="answer" placeholder="Why?" name="{{$count}}conditionalAnswer{{$counter}}" {{$question->required == 1 ? 'required' : ''}}></textarea>
+                                                            </div>
+                                                        @else
+                                                            <div id='show-me{{$count}}-{{$counter}}' style='display:none'>
+                                                            </div>
+                                                        @endif
+
                                                     @endif
                                                 @endforeach
                                             @endif
@@ -112,4 +128,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function show1(counter){
+            document.getElementById('show-me1-'+counter).style.display ='block';
+            document.getElementById('show-me2-'+counter).style.display ='none';
+        }
+        function show2(counter){
+            document.getElementById('show-me1-'+counter).style.display = 'none';
+            document.getElementById('show-me2-'+counter).style.display = 'block';
+        }
+    </script>
 @endsection
+

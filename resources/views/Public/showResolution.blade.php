@@ -24,11 +24,13 @@
                                     <div class="panel panel-info">
                                         <div class="panel-body">
                                             @if($resolution->is_monitoring == 1)
-                                                <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}">
-                                                    <button class="btn-sm btn-info">
-                                                        Download Status Report
-                                                    </button>
-                                                </a>
+                                                @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
+                                                    <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}">
+                                                        <button class="btn-sm btn-info">
+                                                            Download Status Report
+                                                        </button>
+                                                    </a>
+                                                @endif
 
                                                 {{--<a href="">--}}
                                                     {{--<button class="btn-sm btn-info">--}}
