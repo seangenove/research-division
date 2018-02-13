@@ -122,8 +122,8 @@
                                                 @else
                                                     {{$answer->answer}}
                                                 @endif
-                                                    <button class="delete-modal btn btn-danger" data-id="{{$answer->id}}" data-answer="{{$answer->answer}}">
-                                                        <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                    <a class="delete-modal text-danger" data-id="{{$answer->id}}" data-answer="{{$answer->answer}}">
+                                                        <span class="glyphicon glyphicon-remove"></span></a>
                                                     {{--<form action="/admin/result/{{ $answer->id }}" method="post">--}}
                                                         {{--{{ method_field('DELETE') }}--}}
                                                         {{--{{ csrf_field() }}--}}
@@ -199,7 +199,7 @@
                         <button type="button" class="btn btn-danger delete" data-dismiss="modal">
                             <span id="" class='glyphicon glyphicon-trash'></span> Delete
                         </button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">
+                        <button type="button" class="btn" data-dismiss="modal">
                             <span class='glyphicon glyphicon-remove'></span> Close
                         </button>
                     </div>
