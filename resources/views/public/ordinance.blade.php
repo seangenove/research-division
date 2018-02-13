@@ -151,6 +151,10 @@
                                             @endforeach
                                             </tbody>
                                         </table>
+
+                                        <div class="row text-center">
+                                            {{$ordinances->links()}}
+                                        </div>
                                     @else
                                         <div class="row text-center">
                                             <h1>No results found.</h1>

@@ -367,8 +367,10 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
+        $resolutions = null;
         return view('public.monitorAndEval', [
             'ordinances' => $ordinances,
+            'resolutions' => $resolutions,
             'type' => PublicController::RR,
         ]);
     }
@@ -410,8 +412,11 @@ class PublicController extends Controller
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 //        dd($resolutions);
+
+        $ordinances = null;
         return view('public.monitorAndEval', [
             'resolutions' => $resolutions,
+            'ordinances' => $ordinances,
             'type' => PublicController::RR,]);
     }
 
