@@ -143,22 +143,7 @@ class PublicController extends Controller
         if (!$order) {
             $order = 'desc';
         }
-//        if ($request->q) {
-//            $q = $request->q;
-//            $resolutions = Resolution::where('keywords', 'LIKE', '%' . $q . '%')
-//                ->orWhere('number', 'LIKE', '%' . $q . '%')
-//                ->orWhere('series', 'LIKE', '%' . $q . '%')
-//                ->orWhere('title', 'LIKE', '%' . $q . '%')
-//                ->orderBy('created_at', 'desc')
-//                ->get();
-//            $resolutions = $resolutions->where('is_monitoring', 0);
-//
-//        } else {
-//            $resolutions = DB::table('resolutions')
-////                ->where('is_monitoring', 0)
-//                ->orderby('id', 'desc')
-//                ->get();
-//        }
+
         if ($request->q) {
             $q = $request->q;
             $resolutions = Resolution::where(function($query) use ($q){
@@ -169,12 +154,12 @@ class PublicController extends Controller
                     ->orderBy('series', 'desc');
             })->where(function($query){
                 $query->where('is_monitoring', 0)
-                    ->orWhere('is_monitoring', 1)
+//                    ->orWhere('is_monitoring', 1)
                     ->orderBy('series', 'desc');
             });
         } else {
             $resolutions = Resolution::where('is_monitoring', 0)
-                ->orWhere('is_monitoring', 1)
+//                ->orWhere('is_monitoring', 1)
                 ->orderBy('series', 'desc');
         }
 
@@ -188,7 +173,6 @@ class PublicController extends Controller
             'resolutions' => $resolutions,
             'type' => PublicController::RR,]);
     }
-
 
     public function ordinance(Request $request)
     {
@@ -231,12 +215,12 @@ class PublicController extends Controller
                     ->orderBy('series', 'desc');
             })->where(function($query){
                 $query->where('is_monitoring', 0)
-                    ->orWhere('is_monitoring', 1)
+//                    ->orWhere('is_monitoring', 1)
                     ->orderBy('series', 'desc');
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 1)
-                ->orWhere('is_monitoring', 0)
+            $ordinances = Ordinance::where('is_monitoring', 0)
+//                ->orWhere('is_monitoring', 1)
                 ->orderBy('series', 'desc');
         }
 
@@ -251,7 +235,6 @@ class PublicController extends Controller
             'type' => PublicController::RR,
         ]);
     }
-
 
     public function monitorAndEval(Request $request)
     {
@@ -356,10 +339,10 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function ($query) {
-                $query->where('is_monitoring', 1);
+                $query->where('is_accepting', 1);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 1);
+            $ordinances = Ordinance::where('is_accepting', 1);
         }
 
         // Implement filtering / sorting
@@ -400,10 +383,10 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 1);
+                $query->where('is_accepting', 1);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 1);
+            $resolutions = Resolution::where('is_accepting', 1);
         }
 
         // Implement filtering / sorting
@@ -417,6 +400,96 @@ class PublicController extends Controller
         return view('public.monitorAndEval', [
             'resolutions' => $resolutions,
             'ordinances' => $ordinances,
+            'type' => PublicController::RR,]);
+    }
+
+    public function researchAndRecordsOrdinance(Request $request)
+    {
+        LogUtility::insertLog("HttpRequest on /researchAndRecordsOrdinances", 'public');
+        $limit = 5;
+        $colName = $request->colName;
+        $order = $request->order;
+
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $ordinances = Ordinance::where(function ($query) use ($q) {
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%')
+                    ->orderBy('series', 'desc');
+            })->where(function ($query) {
+                $query->where('is_monitoring', 0)
+                    ->orderBy('series', 'desc');
+            });
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 0)
+                ->orderBy('series', 'desc');
+        }
+
+        // Implement filtering / sorting
+        $ordinances = $ordinances->orderBy($colName, $order);
+
+        // Paginate with filters
+        $ordinances = $ordinances->paginate($limit)->appends($request->all());
+        return view('public.ordinance', [
+            'ordinances' => $ordinances,
+            'type' => PublicController::RR,
+        ]);
+    }
+
+    public function researchAndRecordsResolution(Request $request)
+    {
+        LogUtility::insertLog("HttpRequest on /researchAndRecordsResolution", 'public');
+        $limit = 10;
+        $colName = $request->colName;
+        $order = $request->order;
+
+        // Check if there is a provided column to be sorted
+        if (!$colName) {
+            $colName = 'created_at';
+        }
+
+        // Check if there is a provided order
+        if (!$order) {
+            $order = 'desc';
+        }
+
+        if ($request->q) {
+            $q = $request->q;
+            $resolutions = Resolution::where(function($query) use ($q){
+                $query->where('keywords', 'LIKE', '%' . $q . '%')
+                    ->orWhere('number', 'LIKE', '%' . $q . '%')
+                    ->orWhere('series', 'LIKE', '%' . $q . '%')
+                    ->orWhere('title', 'LIKE', '%' . $q . '%')
+                    ->orderBy('series', 'desc');
+            })->where(function($query){
+                $query->where('is_monitoring', 0)
+                    ->orderBy('series', 'desc');
+            });
+        } else {
+            $resolutions = Resolution::where('is_monitoring', 0)
+                ->orderBy('series', 'desc');
+        }
+
+        // Implement filtering / sorting
+        $resolutions = $resolutions->orderBy($colName, $order);
+
+        // Paginate with filters
+        $resolutions = $resolutions->paginate($limit)->appends($request->all());
+
+        return view('public.resolution', [
+            'resolutions' => $resolutions,
             'type' => PublicController::RR,]);
     }
 
