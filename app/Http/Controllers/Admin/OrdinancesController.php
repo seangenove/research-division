@@ -25,7 +25,8 @@ class OrdinancesController extends Controller
         'keywords',
     ];
 
-    public function getFileFromCloud($filename){
+    public function getFileFromCloud($filename)
+    {
         $dir = '/';
         $recursive = true; // Get subdirectories also?
         $contents = collect(Storage::disk('google')->listContents($dir, $recursive));
@@ -56,14 +57,14 @@ class OrdinancesController extends Controller
             $filename =
                 $instance->id .
                 '-' .
-                substr(get_class($instance), strrpos(get_class($instance), "\\" ) + 1 ) .
+                substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
                 '-' .
                 $basedOn .
                 '.pdf';
         } else {
             $filename = $instance->id .
                 '-' .
-                substr(get_class($instance), strrpos(get_class($instance), "\\" ) + 1 ) .
+                substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
                 $instance->number . '.pdf';
         }
 
@@ -98,7 +99,8 @@ class OrdinancesController extends Controller
         return $path;
     }
 
-    public function validateData($request){
+    public function validateData($request)
+    {
         if ($request->has('is_accepting')) {
             $validatedData = $request->validate([
                 'number' => 'required|numeric',
@@ -145,18 +147,26 @@ class OrdinancesController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $ordinances = Ordinance::where(function($query) use ($q){
+            $ordinances = Ordinance::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 0);
-                });
+            });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 0);
         }
 
+        // Filtering by columns
+        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
+            $ordinances = $ordinances->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
+                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
+                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
+                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+//            dd($ordinances->count());
+        }
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -198,7 +208,7 @@ class OrdinancesController extends Controller
         $ordinance->pdf_file_path =
             $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
         $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
-            substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 );
+            substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
@@ -256,9 +266,9 @@ class OrdinancesController extends Controller
         $ordinance = Ordinance::find($id);
         $ordinance->update($validatedData);
         $ordinance->pdf_file_path =
-            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path ;
+            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path;
         $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
-            substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 );
+            substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
@@ -279,7 +289,8 @@ class OrdinancesController extends Controller
         return redirect('/admin/ordinances');
     }
 
-    public function statusReportCreate($ordinanceID) {
+    public function statusReportCreate($ordinanceID)
+    {
         $ordinance = Ordinance::findOrFail($ordinanceID);
 
         return view('admin.ordinances.uploadStatusReport', [
@@ -288,7 +299,8 @@ class OrdinancesController extends Controller
 
     }
 
-    public function updateReportCreate($ordinanceID) {
+    public function updateReportCreate($ordinanceID)
+    {
         $ordinance = Ordinance::findOrFail($ordinanceID);
 
         return view('admin.ordinances.uploadUpdateReport', [
@@ -296,15 +308,16 @@ class OrdinancesController extends Controller
         ]);
     }
 
-    public function storeStatusReport(Request $request) {
+    public function storeStatusReport(Request $request)
+    {
         $validatedData = $request->validate([
             'ordinance_id' => '',
             'pdf' => 'required|file',
         ]);
 
         // Check if there is existing Status Report
-        if (Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport !== null)  {
-            $statusReport = Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport ;
+        if (Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport !== null) {
+            $statusReport = Ordinance::findOrFail($validatedData['ordinance_id'])->statusReport;
         } else {
             $statusReport = new StatusReport();
         }
@@ -316,7 +329,7 @@ class OrdinancesController extends Controller
         $statusReport->save();
         $statusReport->pdf_file_path = $this->upload($statusReport, $file, 'statusreports');
         $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
-            strrpos( $statusReport->pdf_file_path, '/' ) + 1 );
+            strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
 
         Session::flash('flash_message',
@@ -325,7 +338,8 @@ class OrdinancesController extends Controller
         return redirect('/admin/ordinances/' . $statusReport->ordinance_id);
     }
 
-    public function storeUpdateReport(Request $request) {
+    public function storeUpdateReport(Request $request)
+    {
         $validatedData = $request->validate([
             'ordinance_id' => '',
             'pdf' => 'required|file',
@@ -338,7 +352,7 @@ class OrdinancesController extends Controller
         $updateReport->ordinance_id = $validatedData['ordinance_id'];
         $updateReport->save();
         $updateReport->pdf_file_path = $this->upload($updateReport, $file, 'updatereports');
-        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos( $updateReport->pdf_file_path, '/' ) + 1 );
+        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos($updateReport->pdf_file_path, '/') + 1);
         $updateReport->save();
 
         Session::flash('flash_message',
