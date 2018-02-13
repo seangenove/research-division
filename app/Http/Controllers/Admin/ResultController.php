@@ -84,7 +84,8 @@ class ResultController extends Controller
     {
         $question = Question::Where('id','=',Answer::find($id)->question_id)->first();
         Answer::destroy($id);
-        return redirect('/admin/result/'.$question->questionnaire_id);
+        return response()->json(['id'=>$id]);
+//        return redirect('/admin/result/'.$question->questionnaire_id);
     }
 
     public function updateAnswer(Request $request)
