@@ -79,8 +79,8 @@
                 <div v-if="this.questionnaire.associatedResolution || this.questionnaire.associatedOrdinance">
                     <div class="form-group">
                         <!--<label for="questionnaireName">Questionnaire Name</label>-->
-                        <h1 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h1>
-                        <h1 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h1>
+                        <h3 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h3>
+                        <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h3>
 
                         <!--<input v-validate="'required'" name="name" class="form-control" id="questionnaireName"-->
                         <!--v-model="questionnaire.name" type="text"-->
@@ -127,14 +127,14 @@
                                         <option v-bind:value="'long'">Long Answer</option>
                                         <option v-bind:value="'radio'">Multiple Choice</option>
                                         <option v-bind:value="'checkbox'">Checkboxes</option>
-                                        <option v-bind:value="'conditional'">Conditional (Yes/No)</option>
+                                        <option v-bind:value="'conditional'">Yes/No</option>
                                     </select>
                                 </div>
                                 <div class="value-group">
                                     <transition name="fade">
                                         <div v-if="question.type === 'conditional'" class="form-group">
                                             <label for="">Conditional Yes/No</label>
-                                            <p>Check if a textbox is to be shown upon selecting the value</p>
+                                            <p class="text-danger">Optional: Check the box to collect "Reason"</p>
                                             <!--<button v-on:click="addValue(question)" class="btn btn-success btn-xs">Add Value-->
                                             <!--</button>-->
                                             <div v-for="val in question.values">
@@ -259,9 +259,9 @@
                 </div>
             </transition>
 
-            <hr>
-            <h5 class="page-header">For development (JSON passed to controller)</h5>
-            <pre>{{ questionnaire }}</pre>
+            <!--<hr>-->
+            <!--<h5 class="page-header">For development (JSON passed to controller)</h5>-->
+            <!--<pre>{{ questionnaire }}</pre>-->
         </div>
         <button type="button" class="btn btn-warning fixed-button-2" data-toggle="modal" data-target="#modal-default">
             <span class="fa fa-eye"></span> Preview
@@ -276,8 +276,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="wrap">
-                            <h1 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h1>
-                            <h1 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h1>
+                            <h3 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h3>
+                            <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h3>
                             <p>{{ questionnaire.description }}</p>
                             <div v-for="question in questionnaire.questions">
                                 <h2 class="page-header">{{ question.question }}</h2>
@@ -291,9 +291,12 @@
                                     <div v-if="question.type === 'conditional'">
                                         <input type="radio" name="questionnaire.questions.indexOf(question)"
                                                v-model="question.checked" :value="val.value"> {{ val.value.replace(';1','') }}
-                                        <transition name="fade">
-                                            <input placeholder="Why?" type="text" v-if="val.value.endsWith(';1') && val.value === question.checked" class="form-control">
-                                        </transition>
+                                        <div style="padding-left: 50px;">
+                                            <transition name="fade">
+                                                <input style="border-top: none; border-left: none; border-right: 0" placeholder="Reason..." type="text" v-if="val.value.endsWith(';1') && val.value === question.checked" class="form-control">
+                                            </transition>
+                                        </div>
+
                                         <!--<span v-if="question.values.indexOf(val) === question.values.length - 1">-->
                                         <!--<input class="form-control" type="text">-->
                                         <!--</span>-->
