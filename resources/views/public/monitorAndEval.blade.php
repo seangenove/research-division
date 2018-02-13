@@ -6,6 +6,11 @@
         <h1>Monitoring & Evaluation</h1>
     </div>
     <div class="col-md-12" style="margin-bottom: 30px">
+        <div class="pull-left">
+            <a style="min-width: 150px" href="{{ url()->current() }}" class="btn btn-primary">
+                <i class="fa fa-refresh"></i> Reset Filtering
+            </a>
+        </div>
         <div class="pull-right">
             <form action="#" class="form-inline">
                 <input name="q" value="{{ request()->q }}" class="form-control" type="search" placeholder="Search...">
