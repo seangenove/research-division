@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Questionnaire;
 use DB;
 use App\Answer;
+use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -73,8 +74,24 @@ class ResultController extends Controller
 
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $question = Question::Where('id','=',Answer::find($id)->question_id)->first();
+        Answer::destroy($id);
+        return redirect('/admin/result/'.$question->questionnaire_id);
+    }
+
     public function updateAnswer(Request $request)
     {
+        $this->validate($request, [
+            'value' => 'bail|required'
+        ]);
         $answer = Answer::find($request->pk);
         $answer->answer = $request->value;
         $answer->save();

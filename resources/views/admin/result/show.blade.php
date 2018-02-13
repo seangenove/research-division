@@ -122,6 +122,11 @@
                                                 @else
                                                     {{$answer->answer}}
                                                 @endif
+                                                    <form action="/admin/result/{{ $answer->id }}" method="post">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button>
+                                                    </form>
                                             </li>
                                     @endforeach
                                 </ul>
@@ -301,8 +306,15 @@
                     params.name = $(this).editable().data('name');
                     return params;
                 },
+                validate: function(value) {
+                    if($.trim(value) == '')
+                        return 'This field is required';
+                },
                 title: 'Enter answer'
             });
+        });
+        $(function(){
+            $('.update').editable.editable('validate');
         });
     </script>
 @endsection
