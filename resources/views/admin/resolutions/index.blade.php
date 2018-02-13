@@ -179,6 +179,19 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <form method="get" action="#">
+                            {{--                                    {{ dd(array_unique(request()->all())) }}--}}
+                            @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
+                                <input type="hidden" name="{{$k}}" value="{{ $v }}">
+                            @endforeach
+                            <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
+                            <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
+                            <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
+                            <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                            <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                        </form>
+                    </tr>
                     @foreach($resolutions as $resolution)
                         <tr>
                             <td>{{ $resolution->number }}</td>

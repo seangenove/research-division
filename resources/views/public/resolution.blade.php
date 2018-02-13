@@ -9,6 +9,11 @@
                             <h1>Resolutions</h1>
                         </div>
                         <div class="col-md-12" style="margin-bottom: 30px">
+                            <div class="pull-left">
+                                <a style="min-width: 150px" href="{{ url()->current() }}" class="btn btn-primary">
+                                    <i class="fa fa-refresh"></i> Reset Filtering
+                                </a>
+                            </div>
                             <div class="pull-right">
                                 <form action="/resolutions" class="form-inline">
                                     <input value="{{ request()->q }}" name="q" class="form-control" type="search" placeholder="Search...">
@@ -57,7 +62,7 @@
                                                         echo request()->fullUrlWithQuery($currentUrlQueries);
                                                     @endphp
                                                     @endif">
-                                                        Ordinance Number
+                                                        Resolution Number
                                                     </a>
                                                 </th>
                                                 <th>
@@ -146,6 +151,10 @@
                                             @endforeach
                                             </tbody>
                                         </table>
+
+                                        <div class="row text-center">
+                                            {{$resolutions->links()}}
+                                        </div>
                                     @else
                                         <div class="row text-center">
                                             <h1>No results found.</h1>
