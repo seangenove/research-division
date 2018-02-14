@@ -65,25 +65,16 @@
                         <li><a href="/">Home</a></li>
                         {{--<li><a href="/ordinances">Ordinances</a></li>--}}
                         {{--<li><a href="/resolutions">Resolutions</a></li>--}}
-
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Research & Records <span class="caret"></span>
+                            <a href="/r&r/ordinances">
+                                Ordinances
                             </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/r&r/ordinances">
-                                        Ordinances
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/r&r/resolutions">
-                                        Resolutions
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
+                        <li>
+                            <a href="/r&r/resolutions">
+                                Resolutions
+                            </a>
+                        </li>
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Monitoring & Evaluation <span class="caret"></span>
