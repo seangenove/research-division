@@ -317,21 +317,21 @@ class OrdinancesTableSeeder extends Seeder
 
         /** Ordinance Suggestions */
         // MARK!!! NO NEED MO NA TONG LAGYAN
-//        $ordinance_suggestions = array(
-//            [
-//                'ordinance_id' => 1,
-//                'suggestion_id' => 1,
-//            ],
-//            [
-//                'ordinance_id' => 1,
-//                'suggestion_id' => 2,
-//            ],
-//            [
-//                'ordinance_id' => 1,
-//                'suggestion_id' => 3,
-//            ]
-//        );
-//
-//        DB::table('ordinance_suggestion')->insert($ordinance_suggestions);
+        $ordinance_suggestions = array(
+            [
+                'ordinance_id' => 9,
+                'suggestion_id' => 1,
+            ],
+            [
+                'ordinance_id' => 9,
+                'suggestion_id' => 2,
+            ],
+            [
+                'ordinance_id' => 9,
+                'suggestion_id' => 3,
+            ]
+        );
+
+        DB::table('ordinance_suggestion')->insert($ordinance_suggestions);
     }
 }

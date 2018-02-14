@@ -281,21 +281,21 @@ class ResolutionsTableSeeder extends Seeder
 //            ],
 
         /** Resolution Suggestion */
-//        $resolution_suggestion = array(
-//            [
-//                'resolution_id' => 1,
-//                'suggestion_id' => 4,
-//            ],
-//            [
-//                'resolution_id' => 1,
-//                'suggestion_id' => 5,
-//            ],
-//            [
-//                'resolution_id' => 2,
-//                'suggestion_id' => 6,
-//            ]
-//        );
-//        DB::table('resolution_suggestion')->insert($resolution_suggestion);
+        $resolution_suggestion = array(
+            [
+                'resolution_id' => 8,
+                'suggestion_id' => 4,
+            ],
+            [
+                'resolution_id' => 8,
+                'suggestion_id' => 5,
+            ],
+            [
+                'resolution_id' => 8,
+                'suggestion_id' => 6,
+            ]
+        );
+        DB::table('resolution_suggestion')->insert($resolution_suggestion);
 
     }
 }
