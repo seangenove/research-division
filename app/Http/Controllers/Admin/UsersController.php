@@ -153,7 +153,10 @@ class UsersController extends Controller
      */
     public function changePassword()
     {
-        return view('admin.users.password');
+        Session::flash(
+            'flash_message',
+            "Password has been changed!");
+        return view('admin.users.edit');
     }
 
     /**

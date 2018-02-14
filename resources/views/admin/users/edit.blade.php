@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="col-md-2"></div>
     <div class="col-md-8">
         <!-- general form elements -->
         <div class="box box-primary">
@@ -77,12 +78,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    <!-- /.box -->
+        <!-- /.box -->
 
-    </div>
-
-    <div class="col-md-8">
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
