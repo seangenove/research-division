@@ -1,5 +1,16 @@
 @extends('layouts.public')
 
+@section('styles')
+    <style>
+        form {
+            display: inline;
+        }
+        form button {
+            display: inline;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="page-header">
@@ -14,8 +25,7 @@
         <div class="pull-right">
             <form action="#" class="form-inline">
                 <input name="q" value="{{ request()->q }}" class="form-control" type="search" placeholder="Search...">
-                <button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span
-                            class="fa fa-search"></span></button>
+                <button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span class="fa fa-search"></span></button>
             </form>
         </div><!-- /.col-lg-6 -->
     </div>
@@ -55,7 +65,7 @@
                             </th>
                             <th>
                                 <a href="
-                                                    @if(request()->colName === 'series' and request()->order === 'desc')
+                                @if(request()->colName === 'series' and request()->order === 'desc')
                                 @php
                                     $currentUrlQueries = request()->query();
                                     $currentUrlQueries['colName'] = 'series';
@@ -77,7 +87,7 @@
                             </th>
                             <th>
                                 <a href="
-                                                    @if(request()->colName === 'title' and request()->order === 'desc')
+                                @if(request()->colName === 'title' and request()->order === 'desc')
                                 @php
                                     $currentUrlQueries = request()->query();
                                     $currentUrlQueries['colName'] = 'title';
@@ -124,6 +134,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <form method="get" action="#">
+                                @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
+                                    <input type="hidden" name="{{$k}}" value="{{ $v }}">
+                                @endforeach
+                                <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
+                                <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
+                                <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
+                                <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                                <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                            </form>
+                        </tr>
                         @foreach($ordinances as $ordinance)
                             <tr>
                                 <td>{{ $ordinance->number }}</td>
@@ -150,6 +172,10 @@
                 @endif
             </div>
         @elseif ($resolutions !== null)
+            <div class="ordinance-heading">
+                <h1>Resolutions</h1>
+                <hr>
+            </div>
             <div class="col-md-12">
                 @if($resolutions->first() !== null)
                     <table class="table table-striped table-bordered">
@@ -202,7 +228,7 @@
                             </th>
                             <th>
                                 <a href="
-                                                    @if(request()->colName === 'title' and request()->order === 'desc')
+                                 @if(request()->colName === 'title' and request()->order === 'desc')
                                 @php
                                     $currentUrlQueries = request()->query();
                                     $currentUrlQueries['colName'] = 'title';
@@ -249,6 +275,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <form method="get" action="#">
+                                @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
+                                    <input type="hidden" name="{{$k}}" value="{{ $v }}">
+                                @endforeach
+                                <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
+                                <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
+                                <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
+                                <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                                <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                            </form>
+                        </tr>
                         @foreach($resolutions as $resolution)
                             <tr>
                                 <td>{{ $resolution->number }}</td>

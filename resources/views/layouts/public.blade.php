@@ -22,6 +22,11 @@
     Author URL: https://bootstrapmade.com
   ======================================================= -->
     @yield('styles')
+    <style>
+        .dropdown-menu, nav {
+            z-index: 100;
+        }
+    </style>
 </head>
 
 <body id="top" data-spy="scroll">
@@ -63,8 +68,7 @@
                 <div class="navbar-collapse collapse" id="ftheme">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">Home</a></li>
-                        {{--<li><a href="/ordinances">Ordinances</a></li>--}}
-                        {{--<li><a href="/resolutions">Resolutions</a></li>--}}
+
                         <li>
                             <a href="/r&r/ordinances">
                                 Ordinances
@@ -75,6 +79,7 @@
                                 Resolutions
                             </a>
                         </li>
+
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Monitoring & Evaluation <span class="caret"></span>
@@ -138,7 +143,6 @@
                         <input type="text" id="s" size="40" placeholder="Search..."/>
                     </form>
                 </div>
-
             </div>
         </nav>
     </div>

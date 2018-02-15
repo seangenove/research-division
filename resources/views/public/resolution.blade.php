@@ -24,21 +24,8 @@
                         </div>
 
                         <div class="ordinance-right">
-                            @foreach($resolutions as $k => $resolution)
-                                {{--<div class="well col-md-5" style="margin: 10px 35px;">--}}
-                                    {{--<h3>{{$resolution->title}}</h3>--}}
-                                    {{--<p><strong>Series: </strong> {{$resolution->series}} </p>--}}
-                                    {{--<p><strong>Keywords: </strong>{{ str_limit($resolution->keywords, $limit = 150, $end = '...') }}</p>--}}
-                                    {{--<button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "--}}
-                                            {{--class="btn btn-info">Read More--}}
-                                    {{--</button>--}}
-                                {{--</div>--}}
-                                @if($k % 2 !== 0)
-                                    <div class="clearfix"></div>
-                                @endif
-                            @endforeach
                                 <div class="col-md-12">
-                                    @if($resolution->first() !== null)
+                                    @if($resolutions->first() !== null)
                                         <table class="table table-striped table-bordered">
                                             <thead>
                                             <tr>
@@ -136,6 +123,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+
+                                            <form method="get" action="#">
+                                                @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
+                                                    <input type="hidden" name="{{$k}}" value="{{ $v }}">
+                                                @endforeach
+                                                <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
+                                                <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
+                                                <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
+                                                <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                                                <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                                            </form>
+
                                             @foreach($resolutions as $resolution)
                                                 <tr>
                                                     <td>{{ $resolution->number }}</td>
