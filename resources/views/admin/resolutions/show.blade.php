@@ -177,8 +177,8 @@
                                 <i class="fa fa-edit"></i>
                                 Edit
                             </a>
-                            <a href="{{$resolution->pdf_file_path === "" ? '#' : ("/downloadPDF/resolutions/".$resolution->pdf_file_name)}}"
-                               class="btn btn-xs btn-primary {{$resolution->pdf_file_path === "" ? 'disabled' : ''}}">
+                            <a href="{{($resolution->pdf_file_path === "" or $resolution->pdf_file_path == null) ? '#' : ("/downloadPDF/resolutions/".$resolution->pdf_file_name)}}"
+                               class="btn btn-xs btn-primary {{($resolution->pdf_file_path === "" or $resolution->pdf_file_path == null) ? 'disabled' : ''}}">
                                 <i class="fa fa-download"></i>
                                 Download Resolution
                             </a>
@@ -238,107 +238,110 @@
             @endif
         </div>
 
-        <div class="col-md-6">
-            <div class="box box-success color-palette-box">
-                <div class="box-header with-border">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
-                        <li {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
-                            <a {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
-                                Update Reports
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="box-body">
-                    <div class="tab-content">
-                        <div id="status" class="tab-pane fade in active">
-                            <div class="row" style="margin-bottom: 5px;">
-                                <div class="col-md-12">
-                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
-                                        <i class="fa fa-file-text"></i>
-                                        {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
-                                    </a>
+        @if($resolution->is_monitoring === 1)
+            <div class="col-md-6">
+                <div class="box box-success color-palette-box">
+                    <div class="box-header with-border">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
+                            <li {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
+                                <a {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
+                                    Update Reports
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <div id="status" class="tab-pane fade in active">
+                                <div class="row" style="margin-bottom: 5px;">
+                                    <div class="col-md-12">
+                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
+                                            <i class="fa fa-file-text"></i>
+                                            {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
-                                        <table class="table table-striped table-bordered">
-                                            <tr class="text-center">
-                                                <th>Status Report Name</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{{$resolution->statusReport->pdf_file_name}}</td>
-                                                <td>
-                                                    <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
-                                                       class="btn btn-xs btn-primary btn-equal-width">
-                                                        Download
-                                                    </a>
-                                                    <a href="/deletePDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
-                                                       class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
-                                                        Delete
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    @else
-                                        <div class="row text-center">
-                                            <h4>No uploaded status report.</h4>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="update" class="tab-pane fade">
-                            <div class="row" style="margin-bottom: 5px;">
-                                <div class="col-md-12">
-                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-update-report"
-                                       class="btn btn-xs btn-group btn-primary ">
-                                        <i class="fa fa-file-text"></i>
-                                        Upload Update Report
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if($resolution->updateReport()->where('is_deleted', 0)->first())
-                                        <table class="table table-striped table-bordered">
-                                            <tr class="text-center">
-                                                <th>Update Report Name</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            @foreach($resolution->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
+                                            <table class="table table-striped table-bordered">
+                                                <tr class="text-center">
+                                                    <th>Status Report Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
                                                 <tr>
-                                                    <td>{{$updateReport->pdf_file_name}}</td>
+                                                    <td>{{$resolution->statusReport->pdf_file_name}}</td>
                                                     <td>
-                                                        <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                        <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
                                                            class="btn btn-xs btn-primary btn-equal-width">
                                                             Download
                                                         </a>
-                                                        <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                        <a href="/deletePDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
                                                            class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
                                                             Delete
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        </table>
-                                    @else
-                                        <div class="row text-center">
-                                            <h4>No uploaded update reports.</h4>
-                                        </div>
-                                    @endif
+                                            </table>
+                                        @else
+                                            <div class="row text-center">
+                                                <h4>No uploaded status report.</h4>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="update" class="tab-pane fade">
+                                <div class="row" style="margin-bottom: 5px;">
+                                    <div class="col-md-12">
+                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-update-report"
+                                           class="btn btn-xs btn-group btn-primary ">
+                                            <i class="fa fa-file-text"></i>
+                                            Upload Update Report
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if($resolution->updateReport()->where('is_deleted', 0)->first())
+                                            <table class="table table-striped table-bordered">
+                                                <tr class="text-center">
+                                                    <th>Update Report Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                @foreach($resolution->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                                    <tr>
+                                                        <td>{{$updateReport->pdf_file_name}}</td>
+                                                        <td>
+                                                            <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                               class="btn btn-xs btn-primary btn-equal-width">
+                                                                Download
+                                                            </a>
+                                                            <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                               class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
+                                                                Delete
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                        @else
+                                            <div class="row text-center">
+                                                <h4>No uploaded update reports.</h4>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
     </div>
 
     @if($resolution->is_monitoring == 1)
