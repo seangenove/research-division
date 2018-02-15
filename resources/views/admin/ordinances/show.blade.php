@@ -110,8 +110,8 @@
                                     <i class="fa fa-edit"></i>
                                     Edit
                                 </a>
-                                <a href="{{$ordinance->pdf_file_path === "" ? '#' : ("/downloadPDF/ordinances/".$ordinance->pdf_file_name)}}"
-                                   class="btn btn-xs btn-primary {{$ordinance->pdf_file_path === "" ? 'disabled' : ''}}">
+                                <a href="{{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null) ? '#' : ("/downloadPDF/ordinances/".$ordinance->pdf_file_name)}}"
+                                   class="btn btn-xs btn-primary {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
                                     <i class="fa fa-download"></i>
                                     Download Ordinance
                                 </a>
@@ -171,108 +171,111 @@
                 @endif
             </div>
 
-            <div class="col-md-6">
-                <div class="box box-success color-palette-box">
-                    <div class="box-header with-border">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
-                            <li {{($ordinance->statusReport === null or $ordinance->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
-                                <a {{($ordinance->statusReport === null or $ordinance->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
-                                    Update Reports
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="box-body">
-                        <div class="tab-content">
-                            <div id="status" class="tab-pane fade in active">
-                                <div class="row" style="margin-bottom: 5px;">
-                                    <div class="col-md-12">
-                                        <a href="/admin/ordinances/{{$ordinance->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
-                                            <i class="fa fa-file-text"></i>
-                                            {{($ordinance->statusReport === null or  $ordinance->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
-                                        </a>
+            @if($ordinance->is_monitoring === 1)
+                <div class="col-md-6">
+                    <div class="box box-success color-palette-box">
+                        <div class="box-header with-border">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
+                                <li {{($ordinance->statusReport === null or $ordinance->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
+                                    <a {{($ordinance->statusReport === null or $ordinance->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
+                                        Update Reports
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box-body">
+                            <div class="tab-content">
+                                <div id="status" class="tab-pane fade in active">
+                                    <div class="row" style="margin-bottom: 5px;">
+                                        <div class="col-md-12">
+                                            <a href="/admin/ordinances/{{$ordinance->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
+                                                <i class="fa fa-file-text"></i>
+                                                {{($ordinance->statusReport === null or  $ordinance->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{--                                                                {{dd($ordinance->statusReport->pdf_file_path)}}--}}
-                                        @if($ordinance->statusReport !== null and $ordinance->statusReport->pdf_file_path !== " ")
-                                            <table class="table table-striped table-bordered">
-                                                <tr class="text-center">
-                                                    <th>Status Report Name</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{$ordinance->statusReport->pdf_file_name}}</td>
-                                                    <td>
-                                                        <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-primary btn-equal-width">
-                                                            Download
-                                                        </a>
-                                                        <a href="/deletePDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        @else
-                                            <div class="row text-center">
-                                                <h4>No uploaded status report.</h4>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="update" class="tab-pane fade">
-                                <div class="row" style="margin-bottom: 5px;">
-                                    <div class="col-md-12">
-                                        <a href="/admin/ordinances/{{$ordinance->id}}/upload-update-report"
-                                           class="btn btn-xs btn-group btn-primary ">
-                                            <i class="fa fa-file-text"></i>
-                                            Upload Update Report
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @if($ordinance->updateReport()->where('is_deleted', 0)->first())
-                                            <table class="table table-striped table-bordered">
-                                                <tr class="text-center">
-                                                    <th>Update Report Name</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                                @foreach($ordinance->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{--                                                                {{dd($ordinance->statusReport->pdf_file_path)}}--}}
+                                            @if($ordinance->statusReport !== null and $ordinance->statusReport->pdf_file_path !== " ")
+                                                <table class="table table-striped table-bordered">
+                                                    <tr class="text-center">
+                                                        <th>Status Report Name</th>
+                                                        <th>Actions</th>
+                                                    </tr>
                                                     <tr>
-                                                        <td>{{$updateReport->pdf_file_name}}</td>
+                                                        <td>{{$ordinance->statusReport->pdf_file_name}}</td>
                                                         <td>
-                                                            <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                            <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
                                                                class="btn btn-xs btn-primary btn-equal-width">
                                                                 Download
                                                             </a>
-                                                            <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                            <a href="/deletePDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
                                                                class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
                                                                 Delete
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                @endforeach
-                                            </table>
-                                        @else
-                                            <div class="row text-center">
-                                                <h4>No uploaded update reports.</h4>
-                                            </div>
-                                        @endif
+                                                </table>
+                                            @else
+                                                <div class="row text-center">
+                                                    <h4>No uploaded status report.</h4>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="update" class="tab-pane fade">
+                                    <div class="row" style="margin-bottom: 5px;">
+                                        <div class="col-md-12">
+                                            <a href="/admin/ordinances/{{$ordinance->id}}/upload-update-report"
+                                               class="btn btn-xs btn-group btn-primary ">
+                                                <i class="fa fa-file-text"></i>
+                                                Upload Update Report
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @if($ordinance->updateReport()->where('is_deleted', 0)->first())
+                                                <table class="table table-striped table-bordered">
+                                                    <tr class="text-center">
+                                                        <th>Update Report Name</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach($ordinance->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                                        <tr>
+                                                            <td>{{$updateReport->pdf_file_name}}</td>
+                                                            <td>
+                                                                <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                                   class="btn btn-xs btn-primary btn-equal-width">
+                                                                    Download
+                                                                </a>
+                                                                <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                                   class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
+                                                                    Delete
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            @else
+                                                <div class="row text-center">
+                                                    <h4>No uploaded update reports.</h4>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
         </div>
 
     @if($ordinance->is_monitoring == 1)
