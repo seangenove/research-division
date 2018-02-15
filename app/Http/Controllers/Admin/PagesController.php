@@ -79,11 +79,9 @@ class PagesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit()
+    public function edit($id)
     {
-        $id = Auth::user()->id;
         $page = Page::findOrFail($id);
-        $required = false;
 
         return view('admin.pages.edit', ['page' => $page]);
     }
@@ -100,6 +98,7 @@ class PagesController extends Controller
         $request->validate($this->page_validation);
 
         Page::find($id)->update($request->all());
+
         return redirect('/admin/pages');
     }
 

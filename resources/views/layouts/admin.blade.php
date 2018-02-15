@@ -113,7 +113,7 @@ function skin($user)
                             <li class="user-footer">
                                 <div class="pull-right">
 
-                                    <a href="/admin/edit" class="btn btn-default btn-flat">
+                                    <a href="/admin/users/{{Auth::user()->id}}/edit" class="btn btn-default btn-flat">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                     <a href="#" class="btn btn-default btn-flat" href="{{ route('logout') }}"

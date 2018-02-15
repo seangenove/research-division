@@ -72,9 +72,8 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $id = Auth::user()->id;
 
         Session::flash(
             'flash_message',
@@ -91,11 +90,8 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-
-        $id = Auth::user()->id;
-
         return view('admin.users.edit', [
             'user' => User::findOrFail($id)
         ]);
