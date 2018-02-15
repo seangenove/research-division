@@ -12,8 +12,8 @@
             <!-- /.box-header -->
             <!-- form start -->
             @if($ordinance->is_monitoring == 1)
-                <form method="POST" action="{{ route('ordinanceSUpdateReport') }}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form method="POST" action="{{ route('ordinanceStoreUpdateReport') }}" enctype="multipart/form-data">
+                    {{ csrf_field() }
                     <div class="box-body">
                         <input type="hidden" id="ordinance_id" name="ordinance_id" value="{{$ordinance->id}}">
 
