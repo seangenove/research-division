@@ -75,9 +75,7 @@ class UsersController extends Controller
     public function show($id)
     {
 
-        Session::flash(
-            'flash_message',
-            "Profile Updated!");
+        Session::flash('flash_message',"Profile Updated!");
 
         return view('admin.users.show', [
             'user' => User::find($id)

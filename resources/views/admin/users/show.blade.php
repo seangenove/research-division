@@ -42,7 +42,7 @@
             </div>
 
             <div class="box-footer">
-                <a href="/admin/edit" class="pull-right btn btn-primary">Edit</a>
+                <a href="/admin/users/{{$user->id}}/edit" class="pull-right btn btn-primary">Edit</a>
             </div>
         </div>
     </div>

@@ -156,7 +156,7 @@
                                             <div class="form-group">
                                                 <label for="image">Profile Picture</label>
                                                 <input name="image" type="file" id="image"
-                                                       value="{{ old ('image', isset($user) ? $user->image : '' )}}">
+                                                       value="{{ old ('image', isset($user) ? $user->image : '' )}}" >
                                             </div>
 
                                             <div class="form-group">
