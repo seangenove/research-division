@@ -118,7 +118,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <a href="#" class="active" id="profile-link">Edit Profile</a>
+                        <a href="#" class="active" id="profile-link">Account Settings</a>
                     </div>
                     <div class="col-xs-6">
                         <a href="#" id="cp-link">Change Password</a>
@@ -205,20 +205,24 @@
                     {{ csrf_field() }}
                     <div class="box-body">
 
+                        @php
+                            $required = false;
+                        @endphp
+
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Old Password</label>
-                            <input name="old-password" type="password" class="form-control" id="exampleInputEmail1"
+                            <label for="old-password">Old Password</label>
+                            <input name="old-password" type="password" class="form-control" id="old-password"
                                    value="{{ old('old-password') }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">New Password</label>
-                            <input name="new-password" type="password" class="form-control" id="exampleInputEmail1">
+                            <label for="new-password">New Password</label>
+                            <input name="new-password" type="password" class="form-control" id="new-password">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Re-enter Password</label>
-                            <input name="email" type="password" class="form-control" id="exampleInputEmail1" ">
+                            <label for="re-password">Re-enter Password</label>
+                            <input name="re-password" type="password" class="form-control" id="re-password">
                         </div>
                     </div>
                     <!-- /.box-body -->

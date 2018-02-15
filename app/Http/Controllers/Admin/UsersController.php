@@ -26,6 +26,12 @@ class UsersController extends Controller
         'repassword' => 'required|same:password'
     ];
 
+    private $password_validation = [
+        'old-password' => 'required',
+        'new-password' => 'required',
+        're-password' => 'required|same:password'
+    ];
+
     public function index()
     {
         return view('admin.users.index', [
@@ -164,6 +170,9 @@ class UsersController extends Controller
      */
     public function updatePassword(Request $request)
     {
+
+        $request->validate($this->password_validation);
+
         $old = $request->input('old-password');
         $new = $request->input('new-password');
 
@@ -172,8 +181,12 @@ class UsersController extends Controller
             $user->password = bcrypt($new);
             $user->save();
             // TODO: Add flash message here
+
+            Session::flash(
+                'flash_message',
+                "Password has been changed!");
         }
-        return view('admin.users.password');
+        return redirect('/admin/users/edit')->with('user',$user);
     }
 
     public function resetPassword($user_id)

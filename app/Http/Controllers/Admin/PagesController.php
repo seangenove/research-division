@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Page;
 
 class PagesController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +38,11 @@ class PagesController extends Controller
     {
         return view('admin.pages.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,44 +50,49 @@ class PagesController extends Controller
         $request->validate($this->page_validation);
 
         $page = new Page();
-        $page->title=$request->title;
-        $page->description=$request->description;
-        $page->content=$request->input('content');
+        $page->title = $request->title;
+        $page->description = $request->description;
+        $page->content = $request->input('content');
         $page->save();
         return redirect('/admin/pages');
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-{
-     $page = Page::findOrFail($id);
+    {
+        $page = Page::findOrFail($id);
 
-    return view('admin.pages.show', [
-        'page' => $page
-    ]);
+        return view('admin.pages.show', [
+            'page' => $page
+        ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    
-    public function edit($id)
+
+    public function edit()
     {
-        return view('admin.pages.edit', [
-            'page' => Page::find($id)
-        ]);
+        $id = Auth::user()->id;
+        $page = Page::findOrFail($id);
+        $required = false;
+
+        return view('admin.pages.edit', ['page' => $page]);
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -99,7 +106,7 @@ class PagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
