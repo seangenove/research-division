@@ -32,6 +32,7 @@ class PublicController extends Controller
         'title',
         'keywords',
     ];
+
     public function downloadPDF($directory, $filename) {
 
         if(env('APP_ENV') === 'local') {
@@ -105,7 +106,7 @@ class PublicController extends Controller
             return response()
                 ->view('admin.deleteSuccess',
                     [
-                        'directory' => $type,
+                        'directory' => $directory,
                         'instance' => $instance,
                     ],
                     200);
@@ -136,7 +137,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -150,17 +151,12 @@ class PublicController extends Controller
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%')
-                    ->orderBy('series', 'desc');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 0)
-//                    ->orWhere('is_monitoring', 1)
-                    ->orderBy('series', 'desc');
+                $query->where('is_monitoring', 0);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 0)
-//                ->orWhere('is_monitoring', 1)
-                ->orderBy('series', 'desc');
+            $resolutions = Resolution::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
@@ -183,45 +179,26 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
         if (!$order) {
             $order = 'desc';
         }
-//        if ($request->q) {
-//            $q = $request->q;
-//            $ordinances = Ordinance::where('keywords', 'LIKE', '%' . $q . '%')
-//                ->orWhere('number', 'LIKE', '%' . $q . '%')
-//                ->orWhere('series', 'LIKE', '%' . $q . '%')
-//                ->orWhere('title', 'LIKE', '%' . $q . '%')
-//                ->orderBy('created_at', 'desc')
-//                ->get();
-////            $ordinances = $ordinances->where('is_monitoring', 0);
-//        } else {
-//            $ordinances = DB::table('ordinances')
-////                ->where('is_monitoring', 0)
-//                ->orderby('id', 'desc')
-//                ->get();
-//        }
+
         if ($request->q) {
             $q = $request->q;
             $ordinances = Ordinance::where(function($query) use ($q){
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%')
-                    ->orderBy('series', 'desc');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 0)
-//                    ->orWhere('is_monitoring', 1)
-                    ->orderBy('series', 'desc');
+                $query->where('is_monitoring', 0);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 0)
-//                ->orWhere('is_monitoring', 1)
-                ->orderBy('series', 'desc');
+            $ordinances = Ordinance::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
@@ -229,7 +206,6 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
-//        dd($ordinances);
         return view('public.ordinance', [
             'ordinances' => $ordinances,
             'type' => PublicController::RR,
@@ -245,7 +221,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -280,7 +256,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -323,7 +299,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -367,7 +343,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -412,7 +388,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -426,15 +402,12 @@ class PublicController extends Controller
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%')
-                    ->orderBy('series', 'desc');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function ($query) {
-                $query->where('is_monitoring', 0)
-                    ->orderBy('series', 'desc');
+                $query->where('is_monitoring', 0);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 0)
-                ->orderBy('series', 'desc');
+            $ordinances = Ordinance::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
@@ -457,7 +430,7 @@ class PublicController extends Controller
 
         // Check if there is a provided column to be sorted
         if (!$colName) {
-            $colName = 'created_at';
+            $colName = 'series';
         }
 
         // Check if there is a provided order
@@ -471,15 +444,12 @@ class PublicController extends Controller
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
-                    ->orWhere('title', 'LIKE', '%' . $q . '%')
-                    ->orderBy('series', 'desc');
+                    ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 0)
-                    ->orderBy('series', 'desc');
+                $query->where('is_monitoring', 0);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 0)
-                ->orderBy('series', 'desc');
+            $resolutions = Resolution::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
