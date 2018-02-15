@@ -113,10 +113,6 @@ function skin($user)
                                     <a href="/admin/edit" class="btn btn-default btn-flat">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
-
-                                    <a href="/admin/change-password" class="btn btn-default btn-flat">
-                                        Change Password
-                                    </a>
                                     <a href="#" class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Sign out</a>
