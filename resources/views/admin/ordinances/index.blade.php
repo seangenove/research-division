@@ -33,7 +33,8 @@
                 </a>
                 <form action="#" method="get" class="pull-right col-md-4">
                     <div class="input-group">
-                        <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
+                        <input value="{{ request()->q }}" type="text" name="q" class="form-control"
+                               placeholder="Search...">
                         <span class="input-group-btn">
                             <button type="submit" id="search-btn" class="btn btn-flat">
                               <i class="fa fa-search"></i>
@@ -44,9 +45,9 @@
                 <div class="clearfix"></div>
             </div>
             {{--<div class="row">--}}
-                {{--<div class="col-md-12 text-center">--}}
-                    {{--<a href="/admin/ordinances">Reset Sorting</a>--}}
-                {{--</div>--}}
+            {{--<div class="col-md-12 text-center">--}}
+            {{--<a href="/admin/ordinances">Reset Sorting</a>--}}
+            {{--</div>--}}
             {{--</div>--}}
 
             <div class="row">
@@ -58,21 +59,21 @@
                                 <th>
                                     <a href="
                                     @if(request()->colName === 'number' and request()->order === 'desc')
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'number';
-                                            $currentUrlQueries['order'] = 'asc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'number';
+                                        $currentUrlQueries['order'] = 'asc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @else
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'number';
-                                            $currentUrlQueries['order'] = 'desc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'number';
+                                        $currentUrlQueries['order'] = 'desc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @endif">
                                         Ordinance Number
                                     </a>
@@ -81,21 +82,21 @@
                                 <th>
                                     <a href="
                                     @if(request()->colName === 'series' and request()->order === 'desc')
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'series';
-                                            $currentUrlQueries['order'] = 'asc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'series';
+                                        $currentUrlQueries['order'] = 'asc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @else
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'series';
-                                            $currentUrlQueries['order'] = 'desc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'series';
+                                        $currentUrlQueries['order'] = 'desc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @endif">
                                         Series
                                     </a>
@@ -104,21 +105,21 @@
                                 <th>
                                     <a href="
                                     @if(request()->colName === 'title' and request()->order === 'desc')
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'title';
-                                            $currentUrlQueries['order'] = 'asc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'title';
+                                        $currentUrlQueries['order'] = 'asc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @else
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'title';
-                                            $currentUrlQueries['order'] = 'desc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'title';
+                                        $currentUrlQueries['order'] = 'desc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @endif">
                                         Title
                                     </a>
@@ -127,21 +128,21 @@
                                 <th>
                                     <a href="
                                     @if(request()->colName === 'keywords' and request()->order === 'desc')
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'keywords';
-                                            $currentUrlQueries['order'] = 'asc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'keywords';
+                                        $currentUrlQueries['order'] = 'asc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @else
-                                        @php
-                                            $currentUrlQueries = request()->query();
-                                            $currentUrlQueries['colName'] = 'keywords';
-                                            $currentUrlQueries['order'] = 'desc';
+                                    @php
+                                        $currentUrlQueries = request()->query();
+                                        $currentUrlQueries['colName'] = 'keywords';
+                                        $currentUrlQueries['order'] = 'desc';
 
-                                            echo request()->fullUrlWithQuery($currentUrlQueries);
-                                        @endphp
+                                        echo request()->fullUrlWithQuery($currentUrlQueries);
+                                    @endphp
                                     @endif">
                                         Keywords
                                     </a>
@@ -151,6 +152,19 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <tr>
+                                <form method="get" action="#">
+{{--                                    {{ dd(array_unique(request()->all())) }}--}}
+                                    @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
+                                        <input type="hidden" name="{{$k}}" value="{{ $v }}">
+                                    @endforeach
+                                    <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
+                                    <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
+                                    <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
+                                    <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                                    <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                                </form>
+                            </tr>
                             @foreach($ordinances as $ordinance)
                                 <tr>
                                     <td>{{ $ordinance->number }}</td>

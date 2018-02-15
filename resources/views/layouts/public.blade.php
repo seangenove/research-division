@@ -63,9 +63,48 @@
                 <div class="navbar-collapse collapse" id="ftheme">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/ordinances">Ordinances</a></li>
-                        <li><a href="/resolutions">Resolutions</a></li>
-                        <li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>
+                        {{--<li><a href="/ordinances">Ordinances</a></li>--}}
+                        {{--<li><a href="/resolutions">Resolutions</a></li>--}}
+                        <li>
+                            <a href="/r&r/ordinances">
+                                Ordinances
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/r&r/resolutions">
+                                Resolutions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Monitoring & Evaluation <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/ordinances">
+                                        Ordinances
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/resolutions">
+                                        Resolutions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/monitorAndEval/ordinances">
+                                        Monitored Ordinances
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/monitorAndEval/resolutions">
+                                        Monitored Resolutions
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        {{--<li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>--}}
                         {{--<li class="dropdown">--}}
                             {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
                                 {{--Monitoring & Evaluation <span class="caret"></span>--}}

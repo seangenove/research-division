@@ -295,6 +295,13 @@ class FormsController extends Controller
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1);
         }
+        // Filtering by columns
+        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
+            $ordinances = $ordinances->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
+                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
+                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
+                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        }
 
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
@@ -338,6 +345,13 @@ class FormsController extends Controller
             $resolutions = Resolution::where('is_monitoring', 1);
         }
 
+        // Filtering by columns
+        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
+            $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
+                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
+                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
+                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        }
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
 

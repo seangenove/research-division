@@ -17,51 +17,51 @@ class SuggestionsTableSeeder extends Seeder
             /* For Ordinance */
             [
                 'id' => 1,
-                'first_name'=> 'John',
-                'last_name'=> 'Doe',
-                'email' => 'johndoe@example.com',
-                'suggestion' => 'Penalty should be increased',
+                'first_name'=> 'Jun',
+                'last_name'=> 'Ramos',
+                'email' => 'jramos@gmail.com',
+                'suggestion' => 'Budget well spent!',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 2,
-                'first_name'=> 'Jimmy',
-                'last_name'=> 'Smith',
-                'email' => 'johnsmitty@example.com',
-                'suggestion' => 'Please increase the penalty',
+                'first_name'=> 'Maria',
+                'last_name'=> 'Santiago',
+                'email' => 'santiagomaria@yahoo.com',
+                'suggestion' => 'This is good news for us taxpayers',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 3,
                 'first_name'=> 'Ricardo',
                 'last_name'=> 'Manalmas',
-                'email' => 'rm@example.com',
-                'suggestion' => 'Penalty is high',
+                'email' => 'rm@gmail.com',
+                'suggestion' => 'Nice to hear that the government is not wasting money.',
                 'created_at' => Carbon::now()
             ],
             /* For Resolution */
             [
                 'id' => 4,
-                'first_name'=> 'Junana',
-                'last_name'=> 'Change',
-                'email' => 'johndoe@example.com',
-                'suggestion' => 'This is great',
+                'first_name'=> 'Lea',
+                'last_name'=> 'Uy',
+                'email' => 'uy.lea@gmail.com',
+                'suggestion' => 'This is great!',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 5,
-                'first_name'=> 'Alan',
-                'last_name'=> 'Peters',
-                'email' => 'johnsmitty@example.com',
-                'suggestion' => 'Anti-overloading should be not only locally but also nationally',
+                'first_name'=> 'Fred',
+                'last_name'=> 'Alangdeo',
+                'email' => 'freddie@yahoo.com',
+                'suggestion' => 'More tourism!',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 6,
-                'first_name'=> 'Rodrigo',
+                'first_name'=> 'Veronica',
                 'last_name'=> 'Duterte',
-                'email' => 'rm@example.com',
-                'suggestion' => 'This is a nice resolution!',
+                'email' => 'veronicaduterte@gmail.com',
+                'suggestion' => 'Conserving nature is a great thing to act upon especially people visit this park often.',
                 'created_at' => Carbon::now()
             ]
         );

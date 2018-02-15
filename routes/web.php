@@ -14,11 +14,18 @@
 
 /* Public routes */
 Route::get('/', 'PublicController@index');
-Route::get('/ordinances', 'PublicController@ordinance');
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
-Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
-Route::get('/resolutions', 'PublicController@resolutions');
+
+//Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
+
+Route::get('/ordinances', 'PublicController@ordinance'); /* used in monitoring and evaluation */
+Route::get('/resolutions', 'PublicController@resolutions'); /* used in monitoring and evaluation */
+Route::get('/monitorAndEval/ordinances', 'PublicController@monitorAndEvalOrdinances');
+Route::get('/monitorAndEval/resolutions', 'PublicController@monitorAndEvalResolutions');
+
+Route::get('/r&r/resolutions', 'PublicController@researchAndRecordsResolution');
+Route::get('/r&r/ordinances', 'PublicController@researchAndRecordsOrdinance');
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
 Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');
@@ -63,6 +70,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             Route::get('resolutions', 'Admin\\FormsController@resolutions');
         });
         Route::resource('result', 'Admin\\ResultController');
+        Route::post('/updateAnswer', 'Admin\\ResultController@updateAnswer');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');

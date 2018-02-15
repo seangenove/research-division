@@ -19,6 +19,14 @@ class ResponsesTableSeeder extends Seeder
             [
                 'date' => \Carbon\Carbon::now(),
                 'questionnaire_id'=> 1
+            ],
+            [
+                'date' => \Carbon\Carbon::now(),
+                'questionnaire_id'=> 3
+            ],
+            [
+                'date' => \Carbon\Carbon::now(),
+                'questionnaire_id'=> 3
             ]
         );
         Response::insert($responses);

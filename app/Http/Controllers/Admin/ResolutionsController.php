@@ -44,16 +44,24 @@ class ResolutionsController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $resolutions = Resolution::where(function($query) use ($q){
+            $resolutions = Resolution::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 0);
             });
         } else {
             $resolutions = Resolution::where('is_monitoring', 0);
+        }
+
+        // Filtering by columns
+        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
+            $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
+                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
+                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
+                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
         // Implement filtering / sorting
@@ -81,7 +89,7 @@ class ResolutionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -96,7 +104,7 @@ class ResolutionsController extends Controller
             app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions')
             : '';
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
-            substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 );
+            substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
 
         Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
@@ -108,7 +116,7 @@ class ResolutionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -126,7 +134,7 @@ class ResolutionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -134,15 +142,15 @@ class ResolutionsController extends Controller
         $resolution = Resolution::findOrFail($id);
 
         return view('admin.resolutions.edit', [
-            'resolution' =>$resolution
+            'resolution' => $resolution
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -154,7 +162,7 @@ class ResolutionsController extends Controller
         $resolution->update($validatedData);
         $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
-            substr($resolution->pdf_file_path, strrpos( $resolution->pdf_file_path, '/' ) + 1 );
+            substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
 
         Session::flash('flash_message', "Successfully updated <strong>Resolution" . $resolution->number . "</strong>!");
@@ -164,7 +172,7 @@ class ResolutionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -173,7 +181,8 @@ class ResolutionsController extends Controller
         return redirect('/admin/resolutions');
     }
 
-    public function statusReportCreate($resolutionID) {
+    public function statusReportCreate($resolutionID)
+    {
         $resolution = Resolution::findOrFail($resolutionID);
 
         return view('admin.resolutions.uploadStatusReport', [
@@ -182,7 +191,8 @@ class ResolutionsController extends Controller
 
     }
 
-    public function updateReportCreate($resolutionID) {
+    public function updateReportCreate($resolutionID)
+    {
         $resolution = Resolution::findOrFail($resolutionID);
 
         return view('admin.resolutions.uploadUpdateReport', [
@@ -190,15 +200,16 @@ class ResolutionsController extends Controller
         ]);
     }
 
-    public function storeStatusReport(Request $request) {
+    public function storeStatusReport(Request $request)
+    {
         $validatedData = $request->validate([
             'resolution_id' => '',
             'pdf' => 'required|file',
         ]);
 
         // Check if there is existing Status Report
-        if (Resolution::findOrFail($validatedData['resolution_id'])->statusReport !== null)  {
-            $statusReport = Resolution::findOrFail($validatedData['resolution_id'])->statusReport ;
+        if (Resolution::findOrFail($validatedData['resolution_id'])->statusReport !== null) {
+            $statusReport = Resolution::findOrFail($validatedData['resolution_id'])->statusReport;
         } else {
             $statusReport = new StatusReport();
         }
@@ -210,7 +221,7 @@ class ResolutionsController extends Controller
         $statusReport->save();
         $statusReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($statusReport, $file, 'statusreports');
         $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
-            strrpos( $statusReport->pdf_file_path, '/' ) + 1 );
+            strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
 
         Session::flash('flash_message',
@@ -219,7 +230,8 @@ class ResolutionsController extends Controller
         return redirect('/admin/resolutions/' . $statusReport->resolution_id);
     }
 
-    public function storeUpdateReport(Request $request) {
+    public function storeUpdateReport(Request $request)
+    {
         $validatedData = $request->validate([
             'resolution_id' => '',
             'pdf' => 'required|file',
@@ -232,7 +244,7 @@ class ResolutionsController extends Controller
         $updateReport->resolution_id = $validatedData['resolution_id'];
         $updateReport->save();
         $updateReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($updateReport, $file, 'updatereports');
-        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos( $updateReport->pdf_file_path, '/' ) + 1 );
+        $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos($updateReport->pdf_file_path, '/') + 1);
         $updateReport->save();
 
         Session::flash('flash_message',

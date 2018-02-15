@@ -23,17 +23,19 @@
                                     <div class="panel panel-info">
                                         <div class="panel-body">
                                             @if($ordinance->is_monitoring == 1)
-                                                <a href="">
-                                                    <button class="btn-sm btn-info">
-                                                        View Status Report
-                                                    </button>
-                                                </a>
+                                                @if($ordinance->statusReport !== null and $ordinance->statusReport->pdf_file_path !== " ")
+                                                    <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}">
+                                                        <button class="btn-sm btn-info">
+                                                            Download Status Report
+                                                        </button>
+                                                    </a>
+                                                @endif
 
-                                                <a href="">
-                                                    <button class="btn-sm btn-info">
-                                                        View Updates
-                                                    </button>
-                                                </a>
+                                                {{--<a href="">--}}
+                                                    {{--<button class="btn-sm btn-info">--}}
+                                                        {{--View Updates--}}
+                                                    {{--</button>--}}
+                                                {{--</a>--}}
 
                                                 @if(!$questionnaire->isEmpty())
                                                     <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">
@@ -69,6 +71,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($ordinance->updateReport()->where('is_deleted', 0)->first())
+                                    <div class="col-md-5">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                Updates
+                                                @foreach($ordinance->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                                    <tr>
+                                                        <td>{{$updateReport->pdf_file_name}}</td>
+                                                        <td>
+                                                            <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                               class="btn btn-xs btn-primary btn-equal-width">
+                                                                Download
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
             @if($ordinance->is_accepting == 1)
