@@ -59,9 +59,9 @@
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
                                 {{--class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-
-                                <a href="" class="btn  btn-danger"><i class="fa fa-file-pdf-o"
-                                                                      aria-hidden="true"></i>
+                                    {{  $url = '/admin/forms/'. $ordinance->id. '/edit'}}
+                                    <a href="" class="btn  btn-danger" >
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
 
                                 <form style="display: inline;" method="post"
@@ -98,6 +98,7 @@
             </div>
         </div>
     @endif
+
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
@@ -397,5 +398,13 @@
 
             return confirm( "Are you sure you want to delete the file " + fileName +"?");
         });
+
+        function printExternal(url) {
+            var printWindow = window.open( url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
+            printWindow.addEventListener('load', function(){
+                printWindow.print();
+                printWindow.close();
+            }, true);
+        }
     </script>
 @endsection

@@ -255,6 +255,22 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 1;
         $questionnaire->save();
+
+        $ordinanceId = $questionnaire->ordinance_id;
+        $resolutionId = $questionnaire->resolution_id;
+        if ($ordinanceId !== null)
+        {
+            $ordinance = Ordinance::find($ordinanceId);
+            $ordinance->is_accepting = 1;
+            $ordinance->save();
+        }
+        elseif ($resolutionId !== null)
+        {
+            $resolution = Ordinance::find($resolutionId);
+            $resolution->is_accepting = 1;
+            $resolution->save();
+        }
+
         return back();
     }
 
@@ -263,6 +279,21 @@ class FormsController extends Controller
         $questionnaire = Questionnaire::find($id);
         $questionnaire->isAccepting = 0;
         $questionnaire->save();
+
+        $ordinanceId = $questionnaire->ordinance_id;
+        $resolutionId = $questionnaire->resolution_id;
+        if ($ordinanceId !== null)
+        {
+            $ordinance = Ordinance::find($ordinanceId);
+            $ordinance->is_accepting = 0;
+            $ordinance->save();
+        }
+        elseif ($resolutionId !== null)
+        {
+            $resolution = Ordinance::find($resolutionId);
+            $resolution->is_accepting = 0;
+            $resolution->save();
+        }
         return back();
     }
 
