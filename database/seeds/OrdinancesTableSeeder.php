@@ -180,6 +180,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'APRROVING THE REQUESTS OF TEAM LAKAY TAP TEAM INC. FOR EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE BAGUIO CONVENTION CENTER FOR THE MIXED MARTIAL ARTS (MMA) EVENT ON 27 FEBRUARY 2016.',
                 'keywords' => '2016, TEAM LAKAY TAP TEAM INC., AMUSEMENT TAX, FREE USE, BAGUIO CONVENTION CENTER',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 9,
@@ -188,6 +189,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'REALIGNING THE AMOUNT OF Php200,000 FROM THE PROJECT "REHABILITATION AND RIPRAPPING AT INTERIOR REGIDOR BETWEEN MOLINTAS RESIDENCE AND LATUS RESIDENCE" UNDER THE 2015 ANNUAL INVESTMENT PLAN (AIP) TO "CONSTRUCTION OF PUBLIC COMFORT ROOM AT THE BASEMENT OF THE OLD BARANGAY HALL", AT PACDAL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, REHABILIATION, RIPRAPPING, INTERIOR RIGEDOR, MOLINTAS, LATUS, ANNUAL INVESTMENT PLAN, AIP, CONSTRUCTION, PUBLIC COMFORT ROOM, PACDAL',
                 'is_monitoring' => 1,
+                'is_accepting' => 1,
             ],
             [
                 'id' => 10,
@@ -196,6 +198,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'REALIGNING THE AMOUNT OF Php1,351,311.77 FROM THE PROJECT "REHABILITATION OF FLOOD CONTROL ALONG BALILI RIVER" UNDER THE 2014 LOCAL DEVELOPMENT FUND OF THE CITY OF BAGUIO  TO "CONSTRUCTION  OF THE PROPOSED MAIN SEWER LINE CONNECTION AT PUROK 1" AT LOWER MAGSAYSAY BARANGAY, BAGUIO.',
                 'keywords' => '2016, REHABILITAION, FLOOD CONTORL, BALILI RIVER, LOCAL DEVELOPMENT FUND, CONSTRUCTION, PRPOSED MAIN SEWER LINE CONNECTION, LOWER MAGSAYSAY',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 11,
@@ -204,6 +207,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'APPROVING THE REQUESTS OF THE HILLTOP ASSEMBLY OF GOD FOR EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE BAGUIO CONVENTION CENTER FOR THE BREAKTHROUGH CONCERT 2015 ON 18 NOVEMBER 2016, SUBJECT OT CONDITIONS.',
                 'keywords' => '2016, HILLTOP ASSEMBLY OF GOD, AMUSEMENT TAX, FREE USE, BAGUIO CONVENTION CENTER, BREAKTHROUGH',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 12,
@@ -212,6 +216,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'APPROVING THE REQUESTS OF THE CAR-BAGUIO GERMAN SHEPHERD DOG CLUB, INCORPORATED FOR THE EXEMPTION FROM THE PAYMENT OF AMUSEMENT TAX AND THE FREE USE OF THE MELVIN JONES, BURNHAM PARK, BAGUIO CITY, AS VENUE FOR THE 53RD LANDESGRUPPEN DOG SHOW ON 24 APRIL 2016.',
                 'keywords' => '2016, CAR-BAGUIO GERMAN SHEPHERD DOG CLUB INCORPORATED, AMUSEMENT TAX, FREE USE, MELVIN JONES, BURNHAM PARK, LANDESGRUPPEN DOG SHOW',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 13,
@@ -220,6 +225,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'AUTHORIZING A SUPPLEMENTAL BUDGET INVOLVING AN AMOUNT OF NINETY MILLION TWO HUNDRED SIXTY THOUSAND PESOS (Php90,260,000.00) TO AUGMENT THE 2015 DEVELOPMENT/INVESTMENT PRIORITY PROJECTS OF THE CITY OF BAGUIO.',
                 'keywords' => '2016, SUPPLEMENTAL BUDGET, DEVELOPMENT/INVESTMENT PRIORITY PROJECTS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 14,
@@ -228,6 +234,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'ESTABLISHING, INAUGURATING AND INSTITUTING 16 JUNE 1916 AS THE FOUNDATION DAY OF THE BAGUIO CITY NATIONAL HIGH SCHOOL, APPROPRIATING FUNDS FOR ITS 2016 CENTENNIAL CELEBRATION, AND FOR OTHER PURPOSES.',
                 'keywords' => '2016, FOUNDATION DAY, BAGUIO CITY NATIONAL HIGH SCHOOL, CENTENNIAL CELEBRATION, OTHER PURPOSES',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 15,
@@ -236,6 +243,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'GRANTING AMNESTY TO APPLICANTS FOR ELECTRIC AND WATER CONNECTIONS IN THE CITY OF BAGUIO.',
                 'keywords' => '2016, AMNESTY, APPLICANTS, ELECTRIC AND WATER CONNECTIONS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
 
             ],
             //ordinances of 2017 2ndhalf
@@ -246,6 +254,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'AUTHORIZING TO CHARGE FROM THE CURRENT APPROPRIATIONS THE AMOUNT OF PHP 2.409.96 TO DEFRAY THE EXPENSES FOR THE PURCHASE OF SUPPLIES IN THE OFFICE OF THE MUNICIPAL TRIAL COURT IN CITIES, FIRST JUDICIAL REGION, BAGUIO CITY.',
                 'keywords' => '2017, SUPPLIES, OFFICE OF THE MUNICIPAL TRIAL COURT',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 25,
@@ -254,6 +263,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'DECLARING FEBRUARY 07 TO FEBRUARY 14 OF EVERY YEAR AS MARRIAGE WEEK IN THE CITY OF BAGUIO',
                 'keywords' => '2017, FEBRUARY 07 TO FEBRUARY 14, MARRIAGE WEEK',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 26,
@@ -262,6 +272,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'MANDATORILY REQUIRING BUSINESS ESTABLISHMENTS TO INSTALL CLOSED CIRCUIT TELEVISION (CCTV) CAMERAS, VIDEO, RECORDERS, AND MONITORS FOR SECURITY PURPOSES, ALSO KNOWN AS THE "NO CLOSED CIRCUIT TELEVISION (CCTV), NO BUSINESS PERMIT ORDINANCE OF THE CITY OF BAGUIO".',
                 'keywords' => '2017, CLOSED CIRCUIT TELEVISION (CCTV), REQUIRING',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 27,
@@ -270,6 +281,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'APPROVING THE AUTHORITY TO CHARGE FROM VARIOUS ACCOUNTS IN THE CURRENT APPROPRIATIONS IN THE OFFICE OF THE CITY ADMINISTRATOR FOR PAYMENT OF UNPAID TELEPHONE BILLS, CASH INCENTIVES, AND HONORARIA OF OFFICIATING OFFICIALS COVERING THE PERIOD 2016.',
                 'keywords' => '2017, UNPAID TELEPHONE BILLS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 28,
@@ -278,6 +290,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'PROHIBITING DISCRIMINATION AND ENFORCING EQUALITY BEFORE THE LAW AND EQUAL PROTECTION OF THE LAW WITHOUT ANY DISCRIMINATION IN THE CITY OF BAGUIO ON THE BASIS OF RELIGION, ETHNICITY, SEXUAL ORIENTATION AND GENDER IDENTITY, HEALTH STATUS, DISABILITY, AND AGE, PROVIDING PENALTIES FOR VIOLATION THEREOF AND FOR OTHER PURPOSES.',
                 'keywords' => '2017, EQUALITY, EQUAL PROTECTION, DISCRIMINATION',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 29,
@@ -286,6 +299,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'AMENDING ORDINANCE NUMBER 050, SERIES OF 1995 [GOVERNING THE USE OF UNIFORMS BY CITY GOVERNMENT OFFICIALS AND EMPLOYEES AND FOR OTHER PURPOSES].',
                 'keywords' => '2017, ORDINANCE NUMBER 050, AMENDMENT',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 30,
@@ -294,6 +308,7 @@ class OrdinancesTableSeeder extends Seeder
                 'title'=> 'TRANSFERRING THE APPROPRIATION OF PHP 75,000,000.00 FROM ACCOUNT CODE NO. 5-02-99-900 (OTHER MAINTENANCE AND OPERATING EXPENSES) TO ACCOUNT CODE NO. 5-02-12-010 (ENVIRONMENT / SANITARY SERVICES) IN THE GENERAL SERVICES OFFICE FOR CALENDAR YEAR 2017, SUBJECT TO CONDITIONS.',
                 'keywords' => '2017, TRANSFERRING MONEY',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
         );
         Ordinance::insert($monitoringAndEvaluationOrdinances);

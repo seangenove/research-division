@@ -147,6 +147,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'CONFIRMING THE MEMORANDUM OF AGREEMENT ENTERED INTO BY AND AMONG THE CITY GOVERNMENT OF BAGUIO, THROUGH THE CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, AND THE WRIGHT PARK PONY BOYS ASSOCIATION, RELATIVE TO THE PROTECTION AND CONSERVATION OF THE WRIGHT PARK AREA AND ITS VICINITY.',
                 'keywords' => '2016, MEMORANDUM OF AGREEMENT, CITY GOVERNMENT OF BAGUIO, CITY ENVIRONMENT AND PARKS MANAGEMENT OFFICE, LUALHATI BARANGAY, THE WRIGHT PARK PONY BOYS ASSOCIATION, PROTECTION, CONSERVATION, WRIGHT PARK',
                 'is_monitoring' => 1,
+                'is_accepting' => 1,
             ],
             [
                 'id' => 9,
@@ -155,6 +156,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 004, SERIES OF 2015 [AN ORDINANCE PROHIBITING RESIDENTS FROM DRAINING WATER FROM THEIR SEPTIC TANKS ANYTIME OF THE YEAR MOST ESPECIALLY DURING HEAVY DOWN POUR OF RAINS], OF THE MIDDLE QUIRINO HILL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, ORDINANCE NO. 004 SERIES OF 2015, MIDDLE QUIRINO HILL',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 10,
@@ -163,6 +165,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'HIRING OF ONE (1) ADMINISTRATIVE AIDE III (CLERK I) ON CASUAL STATUS, FOR THE PERIOD JANUARY 2016 TO 30 JUNE 2016 IN THE CITY SOCIAL WELFARE AND DEVELOPMENT OFFICE.',
                 'keywords' => '2016, ADMINISTRATIVE AIDE III, CLERK I, CASUAL STATUS, CITY SOCIAL WELFARE AND DEVELOPMENT OFFICE',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 11,
@@ -171,6 +174,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'HIRING OF THREE (3) NURSE II, SG-15/1; ONE (1) DENTAL AIDE IV, SG-4/1; ONE (1) LABORATORY AIDE II, SG-4/1; AND ONE (1) SANITATION INSPECTOR I, SG-6/1, ALL ON CASUAL STATUS FOR THE PERIOD JANUARY 2016 TO 30 JUNE 2016 IN THE CITY HEALTH SERVICES OFFICE.',
                 'keywords' => '2016, NURSE II, DENTAL AIDE IV, LABORATORY AIDE II, SANITATION INSPECTOR I, SG, CITY HEALTH SERVICES OFFICE',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 12,
@@ -179,6 +183,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 01, SERIES OF 2015 [AN ORDINANCE ENACTING A COMPREHENSIVE BARANGAY TAX ORDINANCE IMPOSING TAXES OR BARANGAY FEES (BARANGAY CLEARANCE FEES, BARANGAY BUSINESS CLEARANCE FEES, CERTIFICATION FEES AND FILING FEES) AND CHARGES FOR SERVICE RENDERED WITHIN THE BARANGAY OF CABINET HILL-TEACHERS CAMP BARANGAY, BAGUIO CITY AND FOR OTHER PURPOSES.], OF CABINET HILL-TEACHER’S CAMP BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, ORDINANCE NO. 001 SERIES OF 2015, CABINET HILL, TEACHERS CAMP',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 13,
@@ -187,6 +192,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 008, SERIES OF 2015 [AN ORDINANCE INSTITUTIONALIZING THE CONDUCT OF MASS FEEDING DURING BARANGAY OFFICIALS BIRTHDAYS], OF MIDDLE QUIRINO HILL BARANGAY, BAGUIO CITY.',
                 'keywords' => '2016, ORDINANCE NO. 008 SERIES OF 2015, MIDDLE QUIRINO HILL',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 14,
@@ -195,6 +201,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'AUTHORIZING HON. MAURICIO G. DOMOGAN, CITY MAYOR, TO ENTER INTO A MEMORANDUM OF AGREEMENT WITH THE DIFFERENT PARTICIPATING NATIONAL LINE AGENCIES FOR THE IMPLEMENTATION OF THE LOCAL POVERTY REDUCTION ACTION PLAN (LPRAP) OF THE CITY BAGUIO FOR FISCAL YEAR 2016 UNDER THE GRASSROOTS PARTICIPATORY BUDGETING (GPB) PROCESS (FORMERLY CALLED BOTTOM-UP BUDGETING).',
                 'keywords' => '2016, HON. MAURICIO G. DOMOGAN, CITY MAYOR, MEMORANDUM OF AGREEMENT, NATIONAL LINE AGENCIES, LOCAL POVERTY REDUCTION ACTION PLAN, LPRAP, FISCAL YEAR, GRASSROOTS PARTICIPATORY BUDGETING, GPB',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 15,
@@ -203,6 +210,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'STRONGLY APPEALING TO HIS EXCELLENCY, PRESIDENT BENIGNO SIMEON C. AQUINO III AND THE HONORABLE MEMBERS OF THE CONGRESS OF THE PHILIPPINES TO TAKE IMMEDIATE MEASURES TO ALLEVIATE THE PLIGHT OF INDIGIENT SOCIAL SECURITY SYSTEM (SSS) PENSIONERS.',
                 'keywords' => '2016, PRESIDENT BENIGNO SIMEON C. AQUINO III, HONORABLE MEMBERS OF THE CONGRESS OF THE PHILIPPINES, SOCIAL SECURITY SYSTEM, SSS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 23,
@@ -211,6 +219,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF BARANGAY ORDINANCE NO. 16-01, SERIES OF 2016 [IMPLEMENTATION FOR THE COLLECTION OF FEES FOR THE RENTAL OF MONOBLOC TABLES OF LOURDES SUBDIVISION PROPER BARANGAY] OF LOURDES SUBDIVISION PROPER BARANGAY, BAGUIO CITY',
                 'keywords' => '2017, BARANGAY ORDINANCE, LOURDES SUBDIVISION, RENTAL OF MONOBLOC TABLES',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 24,
@@ -219,6 +228,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 05, SERIES OF 2016 [AN ORDINANCE REQUIRING ALL SERVICE PROVIDERS TO SECURE CLEARANCE/PERMISSION FROM THE SANGGUNIANG BARANGAY BEFORE INTRODUCTION OF ANY CONSTRUCTION OR REPAIRS OF THEIR RESPECTIVE FACILITIES OF EQUIPMENTS WITHIN THE AREA OF RESPONSIBILITY OF BARANGAY TRANCOVILLE], OF TRANCOVILLE BARANGAY, BAGUIO CITY',
                 'keywords' => '2017, CLEARANCE, CONSTRUCTION OR REPAIRS, FACILITIES OF EQUIPMENTS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 25,
@@ -227,6 +237,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING FAVORABLE REVIEW OF ORDINANCE NO. 003, SERIES OF 2016 [AN ORDINANCE REGULATING THE USE OF BARANGAY COVERED COURT], OF MIDDLE QUIRINO HILL; BARANGAY, BAGUIO CITY.',
                 'keywords' => '2017, BARANGAY COVERED COURT, MIDDLE QUIRINO HILL',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 26,
@@ -235,6 +246,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'SUPPORTING THE CAMPAIGN INITIATED BY THE BAGUIO CORRESPONDENTS AND BROADCASTERS CLUB, INC. (BCBC) AND THE PHILIPPINE INFORMATION AGENCY-CORDILLERA ADMINISTRATIVE REGION (PIA-CAR) FOR FREE DIALYSIS TREATMENT OR SERVICE TO FILIPINO PATIENTS.',
                 'keywords' => '2017, CAMPAIGN, BAGUIO CORRESPONDENTS AND BROADCASTERS CLUB, INC. (BCBC), PHILIPPINE INFORMATION AGENCY-CORDILLERA ADMINISTRATIVE REGION (PIA-CAR), DIALYSIS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 27,
@@ -243,6 +255,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'RESOLVING THAT THE BAGUIO FLOWER FESTIVAL, INC. (BFFI) COMPLY WITHT EH AUDIT OBSERATION MEMORANDUM NO. 16-020 DATED 17 MARCH 2016 OF THE OFFICE OF THE SUPERVISING AUDITOR AND THE AUDIT TEAM LEADER, LGS-AUDIT GROUP G - TEAM NO. CAR 01, COMMISSION ON AUDIT',
                 'keywords' => '',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 28,
@@ -251,6 +264,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'GRANTING A 25% DISCOUNT TO CONCOCTIONS BAR AND RESTO FOR THE USE OF THE BAGUIO CONVENTION CENTER, BAGUIO CITY, AS VENUE OF THEIR VARIOUS EVENTS ON 29 TO 29 JANUARY 2017',
                 'keywords' => '2017, DISCOUNT, CONCOCTIONS, BAGUIO CONVENTION CENTER, JANUARY',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 29,
@@ -259,6 +273,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'APPROVING THE REQUEST OF MR. PETER S.I. SANTOS, PRESIDENT, ASIA PINE HILLS DEVELOPMENT CORPORATION, FOR THE ALTERATION OF PLAN OF MARYLAND SUBDIVISION LOCATED AT IRISAN BARANGAY, BAGUIO CITY, SUBJECT TO CONDITIONS.',
                 'keywords' => '2017, MR. PETER S.I. SANTOS, ASIA PINE HILLS DEVELOPMENT CORPORATION, ALTERATION',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
             [
                 'id' => 30,
@@ -267,6 +282,7 @@ class ResolutionsTableSeeder extends Seeder
                 'title'=> 'REQUESTING THE DEPARTMENT OF TRANSPORTATION TO AMEND ITS CIRCULARS ON THE 20% DISCOUNT FOR STUDENTS FARE TO INCLUDE SATURDAYS, SUNDAYS, AND HOLIDAYS.',
                 'keywords' => '2017, DPARTMENT OF TRANSPORTATION, DISCOUNT, FARE, WEEKENDS, HOLIDAYS',
                 'is_monitoring' => 1,
+                'is_accepting' => 0,
             ],
         );
         Resolution::insert($monitoringAndEvaluationResolutions);
