@@ -147,17 +147,21 @@
                             </form>
                         </tr>
                         @foreach($ordinances as $ordinance)
-                            <tr>
-                                <td>{{ $ordinance->number }}</td>
-                                <td>{{ $ordinance->series }}</td>
-                                <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
-                                <td>
-                                    <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                            class="btn btn-info pull-right">Read More
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach($ordId as $id)
+                                @if($id->ordinance_id === $ordinance->id && $id->isAccepting === 1)
+                                    <tr>
+                                        <td>{{ $ordinance->number }}</td>
+                                        <td>{{ $ordinance->series }}</td>
+                                        <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
+                                        <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
+                                        <td>
+                                            <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                                    class="btn btn-info pull-right">Read More
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
                         @endforeach
                         </tbody>
                     </table>
@@ -174,6 +178,9 @@
         @elseif ($resolutions !== null)
             <div class="ordinance-heading">
                 <h1>Resolutions</h1>
+
+
+
                 <hr>
             </div>
             <div class="col-md-12">
@@ -183,7 +190,7 @@
                         <tr>
                             <th>
                                 <a href="
-                                                    @if(request()->colName === 'number' and request()->order === 'desc')
+                                @if(request()->colName === 'number' and request()->order === 'desc')
                                 @php
                                     $currentUrlQueries = request()->query();
                                     $currentUrlQueries['colName'] = 'number';
@@ -287,22 +294,27 @@
                                 <td><input class="btn btn-primary" type="submit" value="Filter"></td>
                             </form>
                         </tr>
+
                         @foreach($resolutions as $resolution)
-                            <tr>
-                                <td>{{ $resolution->number }}</td>
-                                <td>{{ $resolution->series }}</td>
-                                <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
-                                <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
-                                <td>
-                                    <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                            class="btn btn-info pull-right">Read More
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach($resId as $id)
+                                @if($id->resolution_id == $resolution->id && $id->isAccepting == 1)
+                                <tr>
+                                    <td>{{ $resolution->number }}</td>
+                                    <td>{{ $resolution->series }}</td>
+                                    <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
+                                    <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
+                                    <td>
+                                        <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
+                                                class="btn btn-info pull-right">Read More
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endif
+                            @endforeach
                         @endforeach
+
                         </tbody>
                     </table>
-
                     <div class="row text-center">
                         {{$resolutions->links()}}
                     </div>
@@ -312,11 +324,11 @@
                     </div>
                 @endif
             </div>
-        @else
-            <div class="resolution-heading">
-                <h1>No Monitored ordinances or resolutions</h1>
-                <hr>
-            </div>
+        {{--@else--}}
+            {{--<div class="resolution-heading">--}}
+                {{--<h1>No Monitored ordinances or resolutions</h1>--}}
+                {{--<hr>--}}
+            {{--</div>--}}
         @endif
     </div>
 </div>

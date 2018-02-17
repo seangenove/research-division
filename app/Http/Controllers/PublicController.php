@@ -233,7 +233,7 @@ class PublicController extends Controller
     public function monitorAndEvalOrdinances(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalOrdinances", 'public');
-        $limit = 5;
+        $limit = 10;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -247,6 +247,7 @@ class PublicController extends Controller
             $order = 'desc';
         }
 
+
         if ($request->q) {
             $q = $request->q;
             $ordinances = Ordinance::where(function ($query) use ($q) {
@@ -255,12 +256,10 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function ($query) {
-                $query->where('is_monitoring', 1)
-                    ->where('is_accepting', 1);
+                $query->where('is_monitoring', 1);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 1)
-                ->where('is_accepting', 1);
+            $ordinances = Ordinance::where('is_monitoring', 1);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -275,10 +274,15 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
+
         $resolutions = null;
+
+        $ordId = Questionnaire::all();
+
         return view('public.monitorAndEval', [
             'ordinances' => $ordinances,
             'resolutions' => $resolutions,
+            'ordId'=> $ordId,
             'type' => PublicController::RR,
         ]);
     }
@@ -286,7 +290,7 @@ class PublicController extends Controller
     public function monitorAndEvalResolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalResolutions", 'public');
-        $limit = 5;
+        $limit = 10;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -308,13 +312,12 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 1)
-                    ->where('is_accepting', 1);
+                $query->where('is_monitoring', 1);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 1)
-                ->where('is_accepting', 1);
+            $resolutions = Resolution::where('is_monitoring', 1);
         }
+
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
             $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
@@ -329,9 +332,21 @@ class PublicController extends Controller
 //        dd($resolutions);
 
         $ordinances = null;
+
+        $resId = Questionnaire::all();
+
+        foreach ($resolutions as $resolution){
+            foreach ($resId as $id){
+                if($id->resolution_id === $resolution->id && $id->isAccepting === 1){
+//                    dd($resolution->id);
+                }
+            }
+        }
+
         return view('public.monitorAndEval', [
             'resolutions' => $resolutions,
             'ordinances' => $ordinances,
+            'resId' => $resId,
             'type' => PublicController::RR,]);
     }
     //    Monitoring and Eval end
