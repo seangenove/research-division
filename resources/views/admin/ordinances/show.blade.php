@@ -10,10 +10,6 @@
             margin: 0 auto;
             width: 62px;
         }
-
-        .add-magin {
-            margin: 10px 0;
-        }
     </style>
 @endsection
 

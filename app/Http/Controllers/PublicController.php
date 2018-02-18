@@ -153,12 +153,10 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 1)
-                    ->where('is_accepting', 0);
+                $query->where('is_monitoring', 1);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 1)
-                ->where('is_accepting', 0);
+            $resolutions = Resolution::where('is_monitoring', 1);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -182,7 +180,7 @@ class PublicController extends Controller
     public function ordinance(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
-        $limit = 10;
+        $limit = 5;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -204,12 +202,10 @@ class PublicController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function($query){
-                $query->where('is_monitoring', 1)
-                    ->where('is_accepting', 0);
+                $query->where('is_monitoring', 1);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 1)
-                ->where('is_accepting', 0);
+            $ordinances = Ordinance::where('is_monitoring', 1);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -224,8 +220,13 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
+
+        // ordinances that do not accept requests
+        $ordId = Questionnaire::all();
+
         return view('public.ordinance', [
             'ordinances' => $ordinances,
+            'ordId'=> $ordId,
             'type' => PublicController::RR,
         ]);
     }
