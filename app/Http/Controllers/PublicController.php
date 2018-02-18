@@ -164,6 +164,7 @@ class PublicController extends Controller
                         ->whereNotNull('resolution_id');
                 })
                 ->where('is_monitoring',1)
+                ->where('is_accepting',0)
                 ->orderBy($colName, $order)
                 ->paginate($limit);
         }
@@ -223,6 +224,7 @@ class PublicController extends Controller
                         ->whereNotNull('ordinance_id');
                 })
                 ->where('is_monitoring',1)
+                ->where('is_accepting',0)
                 ->orderBy($colName, $order)
                 ->paginate($limit);
         }
