@@ -134,26 +134,40 @@
                                                 <td><input class="btn btn-primary" type="submit" value="Filter"></td>
                                             </form>
 
-                                                @if($ordId !== null)
-                                                    @foreach($ordinances as $ordinance)
-                                                        @foreach($ordId as $id)
-                                                            @if($ordinance->id !==  $id->ordinance_id)
-                                                                <tr>
-                                                                    <td>{{ $ordinance->number }}</td>
-                                                                    <td>{{ $ordinance->series }}</td>
-                                                                    <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                                                    <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
-                                                                    <td>
-                                                                        <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                                                                class="btn btn-info pull-right">Read More
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endif
-                                                        @endforeach
-                                                    @endforeach
-                                                @endif
-                                            
+                                                {{--@if($ordId !== null)--}}
+                                                    {{--@foreach($ordinances as $ordinance)--}}
+                                                        {{--@foreach($ordId as $id)--}}
+                                                            {{--@if($id->id === $ordinance->id)--}}
+                                                                {{--<tr>--}}
+                                                                    {{--<td>{{ $ordinance->number }}</td>--}}
+                                                                    {{--<td>{{ $ordinance->series }}</td>--}}
+                                                                    {{--<td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>--}}
+                                                                    {{--<td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>--}}
+                                                                    {{--<td>--}}
+                                                                        {{--<button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "--}}
+                                                                                {{--class="btn btn-info pull-right">Read More--}}
+                                                                        {{--</button>--}}
+                                                                    {{--</td>--}}
+                                                                {{--</tr>--}}
+                                                            {{--@endif--}}
+                                                        {{--@endforeach--}}
+                                                    {{--@endforeach--}}
+                                                {{--@endif--}}
+
+                                            @foreach($ordinances as $ordinance)
+                                                        <tr>
+                                                            <td>{{ $ordinance->number }}</td>
+                                                            <td>{{ $ordinance->series }}</td>
+                                                            <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
+                                                            <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
+                                                            <td>
+                                                                <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                                                        class="btn btn-info pull-right">Read More
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                            @endforeach
+
                                             </tbody>
                                         </table>
 

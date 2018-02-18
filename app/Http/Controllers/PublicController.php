@@ -156,21 +156,30 @@ class PublicController extends Controller
                 $query->where('is_monitoring', 1);
             });
         } else {
-            $resolutions = Resolution::where('is_monitoring', 1);
+//            $resolutions = Resolution::where('is_monitoring', 1);
+            $resolutions = DB::table('ordinances')->select('*')
+                ->whereNotIn('id', function ($query) {
+                    $query->select('resolution_id')->from('questionnaires')
+                        ->whereRaw('isAccepting = 1')
+                        ->whereNotNull('resolution_id');
+                })
+                ->where('is_monitoring',1)
+                ->orderBy($colName, $order)
+                ->paginate($limit);
         }
 
-        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
-            $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
-                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
-                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
-                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
-        }
-
-        // Implement filtering / sorting
-        $resolutions = $resolutions->orderBy($colName, $order);
-
-        // Paginate with filters
-        $resolutions = $resolutions->paginate($limit)->appends($request->all());
+//        if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
+//            $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
+//                ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
+//                ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
+//                ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+//        }
+//
+//        // Implement filtering / sorting
+//        $resolutions = $resolutions->orderBy($colName, $order);
+//
+//        // Paginate with filters
+//        $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
         return view('public.resolution', [
             'resolutions' => $resolutions,
@@ -201,11 +210,21 @@ class PublicController extends Controller
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
+
             })->where(function($query){
                 $query->where('is_monitoring', 1);
             });
         } else {
-            $ordinances = Ordinance::where('is_monitoring', 1);
+//            $ordinances = Ordinance::where('is_monitoring', 1);
+            $ordinances = DB::table('ordinances')->select('*')
+                ->whereNotIn('id', function ($query) {
+                    $query->select('ordinance_id')->from('questionnaires')
+                        ->whereRaw('isAccepting = 1')
+                        ->whereNotNull('ordinance_id');
+                })
+                ->where('is_monitoring',1)
+                ->orderBy($colName, $order)
+                ->paginate($limit);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -215,17 +234,31 @@ class PublicController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
-        // Implement filtering / sorting
-        $ordinances = $ordinances->orderBy($colName, $order);
 
-        // Paginate with filters
-        $ordinances = $ordinances->paginate($limit)->appends($request->all());
+
+//
+//
+//        // Implement filtering / sorting
+//        $ordinances = $ordinances->orderBy($colName, $order);
+//
+//
+//        // Paginate with filters
+//        $ordinances = $ordinances->paginate($limit)->appends($request->all());
+
+//        $ordId = Ordinance::join('questionnaires','ordinances.id','=','questionnaires.ordinance_id')
+//            ->where('questionnaires.isAccepting', 1)
+//            ->select('ordinances.id')
+//            ->get();
+
+
+
+//        dd($ordinances);
 
         // ordinances that do not accept requests
-        $ordId = Questionnaire::where('isAccepting',1);
+
         return view('public.ordinance', [
             'ordinances' => $ordinances,
-            'ordId'=> $ordId,
+//            'ordId'=> $ordId,
             'type' => PublicController::RR,
         ]);
     }
