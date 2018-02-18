@@ -310,7 +310,7 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        $ordId = Questionnaire::all(    );
+        $ordId = Questionnaire::all();
 
         return view('public.MandE.monitorAndEval', [
             'ordinances' => $ordinances,

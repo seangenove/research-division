@@ -55,7 +55,6 @@
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
                                 {{--class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                    {{  $url = '/admin/forms/'. $ordinance->id. '/edit'}}
                                     <a href="" class="btn  btn-danger" >
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
