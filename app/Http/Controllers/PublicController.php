@@ -222,8 +222,7 @@ class PublicController extends Controller
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         // ordinances that do not accept requests
-        $ordId = Questionnaire::all();
-
+        $ordId = Questionnaire::where('isAccepting',1);
         return view('public.ordinance', [
             'ordinances' => $ordinances,
             'ordId'=> $ordId,
@@ -278,9 +277,9 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        $ordId = Questionnaire::all();
+        $ordId = Questionnaire::where('isAccepting',1);
 
-        return view('public.monitorAndEval', [
+        return view('public.MandE.monitorAndEval', [
             'ordinances' => $ordinances,
             'resolutions' => $resolutions,
             'ordId'=> $ordId,
@@ -344,7 +343,7 @@ class PublicController extends Controller
             }
         }
 
-        return view('public.monitorAndEval', [
+        return view('public.MandE.monitorAndEval', [
             'resolutions' => $resolutions,
             'ordinances' => $ordinances,
             'resId' => $resId,
@@ -396,7 +395,8 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
-        return view('public.ordinance', [
+
+        return view('public.RandR.ordinance', [
             'ordinances' => $ordinances,
             'type' => PublicController::RR,
         ]);
@@ -446,7 +446,7 @@ class PublicController extends Controller
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
-        return view('public.resolution', [
+        return view('public.RandR.resolution', [
             'resolutions' => $resolutions,
             'type' => PublicController::RR,]);
     }
