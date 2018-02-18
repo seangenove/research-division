@@ -310,11 +310,11 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        $ordId = Questionnaire::where('isAccepting',1);
+        $ordId = Questionnaire::all(    );
 
         return view('public.MandE.monitorAndEval', [
             'ordinances' => $ordinances,
-            'resolutions' => $resolutions,
+            'resolutions' => $resolutions, //null
             'ordId'=> $ordId,
             'type' => PublicController::RR,
         ]);
@@ -368,13 +368,13 @@ class PublicController extends Controller
 
         $resId = Questionnaire::all();
 
-        foreach ($resolutions as $resolution){
-            foreach ($resId as $id){
-                if($id->resolution_id === $resolution->id && $id->isAccepting === 1){
-//                    dd($resolution->id);
-                }
-            }
-        }
+//        foreach ($resolutions as $resolution){
+//            foreach ($resId as $id){
+//                if($id->resolution_id === $resolution->id && $id->isAccepting === 1){
+////                    dd($resolution->id);
+//                }
+//            }
+//        }
 
         return view('public.MandE.monitorAndEval', [
             'resolutions' => $resolutions,
