@@ -592,7 +592,12 @@ class PublicController extends Controller
             }
         }
         Session::flash('flash_message', 'Thank you for answering the questionnaire for ' . $document->title);
-        return redirect('monitorAndEval');
+        if ($request->type === 'ordinance') {
+            return redirect('/public/showOrdinance/'.$request->id);
+        } else {
+            return redirect('/public/showResolution/'.$request->id);
+        }
+        
     }
 
     public function storeSuggestion(Request $request, $id)
