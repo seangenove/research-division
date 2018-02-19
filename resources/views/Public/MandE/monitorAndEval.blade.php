@@ -162,7 +162,6 @@
                                     </tr>
                                 @endif
                             @endforeach
-
                             @if( $ordinance->is_accepting === 1)
                                 <tr>
                                     <td>{{ $ordinance->number }}</td>

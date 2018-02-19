@@ -19,10 +19,10 @@ Route::get('/about', 'PublicController@about');
 
 //Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 
-Route::get('/ordinances', 'PublicController@ordinance'); /* used in monitoring and evaluation */
-Route::get('/resolutions', 'PublicController@resolutions'); /* used in monitoring and evaluation */
-Route::get('/monitorAndEval/ordinances', 'PublicController@monitorAndEvalOrdinances');
-Route::get('/monitorAndEval/resolutions', 'PublicController@monitorAndEvalResolutions');
+Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation */
+Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation */
+Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance');
+Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions');
 
 Route::get('/r&r/resolutions', 'PublicController@researchAndRecordsResolution');
 Route::get('/r&r/ordinances', 'PublicController@researchAndRecordsOrdinance');
