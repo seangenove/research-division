@@ -146,16 +146,27 @@
                             </div>
 
                             <div class="box-body box-comments">
+                                @php
+                                    $a = new \Antoineaugusti\LaravelSentimentAnalysis\SentimentAnalysis();
+                                @endphp
                                 @foreach($ordinance->suggestions as $suggestion)
                                     <div class="box-comment">
                                         <!-- User image -->
                                         {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
 
+                                        @if($a->decision($suggestion->suggestion) === 'positive')
+                                            <span class="fa fa-smile-o pull-left" style="color: green; font-size: 2.3em"></span>
+                                        @elseif($a->decision($suggestion->suggestion) === 'negative')
+                                            <span class="fa fa-frown-o pull-left" style="color: darkred; font-size: 2.3em"></span>
+                                        @else
+                                            <span class="fa fa-minus pull-left" style="color: gold; font-size: 2.3em"></span>
+                                        @endif
+
                                         <div class="comment-text">
-                              <span class="username">
-                                {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                                  <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                              </span><!-- /.username -->
+                                          <span class="username">
+                                            {{ $suggestion->first_name }} {{ $suggestion->last_name }}
+                                              <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
+                                          </span><!-- /.username -->
                                             {{ $suggestion->suggestion }}
                                         </div>
                                         <!-- /.comment-text -->

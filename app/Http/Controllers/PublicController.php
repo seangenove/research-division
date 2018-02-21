@@ -617,9 +617,9 @@ class PublicController extends Controller
 
     public function storeSuggestion(Request $request, $id)
     {
-        $request->validate([
-            'g-recaptcha-response' => 'required',
-        ]);
+//        $request->validate([
+//            'g-recaptcha-response' => 'required',
+//        ]);
 
         if ($request->input('type') === 'ordinance') {
             // Ordinances
@@ -635,6 +635,9 @@ class PublicController extends Controller
                 'ordinance_id' => $id,
                 'suggestion_id' => $suggestion->id
             ]);
+
+            return redirect('/public/showOrdinance/' . $id);
+
         } elseif ($request->input('type') === 'resolution') {
             // Resolution
             $suggestion = new Suggestion();
@@ -649,6 +652,8 @@ class PublicController extends Controller
                 'resolution_id' => $id,
                 'suggestion_id' => $suggestion->id
             ]);
+
+            return redirect('/public/showResolution/' . $id);
         }
     }
 
